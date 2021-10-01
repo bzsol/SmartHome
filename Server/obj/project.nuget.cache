@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VdS9qyR+cPOi0hdByHIBuMEBwOwK6FEz7ultRTNryiP3O6/lWC0lj49nbytyoKmG0n5y9meXbmIO8uEfsbdqXQ==",
+  "dgSpecHash": "GovOhU5OA+fLUXnlZF9Opacp/m2Zpfi6qUg8oPANqjer9YfwCbetpvBYOHg9JNUWVqmH9v5q2BCPdOPlIB8+nw==",
   "success": true,
-  "projectFilePath": "D:\\Github\\SmartHome\\Server\\Server.csproj",
+  "projectFilePath": "C:\\Github\\SmartHome\\Server\\Server.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
