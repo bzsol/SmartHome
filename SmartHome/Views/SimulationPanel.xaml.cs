@@ -17,7 +17,7 @@ namespace SmartHome.Views
     /// <summary>
     /// Interaction logic for SimulationPanel.xaml
     /// </summary>
-    public partial class SimulationPanel : Window
+    public partial class SimulationPanel : UserControl
     {
         public SimulationPanel()
         {

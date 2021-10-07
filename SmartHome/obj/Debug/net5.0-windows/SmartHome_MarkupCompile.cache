@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 D:\ProgramozásProjektek\C#\SmartHome\SmartHome\App.xaml
-1-1784834933
+3-1396942932
 
-3329324129
+7-1074868857
 193-1891726104
-Views\Dashboard.xaml;
+Views\ConfigurePanel.xaml;Views\Dashboard.xaml;Views\SimulationPanel.xaml;
 
 False
 

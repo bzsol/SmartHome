@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartHome.ViewModels
 {
-    class SimulationPanelViewModel
+    public class SimulationPanelViewModel
     {
     }
 }

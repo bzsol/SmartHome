@@ -17,7 +17,7 @@ namespace SmartHome.Views
     /// <summary>
     /// Interaction logic for ConfigurePanel.xaml
     /// </summary>
-    public partial class ConfigurePanel : Window
+    public partial class ConfigurePanel : UserControl
     {
         public ConfigurePanel()
         {
