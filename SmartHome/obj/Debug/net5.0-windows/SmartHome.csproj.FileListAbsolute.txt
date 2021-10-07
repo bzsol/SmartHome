@@ -24,3 +24,9 @@ D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\S
 D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
 D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\ConfigurePanel.baml
 D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\SimulationPanel.baml
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\bin\Debug\net5.0-windows\Prism.dll
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\SmartHome.csproj.AssemblyReference.cache
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\SmartHome.csproj.CopyComplete
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\App.baml
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\ElectronicCategoryPanel.g.cs
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\ElectronicCategoryPanel.baml

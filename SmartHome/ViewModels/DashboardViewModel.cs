@@ -33,19 +33,17 @@ namespace SmartHome.ViewModels
         public DashboardViewModel()
         {
             ChangeToSimulation = new DelegateCommand<Button>(OnChangeToSimulation);
-            ChangeToSimulation = new DelegateCommand<Button>(OnChangeToConfiguration);
-
-            _userControlViewModel = new ConfigurePanelViewModel();
+            ChangeToConfiguration = new DelegateCommand<Button>(OnChangeToConfiguration);
         }
 
         public void OnChangeToSimulation(Button btn)
         {
-
+            UserControlViewModel = new SimulationPanelViewModel();
         }
 
         public void OnChangeToConfiguration(Button btn)
         {
-
+            UserControlViewModel = new ConfigurePanelViewModel();
         }
     }
 }
