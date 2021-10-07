@@ -8,5 +8,9 @@ namespace SmartHome.ViewModels
 {
     public class ElectronicCategoryPanelViewModel
     {
+        public ElectronicCategoryPanelViewModel()
+        {
+
+        }
     }
 }

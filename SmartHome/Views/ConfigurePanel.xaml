@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:SmartHome.Views"
         xmlns:viewModel="clr-namespace:SmartHome.ViewModels"
         mc:Ignorable="d"
+        Margin="15"
         Height="900" Width="1600">
     <UserControl.DataContext>
         <viewModel:ConfigurePanelViewModel/>
