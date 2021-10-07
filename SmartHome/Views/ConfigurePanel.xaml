@@ -11,6 +11,6 @@
         <viewModel:ConfigurePanelViewModel/>
     </UserControl.DataContext>
     <Grid>
-        
+        <Label Content="Conf"></Label>
     </Grid>
 </UserControl>

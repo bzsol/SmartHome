@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHome.Views"
         xmlns:View="clr-namespace:SmartHome.Views"
+        xmlns:viewModel="clr-namespace:SmartHome.ViewModels"
         mc:Ignorable="d"
-        WindowStartupLocation="Manual"
         Title="Dashboard" Height="1080" Width="1600">
+    <Window.DataContext>
+        <viewModel:DashboardViewModel/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"></RowDefinition>
@@ -18,6 +22,6 @@
             <Button Content="Szimuláció" BorderThickness="0" Height="30" Width="100" Margin="0 0 10 0"></Button>
             <Button Content="Konfiguráció" BorderThickness="0" Height="30" Width="100" Margin="10 0 0 0"></Button>
         </StackPanel>
-        <ContentControl Grid.Row="1"></ContentControl>
+        <ContentControl Grid.Row="1" Content="{Binding UserControlViewModel}"></ContentControl>
     </Grid>
 </Window>

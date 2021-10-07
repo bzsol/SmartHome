@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "IxQT04PPL2GpBV1EWN0YXmFczbwBBYuOxbCwYNgV5esw4ramqg0w01e4iq8RBs5+EqIP/5YECPMET4LrIGkRNg==",
+  "dgSpecHash": "hWSuPGMnYa1n8Kh8O3mA4SDG76yRR55lynNlnAQAVoIkzvVlL/bttb2Xx7yZTD8uOwqyVHt2LcVGFg7KnJ2vaA==",
   "success": true,
   "projectFilePath": "D:\\ProgramozásProjektek\\C#\\SmartHome\\SmartHome\\SmartHome.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\koszt\\.nuget\\packages\\prism.core\\8.1.97\\prism.core.8.1.97.nupkg.sha512"
+  ],
   "logs": []
 }

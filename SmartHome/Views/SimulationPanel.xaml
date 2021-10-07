@@ -11,6 +11,6 @@
         <viewModel:SimulationPanelViewModel/>
     </UserControl.DataContext>
     <Grid>
-        
+        <Label Content="Simu"></Label>
     </Grid>
 </UserControl>
