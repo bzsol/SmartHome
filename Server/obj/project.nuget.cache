@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "GovOhU5OA+fLUXnlZF9Opacp/m2Zpfi6qUg8oPANqjer9YfwCbetpvBYOHg9JNUWVqmH9v5q2BCPdOPlIB8+nw==",
+  "dgSpecHash": "PDPUpyus6HKpn7ogD3qJudUbJx1Tu4GI57Oyo4bNA4n8lJyD7a2B6lpjgrR5rv9bNYGN8dnjC3d45zbr/SSiyQ==",
   "success": true,
-  "projectFilePath": "C:\\Github\\SmartHome\\Server\\Server.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\Github\\SmartHome\\Server\\Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Zsolti\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
