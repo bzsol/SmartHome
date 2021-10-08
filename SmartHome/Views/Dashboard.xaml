@@ -1,0 +1,29 @@
+﻿<Window x:Class="SmartHome.Views.Dashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartHome.Views"
+        xmlns:view="clr-namespace:SmartHome.Views"
+        xmlns:viewModel="clr-namespace:SmartHome.ViewModels"
+        mc:Ignorable="d"
+        Title="Dashboard" Height="1080" Width="1600">
+    <Window.DataContext>
+        <viewModel:DashboardViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Szimuláció" BorderThickness="0" Height="30" Width="100" Margin="0 0 10 0"
+                    Command="{Binding ChangeToSimulation}"></Button>
+            <Button Content="Konfiguráció" BorderThickness="0" Height="30" Width="100" Margin="10 0 0 0"
+                    Command="{Binding ChangeToConfiguration}"></Button>
+        </StackPanel>
+        <ContentControl Grid.Row="1" Content="{Binding UserControlViewModel}"></ContentControl>
+    </Grid>
+</Window>

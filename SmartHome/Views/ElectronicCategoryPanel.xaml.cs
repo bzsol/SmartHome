@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SmartHome
+namespace SmartHome.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ElectronicCategoryPanel.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ElectronicCategoryPanel : UserControl
     {
-        public MainWindow()
+        public ElectronicCategoryPanel()
         {
             InitializeComponent();
         }

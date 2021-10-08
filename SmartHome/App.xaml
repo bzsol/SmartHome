@@ -2,8 +2,18 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SmartHome"
-             StartupUri="MainWindow.xaml">
+             xmlns:view="clr-namespace:SmartHome.Views"
+             xmlns:viewModel="clr-namespace:SmartHome.ViewModels"
+             StartupUri="Views/Dashboard.xaml">
     <Application.Resources>
-         
+        <DataTemplate DataType="{x:Type viewModel:ConfigurePanelViewModel}">
+            <view:ConfigurePanel/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:SimulationPanelViewModel}">
+            <view:SimulationPanel/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ElectronicCategoryPanelViewModel}">
+            <view:ElectronicCategoryPanel/>
+        </DataTemplate>
     </Application.Resources>
 </Application>
