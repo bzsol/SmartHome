@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="SmartHome.Views.ConfigurePanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartHome.Views"
+        xmlns:viewModel="clr-namespace:SmartHome.ViewModels"
+        mc:Ignorable="d"
+        Margin="15"
+        Height="900" Width="1600">
+    <UserControl.DataContext>
+        <viewModel:ConfigurePanelViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <Button x:Name="btnCat1" Content="Szórakoztató elektronika" Height="30" Width="150" BorderThickness="0" Margin="0 0 10 0"
+                    Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat1}"></Button>
+            <Button Content="Klíma" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0"></Button>
+            <Button Content="Öntözőrendszer" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0"></Button>
+        </StackPanel>
+
+        <ContentControl Grid.Row="1" Content="{Binding CategoryPanelViewModel}"></ContentControl>
+    </Grid>
+</UserControl>
