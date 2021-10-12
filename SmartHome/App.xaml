@@ -15,5 +15,8 @@
         <DataTemplate DataType="{x:Type viewModel:ElectronicCategoryPanelViewModel}">
             <view:ElectronicCategoryPanel/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ClimateViewModel}">
+            <view:ClimatePanel/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 D:\ProgramozásProjektek\C#\SmartHome\SmartHome\App.xaml
-41093744313
+5-698480752
 
-101770266053
+121113711079
 194-898668904
-Views\ConfigurePanel.xaml;Views\Dashboard.xaml;Views\ElectronicCategoryPanel.xaml;Views\SimulationPanel.xaml;
+Views\ClimatePanel.xaml;Views\ConfigurePanel.xaml;Views\Dashboard.xaml;Views\ElectronicCategoryPanel.xaml;Views\SimulationPanel.xaml;
 
 False
 
