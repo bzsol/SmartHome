@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ProgramozásProjektek\\C#\\SmartHome\\SmartHome\\SmartHome.csproj": {}
+    "D:\\Github\\SmartHome\\SmartHome\\SmartHome.csproj": {}
   },
   "projects": {
-    "D:\\ProgramozásProjektek\\C#\\SmartHome\\SmartHome\\SmartHome.csproj": {
+    "D:\\Github\\SmartHome\\SmartHome\\SmartHome.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ProgramozásProjektek\\C#\\SmartHome\\SmartHome\\SmartHome.csproj",
+        "projectUniqueName": "D:\\Github\\SmartHome\\SmartHome\\SmartHome.csproj",
         "projectName": "SmartHome",
-        "projectPath": "D:\\ProgramozásProjektek\\C#\\SmartHome\\SmartHome\\SmartHome.csproj",
-        "packagesPath": "C:\\Users\\koszt\\.nuget\\packages\\",
-        "outputPath": "D:\\ProgramozásProjektek\\C#\\SmartHome\\SmartHome\\obj\\",
+        "projectPath": "D:\\Github\\SmartHome\\SmartHome\\SmartHome.csproj",
+        "packagesPath": "C:\\Users\\Zsolti\\.nuget\\packages\\",
+        "outputPath": "D:\\Github\\SmartHome\\SmartHome\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\koszt\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Zsolti\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +40,10 @@
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
           "dependencies": {
+            "MaterialDesignThemes": {
+              "target": "Package",
+              "version": "[4.2.1, )"
+            },
             "Prism.Core": {
               "target": "Package",
               "version": "[8.1.97, )"
@@ -63,7 +67,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
