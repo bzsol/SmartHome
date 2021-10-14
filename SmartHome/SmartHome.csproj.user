@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\ClimatePanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\ConfigurePanel.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -21,6 +24,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\ClimatePanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\ConfigurePanel.xaml">
       <SubType>Designer</SubType>
     </Page>
