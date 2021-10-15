@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\
+C:\Github\SmartHome\SmartHome\obj\Debug\net5.0-windows\
 SmartHome
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-D:\ProgramozásProjektek\C#\SmartHome\SmartHome\App.xaml
-41093744313
+C:\Github\SmartHome\SmartHome\App.xaml
+4-366590817
 
-12-777229736
-194-898668904
+12-2101031977
+194-1718132894
 Views\ConfigurePanel.xaml;Views\Dashboard.xaml;Views\ElectronicCategoryPanel.xaml;Views\SimulationPanel.xaml;
 
-False
+True
 
