@@ -41,6 +41,9 @@ namespace SmartHome.ViewModels
                 case "btnCat1":
                     CategoryPanelViewModel = new ElectronicCategoryPanelViewModel();
                     break;
+                case "btnCat2":
+                    CategoryPanelViewModel = new ClimateViewModel();
+                    break;
             }
         }
     }

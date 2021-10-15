@@ -30,3 +30,5 @@ D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\SmartHo
 D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\App.baml
 D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\ElectronicCategoryPanel.g.cs
 D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\ElectronicCategoryPanel.baml
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\ClimatePanel.g.cs
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\ClimatePanel.baml

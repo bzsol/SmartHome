@@ -21,3 +21,7 @@ D:\ProgramozásProjektek\C#\SmartHome\Server\obj\Debug\net5.0\Server.dll
 D:\ProgramozásProjektek\C#\SmartHome\Server\obj\Debug\net5.0\ref\Server.dll
 D:\ProgramozásProjektek\C#\SmartHome\Server\obj\Debug\net5.0\Server.pdb
 D:\ProgramozásProjektek\C#\SmartHome\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache
+D:\ProgramozásProjektek\C#\SmartHome\Server\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\ProgramozásProjektek\C#\SmartHome\Server\bin\Debug\net5.0\Common.dll
+D:\ProgramozásProjektek\C#\SmartHome\Server\bin\Debug\net5.0\Common.pdb
+D:\ProgramozásProjektek\C#\SmartHome\Server\obj\Debug\net5.0\Server.csproj.CopyComplete
