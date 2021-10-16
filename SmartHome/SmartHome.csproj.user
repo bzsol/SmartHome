@@ -7,7 +7,54 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="MainWindow.xaml">
+    <Compile Update="Views\ClimatePanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ConfigurePanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dashboard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ElectronicCategoryPanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\IrrigationManagerPanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\LightManagerPanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ShadowManagerPanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SimulationPanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\ClimatePanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ConfigurePanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dashboard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ElectronicCategoryPanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\IrrigationManagerPanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\LightManagerPanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ShadowManagerPanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SimulationPanel.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
