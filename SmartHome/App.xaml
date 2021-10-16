@@ -35,6 +35,35 @@
                         <view:IrrigationManagerPanel/>
                     </DataTemplate>
                 </ResourceDictionary>
+
+                <ResourceDictionary>
+                    <FontFamily x:Key="Roboto">pack://application:,,,/Fonts/Roboto-Regular.ttf</FontFamily>
+                </ResourceDictionary>
+
+                <ResourceDictionary>
+                    <Style x:Key="MainButtonStyle" TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#008D3D"></Setter>
+                        <Setter Property="FontFamily" Value="{StaticResource Roboto}"></Setter>
+                        <Setter Property="FontWeight" Value="DemiBold"></Setter>
+                        <Setter Property="BorderThickness" Value="0"></Setter>
+                        <Setter Property="Foreground" Value="#FFFFFF"></Setter>
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#005D0D"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

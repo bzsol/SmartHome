@@ -14,7 +14,6 @@ D:\ProgramozásProjektek\C#\SmartHome\Common\bin\Debug\net5.0\Common.deps.json
 D:\ProgramozásProjektek\C#\SmartHome\Common\bin\Debug\net5.0\Common.dll
 D:\ProgramozásProjektek\C#\SmartHome\Common\bin\Debug\net5.0\ref\Common.dll
 D:\ProgramozásProjektek\C#\SmartHome\Common\bin\Debug\net5.0\Common.pdb
-D:\ProgramozásProjektek\C#\SmartHome\Common\obj\Debug\net5.0\Common.csproj.AssemblyReference.cache
 D:\ProgramozásProjektek\C#\SmartHome\Common\obj\Debug\net5.0\Common.GeneratedMSBuildEditorConfig.editorconfig
 D:\ProgramozásProjektek\C#\SmartHome\Common\obj\Debug\net5.0\Common.AssemblyInfoInputs.cache
 D:\ProgramozásProjektek\C#\SmartHome\Common\obj\Debug\net5.0\Common.AssemblyInfo.cs
