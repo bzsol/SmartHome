@@ -19,6 +19,15 @@
     <Compile Update="Views\ElectronicCategoryPanel.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\IrrigationManagerPanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\LightManagerPanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ShadowManagerPanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\SimulationPanel.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -34,6 +43,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\ElectronicCategoryPanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\IrrigationManagerPanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\LightManagerPanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ShadowManagerPanel.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\SimulationPanel.xaml">

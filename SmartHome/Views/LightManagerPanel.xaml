@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="SmartHome.Views.LightManagerPanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartHome.Views"
+        xmlns:viewModel="clr-namespace:SmartHome.ViewModels"
+        mc:Ignorable="d"
+        Margin="15"
+        Height="800" Width="1480">
+    <UserControl.DataContext>
+        <viewModel:LightManagerViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Helyiség" FontFamily="Arial" FontSize="24" Foreground="#20A000"
+                   VerticalAlignment="Center" Margin="10"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Content="Fényerő" FontFamily="Arial" FontSize="24" Foreground="#20A000"
+                   VerticalAlignment="Center" Margin="10"></Label>
+                <Label Grid.Row="2" Grid.Column="0" Content="Világítás típusa" FontFamily="Arial" FontSize="24" Foreground="#20A000"
+                   VerticalAlignment="Center" Margin="10"></Label>
+                <Label Grid.Row="3" Grid.Column="0" Content="Időzítés" FontFamily="Arial" FontSize="24" Foreground="#20A000"
+                   VerticalAlignment="Center" Margin="10"></Label>
+
+                <ComboBox Grid.Row="0" Grid.Column="1" Height="50" Width="500" HorizontalAlignment="Center"  Background="Transparent"  FontFamily="Arial" FontSize="24"
+                           Foreground="#20A000" VerticalAlignment="Center" />
+                <Slider Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500" Height="50"
+                         Minimum="18" Maximum="26" Value="18" AutoToolTipPlacement="BottomRight"></Slider>
+                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <RadioButton Content="Hideg" Margin="0 0 15 0" FontFamily="Arial" FontSize="24" Foreground="#20A000"></RadioButton>
+                    <RadioButton Content="Meleg" Margin="15 0 0 0" FontFamily="Arial" FontSize="24" Foreground="#20A000"></RadioButton>
+                </StackPanel>
+                <TextBox Grid.Row="3" Grid.Column="1" Margin="10" FontFamily="Arial" FontSize="24" Foreground="#20A000"
+                       Height="50" Background="Transparent" BorderThickness="0 0 0 2" BorderBrush="#121212" MaxLength="16"
+                       Padding="0 20 0 0"/>
+            </Grid>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Content="Esemény hozzáadása" BorderThickness="0" Width="150" Height="30" Margin="0 0 10 0"></Button>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Helyiség" FontFamily="Arial" FontSize="24" Foreground="#20A000"
+                   VerticalAlignment="Center" Margin="10"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Content="Fényerő" FontFamily="Arial" FontSize="24" Foreground="#20A000"
+                   VerticalAlignment="Center" Margin="10"></Label>
+                <Label Grid.Row="2" Grid.Column="0" Content="Világítás típusa" FontFamily="Arial" FontSize="24" Foreground="#20A000"
+                   VerticalAlignment="Center" Margin="10"></Label>
+                <Label Grid.Row="3" Grid.Column="0" Content="Időzítés" FontFamily="Arial" FontSize="24" Foreground="#20A000"
+                   VerticalAlignment="Center" Margin="10"></Label>
+
+                <ComboBox Grid.Row="0" Grid.Column="1" Height="50" Width="500" HorizontalAlignment="Center"  Background="Transparent"  FontFamily="Arial" FontSize="24"
+                           Foreground="#20A000" VerticalAlignment="Center" />
+                <Slider Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500" Height="50"
+                         Minimum="18" Maximum="26" Value="18" AutoToolTipPlacement="BottomRight"></Slider>
+                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <RadioButton Content="Hideg" Margin="0 0 15 0" FontFamily="Arial" FontSize="24" Foreground="#20A000"></RadioButton>
+                    <RadioButton Content="Meleg" Margin="15 0 0 0" FontFamily="Arial" FontSize="24" Foreground="#20A000"></RadioButton>
+                </StackPanel>
+                <TextBox Grid.Row="3" Grid.Column="1" Margin="10" FontFamily="Arial" FontSize="24" Foreground="#20A000"
+                       Height="50" Background="Transparent" BorderThickness="0 0 0 2" BorderBrush="#121212" MaxLength="16"
+                       Padding="0 20 0 0"/>
+            </Grid>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Content="Esemény hozzáadása" BorderThickness="0" Width="150" Height="30" Margin="0 0 10 0"></Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

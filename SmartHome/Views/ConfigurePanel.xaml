@@ -22,9 +22,12 @@
                     Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat1}"></Button>
             <Button x:Name="btnCat2" Content="Klíma" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0"
                     Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat2}"></Button>
-            <Button Content="Világítás" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0"></Button>
-            <Button Content="Árnyékolástechnika" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0"></Button>
-            <Button Content="Öntözőrendszer" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0"></Button>
+            <Button x:Name="btnCat3" Content="Világítás" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0" 
+                    Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat3}"></Button>
+            <Button x:Name="btnCat4" Content="Árnyékolástechnika" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0"
+                    Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat4}" ></Button>
+            <Button x:Name="btnCat5" Content="Öntözőrendszer" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0"
+                    Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat5}"></Button>
             <Button Content="Vezérlőpult" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0"></Button>
             <Button Content="Eseménynapló" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0"></Button>
         </StackPanel>

@@ -1,5 +1,5 @@
 ﻿<Application x:Class="SmartHome.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SmartHome"
              xmlns:view="clr-namespace:SmartHome.Views"
@@ -17,6 +17,15 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ClimateViewModel}">
             <view:ClimatePanel/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:LightManagerViewModel}">
+            <view:LightManagerPanel/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ShadowManagerViewModel}">
+            <view:ShadowManagerPanel/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:IrrigationManagerViewModel}">
+            <view:IrrigationManagerPanel/>
         </DataTemplate>
     </Application.Resources>
 </Application>
