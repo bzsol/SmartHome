@@ -6,26 +6,36 @@
              xmlns:viewModel="clr-namespace:SmartHome.ViewModels"
              StartupUri="Views/Dashboard.xaml">
     <Application.Resources>
-        <DataTemplate DataType="{x:Type viewModel:ConfigurePanelViewModel}">
-            <view:ConfigurePanel/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:SimulationPanelViewModel}">
-            <view:SimulationPanel/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:ElectronicCategoryPanelViewModel}">
-            <view:ElectronicCategoryPanel/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:ClimateViewModel}">
-            <view:ClimatePanel/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:LightManagerViewModel}">
-            <view:LightManagerPanel/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:ShadowManagerViewModel}">
-            <view:ShadowManagerPanel/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:IrrigationManagerViewModel}">
-            <view:IrrigationManagerPanel/>
-        </DataTemplate>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Red.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Red.xaml" />
+                <ResourceDictionary>
+                    <DataTemplate DataType="{x:Type viewModel:ConfigurePanelViewModel}">
+                        <view:ConfigurePanel/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:SimulationPanelViewModel}">
+                        <view:SimulationPanel/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:ElectronicCategoryPanelViewModel}">
+                        <view:ElectronicCategoryPanel/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:ClimateViewModel}">
+                        <view:ClimatePanel/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:LightManagerViewModel}">
+                        <view:LightManagerPanel/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:ShadowManagerViewModel}">
+                        <view:ShadowManagerPanel/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:IrrigationManagerViewModel}">
+                        <view:IrrigationManagerPanel/>
+                    </DataTemplate>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
