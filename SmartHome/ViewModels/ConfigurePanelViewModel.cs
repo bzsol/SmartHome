@@ -44,6 +44,15 @@ namespace SmartHome.ViewModels
                 case "btnCat2":
                     CategoryPanelViewModel = new ClimateViewModel();
                     break;
+                case "btnCat3":
+                    CategoryPanelViewModel = new LightManagerViewModel();
+                    break;
+                case "btnCat4":
+                    CategoryPanelViewModel = new ShadowManagerViewModel();
+                    break;
+                case "btnCat5":
+                    CategoryPanelViewModel = new IrrigationManagerViewModel();
+                    break;
             }
         }
     }

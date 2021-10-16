@@ -22,3 +22,15 @@ D:\ProgramozásProjektek\C#\SmartHome\Common\obj\Debug\net5.0\Common.csproj.Core
 D:\ProgramozásProjektek\C#\SmartHome\Common\obj\Debug\net5.0\Common.dll
 D:\ProgramozásProjektek\C#\SmartHome\Common\obj\Debug\net5.0\ref\Common.dll
 D:\ProgramozásProjektek\C#\SmartHome\Common\obj\Debug\net5.0\Common.pdb
+C:\Github\SmartHome\Common\bin\Debug\net5.0\Common.deps.json
+C:\Github\SmartHome\Common\bin\Debug\net5.0\Common.dll
+C:\Github\SmartHome\Common\bin\Debug\net5.0\ref\Common.dll
+C:\Github\SmartHome\Common\bin\Debug\net5.0\Common.pdb
+C:\Github\SmartHome\Common\obj\Debug\net5.0\Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Github\SmartHome\Common\obj\Debug\net5.0\Common.AssemblyInfoInputs.cache
+C:\Github\SmartHome\Common\obj\Debug\net5.0\Common.AssemblyInfo.cs
+C:\Github\SmartHome\Common\obj\Debug\net5.0\Common.csproj.CoreCompileInputs.cache
+C:\Github\SmartHome\Common\obj\Debug\net5.0\Common.dll
+C:\Github\SmartHome\Common\obj\Debug\net5.0\ref\Common.dll
+C:\Github\SmartHome\Common\obj\Debug\net5.0\Common.pdb
+C:\Github\SmartHome\Common\obj\Debug\net5.0\Common.csprojAssemblyReference.cache
