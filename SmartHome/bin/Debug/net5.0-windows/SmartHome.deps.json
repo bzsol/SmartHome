@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v5.0": {
       "SmartHome/1.0.0": {
         "dependencies": {
+          "Common": "1.0.0",
           "MaterialDesignThemes": "4.2.1",
           "Prism.Core": "8.1.97"
         },
@@ -41,6 +42,11 @@
             "fileVersion": "8.1.97.5141"
           }
         }
+      },
+      "Common/1.0.0": {
+        "runtime": {
+          "Common.dll": {}
+        }
       }
     }
   },
@@ -70,6 +76,11 @@
       "sha512": "sha512-EP5zrvWddw3eSq25Y7hHnDYdmLZEC2Z/gMrvmHzUuLbitmA1UaS7wQUlSwNr9Km8lzJNCvytFnaGBEFukHgoHg==",
       "path": "prism.core/8.1.97",
       "hashPath": "prism.core.8.1.97.nupkg.sha512"
+    },
+    "Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

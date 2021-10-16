@@ -114,3 +114,5 @@ D:\Github\SmartHome\SmartHome\obj\Debug\net5.0-windows\SmartHome.pdb
 D:\Github\SmartHome\SmartHome\obj\Debug\net5.0-windows\SmartHome.genruntimeconfig.cache
 D:\Github\SmartHome\SmartHome\bin\Debug\net5.0-windows\MaterialDesignColors.dll
 D:\Github\SmartHome\SmartHome\bin\Debug\net5.0-windows\MaterialDesignThemes.Wpf.dll
+D:\Github\SmartHome\SmartHome\bin\Debug\net5.0-windows\Common.dll
+D:\Github\SmartHome\SmartHome\bin\Debug\net5.0-windows\Common.pdb

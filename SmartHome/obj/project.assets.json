@@ -34,6 +34,16 @@
         "runtime": {
           "lib/net5.0/Prism.dll": {}
         }
+      },
+      "Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Common.dll": {}
+        }
       }
     }
   },
@@ -118,10 +128,16 @@
         "prism.core.nuspec",
         "readme.txt"
       ]
+    },
+    "Common/1.0.0": {
+      "type": "project",
+      "path": "../Common/Common.csproj",
+      "msbuildProject": "../Common/Common.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0-windows7.0": [
+      "Common >= 1.0.0",
       "MaterialDesignThemes >= 4.2.1",
       "Prism.Core >= 8.1.97"
     ]
@@ -152,7 +168,11 @@
       "frameworks": {
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Github\\SmartHome\\Common\\Common.csproj": {
+              "projectPath": "D:\\Github\\SmartHome\\Common\\Common.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

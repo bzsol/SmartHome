@@ -8,25 +8,25 @@ using System.Threading.Tasks;
 
 namespace Server.Repository
 {
-    public class TempRepo
+    public class ExternalFactorsRepo
     {
         // This is the file where we save the data about the temperature
-        private const string datafile = "temperature.json";
+        private const string datafile = "extfact.json";
 
-        public static IEnumerable<Temperature> GetTemperatures() {
+        public static IEnumerable<ExternalFactors> GetExternalFactors() {
             if (File.Exists(datafile) && new FileInfo(datafile).Length > 0)
             {
                 // Existing JSON file -> Read all data from that
-                return JsonSerializer.Deserialize<IEnumerable<Temperature>>(File.ReadAllText(datafile));
+                return JsonSerializer.Deserialize<IEnumerable<ExternalFactors>>(File.ReadAllText(datafile));
             }
             else
             {
                 // New list
-                return new List<Temperature>();
+                return new List<ExternalFactors>();
             }
         }
 
-        public static void SaveTemperature(IEnumerable<Temperature> temp)
+        public static void SaveExternalFactors(IEnumerable<ExternalFactors> temp)
         {
             File.WriteAllText(datafile, JsonSerializer.Serialize(temp));
         }
