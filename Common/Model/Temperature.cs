@@ -8,7 +8,7 @@ namespace Common.Model
 {
     public class Temperature
     {
-        
+        //asd
         public long ID { get; set; }
         public double Temp { get; set; }
 
