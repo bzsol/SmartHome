@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "PDPUpyus6HKpn7ogD3qJudUbJx1Tu4GI57Oyo4bNA4n8lJyD7a2B6lpjgrR5rv9bNYGN8dnjC3d45zbr/SSiyQ==",
+  "dgSpecHash": "BEyZaA/GqOtb0X6Y+mmzrdVHUqsU+Hl3Gg7xnTPpNjSGqS3e6pmJa0KO0YXI1LaOi9jONsBL8ah8RyDJaz/GFg==",
   "success": true,
-  "projectFilePath": "D:\\Github\\SmartHome\\Server\\Server.csproj",
+  "projectFilePath": "D:\\ProgramozásProjektek\\C#\\SmartHome\\Server\\Server.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Zsolti\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\koszt\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }

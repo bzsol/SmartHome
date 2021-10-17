@@ -116,3 +116,13 @@ D:\Github\SmartHome\SmartHome\bin\Debug\net5.0-windows\MaterialDesignColors.dll
 D:\Github\SmartHome\SmartHome\bin\Debug\net5.0-windows\MaterialDesignThemes.Wpf.dll
 D:\Github\SmartHome\SmartHome\bin\Debug\net5.0-windows\Common.dll
 D:\Github\SmartHome\SmartHome\bin\Debug\net5.0-windows\Common.pdb
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\bin\Debug\net5.0-windows\MaterialDesignColors.dll
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\bin\Debug\net5.0-windows\MaterialDesignThemes.Wpf.dll
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\bin\Debug\net5.0-windows\Common.dll
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\bin\Debug\net5.0-windows\Common.pdb
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\IrrigationManagerPanel.g.cs
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\LightManagerPanel.g.cs
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\ShadowManagerPanel.g.cs
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\IrrigationManagerPanel.baml
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\LightManagerPanel.baml
+D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\ShadowManagerPanel.baml

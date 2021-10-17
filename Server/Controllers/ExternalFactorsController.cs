@@ -42,7 +42,8 @@ namespace Server.Controllers
             {
                 return NotFound();
             }
-            else {
+            else 
+            {
 
                 //chosenFactor.Temp = factor.Temp;
                 //chosenFactor.Humidity = factor.Humidity;
