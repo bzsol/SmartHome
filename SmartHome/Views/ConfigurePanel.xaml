@@ -6,30 +6,71 @@
         xmlns:local="clr-namespace:SmartHome.Views"
         xmlns:viewModel="clr-namespace:SmartHome.ViewModels"
         mc:Ignorable="d"
-        Margin="15"
-        Height="900" Width="1600">
+        Height="Auto" Width="Auto">
     <UserControl.DataContext>
         <viewModel:ConfigurePanelViewModel/>
     </UserControl.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.05*"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
-            <Button x:Name="btnCat1" Content="Szórakoztató elektronika" Height="30" Width="150" BorderThickness="0" Margin="0 0 10 0"
-                    Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat1}"></Button>
-            <Button x:Name="btnCat2" Content="Klíma" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0"
-                    Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat2}"></Button>
-            <Button x:Name="btnCat3" Content="Világítás" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0" 
-                    Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat3}"></Button>
-            <Button x:Name="btnCat4" Content="Árnyékolástechnika" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0"
-                    Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat4}" ></Button>
-            <Button x:Name="btnCat5" Content="Öntözőrendszer" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0"
-                    Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat5}"></Button>
-            <Button Content="Vezérlőpult" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0"></Button>
-            <Button Content="Eseménynapló" Height="30" Width="150" BorderThickness="0" Margin="10 0 10 0"></Button>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnCat1" Height="30" Width="175" Style="{StaticResource MainButtonStyle}" Margin="0 0 10 0"
+                    Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat1}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/elec.png" Height="20" Margin="0 0 5 0"></Image>
+                    <TextBlock Text="Szórakoztató elektronika" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btnCat2" Height="30" Width="175" Style="{StaticResource MainButtonStyle}" Margin="10 0 10 0"
+                    Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat2}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/term.png" Height="20" Margin="0 0 5 0"></Image>
+                    <TextBlock Text="Klíma" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btnCat3" Height="30" Width="175" Style="{StaticResource MainButtonStyle}" Margin="10 0 10 0" 
+                    Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat3}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/light.png" Height="20" Margin="0 0 5 0"></Image>
+                    <TextBlock Text="Világítás" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btnCat4" Height="30" Width="175" Style="{StaticResource MainButtonStyle}" Margin="10 0 10 0"
+                    Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat4}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/shadow.png" Height="20" Margin="0 0 5 0"></Image>
+                    <TextBlock Text="Árnyékolástechnika" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btnCat5" Height="30" Width="175" Style="{StaticResource MainButtonStyle}" Margin="10 0 10 0"
+                    Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat5}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/irrigation.png" Height="20" Margin="0 0 5 0"></Image>
+                    <TextBlock Text="Öntözőrendszer" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button Height="30" Width="175" Style="{StaticResource MainButtonStyle}" Margin="10 0 10 0">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/control.png" Height="20" Margin="0 0 5 0"></Image>
+                    <TextBlock Text="Vezérlőpult" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </Button>
+            
+            <Button Height="30" Width="175" Style="{StaticResource MainButtonStyle}" Margin="10 0 0 0">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/event.png" Height="20" Margin="0 0 5 0"></Image>
+                    <TextBlock Text="Eseménynapló" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </Button>
         </StackPanel>
 
         <ContentControl Grid.Row="1" Content="{Binding CategoryPanelViewModel}"></ContentControl>

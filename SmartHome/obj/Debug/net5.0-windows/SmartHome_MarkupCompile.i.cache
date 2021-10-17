@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 D:\ProgramozásProjektek\C#\SmartHome\SmartHome\App.xaml
-9-2139598661
+8748323294
 
-21791736607
+201674782816
 1961876188987
-MainWindow.xaml;Views\ClimatePanel.xaml;Views\ConfigurePanel.xaml;Views\Dashboard.xaml;Views\ElectronicCategoryPanel.xaml;Views\IrrigationManagerPanel.xaml;Views\LightManagerPanel.xaml;Views\ShadowManagerPanel.xaml;Views\SimulationPanel.xaml;
+Views\ClimatePanel.xaml;Views\ConfigurePanel.xaml;Views\Dashboard.xaml;Views\ElectronicCategoryPanel.xaml;Views\IrrigationManagerPanel.xaml;Views\LightManagerPanel.xaml;Views\ShadowManagerPanel.xaml;Views\SimulationPanel.xaml;
 
-False
+True
 
