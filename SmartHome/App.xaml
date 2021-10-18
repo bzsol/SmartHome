@@ -7,11 +7,17 @@
              StartupUri="Views/Dashboard.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#FFFFFF"></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#FFFFFF"></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#FFFFFF"></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#FFFFFF"></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#FFFFFF"></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#FFFFFF"></SolidColorBrush>
+            <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#FFFFFF"></SolidColorBrush>
+            <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="#FFFFFF"></SolidColorBrush>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Red.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Red.xaml" />
                 <ResourceDictionary>
                     <DataTemplate DataType="{x:Type viewModel:ConfigurePanelViewModel}">
                         <view:ConfigurePanel/>

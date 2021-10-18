@@ -24,25 +24,30 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="Irányítópult" FontFamily="{StaticResource Roboto}" FontWeight="DemiBold" FontSize="24"
+            <Label Grid.Row="0" Content="Irányítópult" FontFamily="{StaticResource Roboto}" FontWeight="DemiBold" FontSize="28"
                    Background="#34B46C" VerticalContentAlignment="Center" Padding="15 0 0 0" Foreground="White"></Label>
 
-            <StackPanel Grid.Row="1" Orientation="Horizontal" Background="#008D3D">
-                <Button Style="{StaticResource MainButtonStyle}" Height="Auto" Width="120"
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Style="{StaticResource MainButtonStyle}" Height="Auto" Width="Auto"
                     Command="{Binding ChangeToSimulation}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="../Images/simu.png" Height="20" Margin="0 0 5 0"></Image>
-                        <TextBlock Text="Szimuláció" VerticalAlignment="Center"></TextBlock>
+                        <Image Source="../Images/simu.png" Height="28" Margin="0 0 5 0"></Image>
+                        <TextBlock Text="Szimuláció" VerticalAlignment="Center" FontSize="24"></TextBlock>
                     </StackPanel>
                 </Button>
 
-                <Button Style="{StaticResource MainButtonStyle}" Height="Auto" Width="120" Command="{Binding ChangeToConfiguration}">
+                <Button Grid.Column="1" Style="{StaticResource MainButtonStyle}" Height="Auto" Width="Auto" Command="{Binding ChangeToConfiguration}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="../Images/conf.png" Height="20" Margin="0 0 5 0"></Image>
-                        <TextBlock Text="Konfiguráció" VerticalAlignment="Center"></TextBlock>
+                        <Image Source="../Images/conf.png" Height="28" Margin="0 0 5 0"></Image>
+                        <TextBlock Text="Konfiguráció" VerticalAlignment="Center" FontSize="24"></TextBlock>
                     </StackPanel>
                 </Button>
-            </StackPanel>
+            </Grid>
         </Grid>
 
         <ContentControl Grid.Row="1" Content="{Binding UserControlViewModel}"></ContentControl>
