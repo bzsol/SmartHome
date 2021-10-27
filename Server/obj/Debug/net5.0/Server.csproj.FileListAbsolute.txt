@@ -79,3 +79,4 @@ D:\Github\SmartHome\Server\obj\Debug\net5.0\Server.dll
 D:\Github\SmartHome\Server\obj\Debug\net5.0\ref\Server.dll
 D:\Github\SmartHome\Server\obj\Debug\net5.0\Server.pdb
 D:\Github\SmartHome\Server\obj\Debug\net5.0\Server.genruntimeconfig.cache
+D:\Github\SmartHome\Server\bin\Debug\net5.0\extfact.json

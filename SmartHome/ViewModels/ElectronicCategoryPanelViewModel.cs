@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using Common.Model;
+using Prism.Commands;
+using SmartHome.DataProvider;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

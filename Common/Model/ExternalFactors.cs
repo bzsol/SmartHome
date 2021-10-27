@@ -1,5 +1,4 @@
-﻿using Common.Class;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,26 +18,59 @@ namespace Common.Model
 
         public Weather Forecast { get; set; }
 
+        // Szórakoztató eszközök
 
-        // Air Quality and Temperature
-        public Air air { get; set; }
+        public string EventName { get; set; }
 
-        // Lights
-        public Light light { get; set; }
+        public DateTime EventTime { set; get; }
+
+        public bool Continous { get; set; }
+
+        public enum ElectronicsType { TV, Radio };
+
+        public ElectronicsType ElectronicType { get; set; }
+
+        // Redőny
+        public int shutter { get; set; }
+
+        public int gradiation { get; set; }
+
+        // Világítás
+
+        public double Brigtness { get; set; }
+
+        public enum LightingColor { cold, warm };
+
+        public LightingColor LightColor { get; set; }
+
+        // Öntözőrendszer
+
+        public int IriggationStrenght { get; set; }
+
+        public DateTime IrrigationStart { get; set; }
+
+        public DateTime IrrigationEnd { get; set; }
 
 
-        // AC/Heating
-        public AC ac { get; set; }
+        // Levegő
+        public double Temp { get; set; }
 
-        // Shutter
-        public Shutter shutter { get; set; }
+        public double Humidity { get; set; }
 
-        // Irrigation
+        public double CO2 { get; set; }
 
-        public Irrigation irrigation { get; set; }
+        public double CO { get; set; }
 
-        // Electronics
+        // AC
 
-        public Electronics electronics { get; set; }
+        public double Heating { get; set; }
+
+        public double Cooling { get; set; }
+
+        public int CoolingDegree { get; set; }
+
+        public enum modes { swing, sleep, silent, turbo };
+
+        public modes AirQuality { get; set; }
     }
 }

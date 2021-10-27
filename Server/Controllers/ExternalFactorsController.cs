@@ -44,17 +44,7 @@ namespace Server.Controllers
             }
             else 
             {
-
-                //chosenFactor.Temp = factor.Temp;
-                //chosenFactor.Humidity = factor.Humidity;
-                //chosenFactor.Gradiation = factor.Gradiation;
-                //chosenFactor.Heating = factor.Heating;
-                //chosenFactor.Forecast = factor.Forecast;
-                //chosenFactor.IriggationStrenght = factor.IriggationStrenght;
-                //chosenFactor.LightColor = factor.LightColor;
-                //chosenFactor.Shutter = factor.Shutter;
                 chosenFactor = factor;
-
                 ExternalFactorsRepo.SaveExternalFactors(factors);
                 return Ok();
             }

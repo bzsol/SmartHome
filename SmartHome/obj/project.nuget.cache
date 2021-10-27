@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "vXRtmlpwo6oBxnwuLdUG7Irwv6Sg3X+pnEqruzT0qMkeH+hfggAPmlPs4MqlnCNWdZCPSlH7soNYEkC6/jk/vg==",
+  "dgSpecHash": "qGkXCq8kwzXK7akJmWrXMWoEMPSL3mXzpokJbCXyj0FszqiWeXOgjlvNth0w2jzJDnZHc4EbYMFYDn8OvkAueA==",
   "success": true,
   "projectFilePath": "D:\\Github\\SmartHome\\SmartHome\\SmartHome.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Zsolti\\.nuget\\packages\\materialdesigncolors\\2.0.3\\materialdesigncolors.2.0.3.nupkg.sha512",
     "C:\\Users\\Zsolti\\.nuget\\packages\\materialdesignthemes\\4.2.1\\materialdesignthemes.4.2.1.nupkg.sha512",
+    "C:\\Users\\Zsolti\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Zsolti\\.nuget\\packages\\prism.core\\8.1.97\\prism.core.8.1.97.nupkg.sha512"
   ],
   "logs": []
