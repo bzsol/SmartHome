@@ -64,19 +64,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\koszt\\.nuget\\packages\\": {}
+    "C:\\Users\\Zsolti\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ProgramozásProjektek\\C#\\SmartHome\\Server\\Server.csproj",
+      "projectUniqueName": "D:\\Github\\SmartHome\\Server\\Server.csproj",
       "projectName": "Server",
-      "projectPath": "D:\\ProgramozásProjektek\\C#\\SmartHome\\Server\\Server.csproj",
-      "packagesPath": "C:\\Users\\koszt\\.nuget\\packages\\",
-      "outputPath": "D:\\ProgramozásProjektek\\C#\\SmartHome\\Server\\obj\\",
+      "projectPath": "D:\\Github\\SmartHome\\Server\\Server.csproj",
+      "packagesPath": "C:\\Users\\Zsolti\\.nuget\\packages\\",
+      "outputPath": "D:\\Github\\SmartHome\\Server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\koszt\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Zsolti\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -90,8 +90,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\ProgramozásProjektek\\C#\\SmartHome\\Common\\Common.csproj": {
-              "projectPath": "D:\\ProgramozásProjektek\\C#\\SmartHome\\Common\\Common.csproj"
+            "D:\\Github\\SmartHome\\Common\\Common.csproj": {
+              "projectPath": "D:\\Github\\SmartHome\\Common\\Common.csproj"
             }
           }
         }
@@ -129,7 +129,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

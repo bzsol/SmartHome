@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NIOpq0986VEjcb7jpw91lSBCCxpAoJMXc7805CPDq2DjV5DTALIIFjL6kgVmp8g86w875SRJCOILaJPCWS0Hrw==",
+  "dgSpecHash": "DNoq1FhsuHOCgKtJza1j9z5KkJ1axLZVsWOFU3VFYQufDX20NPs1iwMiIhpBGNwwch35QxAP29/3vRy4uG52nw==",
   "success": true,
-  "projectFilePath": "D:\\ProgramozásProjektek\\C#\\SmartHome\\Common\\Common.csproj",
+  "projectFilePath": "D:\\Github\\SmartHome\\Common\\Common.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

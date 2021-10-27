@@ -11,7 +11,7 @@ namespace Server.Controllers
 {
     // You can manage more than one API-s in one server
     [ApiController]
-    [Route("api/temp")]
+    [Route("api/extfacts")]
     public class ExternalFactorsController : Controller
     {
         // GET method to gather the existing data about the temperature
