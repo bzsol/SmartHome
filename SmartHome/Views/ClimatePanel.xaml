@@ -4,8 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHome.Views"
+        xmlns:viewModel="clr-namespace:SmartHome.ViewModels"
         mc:Ignorable="d"
         Height="800" Width="1400">
+    <UserControl.DataContext>
+        <viewModel:ClimateViewModel/>
+    </UserControl.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>

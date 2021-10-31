@@ -7,8 +7,7 @@
         xmlns:viewModel="clr-namespace:SmartHome.ViewModels"
         xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Margin="15"
-        Height="800" Width="1480">
+        Height="800" Width="1400">
     <UserControl.DataContext>
         <viewModel:ElectronicCategoryPanelViewModel/>
     </UserControl.DataContext>
@@ -88,8 +87,7 @@
                 <RadioButton Content="Rádió" Margin="15 0 0 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF" IsChecked="{Binding Radio}"></RadioButton>
             </StackPanel>
             <TextBox Grid.Row="3" Grid.Column="1" Margin="15 0 15 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
-                       Height="50" Background="Transparent" BorderThickness="0 0 0 2" BorderBrush="Black" MaxLength="16"
-                       Padding="0 20 0 0" Text="{Binding EventNameTextBoxText}"/>
+                     Height="50" BorderThickness="0 0 0 2" BorderBrush="Black" MaxLength="16" Padding="0 20 0 0" Text="{Binding EventNameTextBoxText}" material:TextFieldAssist.CharacterCounterVisibility="Hidden"/>
         </Grid>
 
         <Grid Grid.Row="1" Margin="0 15 0 205" Background="#008D3D">
