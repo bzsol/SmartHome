@@ -11,15 +11,17 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.25*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Background="#008D3D">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.2*"></RowDefinition>
+                <RowDefinition Height="0.22*"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="Fűtés" FontFamily="Arial" FontSize="24" Foreground="#20A000"></Label>
+            <Label Grid.Row="0" Content="Fűtés" FontFamily="{StaticResource Roboto}" FontSize="28" FontWeight="DemiBold" Foreground="#FFFFFF"
+                   BorderBrush="White" BorderThickness="0 0 0 2" VerticalAlignment="Center"></Label>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -28,91 +30,257 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="1.5*"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0" Content="Hőmérséklet" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                       VerticalAlignment="Center" Margin="10"></Label>
-                <Label Grid.Row="1" Grid.Column="0" Content="Helyiségek" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                       VerticalAlignment="Center" Margin="10"></Label>
-                <Slider Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500" Height="50"
-                         Minimum="18" Maximum="26" Value="18" AutoToolTipPlacement="BottomRight"></Slider>
-                <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" Margin="10">
-                        <ToggleButton Content="Előszoba" BorderThickness="0" Width="75" Height="30" Margin="0 0 10 0"></ToggleButton>
-                        <ToggleButton Content="Nappali" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                        <ToggleButton Content="Konyha" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                        <ToggleButton Content="Iroda" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                        <ToggleButton Content="Szoba#1" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                        
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                        <ToggleButton Content="Szoba#2" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                        <ToggleButton Content="Szoba#3" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                        <ToggleButton Content="Fürdőszoba" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                        <ToggleButton Content="Terasz" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                    </StackPanel>
-                </StackPanel>
-            </Grid>
-        </Grid>
-
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.2*"></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-
-            <Label Grid.Row="0" Content="Légkondícionálás" FontFamily="Arial" FontSize="24" Foreground="#20A000"></Label>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <Label Grid.Row="0" Grid.Column="0" Content="Hőmérséklet" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                       VerticalAlignment="Center" Margin="10"></Label>
-                <Label Grid.Row="1" Grid.Column="0" Content="Helyiségek" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                       VerticalAlignment="Center" Margin="10"></Label>
-                <Label Grid.Row="2" Grid.Column="0" Content="Fokozat / Egyéb" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                       VerticalAlignment="Center" Margin="10"></Label>
-                <Slider Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500" Height="50"
-                         Minimum="16" Maximum="24" Value="20" AutoToolTipPlacement="BottomRight"></Slider>
+                <Label Grid.Row="0" Grid.Column="0" Content="Hőmérséklet" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
+                   VerticalAlignment="Center" Padding="15 0 0 0"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Content="Helyiségek" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
+                   VerticalAlignment="Center" Padding="15 0 0 0"></Label>
+                <Slider Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500"
+                         Minimum="18" Maximum="26" Value="18" AutoToolTipPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
                 <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                    <ToggleButton Content="Nappali" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                    <ToggleButton Content="Iroda" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                    <ToggleButton Content="Szoba#1" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                    <ToggleButton Content="Szoba#2" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                    <ToggleButton Content="Szoba#3" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                </StackPanel>
-                <StackPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                        <RadioButton Content="❄" Margin="15 0 0 0" FontFamily="Arial" FontSize="24" Foreground="#20A000"></RadioButton>
-                        <RadioButton Content="❄❄" Margin="15 0 0 0" FontFamily="Arial" FontSize="24" Foreground="#20A000"></RadioButton>
-                        <RadioButton Content="❄❄❄" Margin="15 0 0 0" FontFamily="Arial" FontSize="24" Foreground="#20A000"></RadioButton>
+                    <StackPanel Orientation="Vertical" Margin="10">
+                        <Grid Width="150">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Content="Előszoba" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                            <ToggleButton Grid.Column="1"></ToggleButton>
+                        </Grid>
+
+                        <Grid Width="150">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Content="Nappali" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                            <ToggleButton Grid.Column="1"></ToggleButton>
+                        </Grid>
+
+                        <Grid Width="150">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Content="Konyha" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                            <ToggleButton Grid.Column="1"></ToggleButton>
+                        </Grid>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                        <ToggleButton Content="SWING" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                        <ToggleButton Content="SLEEP" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                        <ToggleButton Content="SILENT" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                        <ToggleButton Content="TURBO" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
+
+                    <StackPanel Orientation="Vertical" Margin="10">
+                        <Grid Width="150">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Content="Iroda" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                            <ToggleButton Grid.Column="1"></ToggleButton>
+                        </Grid>
+
+                        <Grid Width="150">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Content="Fürdőszoba" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                            <ToggleButton Grid.Column="1"></ToggleButton>
+                        </Grid>
+
+                        <Grid Width="150">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Content="Terasz" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                            <ToggleButton Grid.Column="1"></ToggleButton>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="10">
+                        <Grid Width="150">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Content="Szoba #1" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                            <ToggleButton Grid.Column="1"></ToggleButton>
+                        </Grid>
+
+                        <Grid Width="150">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Content="Szoba #2" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                            <ToggleButton Grid.Column="1"></ToggleButton>
+                        </Grid>
+
+                        <Grid Width="150">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Content="Szoba #3" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                            <ToggleButton Grid.Column="1"></ToggleButton>
+                        </Grid>
                     </StackPanel>
                 </StackPanel>
             </Grid>
         </Grid>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1" Background="#008D3D">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.2*"></RowDefinition>
+                <RowDefinition Height="0.22*"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="Levegőminőség" FontFamily="Arial" FontSize="24" Foreground="#20A000"></Label>
+            <Label Grid.Row="0" Content="Légkondícionálás" FontFamily="{StaticResource Roboto}" FontSize="28" FontWeight="DemiBold" Foreground="#FFFFFF"
+                   BorderBrush="White" BorderThickness="0 2" VerticalAlignment="Bottom"></Label>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Hőmérséklet" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
+                   VerticalAlignment="Center" Padding="15 0 0 0"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Content="Helyiségek és beállításaik" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
+                   VerticalAlignment="Center" Padding="15 0 0 0"></Label>
+                <Slider Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500"
+                         Minimum="16" Maximum="24" Value="20" AutoToolTipPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
+                <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Width="500">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="0.75*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="Nappali" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                        <ToggleButton Grid.Column="1" x:Name="ClimateFirstEntry" HorizontalAlignment="Left" Command="{Binding EntryStateChange}" IsChecked="{Binding FirstEntryCheckState}"
+                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}}"></ToggleButton>
+                        <Label Grid.Column="2" Content="Mód" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF" Visibility="{Binding FirstEntryVisibility}"></Label>
+                        <ComboBox Grid.Column="3" Margin="10 0" SelectedItem="{Binding FirstSelectedOption}" ItemsSource="{Binding CoolerOptions}" Visibility="{Binding FirstEntryVisibility}"
+                                  Style="{StaticResource MainComboBoxStyle}"></ComboBox>
+                        <Label Grid.Column="4" Content="Fokozat" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF" Visibility="{Binding FirstEntryVisibility}"></Label>
+                        <ComboBox Grid.Column="5" Margin="10 0" SelectedItem="{Binding FirstSelectedLevel}" ItemsSource="{Binding CoolerLevel}" Visibility="{Binding FirstEntryVisibility}"
+                                  Style="{StaticResource MainComboBoxStyle}"></ComboBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="0.75*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="Iroda" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                        <ToggleButton Grid.Column="1" x:Name="ClimateSecondEntry" HorizontalAlignment="Left" Command="{Binding EntryStateChange}" IsChecked="{Binding SecondEntryCheckState}"
+                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}}"></ToggleButton>
+                        <Label Grid.Column="2" Content="Mód" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF" Visibility="{Binding SecondEntryVisibility}"></Label>
+                        <ComboBox Grid.Column="3" Margin="10 0" SelectedItem="{Binding SecondSelectedOption}" ItemsSource="{Binding CoolerOptions}" Visibility="{Binding SecondEntryVisibility}"
+                                  Style="{StaticResource MainComboBoxStyle}"></ComboBox>
+                        <Label Grid.Column="4" Content="Fokozat" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF" Visibility="{Binding SecondEntryVisibility}"></Label>
+                        <ComboBox Grid.Column="5" Margin="10 0" SelectedItem="{Binding SecondSelectedLevel}" ItemsSource="{Binding CoolerLevel}" Visibility="{Binding SecondEntryVisibility}"
+                                  Style="{StaticResource MainComboBoxStyle}"></ComboBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="0.75*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="Szoba #1" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                        <ToggleButton Grid.Column="1" x:Name="ClimateThirdEntry" HorizontalAlignment="Left" Command="{Binding EntryStateChange}" IsChecked="{Binding ThirdEntryCheckState}"
+                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}}"></ToggleButton>
+                        <Label Grid.Column="2" Content="Mód" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF" Visibility="{Binding ThirdEntryVisibility}"></Label>
+                        <ComboBox Grid.Column="3" Margin="10 0" SelectedItem="{Binding ThirdSelectedOption}" ItemsSource="{Binding CoolerOptions}" Visibility="{Binding ThirdEntryVisibility}"
+                                  Style="{StaticResource MainComboBoxStyle}"></ComboBox>
+                        <Label Grid.Column="4" Content="Fokozat" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF" Visibility="{Binding ThirdEntryVisibility}"></Label>
+                        <ComboBox Grid.Column="5" Margin="10 0" SelectedItem="{Binding ThirdSelectedLevel}" ItemsSource="{Binding CoolerLevel}" Visibility="{Binding ThirdEntryVisibility}"
+                                  Style="{StaticResource MainComboBoxStyle}"></ComboBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="0.75*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="Szoba #2" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                        <ToggleButton Grid.Column="1" x:Name="ClimateFourthEntry" HorizontalAlignment="Left" Command="{Binding EntryStateChange}" IsChecked="{Binding FourthEntryCheckState}"
+                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}}"></ToggleButton>
+                        <Label Grid.Column="2" Content="Mód" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF" Visibility="{Binding FourthEntryVisibility}"></Label>
+                        <ComboBox Grid.Column="3" Margin="10 0" SelectedItem="{Binding FourthSelectedOption}" ItemsSource="{Binding CoolerOptions}" Visibility="{Binding FourthEntryVisibility}"
+                                  Style="{StaticResource MainComboBoxStyle}"></ComboBox>
+                        <Label Grid.Column="4" Content="Fokozat" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF" Visibility="{Binding FourthEntryVisibility}"></Label>
+                        <ComboBox Grid.Column="5" Margin="10 0" SelectedItem="{Binding FourthSelectedLevel}" ItemsSource="{Binding CoolerLevel}" Visibility="{Binding FourthEntryVisibility}"
+                                  Style="{StaticResource MainComboBoxStyle}"></ComboBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="0.75*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="Szoba #3" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                        <ToggleButton Grid.Column="1" x:Name="ClimateFifthEntry" HorizontalAlignment="Left" Command="{Binding EntryStateChange}" IsChecked="{Binding FifthEntryCheckState}"
+                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}}"></ToggleButton>
+                        <Label Grid.Column="2" Content="Mód" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF" Visibility="{Binding FifthEntryVisibility}"></Label>
+                        <ComboBox Grid.Column="3" Margin="10 0" SelectedItem="{Binding FifthSelectedOption}" ItemsSource="{Binding CoolerOptions}" Visibility="{Binding FifthEntryVisibility}"
+                                  Style="{StaticResource MainComboBoxStyle}"></ComboBox>
+                        <Label Grid.Column="4" Content="Fokozat" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF" Visibility="{Binding FifthEntryVisibility}"></Label>
+                        <ComboBox Grid.Column="5" Margin="10 0" SelectedItem="{Binding FifthSelectedLevel}" ItemsSource="{Binding CoolerLevel}" Visibility="{Binding FifthEntryVisibility}"
+                                  Style="{StaticResource MainComboBoxStyle}"></ComboBox>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2" Background="#008D3D">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.22*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Content="Levegőminőség" FontFamily="{StaticResource Roboto}" FontSize="28" FontWeight="DemiBold" Foreground="#FFFFFF"
+                   BorderBrush="White" BorderThickness="0 2" VerticalAlignment="Center"></Label>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -124,19 +292,70 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0" Content="Mintavétel" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                       VerticalAlignment="Center" Margin="10"></Label>
-                <Label Grid.Row="1" Grid.Column="0" Content="Eszközök" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                       VerticalAlignment="Center" Margin="10"></Label>
+                <Label Grid.Row="0" Grid.Column="0" Content="Mintavétel" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
+                   VerticalAlignment="Center" Padding="15 0 0 0"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Content="Eszközök" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
+                   VerticalAlignment="Center" Padding="15 0 0 0"></Label>
                 <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                    <ToggleButton Content="Páratartalom" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                    <ToggleButton Content="CO2" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
+                    <Grid Width="175">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="Páratartalom" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                        <ToggleButton Grid.Column="1"></ToggleButton>
+                    </Grid>
+
+                    <Grid Width="175">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="CO2-tartalom" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                        <ToggleButton Grid.Column="1"></ToggleButton>
+                    </Grid>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                    <ToggleButton Content="Párátlanítás" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
-                    <ToggleButton Content="Szellőztetés" BorderThickness="0" Width="75" Height="30" Margin="10 0 10 0"></ToggleButton>
+                    <Grid Width="175">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="Párátlanítás" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                        <ToggleButton Grid.Column="1"></ToggleButton>
+                    </Grid>
+
+                    <Grid Width="175">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="Szellőztetés" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                        <ToggleButton Grid.Column="1"></ToggleButton>
+                    </Grid>
                 </StackPanel>
             </Grid>
+        </Grid>
+
+        <Grid Grid.Row="3" Margin="0 15 0 0" Background="#008D3D">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Content="Műveletek" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
+                   VerticalAlignment="Center" Padding="15 0 0 0"></Label>
+
+            <Button Grid.Column="1" Width="Auto" Height="Auto" Style="{StaticResource MainButtonStyle}" Command="{Binding SaveSettingsCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/saveset.png" Height="28" Margin="0 0 5 0"></Image>
+                    <TextBlock Text="Beállítások mentése" VerticalAlignment="Center" FontSize="24"></TextBlock>
+                </StackPanel>
+            </Button>
         </Grid>
     </Grid>
 </UserControl>

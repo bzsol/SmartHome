@@ -14,6 +14,7 @@
     <None Remove="Images\event.png" />
     <None Remove="Images\irrigation.png" />
     <None Remove="Images\light.png" />
+    <None Remove="Images\saveset.png" />
     <None Remove="Images\shadow.png" />
     <None Remove="Images\simu.png" />
     <None Remove="Images\term.png" />
@@ -48,6 +49,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\light.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\saveset.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\shadow.png">
