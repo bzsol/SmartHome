@@ -250,7 +250,7 @@ namespace SmartHome.ViewModels
 
         public ClimateViewModel()
         {
-            SaveSettingsCommand = new DelegateCommand<Button>(OnSaveSetting);
+            SaveSettingsCommand = new DelegateCommand<Button>(OnSaveSettings);
             EntryStateChange = new DelegateCommand<ToggleButton>(OnEntryStateChange);
             CoolerOptions = new()
             {
@@ -275,7 +275,7 @@ namespace SmartHome.ViewModels
             FifthEntryVisibility = FifthEntryCheckState ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        public void OnSaveSetting(Button btn)
+        public void OnSaveSettings(Button btn)
         {
             MessageBox.Show($"{_firstSelectedOption} : {_firstSelectedLevel}\n" +
                 $"{_secondSelectedOption} : {_secondSelectedLevel}\n" +
