@@ -83,6 +83,26 @@
                         </Setter>
                     </Style>
                 </ResourceDictionary>
+
+                <ResourceDictionary>
+                    <Style TargetType="ToggleButton" BasedOn="{StaticResource MaterialDesignSwitchToggleButton}">
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+                        <Style.Resources>
+                            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#34B46C"></SolidColorBrush>
+                            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="Black"></SolidColorBrush>
+                        </Style.Resources>
+                    </Style>
+                </ResourceDictionary>
+
+                <ResourceDictionary>
+                    <Style x:Key="MainComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignComboBox}">
+                        <Setter Property="FontSize" Value="14"></Setter>
+                        <Setter Property="FontFamily" Value="{StaticResource Roboto}"></Setter>
+                        <Setter Property="Foreground" Value="#FFFFFF"></Setter>
+                        <Setter Property="BorderBrush" Value="Black"></Setter>
+                        <Setter Property="BorderThickness" Value="0 0 0 2"></Setter>
+                    </Style>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

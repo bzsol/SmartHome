@@ -31,7 +31,7 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-
+            
             <Label Grid.Row="0" Grid.Column="0" Content="Válasszon időpontot az eseményhez" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
                    VerticalAlignment="Center" Padding="15 0 0 0"></Label>
             <Label Grid.Row="1" Grid.Column="0" Content="Válasszon esemény módot" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
@@ -92,7 +92,7 @@
                        Padding="0 20 0 0" Text="{Binding EventNameTextBoxText}"/>
         </Grid>
 
-        <Grid Grid.Row="1" Margin="0 15 0 200" Background="#008D3D">
+        <Grid Grid.Row="1" Margin="0 15 0 205" Background="#008D3D">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
