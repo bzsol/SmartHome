@@ -5,101 +5,113 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHome.Views"
         xmlns:viewModel="clr-namespace:SmartHome.ViewModels"
+        xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Margin="15"
-        Height="800" Width="1480">
+        Height="800" Width="1400">
     <UserControl.DataContext>
         <viewModel:LightManagerViewModel/>
     </UserControl.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Background="#008D3D">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
-                <RowDefinition Height="0.2*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0" Content="Helyiség" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                   VerticalAlignment="Center" Margin="10"></Label>
-                <Label Grid.Row="1" Grid.Column="0" Content="Fényerő" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                   VerticalAlignment="Center" Margin="10"></Label>
-                <Label Grid.Row="2" Grid.Column="0" Content="Világítás típusa" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                   VerticalAlignment="Center" Margin="10"></Label>
-                <Label Grid.Row="3" Grid.Column="0" Content="Időzítés" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                   VerticalAlignment="Center" Margin="10"></Label>
+            <Label Grid.Row="0" Grid.Column="0" Content="Elhelyezkedés" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
+                   VerticalAlignment="Center" Padding="15 0 0 0"></Label>
+            <Label Grid.Row="1" Grid.Column="0" Content="Helyiség" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
+                   VerticalAlignment="Center" Padding="15 0 0 0"></Label>
+            <Label Grid.Row="2" Grid.Column="0" Content="Fényerő" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
+                   VerticalAlignment="Center" Padding="15 0 0 0"></Label>
+            <Label Grid.Row="3" Grid.Column="0" Content="Világítás típusa" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
+                   VerticalAlignment="Center" Padding="15 0 0 0"></Label>
+            <Label Grid.Row="4" Grid.Column="0" Content="Mozgásérzékelés és időzítés" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
+                   VerticalAlignment="Center" Padding="15 0 0 0"></Label>
 
-                <ComboBox Grid.Row="0" Grid.Column="1" Height="50" Width="500" HorizontalAlignment="Center"  Background="Transparent"  FontFamily="Arial" FontSize="24"
-                           Foreground="#20A000" VerticalAlignment="Center" />
-                <Slider Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500" Height="50"
-                         Minimum="18" Maximum="26" Value="18" AutoToolTipPlacement="BottomRight"></Slider>
-                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <RadioButton Content="Hideg" Margin="0 0 15 0" FontFamily="Arial" FontSize="24" Foreground="#20A000"></RadioButton>
-                    <RadioButton Content="Meleg" Margin="15 0 0 0" FontFamily="Arial" FontSize="24" Foreground="#20A000"></RadioButton>
-                </StackPanel>
-                <TextBox Grid.Row="3" Grid.Column="1" Margin="10" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                       Height="50" Background="Transparent" BorderThickness="0 0 0 2" BorderBrush="#121212" MaxLength="16"
-                       Padding="0 20 0 0"/>
-            </Grid>
-            <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button Content="Esemény hozzáadása" BorderThickness="0" Width="150" Height="30" Margin="0 0 10 0"></Button>
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <RadioButton Content="Beltéri" Margin="0 0 15 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF" IsChecked="{Binding InsideCheckState}"
+                             Name="InsideRadioButton" Command="{Binding LocationChanged}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"></RadioButton>
+                <RadioButton Content="Kültéri" Margin="15 0 0 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF" IsChecked="{Binding OutsideCheckState}"
+                             Name="OutsideRadioButton" Command="{Binding LocationChanged}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"></RadioButton>
+            </StackPanel>
+            <ComboBox Grid.Row="1" Grid.Column="1" Width="500" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Padding="0 20 0 0"
+                      Style="{StaticResource MainComboBoxStyle}" SelectedItem="{Binding SelectedPlace}" ItemsSource="{Binding Places}"/>
+            <Slider Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500"
+                    Minimum="0" Maximum="100" Value="50" AutoToolTipPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
+            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <RadioButton Content="Hideg" Margin="0 0 15 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"></RadioButton>
+                <RadioButton Content="Meleg" Margin="15 0 0 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"></RadioButton>
+            </StackPanel>
+            <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                <Grid Width="230">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Content="Mozgásérzékelés" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                    <ToggleButton Grid.Column="1" Command="{Binding MotionStateChanged}" IsChecked="{Binding IsMotionDetectionEnabled}"></ToggleButton>
+                </Grid>
+
+                <Grid Width="230" Visibility="{Binding MotionEnabledVisibility}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Content="Lekapcsolás (perc)" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Grid.Column="0" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF" BorderThickness="0 0 0 2" BorderBrush="Black"
+                                 Padding="0 4 0 0" MaxLength="2" material:TextFieldAssist.CharacterCounterVisibility="Hidden" Text="{Binding MotionTimeTextBox}"></TextBox>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Button Grid.Row="0" Style="{StaticResource MainButtonStyle}" Content="+" Command="{Binding UpMinuteCounterCommand}"></Button>
+                            <Button Grid.Row="1" Style="{StaticResource MainButtonStyle}" Content="-" Command="{Binding DownMinuteCounterCommand}"></Button>
+                        </Grid>
+                    </Grid>
+                </Grid>
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition Height="0.2*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="Helyiség" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                   VerticalAlignment="Center" Margin="10"></Label>
-                <Label Grid.Row="1" Grid.Column="0" Content="Fényerő" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                   VerticalAlignment="Center" Margin="10"></Label>
-                <Label Grid.Row="2" Grid.Column="0" Content="Világítás típusa" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                   VerticalAlignment="Center" Margin="10"></Label>
-                <Label Grid.Row="3" Grid.Column="0" Content="Időzítés" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                   VerticalAlignment="Center" Margin="10"></Label>
+        <Grid Grid.Row="1" Margin="0 15 0 205" Background="#008D3D">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-                <ComboBox Grid.Row="0" Grid.Column="1" Height="50" Width="500" HorizontalAlignment="Center"  Background="Transparent"  FontFamily="Arial" FontSize="24"
-                           Foreground="#20A000" VerticalAlignment="Center" />
-                <Slider Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500" Height="50"
-                         Minimum="18" Maximum="26" Value="18" AutoToolTipPlacement="BottomRight"></Slider>
-                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <RadioButton Content="Hideg" Margin="0 0 15 0" FontFamily="Arial" FontSize="24" Foreground="#20A000"></RadioButton>
-                    <RadioButton Content="Meleg" Margin="15 0 0 0" FontFamily="Arial" FontSize="24" Foreground="#20A000"></RadioButton>
+            <Label Grid.Column="0" Content="Műveletek" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
+                   VerticalAlignment="Center" Padding="15 0 0 0"></Label>
+
+            <Button Grid.Column="1" Width="Auto" Height="Auto" Style="{StaticResource MainButtonStyle}" Command="{Binding SaveSettingsCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/saveset.png" Height="28" Margin="0 0 5 0"></Image>
+                    <TextBlock Text="Beállítások mentése" VerticalAlignment="Center" FontSize="24"></TextBlock>
                 </StackPanel>
-                <TextBox Grid.Row="3" Grid.Column="1" Margin="10" FontFamily="Arial" FontSize="24" Foreground="#20A000"
-                       Height="50" Background="Transparent" BorderThickness="0 0 0 2" BorderBrush="#121212" MaxLength="16"
-                       Padding="0 20 0 0"/>
-            </Grid>
-            <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button Content="Esemény hozzáadása" BorderThickness="0" Width="150" Height="30" Margin="0 0 10 0"></Button>
-            </StackPanel>
+            </Button>
         </Grid>
     </Grid>
 </UserControl>

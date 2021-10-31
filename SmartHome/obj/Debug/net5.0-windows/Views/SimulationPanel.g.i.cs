@@ -65,7 +65,7 @@ namespace SmartHome.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SmartHome;component/views/simulationpanel.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SmartHome;V1.0.0.0;component/views/simulationpanel.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\SimulationPanel.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
