@@ -20,7 +20,7 @@
     "Server": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "api/extfacts",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {

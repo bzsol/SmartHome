@@ -72,5 +72,19 @@ namespace Common.Model
         public enum modes { swing, sleep, silent, turbo };
 
         public modes AirQuality { get; set; }
+
+        public int Level { get; set; }
+
+
+        // Helységek
+        public bool entry { get; set; }
+        public bool livingroom { get; set; }
+        public bool kithcen { get; set; }
+        public bool office { get; set; }
+        public bool bath { get; set; }
+        public bool terrace { get; set; }
+        public bool roomno1 { get; set; }
+        public bool roomno2 { get; set; }
+        public bool roomno3 { get; set; }
     }
 }

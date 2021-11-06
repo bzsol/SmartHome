@@ -13,7 +13,7 @@ namespace SmartHome.DataProvider
     {
         private const string server = "http://localhost:5000/api/extfacts";
 
-        public static IEnumerable<ExternalFactors> GetPatients()
+        public static IEnumerable<ExternalFactors> Get()
         {
 
             using (var client = new HttpClient())
@@ -27,18 +27,18 @@ namespace SmartHome.DataProvider
                 else
                 {
                     var httpdata = client.GetStringAsync(server).Result;
-                    var patients = JsonConvert.DeserializeObject<IEnumerable<ExternalFactors>>(httpdata);
-                    return patients;
+                    var data = JsonConvert.DeserializeObject<IEnumerable<ExternalFactors>>(httpdata);
+                    return data;
                 }
 
             }
         }
 
-        public static void CreatePatient(ExternalFactors patient)
+        public static void Create(ExternalFactors ext)
         {
             using (var client = new HttpClient())
             {
-                var httpdata = JsonConvert.SerializeObject(patient);
+                var httpdata = JsonConvert.SerializeObject(ext);
                 var httppacket = new StringContent(httpdata, Encoding.UTF8, "application/json");
 
                 var response = client.PostAsync(server, httppacket).Result;
@@ -49,11 +49,11 @@ namespace SmartHome.DataProvider
             }
         }
 
-        public static void UpdatePatient(ExternalFactors patient)
+        public static void Update(ExternalFactors ext)
         {
             using (var client = new HttpClient())
             {
-                var httpdata = JsonConvert.SerializeObject(patient);
+                var httpdata = JsonConvert.SerializeObject(ext);
                 var httppacket = new StringContent(httpdata, Encoding.UTF8, "application/json");
 
                 var response = client.PutAsync(server, httppacket).Result;
@@ -64,7 +64,7 @@ namespace SmartHome.DataProvider
             }
         }
 
-        public static void DeletePatient(long id)
+        public static void Delete(long id)
         {
             using (var client = new HttpClient())
             {
