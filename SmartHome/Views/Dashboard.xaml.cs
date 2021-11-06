@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Common.Model;
+using SmartHome.DataProvider;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -21,10 +23,16 @@ namespace SmartHome.Views
     /// </summary>
     public partial class Dashboard : Window
     {
+        
+
         public Dashboard()
         {
             InitializeComponent();
             Thread.CurrentThread.CurrentCulture = new CultureInfo("hu-HU");
+            if (((List<ExternalFactors>)ExtFactDataProvider.Get()).Count < 1 )
+            {
+                ExtFactDataProvider.Create(new ExternalFactors());
+            }
         }
     }
 }

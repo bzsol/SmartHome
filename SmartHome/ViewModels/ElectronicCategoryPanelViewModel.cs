@@ -1,6 +1,7 @@
 ﻿using Common.Model;
 using Prism.Commands;
 using SmartHome.DataProvider;
+using SmartHome.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -99,31 +100,31 @@ namespace SmartHome.ViewModels
             AddEventCommand = new DelegateCommand<Button>(OnAddEventClicked);
         }
 
-        private void DataUpload(ExternalFactors external,ExternalFactors.ElectronicsType electronicsType,string eventName,DateTime dateTime,bool cont) {
+        private void DataUpload(ExternalFactors.ElectronicsType electronicsType,string eventName,DateTime dateTime,bool cont) {
 
-
+            var external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
             external.ElectronicType = electronicsType;
             external.EventName = eventName;
             external.EventTime = dateTime;
             external.Continous = cont;
-            ExtFactDataProvider.Create(external);
+            ExtFactDataProvider.Update(external);
         }
 
 
         public void OnAddEventClicked(Button btn)
         {
-            ExternalFactors external = new ExternalFactors();
+            
             if (_EE)
             {
                 if (_Radio)
                 {
                     MessageBox.Show("Radio" + " " + _dateTimePicker.ToString() + " EE");
-                    DataUpload(external, ExternalFactors.ElectronicsType.Radio, _nameTextBoxText, _dateTimePicker,false);
+                    DataUpload(ExternalFactors.ElectronicsType.Radio, _nameTextBoxText, _dateTimePicker,false);
                 }
                 else if (_TV)
                 {
                     MessageBox.Show("TV" + " " + _dateTimePicker.ToString() + " EE");
-                    DataUpload(external, ExternalFactors.ElectronicsType.TV, _nameTextBoxText, _dateTimePicker, false);
+                    DataUpload(ExternalFactors.ElectronicsType.TV, _nameTextBoxText, _dateTimePicker, false);
                 }
                 else
                 {
@@ -135,12 +136,12 @@ namespace SmartHome.ViewModels
                 if (_Radio)
                 {
                     MessageBox.Show("Radio" + " " + _dateTimePicker.ToString() + " VE");
-                    DataUpload(external, ExternalFactors.ElectronicsType.Radio, _nameTextBoxText, _dateTimePicker, true);
+                    DataUpload(ExternalFactors.ElectronicsType.Radio, _nameTextBoxText, _dateTimePicker, true);
                 }
                 else if (_TV)
                 {
                     MessageBox.Show("TV" + " " + _dateTimePicker.ToString() + " VE");
-                    DataUpload(external, ExternalFactors.ElectronicsType.TV, _nameTextBoxText, _dateTimePicker, true);
+                    DataUpload(ExternalFactors.ElectronicsType.TV, _nameTextBoxText, _dateTimePicker, true);
                 }
                 else
                 {

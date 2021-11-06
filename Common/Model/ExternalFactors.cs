@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Common.Model
 {
+    
+
+
     public class ExternalFactors
     {
         public long ID { get; set; }
@@ -69,9 +72,9 @@ namespace Common.Model
 
         public int CoolingDegree { get; set; }
 
-        public enum modes { swing, sleep, silent, turbo };
+        public enum Modes { swing, sleep, silent, turbo };
 
-        public modes AirQuality { get; set; }
+        public Modes AirQuality { get; set; }
 
         public int Level { get; set; }
 
@@ -86,5 +89,28 @@ namespace Common.Model
         public bool roomno1 { get; set; }
         public bool roomno2 { get; set; }
         public bool roomno3 { get; set; }
+
+        // Helység módok
+        public Modes entryModes { get; set; }
+        public Modes livingroomModes { get; set; }
+        public Modes kithcenModes { get; set; }
+        public Modes officeModes { get; set; }
+        public Modes bathModes { get; set; }
+        public Modes terraceModes { get; set; }
+        public Modes roomno1Modes { get; set; }
+        public Modes roomno2Modes { get; set; }
+        public Modes roomno3Modes { get; set; }
+
+
+        // Helység fokozat
+        public int entryLevel { get; set; }
+        public int livingroomLevel { get; set; }
+        public int kithcenLevel { get; set; }
+        public int officeLevel { get; set; }
+        public int bathLevel { get; set; }
+        public int terraceLevel { get; set; }
+        public int roomno1Level { get; set; }
+        public int roomno2Level { get; set; }
+        public int roomno3Level { get; set; }
     }
 }

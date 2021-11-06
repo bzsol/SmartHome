@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using Common.Model;
+using Prism.Commands;
+using SmartHome.DataProvider;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using static Common.Model.ExternalFactors;
 
 namespace SmartHome.ViewModels
 {
@@ -282,6 +285,7 @@ namespace SmartHome.ViewModels
                 $"{ _thirdSelectedOption} : { _thirdSelectedLevel}\n" +
                 $"{ _fourthSelectedOption} : { _fourthSelectedLevel}\n" +
                 $"{ _fifthSelectedOption} : { _fifthSelectedLevel}");
+                UploadData(_firstSelectedOption, _firstSelectedLevel,_secondSelectedOption,_secondSelectedLevel,_thirdSelectedOption,_thirdSelectedLevel,_fourthSelectedOption,_fourthSelectedLevel,_fifthSelectedOption,_fifthSelectedLevel);
         }
 
         public void OnEntryStateChange(ToggleButton tbtn)
@@ -303,6 +307,34 @@ namespace SmartHome.ViewModels
                 case "ClimateFifthEntry":
                     FifthEntryVisibility = FifthEntryCheckState ? Visibility.Visible : Visibility.Collapsed;
                     break;
+            }
+        }
+
+
+        private void UploadData(string firsSelectedOption,string firstSelectedLevel,string secondSelectedOption,string secondSelectedLevel, string thirdSelectedOption, string thirdSelectedLevel, string fourthSelectedOption, string fourthSelectedLevel, string fifthSelectedOption, string fifthSelectedLevel) {
+
+            var external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
+            external.livingroomLevel = int.Parse(firstSelectedLevel);
+            external.livingroomModes = StringToMode(firsSelectedOption);
+            external.officeLevel = int.Parse(secondSelectedLevel);
+            external.officeModes = StringToMode(secondSelectedOption);
+            external.roomno1Level = int.Parse(thirdSelectedLevel);
+            external.roomno1Modes = StringToMode(thirdSelectedOption);
+            external.roomno2Level = int.Parse(fourthSelectedLevel);
+            external.roomno2Modes = StringToMode(fourthSelectedOption);
+            external.roomno3Level = int.Parse(fifthSelectedLevel);
+            external.roomno3Modes = StringToMode(fifthSelectedOption);
+            ExtFactDataProvider.Update(external);
+        }
+
+        private Modes StringToMode(string option) {
+            switch (option) 
+            {
+                case "1": return Modes.sleep;
+                case "2": return Modes.silent;
+                case "3": return Modes.turbo;
+                case "0": return Modes.swing;
+                default: return Modes.silent;
             }
         }
     }

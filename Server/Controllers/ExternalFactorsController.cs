@@ -44,7 +44,21 @@ namespace Server.Controllers
             }
             else 
             {
-                chosenFactor = factor;
+                //chosenFactor = factor;
+                chosenFactor.EventName = factor.EventName;
+                chosenFactor.EventTime = factor.EventTime;
+                chosenFactor.ElectronicType = factor.ElectronicType;
+                chosenFactor.Continous = factor.Continous;
+                chosenFactor.livingroomLevel = factor.livingroomLevel;
+                chosenFactor.livingroomModes = factor.livingroomModes;
+                chosenFactor.officeLevel = factor.officeLevel;
+                chosenFactor.officeModes = factor.officeModes;
+                chosenFactor.roomno1Level = factor.roomno1Level;
+                chosenFactor.roomno1Modes = factor.roomno1Modes;
+                chosenFactor.roomno2Level = factor.roomno2Level;
+                chosenFactor.roomno2Modes = factor.roomno2Modes;
+                chosenFactor.roomno3Level = factor.roomno3Level;
+                chosenFactor.roomno3Modes = factor.roomno3Modes;
                 ExternalFactorsRepo.SaveExternalFactors(factors);
                 return Ok();
             }
