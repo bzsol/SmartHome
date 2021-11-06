@@ -126,3 +126,4 @@ D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\S
 D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\IrrigationManagerPanel.baml
 D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\LightManagerPanel.baml
 D:\ProgramozásProjektek\C#\SmartHome\SmartHome\obj\Debug\net5.0-windows\Views\ShadowManagerPanel.baml
+D:\Github\SmartHome\SmartHome\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
