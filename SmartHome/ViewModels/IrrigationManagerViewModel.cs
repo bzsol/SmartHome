@@ -1,16 +1,199 @@
-﻿using System;
+﻿using Prism.Commands;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace SmartHome.ViewModels
 {
-    public class IrrigationManagerViewModel
+    public class IrrigationManagerViewModel : INotifyPropertyChanged
     {
+        public DelegateCommand<Button> SaveSettingsCommand { get; set; }
+        public DelegateCommand<ToggleButton> IrrigationSettingChangeCommand { get; set; }
+        public DelegateCommand<ToggleButton> RepeatSettingChangeCommand { get; set; }
+
+        public List<string> Places { get; set; }
+
+        public List<int> Minutes { get; set; } = new List<int>();
+
+        private string _selectedPlace;
+        public string SelectedPlace
+        {
+            get => _selectedPlace;
+            set
+            {
+                _selectedPlace = value;
+                NotifyChange(nameof(SelectedPlace));
+            }
+        }
+
+        private bool _timeSettingCheckState;
+        public bool TimeSettingCheckState
+        {
+            get => _timeSettingCheckState;
+            set
+            {
+                _timeSettingCheckState = value;
+                NotifyChange(nameof(TimeSettingCheckState));
+            }
+        }
+
+        private bool _temperatureSettingCheckState;
+        public bool TemperatureSettingCheckState
+        {
+            get => _temperatureSettingCheckState;
+            set
+            {
+                _temperatureSettingCheckState = value;
+                NotifyChange(nameof(TemperatureSettingCheckState));
+            }
+        }
+
+        private Visibility _timeSettingOffVisibility;
+        public Visibility TimeSettingOffVisibility
+        {
+            get => _timeSettingOffVisibility;
+            set
+            {
+                _timeSettingOffVisibility = value;
+                NotifyChange(nameof(TimeSettingOffVisibility));
+            }
+        }
+
+        private Visibility _timeSettingOnVisibility;
+        public Visibility TimeSettingOnVisibility
+        {
+            get => _timeSettingOnVisibility;
+            set
+            {
+                _timeSettingOnVisibility = value;
+                NotifyChange(nameof(TimeSettingOnVisibility));
+            }
+        }
+
+        private Visibility _tempSettingOffVisibility;
+        public Visibility TempSettingOffVisibility
+        {
+            get => _tempSettingOffVisibility;
+            set
+            {
+                _tempSettingOffVisibility = value;
+                NotifyChange(nameof(TempSettingOffVisibility));
+            }
+        }
+
+        private Visibility _tempSettingOnVisibility;
+        public Visibility TempSettingOnVisibility
+        {
+            get => _tempSettingOnVisibility;
+            set
+            {
+                _tempSettingOnVisibility = value;
+                NotifyChange(nameof(TempSettingOnVisibility));
+            }
+        }
+
+        private bool _repeatSettingCheckState;
+        public bool RepeatSettingCheckState
+        {
+            get => _repeatSettingCheckState;
+            set
+            {
+                _repeatSettingCheckState = value;
+                NotifyChange(nameof(RepeatSettingCheckState));
+            }
+        }
+
+        private Visibility _repeatTimeSettingVisibility;
+        public Visibility RepeatTimeSettingVisiblity
+        {
+            get => _repeatTimeSettingVisibility;
+            set
+            {
+                _repeatTimeSettingVisibility = value;
+                NotifyChange(nameof(RepeatTimeSettingVisiblity));
+            }
+        }
+
+        private int _selectedRepeatTime;
+        public int SelectedRepeatTime
+        {
+            get => _selectedRepeatTime;
+            set
+            {
+                _selectedRepeatTime = value;
+                NotifyChange(nameof(SelectedRepeatTime));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyChange(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
         public IrrigationManagerViewModel()
         {
+            SaveSettingsCommand = new DelegateCommand<Button>(OnSaveSettings);
+            IrrigationSettingChangeCommand = new DelegateCommand<ToggleButton>(OnIrrigationSettingChanged);
+            RepeatSettingChangeCommand = new DelegateCommand<ToggleButton>(OnRepeatSettingChanged);
 
+            Places = new()
+            {
+                "Elülső udvar",
+                "Hátsó udvar",
+                "Kert"
+            };
+
+            for (int i = 1; i <= 60; i++)
+            {
+                Minutes.Add(i);
+            }
+
+            SelectedPlace = Places[0];
+        }
+
+        private void OnSaveSettings(Button btn)
+        {
+            MessageBox.Show($"{SelectedPlace}");
+        }
+
+        private void OnIrrigationSettingChanged(ToggleButton tbtn)
+        {
+            if (tbtn.Name.Equals("timeToggleButton"))
+            {
+                if (TimeSettingCheckState)
+                {
+                    TimeSettingOffVisibility = Visibility.Hidden;
+                    TimeSettingOnVisibility = Visibility.Visible;
+                }
+                else
+                {
+                    TimeSettingOffVisibility = Visibility.Visible;
+                    TimeSettingOnVisibility = Visibility.Hidden;
+                }
+            }
+            else
+            {
+                if (TemperatureSettingCheckState)
+                {
+                    TempSettingOffVisibility = Visibility.Hidden;
+                    TempSettingOnVisibility = Visibility.Visible;
+                }
+                else
+                {
+                    TempSettingOffVisibility = Visibility.Visible;
+                    TempSettingOnVisibility = Visibility.Hidden;
+                }
+            }
+        }
+
+        private void OnRepeatSettingChanged(ToggleButton tbtn)
+        {
+            RepeatTimeSettingVisiblity = RepeatSettingCheckState ? Visibility.Visible : Visibility.Hidden;
         }
     }
 }
