@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Model
 {
-    
+
 
 
     public class ExternalFactors
@@ -37,14 +37,6 @@ namespace Common.Model
         public int shutter { get; set; }
 
         public int gradiation { get; set; }
-
-        // Világítás
-
-        public double Brigtness { get; set; }
-
-        public enum LightingColor { cold, warm };
-
-        public LightingColor LightColor { get; set; }
 
         // Öntözőrendszer
 
@@ -114,8 +106,82 @@ namespace Common.Model
         public int roomno3Level { get; set; }
 
         // Kültér Beltér
-        public enum rooms {}
-        bool isOutside { get; set; }
 
+        public enum LightColor {warm,cold}
+        
+        // Bejárat
+        public bool isEntryLights { get; set; }
+
+        public int entryLights { get; set; }
+
+        public LightColor entryColor { get; set; }
+
+        public bool EntryMotionDetection { get; set; }
+
+        // Konyha
+        public bool isKitchenLights { get; set; }
+
+        public int kitchenLights { get; set; }
+
+        public LightColor kitchenColor { get; set; }
+
+        public bool KitchenMotionDetection { get; set; }
+
+        // Nappali
+
+        public bool isLivingRoomLights { get; set; }
+
+        public int livingroomLights { get; set; }
+
+        public LightColor livingroomColor { get; set; }
+
+        public bool LivingroomMotionDetection { get; set; }
+
+        // Iroda
+
+        public bool isOfficeLights { get; set; }
+
+        public int officeLights { get; set; }
+
+        public LightColor officeColor { get; set; }
+
+        public bool officeMotionDetection { get; set; }
+
+        // Terasz
+
+        public bool isTerraceLights { get; set; }
+
+        public int terraceLights { get; set; }
+
+        public LightColor terraceColor { get; set; }
+
+        public bool TerraceMotionDetection { get; set; }
+
+        // Szoba1
+        public bool isRoom1Lights { get; set; }
+
+        public int room1Lights { get; set; }
+
+        public LightColor room1Color { get; set; }
+
+        public bool Room1MotionDetection { get; set; }
+
+        // Szoba2
+        public bool isRoom2Lights { get; set; }
+
+        public int room2Lights { get; set; }
+
+        public LightColor room2Color { get; set; }
+
+        public bool Room2MotionDetection { get; set; }
+
+        // Szoba1
+        public bool isRoom3Lights { get; set; }
+
+        public int room3Lights { get; set; }
+
+        public LightColor room3Color { get; set; }
+
+        public bool Room3MotionDetection { get; set; }
     }
 }

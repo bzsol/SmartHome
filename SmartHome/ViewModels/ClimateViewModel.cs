@@ -314,16 +314,26 @@ namespace SmartHome.ViewModels
         private void UploadData(string firsSelectedOption,string firstSelectedLevel,string secondSelectedOption,string secondSelectedLevel, string thirdSelectedOption, string thirdSelectedLevel, string fourthSelectedOption, string fourthSelectedLevel, string fifthSelectedOption, string fifthSelectedLevel) {
 
             var external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
-            external.livingroomLevel = int.Parse(firstSelectedLevel);
-            external.livingroomModes = StringToMode(firsSelectedOption);
-            external.officeLevel = int.Parse(secondSelectedLevel);
-            external.officeModes = StringToMode(secondSelectedOption);
-            external.roomno1Level = int.Parse(thirdSelectedLevel);
-            external.roomno1Modes = StringToMode(thirdSelectedOption);
-            external.roomno2Level = int.Parse(fourthSelectedLevel);
-            external.roomno2Modes = StringToMode(fourthSelectedOption);
-            external.roomno3Level = int.Parse(fifthSelectedLevel);
-            external.roomno3Modes = StringToMode(fifthSelectedOption);
+            if (FirstEntryVisibility.Equals(Visibility.Visible)) {
+                external.livingroomLevel = int.Parse(firstSelectedLevel);
+                external.livingroomModes = StringToMode(firsSelectedOption);
+            }
+            if (SecondEntryVisibility.Equals(Visibility.Visible)) {
+                external.officeLevel = int.Parse(secondSelectedLevel);
+                external.officeModes = StringToMode(secondSelectedOption);
+            }
+            if (ThirdEntryVisibility.Equals(Visibility.Visible)) {
+                external.roomno1Level = int.Parse(thirdSelectedLevel);
+                external.roomno1Modes = StringToMode(thirdSelectedOption);
+            }
+            if (FourthEntryVisibility.Equals(Visibility.Visible)) {
+                external.roomno2Level = int.Parse(fourthSelectedLevel);
+                external.roomno2Modes = StringToMode(fourthSelectedOption);
+            }
+            if (FifthEntryVisibility.Equals(Visibility.Visible)) {
+                external.roomno3Level = int.Parse(fifthSelectedLevel);
+                external.roomno3Modes = StringToMode(fifthSelectedOption);
+            }
             ExtFactDataProvider.Update(external);
         }
 
