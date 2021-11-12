@@ -112,5 +112,10 @@ namespace Common.Model
         public int roomno1Level { get; set; }
         public int roomno2Level { get; set; }
         public int roomno3Level { get; set; }
+
+        // Kültér Beltér
+        public enum rooms {}
+        bool isOutside { get; set; }
+
     }
 }
