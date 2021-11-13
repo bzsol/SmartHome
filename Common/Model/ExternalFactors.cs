@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Class;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -29,20 +30,6 @@ namespace Common.Model
 
         public Electronics Radio { get; set; }
 
-        // Redőny
-        public int shutter { get; set; }
-
-        public int gradiation { get; set; }
-
-        // Öntözőrendszer
-
-        public int IriggationStrenght { get; set; }
-
-        public DateTime IrrigationStart { get; set; }
-
-        public DateTime IrrigationEnd { get; set; }
-
-
         // Levegő
         public double Temp { get; set; }
 
@@ -54,7 +41,9 @@ namespace Common.Model
 
         public bool isHumiditysample { get; set; }
 
+        public bool isDehumidification { get; set; }
 
+        public bool isVentilation { get; set; }
         // AC
 
         public double Heating { get; set; }
@@ -88,6 +77,11 @@ namespace Common.Model
         public Lights roomno1Lights { get; set; }
         public Lights roomno2Lights { get; set; }
         public Lights roomno3Lights { get; set; }
+
+        // Öntözés
+
+        public Irrigative Garden { get; set; }
+        public Irrigative FrontGarden { get; set; }
 
     }
 }
