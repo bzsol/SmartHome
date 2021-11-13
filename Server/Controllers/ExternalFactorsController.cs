@@ -45,20 +45,21 @@ namespace Server.Controllers
             else 
             {
                 //chosenFactor = factor;
-                chosenFactor.EventName = factor.EventName;
-                chosenFactor.EventTime = factor.EventTime;
-                chosenFactor.ElectronicType = factor.ElectronicType;
-                chosenFactor.Continous = factor.Continous;
-                chosenFactor.livingroomLevel = factor.livingroomLevel;
-                chosenFactor.livingroomModes = factor.livingroomModes;
-                chosenFactor.officeLevel = factor.officeLevel;
-                chosenFactor.officeModes = factor.officeModes;
-                chosenFactor.roomno1Level = factor.roomno1Level;
-                chosenFactor.roomno1Modes = factor.roomno1Modes;
-                chosenFactor.roomno2Level = factor.roomno2Level;
-                chosenFactor.roomno2Modes = factor.roomno2Modes;
-                chosenFactor.roomno3Level = factor.roomno3Level;
-                chosenFactor.roomno3Modes = factor.roomno3Modes;
+                chosenFactor.Radio = factor.Radio;
+                chosenFactor.TV = factor.TV;
+                chosenFactor.entryClimate = factor.entryClimate;
+                chosenFactor.bathClimate = factor.bathClimate;
+                chosenFactor.kitchenClimate = factor.kitchenClimate;
+                chosenFactor.livingroomClimate = factor.livingroomClimate;
+                chosenFactor.officeClimate = factor.officeClimate;
+                chosenFactor.roomno1Climate = factor.roomno1Climate;
+                chosenFactor.roomno2Climate = factor.roomno2Climate;
+                chosenFactor.roomno3Climate = factor.roomno3Climate;
+                chosenFactor.terraceClimate = factor.terraceClimate;
+                chosenFactor.Heating = factor.Heating;
+                chosenFactor.Cooling = factor.Cooling;
+                chosenFactor.isCO2sample = factor.isCO2sample;
+                chosenFactor.isHumiditysample = factor.isHumiditysample;
                 ExternalFactorsRepo.SaveExternalFactors(factors);
                 return Ok();
             }

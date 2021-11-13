@@ -315,24 +315,28 @@ namespace SmartHome.ViewModels
 
             var external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
             if (FirstEntryVisibility.Equals(Visibility.Visible)) {
-                external.livingroomLevel = int.Parse(firstSelectedLevel);
-                external.livingroomModes = StringToMode(firsSelectedOption);
+                external.livingroomClimate = new Climate();
+                external.livingroomClimate.level = int.Parse(firstSelectedLevel);
+                external.livingroomClimate.mode = StringToMode(firsSelectedOption);
             }
             if (SecondEntryVisibility.Equals(Visibility.Visible)) {
-                external.officeLevel = int.Parse(secondSelectedLevel);
-                external.officeModes = StringToMode(secondSelectedOption);
+                external.officeClimate = new Climate();
+                external.officeClimate.level = int.Parse(secondSelectedLevel);
+                external.officeClimate.mode = StringToMode(secondSelectedOption);
             }
             if (ThirdEntryVisibility.Equals(Visibility.Visible)) {
-                external.roomno1Level = int.Parse(thirdSelectedLevel);
-                external.roomno1Modes = StringToMode(thirdSelectedOption);
+                external.roomno1Climate = new Climate();
+                external.roomno1Climate.level = int.Parse(thirdSelectedLevel);
+                external.roomno1Climate.mode = StringToMode(thirdSelectedOption);
             }
             if (FourthEntryVisibility.Equals(Visibility.Visible)) {
-                external.roomno2Level = int.Parse(fourthSelectedLevel);
-                external.roomno2Modes = StringToMode(fourthSelectedOption);
+                external.roomno2Climate.level = int.Parse(fourthSelectedLevel);
+                external.roomno2Climate.mode = StringToMode(fourthSelectedOption);
             }
             if (FifthEntryVisibility.Equals(Visibility.Visible)) {
-                external.roomno3Level = int.Parse(fifthSelectedLevel);
-                external.roomno3Modes = StringToMode(fifthSelectedOption);
+                external.roomno1Climate = new Climate();
+                external.roomno3Climate.level = int.Parse(fifthSelectedLevel);
+                external.roomno3Climate.mode = StringToMode(fifthSelectedOption);
             }
             ExtFactDataProvider.Update(external);
         }
