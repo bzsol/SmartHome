@@ -16,7 +16,11 @@ namespace SmartHome.ViewModels
 
         public DelegateCommand<RadioButton> PreferenceChangedCommand { get; set; }
 
+        public DelegateCommand<ComboBox> WindowSelectionChangeCommand { get; set; }
+
         public List<string> Places { get; set; }
+
+        public Dictionary<string, string> AllWindowsToPlace { get; set; }
 
         private string _selectedPlace;
         public string SelectedPlace
@@ -29,11 +33,36 @@ namespace SmartHome.ViewModels
             }
         }
 
+        private string _selectedWindow;
+        public string SelectedWindow
+        {
+            get => _selectedWindow;
+            set
+            {
+                _selectedWindow = value;
+                NotifyChange(nameof(SelectedWindow));
+            }
+        }
+
+        private List<string> _windowsInPlace;
+        public List<string> WindowsInPlace
+        {
+            get => _windowsInPlace;
+            set
+            {
+                _windowsInPlace = value;
+                NotifyChange(nameof(WindowsInPlace));
+            }
+        }
+
+
         private bool _timePreferenceCheckState;
         public bool TimePreferenceCheckState
         {
             get => _timePreferenceCheckState;
             set
+
+
             {
                 _timePreferenceCheckState = value;
                 NotifyChange(nameof(TimePreferenceCheckState));
@@ -48,6 +77,28 @@ namespace SmartHome.ViewModels
             {
                 _lightPreferenceCheckState = value;
                 NotifyChange(nameof(LightPreferenceCheckState));
+            }
+        }
+
+        private Visibility _noMultipleWindowsVisibility;
+        public Visibility NoMultipleWindowsVisibility
+        {
+            get => _noMultipleWindowsVisibility;
+            set
+            {
+                _noMultipleWindowsVisibility = value;
+                NotifyChange(nameof(NoMultipleWindowsVisibility));
+            }
+        }
+
+        private Visibility _multipleWindowsVisibility;
+        public Visibility MultipleWindowsVisibility
+        {
+            get => _multipleWindowsVisibility;
+            set
+            {
+                _multipleWindowsVisibility = value;
+                NotifyChange(nameof(MultipleWindowsVisibility));
             }
         }
 
@@ -81,19 +132,29 @@ namespace SmartHome.ViewModels
         {
             SaveSettingsCommand = new DelegateCommand<Button>(OnSaveSettings);
             PreferenceChangedCommand = new DelegateCommand<RadioButton>(OnPreferenceChanged);
+            WindowSelectionChangeCommand = new DelegateCommand<ComboBox>(OnPlaceSelectionChanged);
                 
             Places = new()
             {
                 "Nappali",
                 "Konyha",
+                "Fürdőszoba",
                 "Iroda",
-                "Terasz",
+                "Étkező",
                 "Szoba #1",
                 "Szoba #2",
                 "Szoba #3"
             };
 
+            AllWindowsToPlace = new()
+            {
+                { "Fürdőszoba", "Baloldali ablak;Jobboldali ablak" },
+                { "Nappali", "Panoráma ablak;Nagy ablak" },
+            };
+
             SelectedPlace = Places[0];
+            GetAvailableWindows();
+
             LightPreferenceCheckState = true;
             LightSettingVisibility = Visibility.Visible;
             TimeSettingVisibility = Visibility.Hidden;
@@ -115,6 +176,28 @@ namespace SmartHome.ViewModels
             {
                 TimeSettingVisibility = Visibility.Hidden;
                 LightSettingVisibility = Visibility.Visible;
+            }
+        }
+
+        private void OnPlaceSelectionChanged(ComboBox cbox)
+        {
+            GetAvailableWindows();
+        }
+
+        private void GetAvailableWindows()
+        {
+            if (AllWindowsToPlace.ContainsKey(SelectedPlace))
+            {
+                MultipleWindowsVisibility = Visibility.Visible;
+                NoMultipleWindowsVisibility = Visibility.Hidden;
+
+                WindowsInPlace = AllWindowsToPlace[SelectedPlace].Split(";").ToList();
+                SelectedWindow = WindowsInPlace[0];
+            }
+            else
+            {
+                MultipleWindowsVisibility = Visibility.Hidden;
+                NoMultipleWindowsVisibility = Visibility.Visible;
             }
         }
     }

@@ -285,7 +285,7 @@ namespace SmartHome.ViewModels
                 $"{ _thirdSelectedOption} : { _thirdSelectedLevel}\n" +
                 $"{ _fourthSelectedOption} : { _fourthSelectedLevel}\n" +
                 $"{ _fifthSelectedOption} : { _fifthSelectedLevel}");
-                UploadData(_firstSelectedOption, _firstSelectedLevel,_secondSelectedOption,_secondSelectedLevel,_thirdSelectedOption,_thirdSelectedLevel,_fourthSelectedOption,_fourthSelectedLevel,_fifthSelectedOption,_fifthSelectedLevel);
+            UploadData(_firstSelectedOption, _firstSelectedLevel, _secondSelectedOption, _secondSelectedLevel, _thirdSelectedOption, _thirdSelectedLevel, _fourthSelectedOption, _fourthSelectedLevel, _fifthSelectedOption, _fifthSelectedLevel);
         }
 
         public void OnEntryStateChange(ToggleButton tbtn)
