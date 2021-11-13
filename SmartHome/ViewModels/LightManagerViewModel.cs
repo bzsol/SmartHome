@@ -116,8 +116,9 @@ namespace SmartHome.ViewModels
                 "Előszoba",
                 "Nappali",
                 "Konyha",
+                "Fürdőszoba",
                 "Iroda",
-                "Terasz",
+                "Étkező",
                 "Szoba #1",
                 "Szoba #2",
                 "Szoba #3"

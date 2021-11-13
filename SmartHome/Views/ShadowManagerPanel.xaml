@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:SmartHome.Views"
         xmlns:viewModel="clr-namespace:SmartHome.ViewModels"
         xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Height="800" Width="1400">
     <UserControl.DataContext>
@@ -43,12 +44,20 @@
             <Label Grid.Row="4" Grid.Column="0" Content="Időpont" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
                    VerticalAlignment="Center" Padding="15 0 0 0" Visibility="{Binding TimeSettingVisibility}"></Label>
 
-            <ComboBox Grid.Row="0" Grid.Column="1" Width="500" HorizontalAlignment="Center" FontFamily="Arial" FontSize="24" Padding="0 20 0 0"
-                           Style="{StaticResource MainComboBoxStyle}" SelectedItem="{Binding SelectedPlace}" ItemsSource="{Binding Places}" VerticalAlignment="Center" />
+            <ComboBox Grid.Row="0" Grid.Column="1" Width="500" HorizontalAlignment="Center" FontSize="24" Padding="0 20 0 0"
+                           Style="{StaticResource MainComboBoxStyle}" SelectedItem="{Binding SelectedPlace}" ItemsSource="{Binding Places}" VerticalAlignment="Center">
+                <behaviors:Interaction.Triggers>
+                    <behaviors:EventTrigger EventName="SelectionChanged">
+                        <behaviors:InvokeCommandAction Command="{Binding WindowSelectionChangeCommand}"></behaviors:InvokeCommandAction>
+                    </behaviors:EventTrigger>
+                </behaviors:Interaction.Triggers>
+            </ComboBox>
 
-            <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label Grid.Row="1" Grid.Column="1" Content="Nincs egynél több ablak" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
+                   VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding NoMultipleWindowsVisibility}"></Label>
+            <ComboBox Grid.Row="1" Grid.Column="1" Width="500" HorizontalAlignment="Center" FontSize="24" Padding="0 20 0 0" Visibility="{Binding MultipleWindowsVisibility}"
+                           Style="{StaticResource MainComboBoxStyle}" SelectedItem="{Binding SelectedWindow}" ItemsSource="{Binding WindowsInPlace}" VerticalAlignment="Center"/>
 
-            </StackPanel>
 
             <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <RadioButton Content="Időpont" Margin="0 0 15 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF" Command="{Binding PreferenceChangedCommand}"
