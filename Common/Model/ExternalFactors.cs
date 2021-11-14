@@ -26,9 +26,9 @@ namespace Common.Model
 
         // Szórakoztató eszközök
 
-        public Electronics TV { get; set; }
+        public List<Electronics> TV { get; set; }
 
-        public Electronics Radio { get; set; }
+        public List<Electronics> Radio { get; set; }
 
         // Levegő
         public double Temp { get; set; }
@@ -68,20 +68,20 @@ namespace Common.Model
 
         public enum LightColor {warm,cold}
 
-        public Lights entryLights { get; set; }
-        public Lights livingroomLights { get; set; }
-        public Lights kithcenLights { get; set; }
-        public Lights officeLights { get; set; }
-        public Lights bathLights { get; set; }
-        public Lights terraceLights { get; set; }
-        public Lights roomno1Lights { get; set; }
-        public Lights roomno2Lights { get; set; }
-        public Lights roomno3Lights { get; set; }
+        public List<Lights> entryLights { get; set; }
+        public List<Lights> livingroomLights { get; set; }
+        public List<Lights> kithcenLights { get; set; }
+        public List<Lights> officeLights { get; set; }
+        public List<Lights> bathLights { get; set; }
+        public List<Lights> terraceLights { get; set; }
+        public List<Lights> roomno1Lights { get; set; }
+        public List<Lights> roomno2Lights { get; set; }
+        public List<Lights> roomno3Lights { get; set; }
 
         // Öntözés
 
-        public Irrigative Garden { get; set; }
-        public Irrigative FrontGarden { get; set; }
+        public List<Irrigative> Garden { get; set; }
+        public List<Irrigative> FrontGarden { get; set; }
 
     }
 }

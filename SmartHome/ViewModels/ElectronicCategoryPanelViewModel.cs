@@ -106,18 +106,26 @@ namespace SmartHome.ViewModels
             var external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
             if (isTV)
             {
-                external.TV = new Electronics();
-                external.TV.Continous = true;
-                external.TV.EventName = eventName;
-                external.TV.EventTime = dateTime;
-                external.TV.Continous = cont;
+                if (external.TV == null) {
+                    external.TV = new List<Electronics>();
+                }
+                var objTV = new Electronics();
+                objTV.Continous = true;
+                objTV.EventName = eventName;
+                objTV.EventTime = dateTime;
+                objTV.Continous = cont;
+                external.TV.Add(objTV);
             }
             else {
-                external.Radio = new Electronics();
-                external.Radio.Continous = true;
-                external.Radio.EventName = eventName;
-                external.Radio.EventTime = dateTime;
-                external.Radio.Continous = cont;
+                if (external.Radio == null) {
+                    external.Radio = new List<Electronics>();
+                }
+                var objRadio = new Electronics();
+                objRadio.Continous = true;
+                objRadio.EventName = eventName;
+                objRadio.EventTime = dateTime;
+                objRadio.Continous = cont;
+                external.Radio.Add(objRadio);
             }
             ExtFactDataProvider.Update(external);
         }
