@@ -49,7 +49,7 @@
                 </Button>
             </Grid>
         </Grid>
-
+        
         <ContentControl Grid.Row="1" Content="{Binding UserControlViewModel}"></ContentControl>
     </Grid>
 </Window>

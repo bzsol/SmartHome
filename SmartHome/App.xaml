@@ -40,6 +40,12 @@
                     <DataTemplate DataType="{x:Type viewModel:IrrigationManagerViewModel}">
                         <view:IrrigationManagerPanel/>
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:GardenPanelViewModel}">
+                        <view:GardenPanel/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:SimulationCategoryPanelViewModel}">
+                        <view:SimulationCategoryPanel/>
+                    </DataTemplate>
                 </ResourceDictionary>
 
                 <ResourceDictionary>

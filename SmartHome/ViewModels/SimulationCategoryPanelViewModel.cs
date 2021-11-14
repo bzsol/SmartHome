@@ -5,12 +5,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace SmartHome.ViewModels
 {
-    public class ConfigurePanelViewModel : INotifyPropertyChanged
+    public class SimulationCategoryPanelViewModel : INotifyPropertyChanged
     {
         public DelegateCommand<Button> CategoryClicked { get; set; }
 
@@ -29,7 +28,7 @@ namespace SmartHome.ViewModels
 
         private void NotifyChange(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-        public ConfigurePanelViewModel()
+        public SimulationCategoryPanelViewModel()
         {
             CategoryClicked = new DelegateCommand<Button>(OnCategoryClicked);
         }
@@ -39,19 +38,10 @@ namespace SmartHome.ViewModels
             switch (btn.Name)
             {
                 case "btnCat1":
-                    CategoryPanelViewModel = new ElectronicCategoryPanelViewModel();
+                    CategoryPanelViewModel = new SimulationPanelViewModel();
                     break;
                 case "btnCat2":
-                    CategoryPanelViewModel = new ClimateViewModel();
-                    break;
-                case "btnCat3":
-                    CategoryPanelViewModel = new LightManagerViewModel();
-                    break;
-                case "btnCat4":
-                    CategoryPanelViewModel = new ShadowManagerViewModel();
-                    break;
-                case "btnCat5":
-                    CategoryPanelViewModel = new IrrigationManagerViewModel();
+                    CategoryPanelViewModel = new GardenPanelViewModel();
                     break;
             }
         }
