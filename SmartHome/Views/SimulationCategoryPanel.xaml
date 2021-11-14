@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="SmartHome.Views.SimulationCategoryPanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartHome.Views"
+        xmlns:viewModel="clr-namespace:SmartHome.ViewModels"
+        mc:Ignorable="d"
+        Height="Auto" Width="Auto">
+    <UserControl.DataContext>
+        <viewModel:SimulationCategoryPanelViewModel/>
+    </UserControl.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnCat1" Height="30" Width="175" Style="{StaticResource MainButtonStyle}" Margin="0 0 10 0"
+                    Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat1}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/inside.png" Height="20" Margin="0 0 5 0"></Image>
+                    <TextBlock Text="Beltér" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btnCat2" Height="30" Width="175" Style="{StaticResource MainButtonStyle}" Margin="10 0 0 0"
+                    Command="{Binding CategoryClicked}" CommandParameter="{x:Reference btnCat2}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Images/outside.png" Height="20" Margin="0 0 5 0"></Image>
+                    <TextBlock Text="Kültér" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <ContentControl Grid.Row="1" Content="{Binding CategoryPanelViewModel}"></ContentControl>
+    </Grid>
+</UserControl>

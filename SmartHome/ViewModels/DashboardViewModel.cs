@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace SmartHome.ViewModels
 {
@@ -38,7 +39,7 @@ namespace SmartHome.ViewModels
 
         public void OnChangeToSimulation(Button btn)
         {
-            UserControlViewModel = new SimulationPanelViewModel();
+            UserControlViewModel = new SimulationCategoryPanelViewModel();
         }
 
         public void OnChangeToConfiguration(Button btn)
