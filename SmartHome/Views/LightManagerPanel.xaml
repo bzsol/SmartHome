@@ -52,10 +52,10 @@
             <ComboBox Grid.Row="1" Grid.Column="1" Width="500" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Padding="0 20 0 0"
                       Style="{StaticResource MainComboBoxStyle}" SelectedItem="{Binding SelectedPlace}" ItemsSource="{Binding Places}"/>
             <Slider Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500"
-                    Minimum="0" Maximum="100" Value="50" AutoToolTipPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
+                    Minimum="0" Maximum="100" AutoToolTipPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Name="LightStrenghtSlider" Value="{Binding SliderValue}"></Slider>
             <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <RadioButton Content="Hideg" Margin="0 0 15 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"></RadioButton>
-                <RadioButton Content="Meleg" Margin="15 0 0 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"></RadioButton>
+                <RadioButton Content="Hideg" Margin="0 0 15 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF" IsChecked="{Binding isColorCold}"></RadioButton>
+                <RadioButton Content="Meleg" Margin="15 0 0 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF" IsChecked="{Binding isColorWarm}"></RadioButton>
             </StackPanel>
             <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
                 <Grid Width="230">

@@ -70,13 +70,18 @@ namespace Common.Model
 
         public List<Lights> entryLights { get; set; }
         public List<Lights> livingroomLights { get; set; }
-        public List<Lights> kithcenLights { get; set; }
+        public List<Lights> kitchenLights { get; set; }
         public List<Lights> officeLights { get; set; }
         public List<Lights> bathLights { get; set; }
         public List<Lights> terraceLights { get; set; }
         public List<Lights> roomno1Lights { get; set; }
         public List<Lights> roomno2Lights { get; set; }
         public List<Lights> roomno3Lights { get; set; }
+
+        public List<Lights> GatewayLights { get; set; }
+        public List<Lights> GardenLights { get; set; }
+        public List<Lights> GarageLights { get; set; }
+        public List<Lights> GateEntranceLights { get; set; }
 
         // Öntözés
 
