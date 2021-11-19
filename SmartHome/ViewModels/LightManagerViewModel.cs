@@ -217,47 +217,47 @@ namespace SmartHome.ViewModels
                 {
                     case "Előszoba":
                         {
-                            external.entryLights.Add(lights);
+                            external.entryLights = lights;
                             break;
                         }
                     case "Nappali":
                         {
-                            external.livingroomLights.Add(lights);
+                            external.livingroomLights = lights;
                             break;
                         }
                     case "Konyha":
                         {
-                            external.kitchenLights.Add(lights);
+                            external.kitchenLights = lights;
                             break;
                         }
                     case "Fürdőszoba":
                         {
-                            external.bathLights.Add(lights);
+                            external.bathLights = lights;
                             break;
                         }
                     case "Iroda":
                         {
-                            external.officeLights.Add(lights);
+                            external.officeLights = lights;
                             break;
                         }
                     case "Étkező":
                         {
-                            external.terraceLights.Add(lights);
+                            external.terraceLights = lights;
                             break;
                         }
                     case "Szoba #1":
                         {
-                            external.roomno1Lights.Add(lights);
+                            external.roomno1Lights = lights;
                             break;
                         }
                     case "Szoba #2":
                         {
-                            external.roomno2Lights.Add(lights);
+                            external.roomno2Lights = lights;
                             break;
                         }
                     case "Szoba #3":
                         {
-                            external.roomno3Lights.Add(lights);
+                            external.roomno3Lights = lights;
                             break;
                         }
                 }
@@ -268,22 +268,22 @@ namespace SmartHome.ViewModels
                 {
                     case "Bejárat":
                         {
-                            external.gatewayLights.Add(lights);
+                            external.gatewayLights = lights;
                             break;
                         }
                     case "Kapubejáró":
                         {
-                            external.gateEntranceLights.Add(lights);
+                            external.gateEntranceLights = lights;
                             break;
                         }
                     case "Garázs":
                         {
-                            external.garageLights.Add(lights);
+                            external.garageLights = lights;
                             break;
                         }
                     case "Kert":
                         {
-                            external.gardenLights.Add(lights);
+                            external.gardenLights = lights;
                             break;
                         }
                 }
