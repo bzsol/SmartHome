@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using Common.Model;
+using Prism.Commands;
+using SmartHome.DataProvider;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -124,6 +126,39 @@ namespace SmartHome.ViewModels
             }
         }
 
+        private int _lightstrength;
+        public int LightStrength
+        {
+            get => _lightstrength;
+            set
+            {
+                _lightstrength = value;
+                NotifyChange(nameof(LightStrength));
+            }
+        }
+
+        private int _levelslinder;
+        public int LevelSlinder
+        {
+            get => _levelslinder;
+            set
+            {
+                _levelslinder = value;
+                NotifyChange(nameof(LevelSlinder));
+            }
+        }
+
+        private DateTime _selectedtime;
+        public DateTime SelectedTime
+        {
+            get => _selectedtime;
+            set
+            {
+                _selectedtime = value;
+                NotifyChange(nameof(SelectedTime));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyChange(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -159,10 +194,84 @@ namespace SmartHome.ViewModels
             LightSettingVisibility = Visibility.Visible;
             TimeSettingVisibility = Visibility.Hidden;
         }
-    
+        
+        private void DataUpload()
+        {
+            ExternalFactors external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
+            Shading shading = new Shading();
+            shading.level = _levelslinder;
+            if(_lightPreferenceCheckState)
+            {
+                shading.photosensitivity = _lightstrength;
+            }
+            else if (_timePreferenceCheckState)
+            {
+                shading.date = _selectedtime;
+            }
+            switch(SelectedPlace)
+            {
+                case "Nappali":
+                    {
+                        if(SelectedWindow.Equals("Panoráma ablak"))
+                        {
+                            external.livingroomPanorama = shading;
+                        }
+                        else if (SelectedWindow.Equals("Nagy ablak"))
+                        {
+                            external.livingroomShading = shading;
+                        }
+                        break;
+                    }
+                case "Fürdőszoba":
+                    {
+                        if(SelectedWindow.Equals("Baloldali ablak"))
+                        {
+                            external.bathleftWindow = shading;
+                        }
+                        else if(SelectedWindow.Equals("Jobboldali ablak"))
+                        {
+                            external.bathShading = shading;
+                        }
+                        break;
+
+                    }
+                case "Konyha":
+                    {
+                        external.kitchenShading = shading;
+                        break;
+                    }
+                case "Iroda":
+                    {
+                        external.officeShading = shading;
+                        break;
+                    }
+                case "Szoba #1":
+                    {
+                        external.roomno1Shading = shading;
+                        break;
+                    }
+                case "Szoba #2":
+                    {
+                        external.roomno2Shading = shading;
+                        break;
+                    }
+                case "Szoba #3":
+                    {
+                        external.roomno3Shading = shading;
+                        break;
+                    }
+                case "Étkező":
+                    {
+                        external.terraceShading = shading;
+                        break;
+                    }
+            }
+            
+
+        }
         private void OnSaveSettings(Button btn)
         {
-            MessageBox.Show($"{SelectedPlace}");
+            MessageBox.Show($"{_lightstrength}");
         }
 
         private void OnPreferenceChanged(RadioButton rbtn)

@@ -13,7 +13,7 @@ namespace Common.Model
 
     public class ExternalFactors
     {
-        public ExternalFactors(List<Electronics> tV, List<Electronics> radio, Climate entryClimate, Climate livingroomClimate, Climate kitchenClimate, Climate officeClimate, Climate bathClimate, Climate terraceClimate, Climate roomno1Climate, Climate roomno2Climate, Climate roomno3Climate, List<Lights> entryLights, List<Lights> livingroomLights, List<Lights> kitchenLights, List<Lights> officeLights, List<Lights> bathLights, List<Lights> terraceLights, List<Lights> roomno1Lights, List<Lights> roomno2Lights, List<Lights> roomno3Lights, List<Lights> gatewayLights, List<Lights> gardenLights, List<Lights> garageLights, List<Lights> gateEntranceLights, List<Irrigative> garden, List<Irrigative> frontGarden)
+        public ExternalFactors(List<Electronics> tV, List<Electronics> radio, Climate entryClimate, Climate livingroomClimate, Climate kitchenClimate, Climate officeClimate, Climate bathClimate, Climate terraceClimate, Climate roomno1Climate, Climate roomno2Climate, Climate roomno3Climate, Lights entryLights, Lights livingroomLights, Lights kitchenLights, Lights officeLights, Lights bathLights, Lights terraceLights, Lights roomno1Lights, Lights roomno2Lights, Lights roomno3Lights, Lights gatewayLights, Lights gardenLights, Lights garageLights, Lights gateEntranceLights, Irrigative garden, Irrigative frontGarden, Shading entryShading, Shading livingroomShading, Shading kitchenShading, Shading officeShading, Shading bathShading, Shading roomno1Shading, Shading roomno2Shading, Shading roomno3Shading,Shading livingroomPanorama,Shading bathleftWindow,Shading terraceShading)
         {
             TV = tV;
             Radio = radio;
@@ -41,6 +41,18 @@ namespace Common.Model
             this.gateEntranceLights = gateEntranceLights;
             this.garden = garden;
             this.frontGarden = frontGarden;
+            this.entryShading = entryShading;
+            this.livingroomShading = livingroomShading;
+            this.kitchenShading = kitchenShading;
+            this.officeShading = officeShading;
+            this.bathShading = bathShading;
+            this.roomno1Shading = roomno1Shading;
+            this.roomno2Shading = roomno2Shading;
+            this.roomno3Shading = roomno3Shading;
+            this.livingroomPanorama = livingroomPanorama;
+            this.bathleftWindow = bathleftWindow;
+            this.terraceShading = terraceShading;
+            
         }
 
         [Key]
@@ -98,25 +110,38 @@ namespace Common.Model
 
         public enum LightColor {warm,cold}
 
-        public List<Lights> entryLights { get; set; }
-        public List<Lights> livingroomLights { get; set; }
-        public List<Lights> kitchenLights { get; set; }
-        public List<Lights> officeLights { get; set; }
-        public List<Lights> bathLights { get; set; }
-        public List<Lights> terraceLights { get; set; }
-        public List<Lights> roomno1Lights { get; set; }
-        public List<Lights> roomno2Lights { get; set; }
-        public List<Lights> roomno3Lights { get; set; }
+        public Lights entryLights { get; set; }
+        public Lights livingroomLights { get; set; }
+        public Lights kitchenLights { get; set; }
+        public Lights officeLights { get; set; }
+        public Lights bathLights { get; set; }
+        public Lights terraceLights { get; set; }
+        public Lights roomno1Lights { get; set; }
+        public Lights roomno2Lights { get; set; }
+        public Lights roomno3Lights { get; set; }
 
-        public List<Lights> gatewayLights { get; set; }
-        public List<Lights> gardenLights { get; set; }
-        public List<Lights> garageLights { get; set; }
-        public List<Lights> gateEntranceLights { get; set; }
+        public Lights gatewayLights { get; set; }
+        public Lights gardenLights { get; set; }
+        public Lights garageLights { get; set; }
+        public Lights gateEntranceLights { get; set; }
 
         // Öntözés
 
-        public List<Irrigative> garden { get; set; }
-        public List<Irrigative> frontGarden { get; set; }
+        public Irrigative garden { get; set; }
+        public Irrigative frontGarden { get; set; }
+
+        // Árnyékbox
+        public Shading entryShading { get; set; }
+        public Shading livingroomShading { get; set; }
+        public Shading livingroomPanorama { get; set; }
+        public Shading bathleftWindow { get; set; }
+        public Shading kitchenShading { get; set; }
+        public Shading officeShading { get; set; }
+        public Shading bathShading { get; set; }
+        public Shading roomno1Shading { get; set; }
+        public Shading roomno2Shading { get; set; }
+        public Shading roomno3Shading { get; set; }
+        public Shading terraceShading { get; set; }
 
     }
 }
