@@ -214,7 +214,6 @@ namespace SmartHome.ViewModels
                     {
                         if(SelectedWindow.Equals("Panoráma ablak"))
                         {
-                            external
                         }
                         break;
                     }

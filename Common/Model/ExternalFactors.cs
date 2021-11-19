@@ -98,25 +98,35 @@ namespace Common.Model
 
         public enum LightColor {warm,cold}
 
-        public List<Lights> entryLights { get; set; }
-        public List<Lights> livingroomLights { get; set; }
-        public List<Lights> kitchenLights { get; set; }
-        public List<Lights> officeLights { get; set; }
-        public List<Lights> bathLights { get; set; }
-        public List<Lights> terraceLights { get; set; }
-        public List<Lights> roomno1Lights { get; set; }
-        public List<Lights> roomno2Lights { get; set; }
-        public List<Lights> roomno3Lights { get; set; }
+        public Lights entryLights { get; set; }
+        public Lights livingroomLights { get; set; }
+        public Lights kitchenLights { get; set; }
+        public Lights officeLights { get; set; }
+        public Lights bathLights { get; set; }
+        public Lights terraceLights { get; set; }
+        public Lights roomno1Lights { get; set; }
+        public Lights roomno2Lights { get; set; }
+        public Lights roomno3Lights { get; set; }
 
-        public List<Lights> gatewayLights { get; set; }
-        public List<Lights> gardenLights { get; set; }
-        public List<Lights> garageLights { get; set; }
-        public List<Lights> gateEntranceLights { get; set; }
+        public Lights gatewayLights { get; set; }
+        public Lights gardenLights { get; set; }
+        public Lights garageLights { get; set; }
+        public Lights gateEntranceLights { get; set; }
 
         // Öntözés
 
         public List<Irrigative> garden { get; set; }
         public List<Irrigative> frontGarden { get; set; }
+
+        // Árnyékbox
+        public Shading entryShading { get; set; }
+        public Shading livingroomShading { get; set; }
+        public Shading kitchenShading { get; set; }
+        public Shading officeShading { get; set; }
+        public Shading bathShading { get; set; }
+        public Shading roomno1Shading { get; set; }
+        public Shading roomno2Shading { get; set; }
+        public Shading roomno3Shading { get; set; }
 
     }
 }
