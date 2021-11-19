@@ -9,7 +9,7 @@ namespace Common.Model
     public class Shading
     {
         public int level { get; set; }
-        public int date { get; set; }
+        public DateTime date { get; set; }
         public int photosensitivity { get; set; }
     }
 }

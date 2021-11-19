@@ -66,11 +66,11 @@
                              IsChecked="{Binding LightPreferenceCheckState}"></RadioButton>
             </StackPanel>
             <Slider Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500"
-                         Minimum="1" Maximum="5" Value="1" AutoToolTipPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
+                         Minimum="1" Maximum="5" AutoToolTipPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Value="{Binding LevelSlinder}"></Slider>
             <Slider Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500" Visibility="{Binding LightSettingVisibility}"
-                         Minimum="450" Maximum="1600" Value="450" AutoToolTipPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True"></Slider>
+                         Minimum="450" Maximum="1600"  AutoToolTipPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" Value="{Binding LightStrength}"></Slider>
             <material:TimePicker Grid.Row="4" Grid.Column="1" FontFamily="{StaticResource Roboto}" FontSize="24"
-                        Margin="15 0 15 0" Padding="0 20 0 0" BorderBrush="Black" Is24Hours="True" Visibility="{Binding TimeSettingVisibility}">
+                        Margin="15 0 15 0" Padding="0 20 0 0" BorderBrush="Black" Is24Hours="True" Visibility="{Binding TimeSettingVisibility}" SelectedTime="{Binding SelectedTime}">
                 <material:TimePicker.ClockStyle>
                     <Style TargetType="material:Clock">
                         <Style.Resources>
