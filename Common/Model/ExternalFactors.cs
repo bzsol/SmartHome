@@ -13,7 +13,7 @@ namespace Common.Model
 
     public class ExternalFactors
     {
-        public ExternalFactors(List<Electronics> tV, List<Electronics> radio, Climate entryClimate, Climate livingroomClimate, Climate kitchenClimate, Climate officeClimate, Climate bathClimate, Climate terraceClimate, Climate roomno1Climate, Climate roomno2Climate, Climate roomno3Climate, Lights entryLights, Lights livingroomLights, Lights kitchenLights, Lights officeLights, Lights bathLights, Lights terraceLights, Lights roomno1Lights, Lights roomno2Lights, Lights roomno3Lights, Lights gatewayLights, Lights gardenLights, Lights garageLights, Lights gateEntranceLights, Irrigative garden, Irrigative frontGarden, Shading entryShading, Shading livingroomShading, Shading kitchenShading, Shading officeShading, Shading bathShading, Shading roomno1Shading, Shading roomno2Shading, Shading roomno3Shading)
+        public ExternalFactors(List<Electronics> tV, List<Electronics> radio, Climate entryClimate, Climate livingroomClimate, Climate kitchenClimate, Climate officeClimate, Climate bathClimate, Climate terraceClimate, Climate roomno1Climate, Climate roomno2Climate, Climate roomno3Climate, Lights entryLights, Lights livingroomLights, Lights kitchenLights, Lights officeLights, Lights bathLights, Lights terraceLights, Lights roomno1Lights, Lights roomno2Lights, Lights roomno3Lights, Lights gatewayLights, Lights gardenLights, Lights garageLights, Lights gateEntranceLights, Irrigative garden, Irrigative frontGarden, Shading entryShading, Shading livingroomShading, Shading kitchenShading, Shading officeShading, Shading bathShading, Shading roomno1Shading, Shading roomno2Shading, Shading roomno3Shading,Shading livingroomPanorama,Shading bathleftWindow,Shading terraceShading)
         {
             TV = tV;
             Radio = radio;
@@ -49,6 +49,10 @@ namespace Common.Model
             this.roomno1Shading = roomno1Shading;
             this.roomno2Shading = roomno2Shading;
             this.roomno3Shading = roomno3Shading;
+            this.livingroomPanorama = livingroomPanorama;
+            this.bathleftWindow = bathleftWindow;
+            this.terraceShading = terraceShading;
+            
         }
 
         [Key]
@@ -129,12 +133,15 @@ namespace Common.Model
         // Árnyékbox
         public Shading entryShading { get; set; }
         public Shading livingroomShading { get; set; }
+        public Shading livingroomPanorama { get; set; }
+        public Shading bathleftWindow { get; set; }
         public Shading kitchenShading { get; set; }
         public Shading officeShading { get; set; }
         public Shading bathShading { get; set; }
         public Shading roomno1Shading { get; set; }
         public Shading roomno2Shading { get; set; }
         public Shading roomno3Shading { get; set; }
+        public Shading terraceShading { get; set; }
 
     }
 }

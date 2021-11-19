@@ -214,7 +214,55 @@ namespace SmartHome.ViewModels
                     {
                         if(SelectedWindow.Equals("Panoráma ablak"))
                         {
+                            external.livingroomPanorama = shading;
                         }
+                        else if (SelectedWindow.Equals("Nagy ablak"))
+                        {
+                            external.livingroomShading = shading;
+                        }
+                        break;
+                    }
+                case "Fürdőszoba":
+                    {
+                        if(SelectedWindow.Equals("Baloldali ablak"))
+                        {
+                            external.bathleftWindow = shading;
+                        }
+                        else if(SelectedWindow.Equals("Jobboldali ablak"))
+                        {
+                            external.bathShading = shading;
+                        }
+                        break;
+
+                    }
+                case "Konyha":
+                    {
+                        external.kitchenShading = shading;
+                        break;
+                    }
+                case "Iroda":
+                    {
+                        external.officeShading = shading;
+                        break;
+                    }
+                case "Szoba #1":
+                    {
+                        external.roomno1Shading = shading;
+                        break;
+                    }
+                case "Szoba #2":
+                    {
+                        external.roomno2Shading = shading;
+                        break;
+                    }
+                case "Szoba #3":
+                    {
+                        external.roomno3Shading = shading;
+                        break;
+                    }
+                case "Étkező":
+                    {
+                        external.terraceShading = shading;
                         break;
                     }
             }

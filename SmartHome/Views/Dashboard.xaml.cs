@@ -35,7 +35,7 @@ namespace SmartHome.Views
                 // Generate new list without null
                 ExtFactDataProvider.Create(new ExternalFactors(new List<Electronics>(), new List<Electronics>(), new Climate(), new Climate(), new Climate(), new Climate(),new Climate(),new Climate(),new Climate(),new Climate(),new Climate(),new Lights(),new Lights(),new Lights(),
                     new Lights(),new Lights(),new Lights(),new Lights(),new Lights(),new Lights(), new Lights(),
-                    new Lights(), new Lights(), new Lights(), new Irrigative(), new Irrigative(),new Shading(), new Shading(),new Shading(),new Shading(),new Shading(),new Shading(),new Shading(), new Shading()));
+                    new Lights(), new Lights(), new Lights(), new Irrigative(), new Irrigative(),new Shading(), new Shading(),new Shading(),new Shading(),new Shading(),new Shading(),new Shading(), new Shading(),new Shading(),new Shading(),new Shading()));
             }
         }
     }
