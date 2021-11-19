@@ -24,5 +24,9 @@ namespace Common.Class
         public bool isSnow { get; set; }
         public bool isthunderstorm{ get; set;}
 
+        public static implicit operator List<object>(Irrigative v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

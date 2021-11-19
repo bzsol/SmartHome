@@ -13,7 +13,7 @@ namespace Common.Model
 
     public class ExternalFactors
     {
-        public ExternalFactors(List<Electronics> tV, List<Electronics> radio, Climate entryClimate, Climate livingroomClimate, Climate kitchenClimate, Climate officeClimate, Climate bathClimate, Climate terraceClimate, Climate roomno1Climate, Climate roomno2Climate, Climate roomno3Climate, List<Lights> entryLights, List<Lights> livingroomLights, List<Lights> kitchenLights, List<Lights> officeLights, List<Lights> bathLights, List<Lights> terraceLights, List<Lights> roomno1Lights, List<Lights> roomno2Lights, List<Lights> roomno3Lights, List<Lights> gatewayLights, List<Lights> gardenLights, List<Lights> garageLights, List<Lights> gateEntranceLights, List<Irrigative> garden, List<Irrigative> frontGarden)
+        public ExternalFactors(List<Electronics> tV, List<Electronics> radio, Climate entryClimate, Climate livingroomClimate, Climate kitchenClimate, Climate officeClimate, Climate bathClimate, Climate terraceClimate, Climate roomno1Climate, Climate roomno2Climate, Climate roomno3Climate, Lights entryLights, Lights livingroomLights, Lights kitchenLights, Lights officeLights, Lights bathLights, Lights terraceLights, Lights roomno1Lights, Lights roomno2Lights, Lights roomno3Lights, Lights gatewayLights, Lights gardenLights, Lights garageLights, Lights gateEntranceLights, Irrigative garden, Irrigative frontGarden, Shading entryShading, Shading livingroomShading, Shading kitchenShading, Shading officeShading, Shading bathShading, Shading roomno1Shading, Shading roomno2Shading, Shading roomno3Shading)
         {
             TV = tV;
             Radio = radio;
@@ -41,6 +41,14 @@ namespace Common.Model
             this.gateEntranceLights = gateEntranceLights;
             this.garden = garden;
             this.frontGarden = frontGarden;
+            this.entryShading = entryShading;
+            this.livingroomShading = livingroomShading;
+            this.kitchenShading = kitchenShading;
+            this.officeShading = officeShading;
+            this.bathShading = bathShading;
+            this.roomno1Shading = roomno1Shading;
+            this.roomno2Shading = roomno2Shading;
+            this.roomno3Shading = roomno3Shading;
         }
 
         [Key]
@@ -115,8 +123,8 @@ namespace Common.Model
 
         // Öntözés
 
-        public List<Irrigative> garden { get; set; }
-        public List<Irrigative> frontGarden { get; set; }
+        public Irrigative garden { get; set; }
+        public Irrigative frontGarden { get; set; }
 
         // Árnyékbox
         public Shading entryShading { get; set; }
