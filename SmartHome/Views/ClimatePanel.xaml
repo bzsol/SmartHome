@@ -53,7 +53,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0" Content="Előszoba" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                            <ToggleButton Grid.Column="1"></ToggleButton>
+                            <ToggleButton Grid.Column="1" IsChecked="{Binding isCheckedEntryRoomHeating}"></ToggleButton>
                         </Grid>
 
                         <Grid Width="150">
@@ -63,7 +63,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0" Content="Nappali" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                            <ToggleButton Grid.Column="1"></ToggleButton>
+                            <ToggleButton Grid.Column="1" IsChecked="{Binding isCheckedLivingRoomHeating}"></ToggleButton>
                         </Grid>
 
                         <Grid Width="150">
@@ -73,7 +73,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0" Content="Konyha" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                            <ToggleButton Grid.Column="1"></ToggleButton>
+                            <ToggleButton Grid.Column="1" IsChecked="{Binding isCheckedKitchenRoomHeating}"></ToggleButton>
                         </Grid>
                     </StackPanel>
 
@@ -85,7 +85,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0" Content="Iroda" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                            <ToggleButton Grid.Column="1"></ToggleButton>
+                            <ToggleButton Grid.Column="1" IsChecked="{Binding isCheckedOfficeRoomHeating}"></ToggleButton>
                         </Grid>
 
                         <Grid Width="150">
@@ -95,7 +95,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0" Content="Fürdőszoba" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                            <ToggleButton Grid.Column="1"></ToggleButton>
+                            <ToggleButton Grid.Column="1" IsChecked="{Binding isCheckedBathRoomHeating}"></ToggleButton>
                         </Grid>
 
                         <Grid Width="150">
@@ -105,7 +105,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0" Content="Étkező" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                            <ToggleButton Grid.Column="1"></ToggleButton>
+                            <ToggleButton Grid.Column="1" IsChecked="{Binding isCheckedTerraceRoomHeating}"></ToggleButton>
                         </Grid>
                     </StackPanel>
 
@@ -117,7 +117,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0" Content="Szoba #1" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                            <ToggleButton Grid.Column="1"></ToggleButton>
+                            <ToggleButton Grid.Column="1" IsChecked="{Binding isCheckedRoom1Heating}"></ToggleButton>
                         </Grid>
 
                         <Grid Width="150">
@@ -127,7 +127,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0" Content="Szoba #2" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                            <ToggleButton Grid.Column="1"></ToggleButton>
+                            <ToggleButton Grid.Column="1" IsChecked="{Binding isCheckedRoom2Heating}"></ToggleButton>
                         </Grid>
 
                         <Grid Width="150">
@@ -137,7 +137,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0" Content="Szoba #3" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                            <ToggleButton Grid.Column="1"></ToggleButton>
+                            <ToggleButton Grid.Column="1" IsChecked="{Binding isCheckedRoom3Heating}"></ToggleButton>
                         </Grid>
                     </StackPanel>
                 </StackPanel>
@@ -309,7 +309,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0" Content="Páratartalom" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                        <ToggleButton Grid.Column="1"></ToggleButton>
+                        <ToggleButton Grid.Column="1" IsChecked="{Binding isHumidityCheckEnabled}"></ToggleButton>
                     </Grid>
 
                     <Grid Width="175">
@@ -319,7 +319,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0" Content="CO2-tartalom" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                        <ToggleButton Grid.Column="1"></ToggleButton>
+                        <ToggleButton Grid.Column="1" IsChecked="{Binding isCO2Enabled}"></ToggleButton>
                     </Grid>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
@@ -330,7 +330,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0" Content="Párátlanítás" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                        <ToggleButton Grid.Column="1"></ToggleButton>
+                        <ToggleButton Grid.Column="1" IsChecked="{Binding isDehumuditification}"></ToggleButton>
                     </Grid>
 
                     <Grid Width="175">
@@ -340,7 +340,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0" Content="Szellőztetés" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                        <ToggleButton Grid.Column="1"></ToggleButton>
+                        <ToggleButton Grid.Column="1" IsChecked="{Binding isVentilationChecked}"></ToggleButton>
                     </Grid>
                 </StackPanel>
             </Grid>

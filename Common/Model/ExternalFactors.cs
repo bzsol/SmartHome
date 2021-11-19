@@ -13,6 +13,36 @@ namespace Common.Model
 
     public class ExternalFactors
     {
+        public ExternalFactors(List<Electronics> tV, List<Electronics> radio, Climate entryClimate, Climate livingroomClimate, Climate kitchenClimate, Climate officeClimate, Climate bathClimate, Climate terraceClimate, Climate roomno1Climate, Climate roomno2Climate, Climate roomno3Climate, List<Lights> entryLights, List<Lights> livingroomLights, List<Lights> kitchenLights, List<Lights> officeLights, List<Lights> bathLights, List<Lights> terraceLights, List<Lights> roomno1Lights, List<Lights> roomno2Lights, List<Lights> roomno3Lights, List<Lights> gatewayLights, List<Lights> gardenLights, List<Lights> garageLights, List<Lights> gateEntranceLights, List<Irrigative> garden, List<Irrigative> frontGarden)
+        {
+            TV = tV;
+            Radio = radio;
+            this.entryClimate = entryClimate;
+            this.livingroomClimate = livingroomClimate;
+            this.kitchenClimate = kitchenClimate;
+            this.officeClimate = officeClimate;
+            this.bathClimate = bathClimate;
+            this.terraceClimate = terraceClimate;
+            this.roomno1Climate = roomno1Climate;
+            this.roomno2Climate = roomno2Climate;
+            this.roomno3Climate = roomno3Climate;
+            this.entryLights = entryLights;
+            this.livingroomLights = livingroomLights;
+            this.kitchenLights = kitchenLights;
+            this.officeLights = officeLights;
+            this.bathLights = bathLights;
+            this.terraceLights = terraceLights;
+            this.roomno1Lights = roomno1Lights;
+            this.roomno2Lights = roomno2Lights;
+            this.roomno3Lights = roomno3Lights;
+            this.gatewayLights = gatewayLights;
+            this.gardenLights = gardenLights;
+            this.garageLights = garageLights;
+            this.gateEntranceLights = gateEntranceLights;
+            this.garden = garden;
+            this.frontGarden = frontGarden;
+        }
+
         [Key]
         public long ID { get; set; }
 
@@ -26,9 +56,9 @@ namespace Common.Model
 
         // Szórakoztató eszközök
 
-        public Electronics TV { get; set; }
+        public List<Electronics> TV { get; set; }
 
-        public Electronics Radio { get; set; }
+        public List<Electronics> Radio { get; set; }
 
         // Levegő
         public double Temp { get; set; }
@@ -68,20 +98,25 @@ namespace Common.Model
 
         public enum LightColor {warm,cold}
 
-        public Lights entryLights { get; set; }
-        public Lights livingroomLights { get; set; }
-        public Lights kithcenLights { get; set; }
-        public Lights officeLights { get; set; }
-        public Lights bathLights { get; set; }
-        public Lights terraceLights { get; set; }
-        public Lights roomno1Lights { get; set; }
-        public Lights roomno2Lights { get; set; }
-        public Lights roomno3Lights { get; set; }
+        public List<Lights> entryLights { get; set; }
+        public List<Lights> livingroomLights { get; set; }
+        public List<Lights> kitchenLights { get; set; }
+        public List<Lights> officeLights { get; set; }
+        public List<Lights> bathLights { get; set; }
+        public List<Lights> terraceLights { get; set; }
+        public List<Lights> roomno1Lights { get; set; }
+        public List<Lights> roomno2Lights { get; set; }
+        public List<Lights> roomno3Lights { get; set; }
+
+        public List<Lights> gatewayLights { get; set; }
+        public List<Lights> gardenLights { get; set; }
+        public List<Lights> garageLights { get; set; }
+        public List<Lights> gateEntranceLights { get; set; }
 
         // Öntözés
 
-        public Irrigative Garden { get; set; }
-        public Irrigative FrontGarden { get; set; }
+        public List<Irrigative> garden { get; set; }
+        public List<Irrigative> frontGarden { get; set; }
 
     }
 }

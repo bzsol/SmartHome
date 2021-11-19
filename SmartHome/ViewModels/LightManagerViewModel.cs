@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using Common.Model;
+using Prism.Commands;
+using SmartHome.DataProvider;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -98,6 +100,43 @@ namespace SmartHome.ViewModels
                 NotifyChange(nameof(MotionTimeTextBox));
             }
         }
+        bool first = true;
+        private int _lightStrenght;
+        public int SliderValue {
+
+            get {
+                if (first)
+                {
+                    first = false;
+                    return _lightStrenght = 50;
+                   
+                }
+                else {
+                   return _lightStrenght;
+                }
+            }
+            set {
+                _lightStrenght = value;
+                NotifyChange(nameof(SliderValue));
+            }
+        
+        }
+        private bool _isColorcold;
+        public bool isColorCold {
+            get => _isColorcold;
+            set {
+                _isColorcold = value;
+                NotifyChange(nameof(isColorCold));
+            }
+        }
+        private bool _isColorwarm;
+        public bool isColorWarm {
+            get => _isColorwarm;
+            set {
+                _isColorwarm = value;
+                NotifyChange(nameof(isColorWarm));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -139,6 +178,7 @@ namespace SmartHome.ViewModels
             Places = InsidePlaces;
             SelectedPlace = Places[0];
         }
+        
 
         private void ChangeTextValue(string text, bool increase)
         {
@@ -162,6 +202,28 @@ namespace SmartHome.ViewModels
             }
         }
 
+        private void DataUpload()
+        {
+            ExternalFactors external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
+            Lights lights = new Lights();
+            lights.motionDetection = _isMotionDetectionEnabled;
+            lights.strenght = _lightStrenght;
+            lights.color = isColorCold ? ExternalFactors.LightColor.cold : ExternalFactors.LightColor.warm;
+            if (IsMotionDetectionEnabled)
+            {
+                lights.activeSpan = int.Parse(_motionTimeTextBox);
+            }
+            else
+            {
+                lights.activeSpan = 0;
+            }
+            external.entryLights.Add(lights);
+
+            ExtFactDataProvider.Update(external);
+
+        }
+
+
         private void OnDownMinuteClicked(Button btn)
         {
             ChangeTextValue(MotionTimeTextBox, false);
@@ -174,7 +236,8 @@ namespace SmartHome.ViewModels
 
         private void OnSaveSettings(Button btn)
         {
-            MessageBox.Show("Saved");
+            MessageBox.Show(_lightStrenght.ToString());
+            DataUpload();
         }
 
         private void OnLocationChanged(RadioButton rbtn)
@@ -199,6 +262,7 @@ namespace SmartHome.ViewModels
             }
             else
             {
+
                 MotionEnabledVisibility = Visibility.Hidden;
             }
         }

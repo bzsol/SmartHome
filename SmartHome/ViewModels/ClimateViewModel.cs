@@ -27,6 +27,140 @@ namespace SmartHome.ViewModels
 
         public List<int> CoolerLevel { get; private set; }
 
+        private bool _isCheckedEntryRoomHeating;
+        public bool isCheckedEntryRoomHeating {
+            get => _isCheckedEntryRoomHeating;
+            set {
+                _isCheckedEntryRoomHeating = value;
+                NotifyChange(nameof(isCheckedEntryRoomHeating));
+            }
+        }
+
+        private bool _isCheckedLivingRoomHeating;
+        public bool isCheckedLivingRoomHeating {
+            get => _isCheckedLivingRoomHeating;
+            set {
+                _isCheckedLivingRoomHeating = value;
+                NotifyChange(nameof(isCheckedLivingRoomHeating));
+            }
+
+
+        }
+        private bool _isCheckedKitchenRoomHeating;
+        public bool isCheckedKitchenRoomHeating
+        {
+            get => _isCheckedKitchenRoomHeating;
+            set
+            {
+                _isCheckedKitchenRoomHeating = value;
+                NotifyChange(nameof(isCheckedKitchenRoomHeating));
+            }
+
+
+        }
+        private bool _isCheckedOfficeRoomHeating;
+        public bool isCheckedOfficeRoomHeating
+        {
+            get => _isCheckedOfficeRoomHeating;
+            set
+            {
+                _isCheckedOfficeRoomHeating = value;
+                NotifyChange(nameof(isCheckedOfficeRoomHeating));
+            }
+
+
+        }
+        private bool _isCheckedTerraceRoomHeating;
+        public bool isCheckedTerraceRoomHeating
+        {
+            get => _isCheckedTerraceRoomHeating;
+            set
+            {
+                _isCheckedTerraceRoomHeating = value;
+                NotifyChange(nameof(isCheckedTerraceRoomHeating));
+            }
+
+        }
+
+        private bool _isCheckedRoom1Heating;
+        public bool isCheckedRoom1Heating {
+            get => _isCheckedRoom1Heating;
+            set
+            {
+                _isCheckedRoom1Heating = value;
+                NotifyChange(nameof(isCheckedRoom1Heating));
+            }
+
+        }
+        private bool _isCheckedRoom2Heating;
+        public bool isCheckedRoom2Heating
+        {
+            get => _isCheckedRoom2Heating;
+            set
+            {
+                _isCheckedRoom2Heating = value;
+                NotifyChange(nameof(isCheckedRoom2Heating));
+            }
+
+        }
+        private bool _isCheckedRoom3Heating;
+        public bool isCheckedRoom3Heating
+        {
+            get => _isCheckedRoom3Heating;
+            set
+            {
+                _isCheckedRoom3Heating = value;
+                NotifyChange(nameof(isCheckedRoom3Heating));
+            }
+
+        }
+        private bool _isCheckedBathRoomHeating;
+        public bool isCheckedBathRoomHeating {
+            get => _isCheckedBathRoomHeating;
+            set {
+                _isCheckedBathRoomHeating = value;
+                NotifyChange(nameof(isCheckedBathRoomHeating));
+            }
+
+
+        }
+
+        private bool _isHumidityCheckEnabled;
+        public bool isHumidityCheckEnabled {
+            get => _isHumidityCheckEnabled;
+            set {
+                _isHumidityCheckEnabled = value;
+                NotifyChange(nameof(isHumidityCheckEnabled));
+            }
+        }
+        private bool _isCO2Enabled;
+        public bool isCO2Enabled {
+            get => _isCO2Enabled;
+            set {
+                _isCO2Enabled = value;
+                NotifyChange(nameof(isCO2Enabled));
+            }
+        }
+        private bool _isVentilationChecked;
+        public bool isVentilationChecked {
+            get => _isVentilationChecked;
+            set {
+                _isVentilationChecked = value;
+                NotifyChange(nameof(isVentilationChecked));
+            }
+
+        }
+        private bool _isDehumuditification;
+        public bool isDehumuditification {
+            get => _isDehumuditification;
+            set {
+                _isDehumuditification = value;
+                NotifyChange(nameof(isDehumuditification));
+            }
+
+
+        }
+
         private string _firstSelectedOption;
         public string FirstSelectedOption
         {
@@ -247,6 +381,7 @@ namespace SmartHome.ViewModels
             }
         }
 
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyChange(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -285,7 +420,7 @@ namespace SmartHome.ViewModels
                 $"{ _thirdSelectedOption} : { _thirdSelectedLevel}\n" +
                 $"{ _fourthSelectedOption} : { _fourthSelectedLevel}\n" +
                 $"{ _fifthSelectedOption} : { _fifthSelectedLevel}");
-            UploadData(_firstSelectedOption, _firstSelectedLevel, _secondSelectedOption, _secondSelectedLevel, _thirdSelectedOption, _thirdSelectedLevel, _fourthSelectedOption, _fourthSelectedLevel, _fifthSelectedOption, _fifthSelectedLevel);
+            UploadData();
         }
 
         public void OnEntryStateChange(ToggleButton tbtn)
@@ -311,33 +446,46 @@ namespace SmartHome.ViewModels
         }
 
 
-        private void UploadData(string firsSelectedOption,string firstSelectedLevel,string secondSelectedOption,string secondSelectedLevel, string thirdSelectedOption, string thirdSelectedLevel, string fourthSelectedOption, string fourthSelectedLevel, string fifthSelectedOption, string fifthSelectedLevel) {
+        private void UploadData() {
 
             var external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
-            if (FirstEntryVisibility.Equals(Visibility.Visible)) {
-                external.livingroomClimate = new Climate();
-                external.livingroomClimate.level = int.Parse(firstSelectedLevel);
-                external.livingroomClimate.mode = StringToMode(firsSelectedOption);
+            external.entryClimate.isHeatingEnabled = _isCheckedEntryRoomHeating;
+            external.livingroomClimate.isHeatingEnabled = _isCheckedLivingRoomHeating;
+            external.kitchenClimate.isHeatingEnabled = _isCheckedKitchenRoomHeating;
+            external.officeClimate.isHeatingEnabled = _isCheckedOfficeRoomHeating;
+            external.bathClimate.isHeatingEnabled = _isCheckedBathRoomHeating;
+            external.terraceClimate.isHeatingEnabled = _isCheckedTerraceRoomHeating;
+            external.roomno1Climate.isHeatingEnabled = _isCheckedRoom1Heating;
+            external.roomno2Climate.isHeatingEnabled = _isCheckedRoom2Heating;
+            external.roomno3Climate.isHeatingEnabled = _isCheckedRoom3Heating;
+
+            external.isCO2sample = _isCO2Enabled;
+            external.isDehumidification = _isDehumuditification;
+            external.isHumiditysample = _isHumidityCheckEnabled;
+            external.isVentilation = _isVentilationChecked;
+
+
+            if (FirstEntryVisibility.Equals(Visibility.Visible) && !_isCheckedLivingRoomHeating) {
+                external.livingroomClimate.level = int.Parse(_firstSelectedLevel);
+                external.livingroomClimate.mode = StringToMode(_firstSelectedOption);
             }
-            if (SecondEntryVisibility.Equals(Visibility.Visible)) {
-                external.officeClimate = new Climate();
-                external.officeClimate.level = int.Parse(secondSelectedLevel);
-                external.officeClimate.mode = StringToMode(secondSelectedOption);
+            if (SecondEntryVisibility.Equals(Visibility.Visible) && !_isCheckedOfficeRoomHeating) {
+                external.officeClimate.level = int.Parse(_secondSelectedLevel);
+                external.officeClimate.mode = StringToMode(_secondSelectedOption);
             }
-            if (ThirdEntryVisibility.Equals(Visibility.Visible)) {
-                external.roomno1Climate = new Climate();
-                external.roomno1Climate.level = int.Parse(thirdSelectedLevel);
-                external.roomno1Climate.mode = StringToMode(thirdSelectedOption);
+            if (ThirdEntryVisibility.Equals(Visibility.Visible) && !_isCheckedRoom1Heating) {
+                external.roomno1Climate.level = int.Parse(_thirdSelectedLevel);
+                external.roomno1Climate.mode = StringToMode(_thirdSelectedOption);
             }
-            if (FourthEntryVisibility.Equals(Visibility.Visible)) {
-                external.roomno2Climate.level = int.Parse(fourthSelectedLevel);
-                external.roomno2Climate.mode = StringToMode(fourthSelectedOption);
+            if (FourthEntryVisibility.Equals(Visibility.Visible) && !_isCheckedRoom2Heating) {
+                external.roomno2Climate.level = int.Parse(_fourthSelectedLevel);
+                external.roomno2Climate.mode = StringToMode(_fourthSelectedOption);
             }
-            if (FifthEntryVisibility.Equals(Visibility.Visible)) {
-                external.roomno1Climate = new Climate();
-                external.roomno3Climate.level = int.Parse(fifthSelectedLevel);
-                external.roomno3Climate.mode = StringToMode(fifthSelectedOption);
+            if (FifthEntryVisibility.Equals(Visibility.Visible) && !_isCheckedRoom3Heating) {
+                external.roomno3Climate.level = int.Parse(_fifthSelectedLevel);
+                external.roomno3Climate.mode = StringToMode(_fifthSelectedOption);
             }
+            
             ExtFactDataProvider.Update(external);
         }
 
