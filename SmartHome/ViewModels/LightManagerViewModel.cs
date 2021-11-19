@@ -170,13 +170,7 @@ namespace SmartHome.ViewModels
                 "Garázs",
                 "Kert"
             };
-            // debug
-            MotionEnabledVisibility = Visibility.Hidden;
-            IsMotionDetectionEnabled = false;
-            // debug
-            InsideCheckState = true;
-            Places = InsidePlaces;
-            SelectedPlace = Places[0];
+            
         }
         
 
@@ -217,7 +211,86 @@ namespace SmartHome.ViewModels
             {
                 lights.activeSpan = 0;
             }
-            external.entryLights.Add(lights);
+            if (_insideCheckState)
+            {
+                switch(SelectedPlace)
+                {
+                    case "Előszoba":
+                        {
+                            external.entryLights.Add(lights);
+                            break;
+                        }
+                    case "Nappali":
+                        {
+                            external.livingroomLights.Add(lights);
+                            break;
+                        }
+                    case "Konyha":
+                        {
+                            external.kitchenLights.Add(lights);
+                            break;
+                        }
+                    case "Fürdőszoba":
+                        {
+                            external.bathLights.Add(lights);
+                            break;
+                        }
+                    case "Iroda":
+                        {
+                            external.officeLights.Add(lights);
+                            break;
+                        }
+                    case "Étkező":
+                        {
+                            external.terraceLights.Add(lights);
+                            break;
+                        }
+                    case "Szoba #1":
+                        {
+                            external.roomno1Lights.Add(lights);
+                            break;
+                        }
+                    case "Szoba #2":
+                        {
+                            external.roomno2Lights.Add(lights);
+                            break;
+                        }
+                    case "Szoba #3":
+                        {
+                            external.roomno3Lights.Add(lights);
+                            break;
+                        }
+                }
+            }
+            else if (_outsideCheckState)
+            {
+                switch(SelectedPlace)
+                {
+                    case "Bejárat":
+                        {
+                            external.gatewayLights.Add(lights);
+                            break;
+                        }
+                    case "Kapubejáró":
+                        {
+                            external.gateEntranceLights.Add(lights);
+                            break;
+                        }
+                    case "Garázs":
+                        {
+                            external.garageLights.Add(lights);
+                            break;
+                        }
+                    case "Kert":
+                        {
+                            external.gardenLights.Add(lights);
+                            break;
+                        }
+                }
+
+            }
+
+            
 
             ExtFactDataProvider.Update(external);
 
