@@ -309,7 +309,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0" Content="Páratartalom" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                        <ToggleButton Grid.Column="1"></ToggleButton>
+                        <ToggleButton Grid.Column="1" IsChecked="{Binding isHumidityCheckEnabled}"></ToggleButton>
                     </Grid>
 
                     <Grid Width="175">
@@ -319,7 +319,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0" Content="CO2-tartalom" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                        <ToggleButton Grid.Column="1"></ToggleButton>
+                        <ToggleButton Grid.Column="1" IsChecked="{Binding isCO2Enabled}"></ToggleButton>
                     </Grid>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
@@ -330,7 +330,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0" Content="Párátlanítás" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                        <ToggleButton Grid.Column="1"></ToggleButton>
+                        <ToggleButton Grid.Column="1" IsChecked="{Binding isDehumuditification}"></ToggleButton>
                     </Grid>
 
                     <Grid Width="175">
@@ -340,7 +340,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0" Content="Szellőztetés" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                        <ToggleButton Grid.Column="1"></ToggleButton>
+                        <ToggleButton Grid.Column="1" IsChecked="{Binding isVentilationChecked}"></ToggleButton>
                     </Grid>
                 </StackPanel>
             </Grid>

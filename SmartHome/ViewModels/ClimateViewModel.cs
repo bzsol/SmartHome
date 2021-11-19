@@ -125,6 +125,41 @@ namespace SmartHome.ViewModels
 
         }
 
+        private bool _isHumidityCheckEnabled;
+        public bool isHumidityCheckEnabled {
+            get => _isHumidityCheckEnabled;
+            set {
+                _isHumidityCheckEnabled = value;
+                NotifyChange(nameof(isHumidityCheckEnabled));
+            }
+        }
+        private bool _isCO2Enabled;
+        public bool isCO2Enabled {
+            get => _isCO2Enabled;
+            set {
+                _isCO2Enabled = value;
+                NotifyChange(nameof(isCO2Enabled));
+            }
+        }
+        private bool _isVentilationChecked;
+        public bool isVentilationChecked {
+            get => _isVentilationChecked;
+            set {
+                _isVentilationChecked = value;
+                NotifyChange(nameof(isVentilationChecked));
+            }
+
+        }
+        private bool _isDehumuditification;
+        public bool isDehumuditification {
+            get => _isDehumuditification;
+            set {
+                _isDehumuditification = value;
+                NotifyChange(nameof(isDehumuditification));
+            }
+
+
+        }
 
         private string _firstSelectedOption;
         public string FirstSelectedOption
@@ -424,6 +459,10 @@ namespace SmartHome.ViewModels
             external.roomno2Climate.isHeatingEnabled = _isCheckedRoom2Heating;
             external.roomno3Climate.isHeatingEnabled = _isCheckedRoom3Heating;
 
+            external.isCO2sample = _isCO2Enabled;
+            external.isDehumidification = _isDehumuditification;
+            external.isHumiditysample = _isHumidityCheckEnabled;
+            external.isVentilation = _isVentilationChecked;
 
 
             if (FirstEntryVisibility.Equals(Visibility.Visible) && !_isCheckedLivingRoomHeating) {
