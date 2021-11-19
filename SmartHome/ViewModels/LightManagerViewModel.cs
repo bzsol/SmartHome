@@ -202,116 +202,23 @@ namespace SmartHome.ViewModels
             }
         }
 
-        private void DataUpload(bool IsMotionDetectionEnabled, int SliderValue, string SelectedPlace, bool isColorWarm, bool isColorCold, string MotionTime, bool outside, bool inside)
+        private void DataUpload()
         {
             ExternalFactors external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
             Lights lights = new Lights();
-            lights.motionDetection = IsMotionDetectionEnabled;
-            lights.strenght = SliderValue;
+            lights.motionDetection = _isMotionDetectionEnabled;
+            lights.strenght = _lightStrenght;
             lights.color = isColorCold ? ExternalFactors.LightColor.cold : ExternalFactors.LightColor.warm;
             if (IsMotionDetectionEnabled)
             {
-                lights.activeSpan = int.Parse(MotionTime);
+                lights.activeSpan = int.Parse(_motionTimeTextBox);
             }
             else
             {
                 lights.activeSpan = 0;
             }
-            int placeindex = 0;
-            if (outside)
-            {
-                placeindex = OutsidePlaces.IndexOf(SelectedPlace);
-                switch (placeindex) {
-                    case 0:
-                        {
-                            external.GatewayLights = new List<Lights>();
-                            external.GatewayLights.Add(lights);
-
-                        }
-                        break;
-                    case 1:
-                        {
-                            external.GardenLights = new List<Lights>();
-                            external.GardenLights.Add(lights);
-                        }
-                        break;
-                    case 2:
-                        {
-                            external.GarageLights = new List<Lights>();
-                            external.GarageLights.Add(lights);
-                        }
-                        break;
-                    case 3:
-                        {
-                            external.GateEntranceLights = new List<Lights>();
-                            external.GateEntranceLights.Add(lights);
-                        }
-                        break;
-                }
-            }
-            else if (inside)
-            {
-                placeindex = InsidePlaces.IndexOf(SelectedPlace);
-                switch (placeindex)
-                {
-                    case 0:
-                        {
-                            external.entryLights = new List<Lights>();
-                            external.entryLights.Add(lights);
-
-                        }
-                        break;
-                    case 1:
-                        {
-                            external.livingroomLights = new List<Lights>();
-                            external.livingroomLights.Add(lights);
-                        }
-                        break;
-                    case 2:
-                        {
-                            external.kitchenLights = new List<Lights>();
-                            external.kitchenLights.Add(lights);
-                        }
-                        break;
-                    case 3:
-                        {
-                            external.bathLights = new List<Lights>();
-                            external.bathLights.Add(lights);
-                        }
-                        break;
-                    case 4: 
-                        {
-                            external.officeLights = new List<Lights>();
-                            external.officeLights.Add(lights);
-                        }
-                        break;
-                    case 5: 
-                        {
-                            external.terraceLights = new List<Lights>();
-                            external.terraceLights.Add(lights);
-                        }
-                        break;
-                    case 6: 
-                        {
-                            external.roomno1Lights = new List<Lights>();
-                            external.roomno1Lights.Add(lights);
-                        }
-                        break;
-                    case 7:
-                        {
-                            external.roomno2Lights = new List<Lights>();
-                            external.roomno2Lights.Add(lights);
-                        }
-                        break;
-                    case 8:
-                        {
-                            external.roomno3Lights = new List<Lights>();
-                            external.roomno3Lights.Add(lights);
-                        }
-                        break;
-
-                }
-            }
+            external.entryLights = new List<Lights>();
+            external.entryLights.Add(lights);
 
             ExtFactDataProvider.Update(external);
 
@@ -331,7 +238,7 @@ namespace SmartHome.ViewModels
         private void OnSaveSettings(Button btn)
         {
             MessageBox.Show(_lightStrenght.ToString());
-            DataUpload(_isMotionDetectionEnabled, _lightStrenght, _selectedPlace,isColorWarm,isColorCold,MotionTimeTextBox,_outsideCheckState,_insideCheckState);
+            DataUpload();
         }
 
         private void OnLocationChanged(RadioButton rbtn)

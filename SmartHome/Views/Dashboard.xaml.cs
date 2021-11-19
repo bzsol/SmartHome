@@ -31,7 +31,10 @@ namespace SmartHome.Views
             Thread.CurrentThread.CurrentCulture = new CultureInfo("hu-HU");
             if (((List<ExternalFactors>)ExtFactDataProvider.Get()).Count < 1 )
             {
-                ExtFactDataProvider.Create(new ExternalFactors());
+                // Generate new list without null
+                ExtFactDataProvider.Create(new ExternalFactors(new List<Electronics>(), new List<Electronics>(), new Climate(), new Climate(), new Climate(), new Climate(),new Climate(),new Climate(),new Climate(),new Climate(),new Climate(),new List<Lights>(),new List<Lights>(),new List<Lights>(),
+                    new List<Lights>(),new List<Lights>(),new List<Lights>(),new List<Lights>(),new List<Lights>(),new List<Lights>(), new List<Lights>(),
+                    new List<Lights>(), new List<Lights>(), new List<Lights>(), new List<Common.Class.Irrigative>(), new List<Common.Class.Irrigative>()));
             }
         }
     }

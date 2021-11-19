@@ -106,9 +106,6 @@ namespace SmartHome.ViewModels
             var external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
             if (isTV)
             {
-                if (external.TV == null) {
-                    external.TV = new List<Electronics>();
-                }
                 var objTV = new Electronics();
                 objTV.Continous = true;
                 objTV.EventName = eventName;
@@ -117,9 +114,6 @@ namespace SmartHome.ViewModels
                 external.TV.Add(objTV);
             }
             else {
-                if (external.Radio == null) {
-                    external.Radio = new List<Electronics>();
-                }
                 var objRadio = new Electronics();
                 objRadio.Continous = true;
                 objRadio.EventName = eventName;

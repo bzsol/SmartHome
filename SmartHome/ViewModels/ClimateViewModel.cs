@@ -27,6 +27,12 @@ namespace SmartHome.ViewModels
 
         public List<int> CoolerLevel { get; private set; }
 
+
+
+
+
+
+
         private string _firstSelectedOption;
         public string FirstSelectedOption
         {
@@ -247,6 +253,7 @@ namespace SmartHome.ViewModels
             }
         }
 
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyChange(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -285,7 +292,7 @@ namespace SmartHome.ViewModels
                 $"{ _thirdSelectedOption} : { _thirdSelectedLevel}\n" +
                 $"{ _fourthSelectedOption} : { _fourthSelectedLevel}\n" +
                 $"{ _fifthSelectedOption} : { _fifthSelectedLevel}");
-            UploadData(_firstSelectedOption, _firstSelectedLevel, _secondSelectedOption, _secondSelectedLevel, _thirdSelectedOption, _thirdSelectedLevel, _fourthSelectedOption, _fourthSelectedLevel, _fifthSelectedOption, _fifthSelectedLevel);
+            UploadData();
         }
 
         public void OnEntryStateChange(ToggleButton tbtn)
@@ -311,33 +318,35 @@ namespace SmartHome.ViewModels
         }
 
 
-        private void UploadData(string firsSelectedOption,string firstSelectedLevel,string secondSelectedOption,string secondSelectedLevel, string thirdSelectedOption, string thirdSelectedLevel, string fourthSelectedOption, string fourthSelectedLevel, string fifthSelectedOption, string fifthSelectedLevel) {
+        private void UploadData() {
 
             var external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
             if (FirstEntryVisibility.Equals(Visibility.Visible)) {
                 external.livingroomClimate = new Climate();
-                external.livingroomClimate.level = int.Parse(firstSelectedLevel);
-                external.livingroomClimate.mode = StringToMode(firsSelectedOption);
+                external.livingroomClimate.level = int.Parse(_firstSelectedLevel);
+                external.livingroomClimate.mode = StringToMode(_firstSelectedOption);
             }
             if (SecondEntryVisibility.Equals(Visibility.Visible)) {
                 external.officeClimate = new Climate();
-                external.officeClimate.level = int.Parse(secondSelectedLevel);
-                external.officeClimate.mode = StringToMode(secondSelectedOption);
+                external.officeClimate.level = int.Parse(_secondSelectedLevel);
+                external.officeClimate.mode = StringToMode(_secondSelectedOption);
             }
             if (ThirdEntryVisibility.Equals(Visibility.Visible)) {
                 external.roomno1Climate = new Climate();
-                external.roomno1Climate.level = int.Parse(thirdSelectedLevel);
-                external.roomno1Climate.mode = StringToMode(thirdSelectedOption);
+                external.roomno1Climate.level = int.Parse(_thirdSelectedLevel);
+                external.roomno1Climate.mode = StringToMode(_thirdSelectedOption);
             }
             if (FourthEntryVisibility.Equals(Visibility.Visible)) {
-                external.roomno2Climate.level = int.Parse(fourthSelectedLevel);
-                external.roomno2Climate.mode = StringToMode(fourthSelectedOption);
+                external.roomno2Climate = new Climate();
+                external.roomno2Climate.level = int.Parse(_fourthSelectedLevel);
+                external.roomno2Climate.mode = StringToMode(_fourthSelectedOption);
             }
             if (FifthEntryVisibility.Equals(Visibility.Visible)) {
                 external.roomno1Climate = new Climate();
-                external.roomno3Climate.level = int.Parse(fifthSelectedLevel);
-                external.roomno3Climate.mode = StringToMode(fifthSelectedOption);
+                external.roomno3Climate.level = int.Parse(_fifthSelectedLevel);
+                external.roomno3Climate.mode = StringToMode(_fifthSelectedOption);
             }
+            
             ExtFactDataProvider.Update(external);
         }
 
