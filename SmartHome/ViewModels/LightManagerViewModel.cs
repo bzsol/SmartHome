@@ -217,7 +217,6 @@ namespace SmartHome.ViewModels
             {
                 lights.activeSpan = 0;
             }
-            external.entryLights = new List<Lights>();
             external.entryLights.Add(lights);
 
             ExtFactDataProvider.Update(external);

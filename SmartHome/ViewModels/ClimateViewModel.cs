@@ -466,27 +466,22 @@ namespace SmartHome.ViewModels
 
 
             if (FirstEntryVisibility.Equals(Visibility.Visible) && !_isCheckedLivingRoomHeating) {
-                external.livingroomClimate = new Climate();
                 external.livingroomClimate.level = int.Parse(_firstSelectedLevel);
                 external.livingroomClimate.mode = StringToMode(_firstSelectedOption);
             }
             if (SecondEntryVisibility.Equals(Visibility.Visible) && !_isCheckedOfficeRoomHeating) {
-                external.officeClimate = new Climate();
                 external.officeClimate.level = int.Parse(_secondSelectedLevel);
                 external.officeClimate.mode = StringToMode(_secondSelectedOption);
             }
             if (ThirdEntryVisibility.Equals(Visibility.Visible) && !_isCheckedRoom1Heating) {
-                external.roomno1Climate = new Climate();
                 external.roomno1Climate.level = int.Parse(_thirdSelectedLevel);
                 external.roomno1Climate.mode = StringToMode(_thirdSelectedOption);
             }
             if (FourthEntryVisibility.Equals(Visibility.Visible) && !_isCheckedRoom2Heating) {
-                external.roomno2Climate = new Climate();
                 external.roomno2Climate.level = int.Parse(_fourthSelectedLevel);
                 external.roomno2Climate.mode = StringToMode(_fourthSelectedOption);
             }
             if (FifthEntryVisibility.Equals(Visibility.Visible) && !_isCheckedRoom3Heating) {
-                external.roomno1Climate = new Climate();
                 external.roomno3Climate.level = int.Parse(_fifthSelectedLevel);
                 external.roomno3Climate.mode = StringToMode(_fifthSelectedOption);
             }
