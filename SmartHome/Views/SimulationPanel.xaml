@@ -19,6 +19,18 @@
         <viewModel:SimulationPanelViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <Rectangle Stroke="Black" Margin="10,10,1248,612"></Rectangle>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="410*" />
+            <ColumnDefinition Width="330*" />
+            <ColumnDefinition Width="327*"/>
+            <ColumnDefinition Width="533*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="182*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="183*" />
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="0" Grid.Column="0" Stroke="Black"></Rectangle>
     </Grid>
 </UserControl>
