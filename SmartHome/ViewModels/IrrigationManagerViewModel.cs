@@ -40,19 +40,7 @@ namespace SmartHome.ViewModels
         private bool _timeSettingCheckState;
         public bool TimeSettingCheckState
         {
-            get
-            {
-                var external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
-                _temperatureSettingCheckState = false;
-                if ((external.garden.Repeat > 0 || !external.garden.dateTime.Equals(null)) && SelectedPlace.Equals("Kert"))
-                {
-                    _temperatureSettingCheckState = true;
-                }
-                if ((external.frontGarden.Repeat > 0 || !external.frontGarden.dateTime.Equals(null)) && SelectedPlace.Equals("Elülső Kert")) {
-                    _temperatureSettingCheckState = true;
-                }
-                return _temperatureSettingCheckState;
-            }
+            get => _timeSettingCheckState;
             set
             {
                 _timeSettingCheckState = value;
@@ -63,22 +51,7 @@ namespace SmartHome.ViewModels
         private bool _temperatureSettingCheckState;
         public bool TemperatureSettingCheckState
         {
-            get {
-                var external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
-                _temperatureSettingCheckState = false;
-                if (external.garden.Temp > 8 && SelectedPlace.Equals("Kert"))
-                {
-                    
-                    _temperatureSettingCheckState = true;
-
-                }
-                if (external.frontGarden.Temp > 8 && SelectedPlace.Equals("Elülső Kert"))
-                {
-                    
-                    _temperatureSettingCheckState =  true;
-                }
-                return _temperatureSettingCheckState;
-            }
+            get => _temperatureSettingCheckState;
             set
             {
                 _temperatureSettingCheckState = value;
@@ -298,7 +271,7 @@ namespace SmartHome.ViewModels
             if (_timeSettingCheckState)
             {
                 irrigative.dateTime = _SelectedTime;
-                if(_repeatSettingCheckState) irrigative.Repeat = _selectedRepeatTime;
+                irrigative.Repeat = _selectedRepeatTime;
             }
             if (_temperatureSettingCheckState) {
                 irrigative.Temp = _TempSlider;
