@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using static Common.Model.Electronics;
 
 namespace SmartHome.ViewModels
 {
@@ -177,7 +176,7 @@ namespace SmartHome.ViewModels
 
         public void OnChangeToEventList(Button btn)
         {
-            _configurePanelViewModel.ExecuteChangeToEventList();
+            _configurePanelViewModel.ExecuteChangeToElectronicPanel(true);
         }
     }
 }
