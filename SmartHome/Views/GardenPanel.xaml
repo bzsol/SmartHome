@@ -21,5 +21,17 @@
 
     <Grid>
         <Rectangle Fill="#379e67"></Rectangle>
+        <Ellipse Fill="Black" Margin="0,784,1384,0"></Ellipse>
+        <Ellipse Fill="Black" Margin="0,0,1384,784"/>
+        <Ellipse Fill="Black" Margin="0,392,1384,392"/>
+        <Ellipse Fill="Black" Margin="692,784,692,0"/>
+        <Ellipse Fill="Black" Margin="1384,784,0,0"/>
+        <Ellipse Fill="Black" Margin="1384,392,0,392"/>
+        <Ellipse Fill="Black" Margin="1384,0,0,784"/>
+        <Ellipse Fill="Black" Margin="692,0,692,784"/>
+        <Rectangle Fill="Black" Margin="304,528,1046,226"></Rectangle>
+        <Rectangle Fill="Black" Margin="304,162,1046,592"/>
+        <Rectangle Fill="Black" Margin="1012,162,338,592"/>
+        <Rectangle Fill="Black" Margin="1012,528,338,226"/>
     </Grid>
 </UserControl>
