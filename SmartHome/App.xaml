@@ -46,6 +46,9 @@
                     <DataTemplate DataType="{x:Type viewModel:SimulationCategoryPanelViewModel}">
                         <view:SimulationCategoryPanel/>
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:ElectronicEventListViewModel}">
+                        <view:ElectronicEventListPanel/>
+                    </DataTemplate>
                 </ResourceDictionary>
 
                 <ResourceDictionary>
