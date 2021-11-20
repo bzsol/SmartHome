@@ -6,12 +6,20 @@
         xmlns:local="clr-namespace:SmartHome.Views"
         xmlns:viewModel="clr-namespace:SmartHome.ViewModels"
         mc:Ignorable="d"
-        Height="800" Width="1400">
+        Height="800" Width="1400"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}">
     <UserControl.DataContext>
-        <viewModel:GardenPanelViewModel/>
+        <viewModel:SimulationPanelViewModel/>
     </UserControl.DataContext>
-    
+
     <Grid>
-        <Label Content="GARDEN"></Label>
+        <Rectangle Fill="#379e67"></Rectangle>
     </Grid>
 </UserControl>

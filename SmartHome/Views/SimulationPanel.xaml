@@ -34,6 +34,7 @@
         <Grid Grid.Column="0" Grid.Row="0"  Margin="1,1,1,1" >
             <Rectangle Fill="#593936"></Rectangle>
             <Rectangle Fill="Black" Margin="219,160,219,172" />
+            <Rectangle Fill="Black" Margin="85,0,356,363" />
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="188,356,178,0" ></Rectangle>
             <Rectangle Fill="Aqua" Height="20" Margin="-103,173,367,183" RenderTransformOrigin="0.5,0.5" >
                 <Rectangle.RenderTransform>
