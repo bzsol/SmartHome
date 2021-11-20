@@ -10,13 +10,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using static Common.Model.Electronics;
 
 namespace SmartHome.ViewModels
 {
     public class ElectronicCategoryPanelViewModel
     {
         public DelegateCommand<Button> AddEventCommand { get; set; }
+
+        public DelegateCommand<Button> ChangeToEventListCommand { get; set; }
+
+        private ConfigurePanelViewModel _configurePanelViewModel;
 
         private string _nameTextBoxText;
 
@@ -99,6 +102,8 @@ namespace SmartHome.ViewModels
         public ElectronicCategoryPanelViewModel()
         {
             AddEventCommand = new DelegateCommand<Button>(OnAddEventClicked);
+            ChangeToEventListCommand = new DelegateCommand<Button>(OnChangeToEventList);
+            _configurePanelViewModel = ConfigurePanelViewModel.ActuallyShownConfigurePanel;
         }
 
         private void DataUpload(string eventName,DateTime dateTime,bool cont,bool isTV) {
@@ -167,6 +172,11 @@ namespace SmartHome.ViewModels
                 MessageBox.Show("Nincs kiválasztott esemény");
             }
 
+        }
+
+        public void OnChangeToEventList(Button btn)
+        {
+            _configurePanelViewModel.ExecuteChangeToElectronicPanel(true);
         }
     }
 }

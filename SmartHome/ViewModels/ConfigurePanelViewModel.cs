@@ -14,6 +14,8 @@ namespace SmartHome.ViewModels
     {
         public DelegateCommand<Button> CategoryClicked { get; set; }
 
+        public static ConfigurePanelViewModel ActuallyShownConfigurePanel;
+
         private object _categoryPanelViewModel;
         public object CategoryPanelViewModel
         {
@@ -32,6 +34,20 @@ namespace SmartHome.ViewModels
         public ConfigurePanelViewModel()
         {
             CategoryClicked = new DelegateCommand<Button>(OnCategoryClicked);
+            ActuallyShownConfigurePanel = this;
+        }
+
+        public void ExecuteChangeToElectronicPanel(bool ToEventList)
+        {
+            if (ToEventList)
+            {
+                CategoryPanelViewModel = new ElectronicEventListViewModel();
+            }
+            else
+            {
+                CategoryPanelViewModel = new ElectronicCategoryPanelViewModel();
+            }
+
         }
 
         public void OnCategoryClicked(Button btn)

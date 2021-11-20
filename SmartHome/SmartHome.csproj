@@ -10,6 +10,7 @@
     <None Remove="Images\add.png" />
     <None Remove="Images\conf.png" />
     <None Remove="Images\control.png" />
+    <None Remove="Images\delete.png" />
     <None Remove="Images\elec.png" />
     <None Remove="Images\event.png" />
     <None Remove="Images\inside.png" />
@@ -41,6 +42,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\control.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\delete.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\elec.png">

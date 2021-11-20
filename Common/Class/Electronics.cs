@@ -15,6 +15,16 @@ namespace Common.Model
 
         public bool Continous { get; set; }
 
+        public string Type { get; set; }
 
+        public string ContinousToStringConverter
+        {
+            get => Continous == true ? "Végtelenített" : "Egyszeri";
+        }
+
+        public string EventTimeToStringConverter
+        {
+            get => Continous == true ? $"{EventTime.Year}. {EventTime.Month}. {EventTime.Day}. {EventTime.ToShortTimeString()}" : $"Minden nap {EventTime.ToShortTimeString()}";
+        }
     }
 }
