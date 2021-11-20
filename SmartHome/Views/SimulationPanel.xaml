@@ -19,18 +19,27 @@
         <viewModel:SimulationPanelViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="410*" />
-            <ColumnDefinition Width="330*" />
-            <ColumnDefinition Width="327*"/>
-            <ColumnDefinition Width="533*" />
-        </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
-            <RowDefinition Height="182*" />
-            <RowDefinition Height="60*" />
-            <RowDefinition Height="183*" />
+            <RowDefinition Height="189*" />
+            <RowDefinition Height="40*" />
+            <RowDefinition Height="196*" />
         </Grid.RowDefinitions>
-        <Rectangle Grid.Row="0" Grid.Column="0" Stroke="Black"></Rectangle>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="244*" />
+            <ColumnDefinition Width="156*" />
+            <ColumnDefinition Width="97*"/>
+            <ColumnDefinition Width="97*"/>
+            <ColumnDefinition Width="206*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" Grid.Row="0" BorderBrush="Orange" Margin="1,1,1,1" BorderThickness="2"/>
+        <Border Grid.Column="1" Grid.Row="0" BorderBrush="Green" Margin="1,1,1,1" BorderThickness="2" Grid.ColumnSpan="1"/>
+        <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Margin="1,1,1,1" BorderThickness="2" BorderBrush="Blue"/>
+        <Border Grid.Column="0" Grid.Row="2" BorderBrush="Red" Margin="1,1,1,1" BorderThickness="2"/>
+        <Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="1" BorderBrush="Brown" Margin="1,1,1,1" BorderThickness="2"></Border>
+        <Border Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="Black" Margin="1,1,1,1" BorderThickness="2"></Border>
+        <Border Grid.Column="4" Grid.Row="2" BorderBrush="Indigo" Margin="1,1,1,1" BorderThickness="2"></Border>
+        <Border Grid.Column="4" Grid.Row="0" BorderBrush="Pink" Margin="1,1,1,1" BorderThickness="2"></Border>
+        <Border Grid.Column="2" Grid.Row="0"  BorderBrush="LightSalmon" Margin="1,1,1,1" BorderThickness="2"></Border>
+        <Border Grid.Column="3" Grid.Row="0"  BorderBrush="Peru" Margin="1,1,1,1" BorderThickness="2"></Border>
     </Grid>
 </UserControl>
