@@ -266,12 +266,12 @@ namespace SmartHome.ViewModels
                         break;
                     }
             }
-            
-
+            ExtFactDataProvider.Update(external);
         }
         private void OnSaveSettings(Button btn)
         {
-            MessageBox.Show($"{_lightstrength}");
+            MessageBox.Show($"{_lightstrength} / {_selectedtime} / {_selectedPlace} / {_selectedWindow}");
+            DataUpload();
         }
 
         private void OnPreferenceChanged(RadioButton rbtn)

@@ -144,7 +144,6 @@ namespace SmartHome.ViewModels
             Places = new()
             {
                 "Elülső udvar",
-                "Hátsó udvar",
                 "Kert"
             };
 
