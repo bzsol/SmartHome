@@ -16,6 +16,8 @@ namespace Common.Class
 
         public int Temp { get; set; }
 
+        public int Repeat { get; set;}
+
         // Factors
         public bool isSunny { get; set; }
         public bool isCloudy { get; set; }
@@ -23,10 +25,5 @@ namespace Common.Class
         public bool isStorm { get; set; }
         public bool isSnow { get; set; }
         public bool isthunderstorm{ get; set;}
-
-        public static implicit operator List<object>(Irrigative v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

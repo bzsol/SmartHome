@@ -41,7 +41,6 @@ namespace SmartHome.Views
         void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             asd++;
-            TimeTextBox.Text = asd.ToString();
         }
     }
             

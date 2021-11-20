@@ -1,4 +1,7 @@
-﻿using Prism.Commands;
+﻿using Common.Class;
+using Common.Model;
+using Prism.Commands;
+using SmartHome.DataProvider;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +16,8 @@ namespace SmartHome.ViewModels
 {
     public class IrrigationManagerViewModel : INotifyPropertyChanged
     {
+        
+
         public DelegateCommand<Button> SaveSettingsCommand { get; set; }
         public DelegateCommand<ToggleButton> IrrigationSettingChangeCommand { get; set; }
         public DelegateCommand<ToggleButton> RepeatSettingChangeCommand { get; set; }
@@ -130,6 +135,97 @@ namespace SmartHome.ViewModels
                 NotifyChange(nameof(SelectedRepeatTime));
             }
         }
+        private int _IrrigationMinute;
+        public int IrrigatiionMinute {
+            get => _IrrigationMinute;
+            set {
+                _IrrigationMinute = value;
+                NotifyChange(nameof(IrrigatiionMinute));
+            }
+
+        }
+        private int _IrrigationLevel;
+        public int IrrigationLevel {
+            get => _IrrigationLevel;
+            set {
+                _IrrigationLevel = value;
+                NotifyChange(nameof(IrrigationLevel));
+            }
+        }
+        private int _TempSlider;
+        public int TempSlider {
+            get => _TempSlider;
+            set {
+                _TempSlider = value;
+                NotifyChange(nameof(TempSlider));
+            }
+        }
+        private bool _isSunny;
+        public bool isSunny {
+            get => _isSunny;
+            set {
+                _isSunny = value;
+                NotifyChange(nameof(isSunny));
+            }
+        }
+        private bool _isCloudy;
+        public bool isCloudy
+        {
+            get => _isCloudy;
+            set
+            {
+                _isCloudy = value;
+                NotifyChange(nameof(isCloudy));
+            }
+        }
+        private bool _isRain;
+        public bool isRain
+        {
+            get => _isRain;
+            set
+            {
+                _isRain = value;
+                NotifyChange(nameof(isRain));
+            }
+        }
+        private bool _isStorm;
+        public bool isStorm
+        {
+            get => _isStorm;
+            set
+            {
+                _isStorm = value;
+                NotifyChange(nameof(isStorm));
+            }
+        }
+        private bool _isSnow;
+        public bool isSnow
+        {
+            get => _isSnow;
+            set
+            {
+                _isSnow = value;
+                NotifyChange(nameof(isSnow));
+            }
+        }
+        private bool _isthunderstorm;
+        public bool isthunderstorm
+        {
+            get => _isthunderstorm;
+            set
+            {
+                _isthunderstorm = value;
+                NotifyChange(nameof(isthunderstorm));
+            }
+        }
+        private DateTime _SelectedTime;
+        public DateTime SelectedTime {
+            get => _SelectedTime;
+            set {
+                _SelectedTime = value;
+                NotifyChange(nameof(SelectedTime));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -137,6 +233,8 @@ namespace SmartHome.ViewModels
 
         public IrrigationManagerViewModel()
         {
+           
+
             SaveSettingsCommand = new DelegateCommand<Button>(OnSaveSettings);
             IrrigationSettingChangeCommand = new DelegateCommand<ToggleButton>(OnIrrigationSettingChanged);
             RepeatSettingChangeCommand = new DelegateCommand<ToggleButton>(OnRepeatSettingChanged);
@@ -152,12 +250,46 @@ namespace SmartHome.ViewModels
                 Minutes.Add(i);
             }
 
+       
             SelectedPlace = Places[0];
+        }
+
+        private void UploadData() {
+            var external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
+            Irrigative irrigative = new Irrigative();
+            
+            irrigative.isCloudy = _isCloudy;
+            irrigative.isRain = _isRain;
+            irrigative.isSnow = _isSnow;
+            irrigative.isSunny = _isSunny;
+            irrigative.isthunderstorm = _isthunderstorm;
+            irrigative.isStorm = _isStorm;
+
+            irrigative.strenght = _IrrigationLevel;
+            irrigative.timespan = _IrrigationMinute;
+
+            if (_timeSettingCheckState)
+            {
+                irrigative.dateTime = _SelectedTime;
+                irrigative.Repeat = _selectedRepeatTime;
+            }
+            if (_temperatureSettingCheckState) {
+                irrigative.Temp = _TempSlider;
+            }
+
+            if (SelectedPlace.Equals("Elülső udvar")) {
+                external.garden = irrigative;
+            }
+            else if (SelectedPlace.Equals("Kert")) {
+                external.frontGarden = irrigative;
+            }
+            ExtFactDataProvider.Update(external);
         }
 
         private void OnSaveSettings(Button btn)
         {
             MessageBox.Show($"{SelectedPlace}");
+            UploadData();
         }
 
         private void OnIrrigationSettingChanged(ToggleButton tbtn)
