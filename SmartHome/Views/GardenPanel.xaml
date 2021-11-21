@@ -20,18 +20,43 @@
     </UserControl.DataContext>
 
     <Grid>
-        <Rectangle Fill="#379e67"></Rectangle>
-        <Ellipse Fill="Black" Margin="0,784,1384,0"></Ellipse>
-        <Ellipse Fill="Black" Margin="0,0,1384,784"/>
-        <Ellipse Fill="Black" Margin="0,392,1384,392"/>
-        <Ellipse Fill="Black" Margin="692,784,692,0"/>
-        <Ellipse Fill="Black" Margin="1384,784,0,0"/>
-        <Ellipse Fill="Black" Margin="1384,392,0,392"/>
-        <Ellipse Fill="Black" Margin="1384,0,0,784"/>
-        <Ellipse Fill="Black" Margin="692,0,692,784"/>
-        <Rectangle Fill="Black" Margin="304,528,1046,226"></Rectangle>
-        <Rectangle Fill="Black" Margin="304,162,1046,592"/>
-        <Rectangle Fill="Black" Margin="1012,162,338,592"/>
-        <Rectangle Fill="Black" Margin="1012,528,338,226"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="963*"></ColumnDefinition>
+            <ColumnDefinition Width="437*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition>
+                </RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Row="0" Fill="#194f27"></Rectangle>
+            <Rectangle Grid.Row="1" Fill="#756356"></Rectangle>
+            <Rectangle Grid.Row="1" Fill="#362112" Margin="0,39,941,39" Width="20" Height="300"></Rectangle>
+            <Rectangle Grid.Row="0" Fill="Black" Width="30" Height="30" Margin="169,74,764,296" RenderTransformOrigin="1.785,0.645"></Rectangle>
+            <Rectangle Grid.Row="0" Fill="Black" Width="30" Height="30" Margin="758,74,175,296"></Rectangle>
+            <Ellipse Grid.Row="0" Fill="Black" Width="25" Height="25" Margin="906,43,32,332"></Ellipse>
+            <Ellipse Grid.Row="0" Fill="Black" Width="25" Height="25" Margin="906,318,32,57"></Ellipse>
+            <Ellipse Grid.Row="0" Fill="Black" Width="25" Height="25" Margin="41,43,897,332"></Ellipse>
+            <Ellipse Grid.Row="0" Fill="Black" Width="25" Height="25" Margin="41,318,897,57" RenderTransformOrigin="0.415,1.316"></Ellipse>
+            <Rectangle Grid.Row="1" Fill="Black" Width="30" Height="30" Margin="906,360,27,10"></Rectangle>
+            <Rectangle Grid.Row="1" Fill="Black" Width="30" Height="30" Margin="38,360,895,10"></Rectangle>
+
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Rectangle Fill="#5d5f63" Stroke="#362112" StrokeThickness="20" Margin="-10,0,10,0"></Rectangle>
+            <Rectangle Fill="White" Width="20" Margin="-6,413,0,57" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="179.996"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Rectangle Fill="Black" Width="30" Height="30" Margin="194,182,213,588"/>
+            <Rectangle Fill="Black" Width="30" Height="30" Margin="204,586,203,182"></Rectangle>
+        </Grid>
     </Grid>
 </UserControl>
