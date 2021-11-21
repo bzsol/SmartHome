@@ -63,18 +63,24 @@ namespace SmartHome.ViewModels
             if (((List<ExternalFactors>)ExtFactDataProvider.Get()).Count < 1)
             {
                 // Generate new list without null
-                ExtFactDataProvider.Create(new ExternalFactors(new List<Electronics>(), new List<Electronics>(), new Climate(), new Climate(), new Climate(), new Climate(), new Climate(), new Climate(), new Climate(), new Climate(), new Climate(), new Lights(), new Lights(), new Lights(),
+                ExtFactDataProvider.Create(new ExternalFactors(new List<Electronics>(), new Climate(), new Climate(), new Climate(), new Climate(), new Climate(), new Climate(), new Climate(), new Climate(), new Climate(), new Lights(), new Lights(), new Lights(),
                     new Lights(), new Lights(), new Lights(), new Lights(), new Lights(), new Lights(), new Lights(),
                     new Lights(), new Lights(), new Lights(), new Irrigative(), new Irrigative(), new Shading(), new Shading(), new Shading(), new Shading(), new Shading(), new Shading(), new Shading(), new Shading(), new Shading(), new Shading(), new Shading()));
             }
             dispatcherTimer.Tick += dispatcherTimer_Tick;
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 400);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 300);
         }
 
 
         void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            time = time + 60;
+            if (time < 86400)
+            {
+                time = time + 60;
+            }
+            else {
+                time = 0;
+            }
             TimeChange = SecToMilitaryTime(time);
         }
 

@@ -19,6 +19,7 @@
         <viewModel:SimulationPanelViewModel/>
     </UserControl.DataContext>
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="189*" />
             <RowDefinition Height="40*" />
@@ -137,5 +138,14 @@
             <Rectangle Fill="Aqua" Height="20" Margin="10,0,179,356" ></Rectangle>
             <Rectangle Fill="Aqua" Height="20" Margin="186,0,10,356" ></Rectangle>
         </Grid>
+        <Label FontSize="30" FontWeight="Black" Margin="118,234,258,102" >Konyha</Label>
+        <Label FontSize="30" FontWeight="Black" Margin="150,71,124,279" Grid.Column="4" Grid.Row="2" >Szoba#3</Label>
+        <Label FontSize="30" FontWeight="Black" Margin="155,62,126,288" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="2" >Szoba#2</Label>
+        <Label FontSize="30" FontWeight="Black" Margin="150,246,124,90" Grid.Column="4" >Szoba#1</Label>
+        <Label FontSize="30" FontWeight="Black" Margin="69,246,70,90" Grid.Column="3" >Fürdő</Label>
+        <Label FontSize="30" FontWeight="Black" Margin="50,246,10,90" Grid.Column="2" >Iroda</Label>
+        <Label FontSize="30" FontWeight="Black" Margin="82,246,83,90" Grid.Column="1" >Étkező</Label>
+        <Label FontSize="30" FontWeight="Black" Margin="188,62,188,288" Grid.Row="2" >Nappali</Label>
+        <Label FontSize="30" FontWeight="Black" Margin="82,62,83,288" Grid.Column="1" Grid.Row="2" >Bejárat</Label>
     </Grid>
 </UserControl>

@@ -58,5 +58,8 @@
             <Rectangle Fill="Black" Width="30" Height="30" Margin="194,182,213,588"/>
             <Rectangle Fill="Black" Width="30" Height="30" Margin="204,586,203,182"></Rectangle>
         </Grid>
+        <Label FontSize="30" FontWeight="Black" Margin="416,171,417,587" >Kert</Label>
+        <Label FontSize="30" FontWeight="Black" Margin="31,588,760,170" >Kapubejáró</Label>
+        <Label FontSize="30" FontWeight="Black" Margin="153,317,154,441" Grid.Column="1" >Garázs</Label>
     </Grid>
 </UserControl>
