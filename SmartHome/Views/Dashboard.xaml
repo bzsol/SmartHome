@@ -49,7 +49,32 @@
                     </StackPanel>
                 </Button>
                 <Grid Grid.Column="3">
-                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding TimeChange}"></Label>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Style="{StaticResource MainButtonStyle}" Height="Auto" Width="Auto" Command="{Binding StopTime}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding TimeChange}" VerticalAlignment="Center" FontSize="24"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Style="{StaticResource MainButtonStyle}" Height="Auto" Width="Auto" Command="{Binding StopTime}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Start/Stop" VerticalAlignment="Center" FontSize="24"></TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button Grid.Column="1" Style="{StaticResource MainButtonStyle}" Height="Auto" Width="Auto" Command="{Binding ResetTime}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Reset" VerticalAlignment="Center" FontSize="24"></TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                    
                 </Grid>
             </Grid>
         </Grid>
