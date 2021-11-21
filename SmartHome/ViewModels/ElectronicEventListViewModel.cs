@@ -3,8 +3,10 @@ using Prism.Commands;
 using SmartHome.DataProvider;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace SmartHome.ViewModels
@@ -14,10 +16,12 @@ namespace SmartHome.ViewModels
         public DelegateCommand<Button> ChangeToAddElectronicCommand { get; set; }
         public DelegateCommand<Button> DeleteEventCommand { get; set; }
 
-        public ConfigurePanelViewModel _configurePanelViewModel;
+        private ConfigurePanelViewModel _configurePanelViewModel;
 
-        private List<Electronics> _electronicEvents;
-        public List<Electronics> ElectronicEvents
+        private ExternalFactors _actualExternalFactors;
+
+        private ObservableCollection<Electronics> _electronicEvents;
+        public ObservableCollection<Electronics> ElectronicEvents
         {
             get => _electronicEvents;
             set
@@ -25,7 +29,18 @@ namespace SmartHome.ViewModels
                 _electronicEvents = value;
                 NotifyChange(nameof(ElectronicEvents));
             }
-        } 
+        }
+
+        private Electronics _selectedElectronicEvent;
+        public Electronics SelectedElectronicEvent
+        {
+            get => _selectedElectronicEvent;
+            set
+            {
+                _selectedElectronicEvent = value;
+                NotifyChange(nameof(SelectedElectronicEvent));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -37,28 +52,17 @@ namespace SmartHome.ViewModels
             DeleteEventCommand = new DelegateCommand<Button>(OnDeleteEvent);
             _configurePanelViewModel = ConfigurePanelViewModel.ActuallyShownConfigurePanel;
 
-            var _extFacts = ExtFactDataProvider.Get().ToList()[0];
-            ElectronicEvents = new List<Electronics>();
+            _actualExternalFactors = ExtFactDataProvider.Get().ToList()[0];
+            ElectronicEvents = new ObservableCollection<Electronics>();
 
-            foreach (var RadioEvent in _extFacts.Radio)
+            foreach (var ElectronicEvent in _actualExternalFactors.ElectronicEvents)
             {
                 ElectronicEvents.Add(new Electronics
                 {
-                    EventName = RadioEvent.EventName,
-                    EventTime = RadioEvent.EventTime,
-                    Continous = RadioEvent.Continous,
-                    Type = "Rádió"
-                });
-            }
-
-            foreach (var TVEvent in _extFacts.TV)
-            {
-                ElectronicEvents.Add(new Electronics
-                {
-                    EventName = TVEvent.EventName,
-                    EventTime = TVEvent.EventTime,
-                    Continous = TVEvent.Continous,
-                    Type = "TV"
+                    EventName = ElectronicEvent.EventName,
+                    EventTime = ElectronicEvent.EventTime,
+                    Continous = ElectronicEvent.Continous,
+                    Type = ElectronicEvent.Type
                 });
             }
         }
@@ -70,7 +74,22 @@ namespace SmartHome.ViewModels
 
         public void OnDeleteEvent(Button btn)
         {
+            if (SelectedElectronicEvent != null)
+            {
+                Electronics itemToDelete;
+                if (SelectedElectronicEvent.Type.Equals("Rádió"))
+                {
+                    itemToDelete = ElectronicEvents.FirstOrDefault(x => x.EventName == SelectedElectronicEvent.EventName);
+                }
+                else
+                {
+                    itemToDelete = ElectronicEvents.FirstOrDefault(x => x.EventName == SelectedElectronicEvent.EventName);
+                }
 
+                ElectronicEvents.Remove(itemToDelete);
+                _actualExternalFactors.ElectronicEvents = ElectronicEvents.ToList();
+                ExtFactDataProvider.Update(_actualExternalFactors);
+            }
         } 
     }
 }
