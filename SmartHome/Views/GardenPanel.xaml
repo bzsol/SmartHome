@@ -45,7 +45,7 @@
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1">
             <Rectangle Fill="#5d5f63" Stroke="#362112" StrokeThickness="20" Margin="-10,0,10,0"></Rectangle>
-            <Rectangle Fill="White" Width="20" Margin="-6,413,0,57" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
+            <Rectangle Fill="White" Width="20" Margin="-9,412,0,58" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
