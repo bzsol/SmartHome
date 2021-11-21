@@ -21,6 +21,8 @@ namespace SmartHome.ViewModels
 
         private ConfigurePanelViewModel _configurePanelViewModel;
 
+        private ExternalFactors _actualExternalFactors;
+
         private string _nameTextBoxText;
 
         private DateTime _dateTimePicker = DateTime.Now;
@@ -104,74 +106,79 @@ namespace SmartHome.ViewModels
             AddEventCommand = new DelegateCommand<Button>(OnAddEventClicked);
             ChangeToEventListCommand = new DelegateCommand<Button>(OnChangeToEventList);
             _configurePanelViewModel = ConfigurePanelViewModel.ActuallyShownConfigurePanel;
+            _actualExternalFactors = ExtFactDataProvider.Get().ToList()[0];
         }
 
-        private void DataUpload(string eventName,DateTime dateTime,bool cont,bool isTV) {
+        private void DataUpload(string eventName, DateTime dateTime, bool cont, bool isTV) {
 
             var external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
-            if (isTV)
+            var Event = new Electronics
             {
-                var objTV = new Electronics();
-                objTV.Continous = true;
-                objTV.EventName = eventName;
-                objTV.EventTime = dateTime;
-                objTV.Continous = cont;
-                external.TV.Add(objTV);
-            }
-            else {
-                var objRadio = new Electronics();
-                objRadio.Continous = true;
-                objRadio.EventName = eventName;
-                objRadio.EventTime = dateTime;
-                objRadio.Continous = cont;
-                external.Radio.Add(objRadio);
-            }
+                EventName = eventName,
+                EventTime = dateTime,
+                Continous = cont,
+                Type = isTV == true ? "TV" : "Rádió"
+            };
+            external.ElectronicEvents.Add(Event);
+
             ExtFactDataProvider.Update(external);
         }
 
 
         public void OnAddEventClicked(Button btn)
         {
-            
-            if (_EE)
+            if (_nameTextBoxText.Length > 2)
             {
-                if (_Radio)
+                if (_actualExternalFactors.ElectronicEvents.FirstOrDefault(x => x.EventName == _nameTextBoxText) == null)
                 {
-                    MessageBox.Show("Radio" + " " + _dateTimePicker.ToString() + " EE");
-                    DataUpload(_nameTextBoxText, _dateTimePicker,false,false);
-                }
-                else if (_TV)
-                {
-                    MessageBox.Show("TV" + " " + _dateTimePicker.ToString() + " EE");
-                    DataUpload(_nameTextBoxText, _dateTimePicker, false,true);
+                    if (_EE)
+                    {
+                        if (_Radio)
+                        {
+                            MessageBox.Show("Radio" + " " + _dateTimePicker.ToString() + " EE");
+                            DataUpload(_nameTextBoxText, _dateTimePicker, false, false);
+                        }
+                        else if (_TV)
+                        {
+                            MessageBox.Show("TV" + " " + _dateTimePicker.ToString() + " EE");
+                            DataUpload(_nameTextBoxText, _dateTimePicker, false, true);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nincs eszköz!");
+                        }
+                    }
+                    else if (_VE)
+                    {
+                        if (_Radio)
+                        {
+                            MessageBox.Show("Radio" + " " + _dateTimePicker.ToString() + " VE");
+                            DataUpload(_nameTextBoxText, _dateTimePicker, true, false);
+                        }
+                        else if (_TV)
+                        {
+                            MessageBox.Show("TV" + " " + _dateTimePicker.ToString() + " VE");
+                            DataUpload(_nameTextBoxText, _dateTimePicker, true, true);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nincs eszköz");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nincs kiválasztott esemény");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Nincs eszköz!");
-                }
-            }
-            else if (_VE)
-            {
-                if (_Radio)
-                {
-                    MessageBox.Show("Radio" + " " + _dateTimePicker.ToString() + " VE");
-                    DataUpload(_nameTextBoxText, _dateTimePicker, true,false);
-                }
-                else if (_TV)
-                {
-                    MessageBox.Show("TV" + " " + _dateTimePicker.ToString() + " VE");
-                    DataUpload(_nameTextBoxText, _dateTimePicker, true,true);
-                }
-                else
-                {
-                    MessageBox.Show("Nincs eszköz");
+                    MessageBox.Show("Már létezik esemény ezen a néven");
                 }
             }
             else
             {
-                MessageBox.Show("Nincs kiválasztott esemény");
+                MessageBox.Show("Kötelező az eseménynek nevet választani, mely legalább 3 karakter hosszú!");
             }
-
         }
 
         public void OnChangeToEventList(Button btn)
