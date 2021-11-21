@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
 
         <Grid Background="#008D3D">
-            <ListView Grid.Row="0" ItemsSource="{Binding ElectronicEvents}" Background="#008D3D">
+            <ListView Grid.Row="0" SelectedItem="{Binding SelectedElectronicEvent}" ItemsSource="{Binding ElectronicEvents}" Background="#008D3D">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="Foreground" Value="White"></Setter>
