@@ -31,6 +31,7 @@ namespace SmartHome.ViewModels
         public SimulationCategoryPanelViewModel()
         {
             CategoryClicked = new DelegateCommand<Button>(OnCategoryClicked);
+            CategoryPanelViewModel = new SimulationPanelViewModel();
         }
 
         public void OnCategoryClicked(Button btn)
