@@ -94,9 +94,7 @@ namespace SmartHome.ViewModels
                 time = 0;
             }
             if (time % 3600 == 0 || time == 60) {
-                var provider = new TemperatureDataProvider(time / 3600);
-                provider.DeterminateCurrentTemperature();
-                temp = provider.CurrentTemperature.ToString();
+                temp = TemperatureDataProvider.GenerateTemp(time / 3600).ToString("N2");
             }
             TempChange = $"{temp}°C";
             TimeChange = SecToMilitaryTime(time);

@@ -186,6 +186,7 @@ namespace SmartHome.ViewModels
 
         private void DataUpload()
         {
+
             ExternalFactors external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
             Lights lights = new Lights();
             lights.motionDetection = _isMotionDetectionEnabled;
