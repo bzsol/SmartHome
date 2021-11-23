@@ -103,8 +103,7 @@ namespace SmartHome.ViewModels
         }
 
         private string SecToMilitaryTime(int seconds) {
-            TimeSpan time = TimeSpan.FromSeconds(seconds);
-            return time.ToString(@"hh\:mm\:ss");
+            return TimeSpan.FromSeconds(seconds).ToString(@"hh\:mm\:ss");
         }
 
         private void Reset(Button btn) {

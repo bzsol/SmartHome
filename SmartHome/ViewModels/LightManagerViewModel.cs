@@ -100,21 +100,9 @@ namespace SmartHome.ViewModels
                 NotifyChange(nameof(MotionTimeTextBox));
             }
         }
-        bool first = true;
         private int _lightStrenght;
         public int SliderValue {
-
-            get {
-                if (first)
-                {
-                    first = false;
-                    return _lightStrenght = 50;
-                   
-                }
-                else {
-                   return _lightStrenght;
-                }
-            }
+            get => _lightStrenght;
             set {
                 _lightStrenght = value;
                 NotifyChange(nameof(SliderValue));

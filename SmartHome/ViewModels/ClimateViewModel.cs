@@ -380,6 +380,24 @@ namespace SmartHome.ViewModels
                 NotifyChange(nameof(FifthEntryVisibility));
             }
         }
+        private int _TempSlider;
+        public int TempSlider {
+            get => _TempSlider;
+            set {
+                _TempSlider = value;
+                NotifyChange(nameof(TempSlider));
+            }
+
+        }
+
+        private int _ClimateSlider;
+        public int ClimateSlider {
+            get => _ClimateSlider;
+            set {
+                _ClimateSlider = value;
+                NotifyChange(nameof(ClimateSlider));
+            }
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -388,6 +406,11 @@ namespace SmartHome.ViewModels
 
         public ClimateViewModel()
         {
+            var external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
+
+            ClimateSlider = (int)external.Cooling;
+            TempSlider = (int)external.Heating;
+
             SaveSettingsCommand = new DelegateCommand<Button>(OnSaveSettings);
             EntryStateChange = new DelegateCommand<ToggleButton>(OnEntryStateChange);
             CoolerOptions = new()
@@ -463,6 +486,8 @@ namespace SmartHome.ViewModels
             external.isDehumidification = _isDehumuditification;
             external.isHumiditysample = _isHumidityCheckEnabled;
             external.isVentilation = _isVentilationChecked;
+            external.Cooling = _ClimateSlider;
+            external.Heating = _TempSlider;
 
 
             if (FirstEntryVisibility.Equals(Visibility.Visible) && !_isCheckedLivingRoomHeating) {

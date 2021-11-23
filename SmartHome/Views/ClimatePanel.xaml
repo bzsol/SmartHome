@@ -43,7 +43,7 @@
                 <Label Grid.Row="1" Grid.Column="0" Content="Helyiségek" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
                    VerticalAlignment="Center" Padding="15 0 0 0"></Label>
                 <Slider Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500"
-                         Minimum="18" Maximum="26" Value="18" AutoToolTipPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
+                         Minimum="18" Maximum="26" Value="{Binding TempSlider}" AutoToolTipPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
                 <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
                     <StackPanel Orientation="Vertical" Margin="10">
                         <Grid Width="150">
@@ -168,7 +168,7 @@
                 <Label Grid.Row="1" Grid.Column="0" Content="Helyiségek és beállításaik" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
                    VerticalAlignment="Center" Padding="15 0 0 0"></Label>
                 <Slider Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500"
-                         Minimum="16" Maximum="24" Value="20" AutoToolTipPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
+                         Minimum="16" Maximum="24" Value="{Binding ClimateSlider}" AutoToolTipPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True"></Slider>
                 <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Width="500">
                     <Grid>
                         <Grid.ColumnDefinitions>
