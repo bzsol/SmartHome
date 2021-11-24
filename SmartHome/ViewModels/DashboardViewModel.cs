@@ -1,5 +1,6 @@
 ﻿using Common.Class;
 using Common.Model;
+using Common.Tool;
 using Prism.Commands;
 using SmartHome.DataProvider;
 using System;
@@ -21,6 +22,7 @@ namespace SmartHome.ViewModels
     {
         public int time = 0;
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        string temp;
         public DelegateCommand<Button> ChangeToSimulation { get; set; }
         public DelegateCommand<Button> ChangeToConfiguration { get; set; }
 
@@ -47,6 +49,15 @@ namespace SmartHome.ViewModels
                 NotifyChange(nameof(TimeChange));
             }
         }
+        private string _tempchange;
+        public string TempChange {
+            get => _tempchange;
+            set {
+                _tempchange = value;
+                NotifyChange(nameof(TempChange));
+            }
+            
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -68,7 +79,8 @@ namespace SmartHome.ViewModels
                     new Lights(), new Lights(), new Lights(), new Irrigative(), new Irrigative(), new Shading(), new Shading(), new Shading(), new Shading(), new Shading(), new Shading(), new Shading(), new Shading(), new Shading(), new Shading(), new Shading()));
             }
             dispatcherTimer.Tick += dispatcherTimer_Tick;
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 300);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            TimeChange = "Start/Stop";
         }
 
 
@@ -81,12 +93,15 @@ namespace SmartHome.ViewModels
             else {
                 time = 0;
             }
+            if (time % 3600 == 0 || time == 60) {
+                temp = TemperatureDataProvider.GenerateTemp(time / 3600).ToString("N2");
+            }
+            TempChange = $"{temp}°C";
             TimeChange = SecToMilitaryTime(time);
         }
 
         private string SecToMilitaryTime(int seconds) {
-            TimeSpan time = TimeSpan.FromSeconds(seconds);
-            return time.ToString(@"hh\:mm\:ss");
+            return TimeSpan.FromSeconds(seconds).ToString(@"hh\:mm\:ss");
         }
 
         private void Reset(Button btn) {

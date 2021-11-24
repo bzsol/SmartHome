@@ -260,6 +260,7 @@ namespace SmartHome.ViewModels
 
         private void DataUpload(int motionTimeSpan)
         {
+
             ExternalFactors external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
             Lights lights = new Lights();
             lights.motionDetection = _isMotionDetectionEnabled;

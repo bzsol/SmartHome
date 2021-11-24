@@ -63,9 +63,9 @@
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Style="{StaticResource MainButtonStyle}" Height="Auto" Width="Auto" Command="{Binding StopTime}">
+                        <Button Grid.Column="0" Style="{StaticResource MainButtonStyle}" Height="Auto" Width="Auto">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Start/Stop" VerticalAlignment="Center" FontSize="24"></TextBlock>
+                                <TextBlock Text="{Binding TempChange}" VerticalAlignment="Center" FontSize="24"></TextBlock>
                             </StackPanel>
                         </Button>
                         <Button Grid.Column="1" Style="{StaticResource MainButtonStyle}" Height="Auto" Width="Auto" Command="{Binding ResetTime}">
@@ -78,7 +78,7 @@
                 </Grid>
             </Grid>
         </Grid>
-        
+
         <ContentControl Grid.Row="1" Content="{Binding UserControlViewModel}"></ContentControl>
     </Grid>
 </Window>
