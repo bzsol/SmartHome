@@ -105,27 +105,33 @@ namespace SmartHome.ViewModels
         }
 
         private int _lightStrenght;
-        public int SliderValue {
+        public int SliderValue
+        {
 
             get => _lightStrenght;
-            set {
+            set
+            {
                 _lightStrenght = value;
                 NotifyChange(nameof(SliderValue));
             }
-        
+
         }
         private bool _isColorcold;
-        public bool isColorCold {
+        public bool isColorCold
+        {
             get => _isColorcold;
-            set {
+            set
+            {
                 _isColorcold = value;
                 NotifyChange(nameof(isColorCold));
             }
         }
         private bool _isColorwarm;
-        public bool isColorWarm {
+        public bool isColorWarm
+        {
             get => _isColorwarm;
-            set {
+            set
+            {
                 _isColorwarm = value;
                 NotifyChange(nameof(isColorWarm));
             }
@@ -232,7 +238,7 @@ namespace SmartHome.ViewModels
 
         private void ChangeTextValue(string text, bool increase)
         {
-            bool value =  int.TryParse(text, out int number);
+            bool value = int.TryParse(text, out int number);
 
             if (value && increase && number < 10)
             {
@@ -252,24 +258,18 @@ namespace SmartHome.ViewModels
             }
         }
 
-        private void DataUpload()
+        private void DataUpload(int motionTimeSpan)
         {
             ExternalFactors external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
             Lights lights = new Lights();
             lights.motionDetection = _isMotionDetectionEnabled;
             lights.strenght = _lightStrenght;
             lights.color = isColorCold ? ExternalFactors.LightColor.cold : ExternalFactors.LightColor.warm;
-            if (IsMotionDetectionEnabled)
-            {
-                lights.activeSpan = int.Parse(_motionTimeTextBox);
-            }
-            else
-            {
-                lights.activeSpan = 0;
-            }
+            lights.activeSpan = motionTimeSpan;
+
             if (_insideCheckState)
             {
-                switch(SelectedPlace)
+                switch (SelectedPlace)
                 {
                     case "Előszoba":
                         {
@@ -320,7 +320,7 @@ namespace SmartHome.ViewModels
             }
             else if (_outsideCheckState)
             {
-                switch(SelectedPlace)
+                switch (SelectedPlace)
                 {
                     case "Kapubejáró":
                         {
@@ -358,8 +358,21 @@ namespace SmartHome.ViewModels
 
         private void OnSaveSettings(Button btn)
         {
-            MessageBox.Show(_lightStrenght.ToString());
-            DataUpload();
+            int motionTimeSpan = 0;
+
+            if (IsMotionDetectionEnabled)
+            {
+                if (!(int.TryParse(MotionTimeTextBox, out int value) && value <= 10 && value >= 1))
+                {
+                    MessageBox.Show("A mozgásérzékelésnél megadott időtartamnak 1 és 10 perc közé kell esnie!");
+                }
+                else
+                {
+                    motionTimeSpan = value;
+                }
+            }
+
+            DataUpload(motionTimeSpan);
         }
 
         private void OnLocationChanged(RadioButton rbtn)
