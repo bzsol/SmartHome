@@ -21,6 +21,8 @@ namespace SmartHome.ViewModels
         public DelegateCommand<RadioButton> LocationChanged { get; set; }
         public DelegateCommand<ToggleButton> MotionStateChanged { get; set; }
 
+        private ExternalFactors _actualExternalFactors;
+
         public List<string> InsidePlaces { get; set; }
         public List<string> OutsidePlaces { get; set; }
 
@@ -43,6 +45,7 @@ namespace SmartHome.ViewModels
             {
                 _selectedPlace = value;
                 NotifyChange(nameof(SelectedPlace));
+                GetActualLightData(SelectedPlace);
             }
         }
 
@@ -100,39 +103,35 @@ namespace SmartHome.ViewModels
                 NotifyChange(nameof(MotionTimeTextBox));
             }
         }
-        bool first = true;
-        private int _lightStrenght;
-        public int SliderValue {
 
-            get {
-                if (first)
-                {
-                    first = false;
-                    return _lightStrenght = 50;
-                   
-                }
-                else {
-                   return _lightStrenght;
-                }
-            }
-            set {
+        private int _lightStrenght;
+        public int SliderValue
+        {
+
+            get => _lightStrenght;
+            set
+            {
                 _lightStrenght = value;
                 NotifyChange(nameof(SliderValue));
             }
-        
+
         }
         private bool _isColorcold;
-        public bool isColorCold {
+        public bool isColorCold
+        {
             get => _isColorcold;
-            set {
+            set
+            {
                 _isColorcold = value;
                 NotifyChange(nameof(isColorCold));
             }
         }
         private bool _isColorwarm;
-        public bool isColorWarm {
+        public bool isColorWarm
+        {
             get => _isColorwarm;
-            set {
+            set
+            {
                 _isColorwarm = value;
                 NotifyChange(nameof(isColorWarm));
             }
@@ -165,18 +164,81 @@ namespace SmartHome.ViewModels
 
             OutsidePlaces = new()
             {
-                "Bejárat",
                 "Kapubejáró",
                 "Garázs",
                 "Kert"
             };
-            
+
+            _actualExternalFactors = ExtFactDataProvider.Get().ToList()[0];
+            InitializeView();
         }
-        
+
+        private void InitializeView()
+        {
+            InsideCheckState = true;
+            Places = InsidePlaces;
+            SelectedPlace = InsidePlaces[0];
+
+            GetActualLightData(SelectedPlace);
+        }
+
+
+        private void GetActualLightData(string Selected)
+        {
+            Lights selectedLight;
+
+            switch (Selected)
+            {
+                case "Előszoba":
+                    selectedLight = _actualExternalFactors.entryLights;
+                    break;
+                case "Nappali":
+                    selectedLight = _actualExternalFactors.livingroomLights;
+                    break;
+                case "Konyha":
+                    selectedLight = _actualExternalFactors.kitchenLights;
+                    break;
+                case "Fürdőszoba":
+                    selectedLight = _actualExternalFactors.bathLights;
+                    break;
+                case "Iroda":
+                    selectedLight = _actualExternalFactors.officeLights;
+                    break;
+                case "Étkező":
+                    selectedLight = _actualExternalFactors.diningLights;
+                    break;
+                case "Szoba #1":
+                    selectedLight = _actualExternalFactors.roomno1Lights;
+                    break;
+                case "Szoba #2":
+                    selectedLight = _actualExternalFactors.roomno2Lights;
+                    break;
+                case "Szoba #3":
+                    selectedLight = _actualExternalFactors.roomno3Lights;
+                    break;
+                case "Kapubejáró":
+                    selectedLight = _actualExternalFactors.gateEntranceLights;
+                    break;
+                case "Garázs":
+                    selectedLight = _actualExternalFactors.garageLights;
+                    break;
+                default:
+                    selectedLight = _actualExternalFactors.gardenLights;
+                    break;
+            }
+
+            MotionEnabledVisibility = selectedLight.motionDetection ? Visibility.Visible : Visibility.Hidden;
+            IsMotionDetectionEnabled = selectedLight.motionDetection ? true : false;
+            MotionTimeTextBox = selectedLight.motionDetection ? selectedLight.activeSpan.ToString() : string.Empty;
+            SliderValue = selectedLight.strenght;
+            isColorWarm = selectedLight.color == 0 ? true : false;
+            isColorCold = !isColorWarm;
+        }
+
 
         private void ChangeTextValue(string text, bool increase)
         {
-            bool value =  int.TryParse(text, out int number);
+            bool value = int.TryParse(text, out int number);
 
             if (value && increase && number < 10)
             {
@@ -196,24 +258,18 @@ namespace SmartHome.ViewModels
             }
         }
 
-        private void DataUpload()
+        private void DataUpload(int motionTimeSpan)
         {
             ExternalFactors external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
             Lights lights = new Lights();
             lights.motionDetection = _isMotionDetectionEnabled;
             lights.strenght = _lightStrenght;
             lights.color = isColorCold ? ExternalFactors.LightColor.cold : ExternalFactors.LightColor.warm;
-            if (IsMotionDetectionEnabled)
-            {
-                lights.activeSpan = int.Parse(_motionTimeTextBox);
-            }
-            else
-            {
-                lights.activeSpan = 0;
-            }
+            lights.activeSpan = motionTimeSpan;
+
             if (_insideCheckState)
             {
-                switch(SelectedPlace)
+                switch (SelectedPlace)
                 {
                     case "Előszoba":
                         {
@@ -242,7 +298,7 @@ namespace SmartHome.ViewModels
                         }
                     case "Étkező":
                         {
-                            external.terraceLights = lights;
+                            external.diningLights = lights;
                             break;
                         }
                     case "Szoba #1":
@@ -264,13 +320,8 @@ namespace SmartHome.ViewModels
             }
             else if (_outsideCheckState)
             {
-                switch(SelectedPlace)
+                switch (SelectedPlace)
                 {
-                    case "Bejárat":
-                        {
-                            external.gatewayLights = lights;
-                            break;
-                        }
                     case "Kapubejáró":
                         {
                             external.gateEntranceLights = lights;
@@ -290,10 +341,8 @@ namespace SmartHome.ViewModels
 
             }
 
-            
-
             ExtFactDataProvider.Update(external);
-
+            _actualExternalFactors = ExtFactDataProvider.Get().ToList()[0];
         }
 
 
@@ -309,8 +358,21 @@ namespace SmartHome.ViewModels
 
         private void OnSaveSettings(Button btn)
         {
-            MessageBox.Show(_lightStrenght.ToString());
-            DataUpload();
+            int motionTimeSpan = 0;
+
+            if (IsMotionDetectionEnabled)
+            {
+                if (!(int.TryParse(MotionTimeTextBox, out int value) && value <= 10 && value >= 1))
+                {
+                    MessageBox.Show("A mozgásérzékelésnél megadott időtartamnak 1 és 10 perc közé kell esnie!");
+                }
+                else
+                {
+                    motionTimeSpan = value;
+                }
+            }
+
+            DataUpload(motionTimeSpan);
         }
 
         private void OnLocationChanged(RadioButton rbtn)
