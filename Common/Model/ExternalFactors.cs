@@ -13,7 +13,7 @@ namespace Common.Model
 
     public class ExternalFactors
     {
-        public ExternalFactors(List<Electronics> electronicEvents, Climate entryClimate, Climate livingroomClimate, Climate kitchenClimate, Climate officeClimate, Climate bathClimate, Climate terraceClimate, Climate roomno1Climate, Climate roomno2Climate, Climate roomno3Climate, Lights entryLights, Lights livingroomLights, Lights kitchenLights, Lights officeLights, Lights bathLights, Lights terraceLights, Lights roomno1Lights, Lights roomno2Lights, Lights roomno3Lights, Lights gatewayLights, Lights gardenLights, Lights garageLights, Lights gateEntranceLights, Irrigative garden, Irrigative frontGarden, Shading entryShading, Shading livingroomShading, Shading kitchenShading, Shading officeShading, Shading bathShading, Shading roomno1Shading, Shading roomno2Shading, Shading roomno3Shading,Shading livingroomPanorama,Shading bathleftWindow,Shading terraceShading)
+        public ExternalFactors(List<Electronics> electronicEvents, Climate entryClimate, Climate livingroomClimate, Climate kitchenClimate, Climate officeClimate, Climate bathClimate, Climate terraceClimate, Climate roomno1Climate, Climate roomno2Climate, Climate roomno3Climate, Lights entryLights, Lights livingroomLights, Lights kitchenLights, Lights officeLights, Lights bathLights, Lights diningLights, Lights roomno1Lights, Lights roomno2Lights, Lights roomno3Lights, Lights gardenLights, Lights garageLights, Lights gateEntranceLights, Irrigative garden, Irrigative frontGarden, Shading entryShading, Shading livingroomShading, Shading kitchenShading, Shading officeShading, Shading bathShading, Shading roomno1Shading, Shading roomno2Shading, Shading roomno3Shading,Shading livingroomPanorama,Shading bathleftWindow,Shading terraceShading)
         {
             ElectronicEvents = electronicEvents;
             this.entryClimate = entryClimate;
@@ -30,11 +30,10 @@ namespace Common.Model
             this.kitchenLights = kitchenLights;
             this.officeLights = officeLights;
             this.bathLights = bathLights;
-            this.terraceLights = terraceLights;
+            this.diningLights = diningLights;
             this.roomno1Lights = roomno1Lights;
             this.roomno2Lights = roomno2Lights;
             this.roomno3Lights = roomno3Lights;
-            this.gatewayLights = gatewayLights;
             this.gardenLights = gardenLights;
             this.garageLights = garageLights;
             this.gateEntranceLights = gateEntranceLights;
@@ -112,12 +111,10 @@ namespace Common.Model
         public Lights kitchenLights { get; set; }
         public Lights officeLights { get; set; }
         public Lights bathLights { get; set; }
-        public Lights terraceLights { get; set; }
+        public Lights diningLights { get; set; }
         public Lights roomno1Lights { get; set; }
         public Lights roomno2Lights { get; set; }
         public Lights roomno3Lights { get; set; }
-
-        public Lights gatewayLights { get; set; }
         public Lights gardenLights { get; set; }
         public Lights garageLights { get; set; }
         public Lights gateEntranceLights { get; set; }
