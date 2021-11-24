@@ -21,6 +21,8 @@ namespace SmartHome.ViewModels
         public DelegateCommand<RadioButton> LocationChanged { get; set; }
         public DelegateCommand<ToggleButton> MotionStateChanged { get; set; }
 
+        private ExternalFactors _actualExternalFactors;
+
         public List<string> InsidePlaces { get; set; }
         public List<string> OutsidePlaces { get; set; }
 
@@ -43,6 +45,7 @@ namespace SmartHome.ViewModels
             {
                 _selectedPlace = value;
                 NotifyChange(nameof(SelectedPlace));
+                GetActualLightData(SelectedPlace);
             }
         }
 
@@ -100,21 +103,11 @@ namespace SmartHome.ViewModels
                 NotifyChange(nameof(MotionTimeTextBox));
             }
         }
-        bool first = true;
+
         private int _lightStrenght;
         public int SliderValue {
 
-            get {
-                if (first)
-                {
-                    first = false;
-                    return _lightStrenght = 50;
-                   
-                }
-                else {
-                   return _lightStrenght;
-                }
-            }
+            get => _lightStrenght;
             set {
                 _lightStrenght = value;
                 NotifyChange(nameof(SliderValue));
@@ -165,14 +158,77 @@ namespace SmartHome.ViewModels
 
             OutsidePlaces = new()
             {
-                "Bejárat",
                 "Kapubejáró",
                 "Garázs",
                 "Kert"
             };
-            
+
+            _actualExternalFactors = ExtFactDataProvider.Get().ToList()[0];
+            InitializeView();
         }
-        
+
+        private void InitializeView()
+        {
+            InsideCheckState = true;
+            Places = InsidePlaces;
+            SelectedPlace = InsidePlaces[0];
+
+            GetActualLightData(SelectedPlace);
+        }
+
+
+        private void GetActualLightData(string Selected)
+        {
+            Lights selectedLight;
+
+            switch (Selected)
+            {
+                case "Előszoba":
+                    selectedLight = _actualExternalFactors.entryLights;
+                    break;
+                case "Nappali":
+                    selectedLight = _actualExternalFactors.livingroomLights;
+                    break;
+                case "Konyha":
+                    selectedLight = _actualExternalFactors.kitchenLights;
+                    break;
+                case "Fürdőszoba":
+                    selectedLight = _actualExternalFactors.bathLights;
+                    break;
+                case "Iroda":
+                    selectedLight = _actualExternalFactors.officeLights;
+                    break;
+                case "Étkező":
+                    selectedLight = _actualExternalFactors.diningLights;
+                    break;
+                case "Szoba #1":
+                    selectedLight = _actualExternalFactors.roomno1Lights;
+                    break;
+                case "Szoba #2":
+                    selectedLight = _actualExternalFactors.roomno2Lights;
+                    break;
+                case "Szoba #3":
+                    selectedLight = _actualExternalFactors.roomno3Lights;
+                    break;
+                case "Kapubejáró":
+                    selectedLight = _actualExternalFactors.gateEntranceLights;
+                    break;
+                case "Garázs":
+                    selectedLight = _actualExternalFactors.garageLights;
+                    break;
+                default:
+                    selectedLight = _actualExternalFactors.gardenLights;
+                    break;
+            }
+
+            MotionEnabledVisibility = selectedLight.motionDetection ? Visibility.Visible : Visibility.Hidden;
+            IsMotionDetectionEnabled = selectedLight.motionDetection ? true : false;
+            MotionTimeTextBox = selectedLight.motionDetection ? selectedLight.activeSpan.ToString() : string.Empty;
+            SliderValue = selectedLight.strenght;
+            isColorWarm = selectedLight.color == 0 ? true : false;
+            isColorCold = !isColorWarm;
+        }
+
 
         private void ChangeTextValue(string text, bool increase)
         {
@@ -242,7 +298,7 @@ namespace SmartHome.ViewModels
                         }
                     case "Étkező":
                         {
-                            external.terraceLights = lights;
+                            external.diningLights = lights;
                             break;
                         }
                     case "Szoba #1":
@@ -266,11 +322,6 @@ namespace SmartHome.ViewModels
             {
                 switch(SelectedPlace)
                 {
-                    case "Bejárat":
-                        {
-                            external.gatewayLights = lights;
-                            break;
-                        }
                     case "Kapubejáró":
                         {
                             external.gateEntranceLights = lights;
@@ -290,10 +341,8 @@ namespace SmartHome.ViewModels
 
             }
 
-            
-
             ExtFactDataProvider.Update(external);
-
+            _actualExternalFactors = ExtFactDataProvider.Get().ToList()[0];
         }
 
 
