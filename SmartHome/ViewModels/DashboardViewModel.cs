@@ -23,6 +23,8 @@ namespace SmartHome.ViewModels
         public int time = 0;
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         string temp;
+        string insidetemp = "20";
+        string light;
         public DelegateCommand<Button> ChangeToSimulation { get; set; }
         public DelegateCommand<Button> ChangeToConfiguration { get; set; }
 
@@ -58,6 +60,17 @@ namespace SmartHome.ViewModels
             }
             
         }
+        private string _insidetemp;
+        public string InsideTemp
+        {
+            get => _insidetemp;
+            set
+            {
+                _insidetemp = value;
+                NotifyChange(nameof(InsideTemp));
+            }
+
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -81,6 +94,7 @@ namespace SmartHome.ViewModels
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             TimeChange = "Start/Stop";
+            insidetemp = "20";
         }
 
 
@@ -95,8 +109,10 @@ namespace SmartHome.ViewModels
             }
             if (time % 3600 == 0 || time == 60) {
                 temp = TemperatureDataProvider.GenerateTemp(time / 3600).ToString("N2");
+                insidetemp = TemperatureDataProvider.CalculateInsideTemp(double.Parse(insidetemp), double.Parse(temp),23).ToString("N2");
             }
             TempChange = $"{temp}°C";
+            InsideTemp = $"{insidetemp}°C";
             TimeChange = SecToMilitaryTime(time);
         }
 
