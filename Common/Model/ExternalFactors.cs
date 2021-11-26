@@ -87,7 +87,7 @@ namespace Common.Model
 
         public int Cooling { get; set; }
 
-        public enum Modes { swing, sleep, silent, turbo };
+        public enum Modes { NORMAL, SWING, TURBO, SILENT, SLEEP };
 
         // Helységek
         public Climate entryClimate { get; set; }

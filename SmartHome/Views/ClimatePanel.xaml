@@ -105,7 +105,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0" Content="Étkező" FontFamily="{StaticResource Roboto}" FontSize="16" Foreground="#FFFFFF"></Label>
-                            <ToggleButton Grid.Column="1" IsChecked="{Binding isCheckedTerraceRoomHeating}"></ToggleButton>
+                            <ToggleButton Grid.Column="1" IsChecked="{Binding isCheckedDiningRoomHeating}"></ToggleButton>
                         </Grid>
                     </StackPanel>
 

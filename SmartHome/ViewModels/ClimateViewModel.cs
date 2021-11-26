@@ -26,18 +26,22 @@ namespace SmartHome.ViewModels
         public List<int> CoolerLevel { get; private set; }
 
         private bool _isCheckedEntryRoomHeating;
-        public bool isCheckedEntryRoomHeating {
+        public bool isCheckedEntryRoomHeating
+        {
             get => _isCheckedEntryRoomHeating;
-            set {
+            set
+            {
                 _isCheckedEntryRoomHeating = value;
                 NotifyChange(nameof(isCheckedEntryRoomHeating));
             }
         }
 
         private bool _isCheckedLivingRoomHeating;
-        public bool isCheckedLivingRoomHeating {
+        public bool isCheckedLivingRoomHeating
+        {
             get => _isCheckedLivingRoomHeating;
-            set {
+            set
+            {
                 _isCheckedLivingRoomHeating = value;
                 NotifyChange(nameof(isCheckedLivingRoomHeating));
             }
@@ -81,7 +85,8 @@ namespace SmartHome.ViewModels
         }
 
         private bool _isCheckedRoom1Heating;
-        public bool isCheckedRoom1Heating {
+        public bool isCheckedRoom1Heating
+        {
             get => _isCheckedRoom1Heating;
             set
             {
@@ -113,9 +118,11 @@ namespace SmartHome.ViewModels
 
         }
         private bool _isCheckedBathRoomHeating;
-        public bool isCheckedBathRoomHeating {
+        public bool isCheckedBathRoomHeating
+        {
             get => _isCheckedBathRoomHeating;
-            set {
+            set
+            {
                 _isCheckedBathRoomHeating = value;
                 NotifyChange(nameof(isCheckedBathRoomHeating));
             }
@@ -124,34 +131,42 @@ namespace SmartHome.ViewModels
         }
 
         private bool _isHumidityCheckEnabled;
-        public bool isHumidityCheckEnabled {
+        public bool isHumidityCheckEnabled
+        {
             get => _isHumidityCheckEnabled;
-            set {
+            set
+            {
                 _isHumidityCheckEnabled = value;
                 NotifyChange(nameof(isHumidityCheckEnabled));
             }
         }
         private bool _isCO2Enabled;
-        public bool isCO2Enabled {
+        public bool isCO2Enabled
+        {
             get => _isCO2Enabled;
-            set {
+            set
+            {
                 _isCO2Enabled = value;
                 NotifyChange(nameof(isCO2Enabled));
             }
         }
         private bool _isVentilationChecked;
-        public bool isVentilationChecked {
+        public bool isVentilationChecked
+        {
             get => _isVentilationChecked;
-            set {
+            set
+            {
                 _isVentilationChecked = value;
                 NotifyChange(nameof(isVentilationChecked));
             }
 
         }
         private bool _isDehumuditification;
-        public bool isDehumuditification {
+        public bool isDehumuditification
+        {
             get => _isDehumuditification;
-            set {
+            set
+            {
                 _isDehumuditification = value;
                 NotifyChange(nameof(isDehumuditification));
             }
@@ -379,9 +394,11 @@ namespace SmartHome.ViewModels
             }
         }
         private int _tempSlider;
-        public int TempSlider {
+        public int TempSlider
+        {
             get => _tempSlider;
-            set {
+            set
+            {
                 _tempSlider = value;
                 NotifyChange(nameof(TempSlider));
             }
@@ -389,9 +406,11 @@ namespace SmartHome.ViewModels
         }
 
         private int _climateSlider;
-        public int ClimateSlider {
+        public int ClimateSlider
+        {
             get => _climateSlider;
-            set {
+            set
+            {
                 _climateSlider = value;
                 NotifyChange(nameof(ClimateSlider));
             }
@@ -446,31 +465,27 @@ namespace SmartHome.ViewModels
             FourthEntryCheckState = _actualExternalFactors.roomno2Climate.IsCoolingEnabled;
             FifthEntryCheckState = _actualExternalFactors.roomno3Climate.IsCoolingEnabled;
 
-            if (FirstEntryCheckState)
-            {
-                FirstSelectedLevel = _actualExternalFactors.livingroomClimate.Level;
-                FirstSelectedOption = CoolerOptions[(int)_actualExternalFactors.livingroomClimate.Mode];
-            }
-            if (SecondEntryCheckState)
-            {
-                SecondSelectedLevel = _actualExternalFactors.officeClimate.Level;
-                SecondSelectedOption = CoolerOptions[(int)_actualExternalFactors.officeClimate.Mode];
-            }
-            if (ThirdEntryCheckState)
-            {
-                ThirdSelectedLevel = _actualExternalFactors.roomno1Climate.Level;
-                ThirdSelectedOption = CoolerOptions[(int)_actualExternalFactors.roomno1Climate.Mode];
-            }
-            if (FourthEntryCheckState)
-            {
-                FourthSelectedLevel = _actualExternalFactors.roomno2Climate.Level;
-                FourthSelectedOption = CoolerOptions[(int)_actualExternalFactors.roomno2Climate.Mode];
-            }
-            if (FifthEntryCheckState)
-            {
-                FifthSelectedLevel = _actualExternalFactors.roomno3Climate.Level;
-                FifthSelectedOption = CoolerOptions[(int)_actualExternalFactors.roomno3Climate.Mode];
-            }
+            FirstEntryVisibility = FirstEntryCheckState ? Visibility.Visible : Visibility.Hidden;
+            SecondEntryVisibility = SecondEntryCheckState ? Visibility.Visible : Visibility.Hidden;
+            ThirdEntryVisibility = ThirdEntryCheckState ? Visibility.Visible : Visibility.Hidden;
+            FourthEntryVisibility = FourthEntryCheckState ? Visibility.Visible : Visibility.Hidden;
+            FifthEntryVisibility = FifthEntryCheckState ? Visibility.Visible : Visibility.Hidden;
+
+            FirstSelectedLevel = _actualExternalFactors.livingroomClimate.Level == 0 ? 1 : _actualExternalFactors.livingroomClimate.Level;
+            FirstSelectedOption = CoolerOptions[(int)_actualExternalFactors.livingroomClimate.Mode];
+
+            SecondSelectedLevel = _actualExternalFactors.officeClimate.Level == 0 ? 1 : _actualExternalFactors.officeClimate.Level;
+            SecondSelectedOption = CoolerOptions[(int)_actualExternalFactors.officeClimate.Mode];
+
+            ThirdSelectedLevel = _actualExternalFactors.roomno1Climate.Level == 0 ? 1 : _actualExternalFactors.roomno1Climate.Level;
+            ThirdSelectedOption = CoolerOptions[(int)_actualExternalFactors.roomno1Climate.Mode];
+
+            FourthSelectedLevel = _actualExternalFactors.roomno2Climate.Level == 0 ? 1 : _actualExternalFactors.roomno2Climate.Level;
+            FourthSelectedOption = CoolerOptions[(int)_actualExternalFactors.roomno2Climate.Mode];
+
+            FifthSelectedLevel = _actualExternalFactors.roomno3Climate.Level == 0 ? 1 : _actualExternalFactors.roomno3Climate.Level;
+            FifthSelectedOption = CoolerOptions[(int)_actualExternalFactors.roomno3Climate.Mode];
+
 
             isHumidityCheckEnabled = _actualExternalFactors.isHumiditysample;
             isCO2Enabled = _actualExternalFactors.isCO2sample;
@@ -480,11 +495,6 @@ namespace SmartHome.ViewModels
 
         public void OnSaveSettings(Button btn)
         {
-            MessageBox.Show($"{_firstSelectedOption} : {_firstSelectedLevel}\n" +
-                $"{_secondSelectedOption} : {_secondSelectedLevel}\n" +
-                $"{ _thirdSelectedOption} : { _thirdSelectedLevel}\n" +
-                $"{ _fourthSelectedOption} : { _fourthSelectedLevel}\n" +
-                $"{ _fifthSelectedOption} : { _fifthSelectedLevel}");
             UploadData();
         }
 
@@ -535,31 +545,25 @@ namespace SmartHome.ViewModels
                 _actualExternalFactors.Cooling = ClimateSlider;
                 _actualExternalFactors.Heating = TempSlider;
 
-                if (FirstEntryCheckState)
-                {
-                    _actualExternalFactors.livingroomClimate.Level = FirstSelectedLevel;
-                    _actualExternalFactors.livingroomClimate.Mode = StringToMode(_firstSelectedOption);
-                }
-                if (SecondEntryCheckState)
-                {
-                    _actualExternalFactors.officeClimate.Level = SecondSelectedLevel;
-                    _actualExternalFactors.officeClimate.Mode = StringToMode(_secondSelectedOption);
-                }
-                if (ThirdEntryCheckState)
-                {
-                    _actualExternalFactors.roomno1Climate.Level = ThirdSelectedLevel;
-                    _actualExternalFactors.roomno1Climate.Mode = StringToMode(_thirdSelectedOption);
-                }
-                if (FourthEntryCheckState)
-                {
-                    _actualExternalFactors.roomno2Climate.Level = FourthSelectedLevel;
-                    _actualExternalFactors.roomno2Climate.Mode = StringToMode(_fourthSelectedOption);
-                }
-                if (FifthEntryCheckState)
-                {
-                    _actualExternalFactors.roomno3Climate.Level = FifthSelectedLevel;
-                    _actualExternalFactors.roomno3Climate.Mode = StringToMode(_fifthSelectedOption);
-                }
+                _actualExternalFactors.livingroomClimate.IsCoolingEnabled = FirstEntryCheckState;
+                _actualExternalFactors.livingroomClimate.Level = FirstSelectedLevel;
+                _actualExternalFactors.livingroomClimate.Mode = StringToMode(_firstSelectedOption);
+
+                _actualExternalFactors.officeClimate.IsCoolingEnabled = SecondEntryCheckState;
+                _actualExternalFactors.officeClimate.Level = SecondSelectedLevel;
+                _actualExternalFactors.officeClimate.Mode = StringToMode(_secondSelectedOption);
+
+                _actualExternalFactors.roomno1Climate.IsCoolingEnabled = ThirdEntryCheckState;
+                _actualExternalFactors.roomno1Climate.Level = ThirdSelectedLevel;
+                _actualExternalFactors.roomno1Climate.Mode = StringToMode(_thirdSelectedOption);
+
+                _actualExternalFactors.roomno2Climate.IsCoolingEnabled = FourthEntryCheckState;
+                _actualExternalFactors.roomno2Climate.Level = FourthSelectedLevel;
+                _actualExternalFactors.roomno2Climate.Mode = StringToMode(_fourthSelectedOption);
+
+                _actualExternalFactors.roomno3Climate.IsCoolingEnabled = FifthEntryCheckState;
+                _actualExternalFactors.roomno3Climate.Level = FifthSelectedLevel;
+                _actualExternalFactors.roomno3Climate.Mode = StringToMode(_fifthSelectedOption);
 
                 ExtFactDataProvider.Update(_actualExternalFactors);
             }
@@ -576,14 +580,15 @@ namespace SmartHome.ViewModels
             return FirstEntryCheckState || SecondEntryCheckState || ThirdEntryCheckState || FourthEntryCheckState || FifthEntryCheckState;
         }
 
-        private Modes StringToMode(string option) {
-            switch (option) 
+        private Modes StringToMode(string option)
+        {
+            switch (option)
             {
-                case "1": return Modes.sleep;
-                case "2": return Modes.silent;
-                case "3": return Modes.turbo;
-                case "0": return Modes.swing;
-                default: return Modes.silent;
+                case "NORMAL": return Modes.NORMAL;
+                case "SWING": return Modes.SWING;
+                case "TURBO": return Modes.TURBO;
+                case "SILENT": return Modes.SILENT;
+                default: return Modes.SLEEP;
             }
         }
     }

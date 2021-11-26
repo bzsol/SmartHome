@@ -260,92 +260,63 @@ namespace SmartHome.ViewModels
 
         private void DataUpload(int motionTimeSpan)
         {
-
-            ExternalFactors external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
             Lights lights = new Lights();
             lights.motionDetection = _isMotionDetectionEnabled;
             lights.strenght = _lightStrenght;
             lights.color = isColorCold ? ExternalFactors.LightColor.cold : ExternalFactors.LightColor.warm;
             lights.activeSpan = motionTimeSpan;
 
-            if (_insideCheckState)
+            if (InsideCheckState)
             {
                 switch (SelectedPlace)
                 {
                     case "Előszoba":
-                        {
-                            external.entryLights = lights;
-                            break;
-                        }
+                        _actualExternalFactors.entryLights = lights;
+                        break;
                     case "Nappali":
-                        {
-                            external.livingroomLights = lights;
-                            break;
-                        }
+                        _actualExternalFactors.livingroomLights = lights;
+                        break;
                     case "Konyha":
-                        {
-                            external.kitchenLights = lights;
-                            break;
-                        }
+                        _actualExternalFactors.kitchenLights = lights;
+                        break;
                     case "Fürdőszoba":
-                        {
-                            external.bathLights = lights;
-                            break;
-                        }
+                        _actualExternalFactors.bathLights = lights;
+                        break;
                     case "Iroda":
-                        {
-                            external.officeLights = lights;
-                            break;
-                        }
+                        _actualExternalFactors.officeLights = lights;
+                        break;
                     case "Étkező":
-                        {
-                            external.diningLights = lights;
-                            break;
-                        }
+                        _actualExternalFactors.diningLights = lights;
+                        break;
                     case "Szoba #1":
-                        {
-                            external.roomno1Lights = lights;
-                            break;
-                        }
+                        _actualExternalFactors.roomno1Lights = lights;
+                        break;
                     case "Szoba #2":
-                        {
-                            external.roomno2Lights = lights;
-                            break;
-                        }
+                        _actualExternalFactors.roomno2Lights = lights;
+                        break;
                     case "Szoba #3":
-                        {
-                            external.roomno3Lights = lights;
-                            break;
-                        }
+                        _actualExternalFactors.roomno3Lights = lights;
+                        break;
                 }
             }
-            else if (_outsideCheckState)
+            else if (OutsideCheckState)
             {
                 switch (SelectedPlace)
                 {
                     case "Kapubejáró":
-                        {
-                            external.gateEntranceLights = lights;
-                            break;
-                        }
+                        _actualExternalFactors.gateEntranceLights = lights;
+                        break;
                     case "Garázs":
-                        {
-                            external.garageLights = lights;
-                            break;
-                        }
+                        _actualExternalFactors.garageLights = lights;
+                        break;
                     case "Kert":
-                        {
-                            external.gardenLights = lights;
-                            break;
-                        }
+                        _actualExternalFactors.gardenLights = lights;
+                        break;
                 }
-
             }
 
-            ExtFactDataProvider.Update(external);
-            _actualExternalFactors = ExtFactDataProvider.Get().ToList()[0];
+            ExtFactDataProvider.Update(_actualExternalFactors);
         }
-
 
         private void OnDownMinuteClicked(Button btn)
         {
