@@ -13,7 +13,7 @@ namespace Common.Tool
     {
         private const string server = "http://localhost:5000/api/extfacts";
 
-        public static IEnumerable<ExternalFactors> Get()
+        private static IEnumerable<ExternalFactors> Get()
         {
 
             using (var client = new HttpClient())
