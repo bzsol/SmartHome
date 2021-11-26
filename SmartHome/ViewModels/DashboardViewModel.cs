@@ -109,7 +109,7 @@ namespace SmartHome.ViewModels
             }
             if (time % 3600 == 0 || time == 60) {
                 temp = TemperatureDataProvider.GenerateTemp(time / 3600).ToString("N2");
-                insidetemp = TemperatureDataProvider.CalculateInsideTemp(double.Parse(insidetemp), double.Parse(temp),23).ToString("N2");
+                insidetemp = TemperatureDataProvider.CalculateInsideTemp(double.Parse(insidetemp), double.Parse(temp),23,false).ToString("N2");
             }
             TempChange = $"{temp}°C";
             InsideTemp = $"{insidetemp}°C";
