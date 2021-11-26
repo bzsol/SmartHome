@@ -9,10 +9,12 @@ namespace Common.Model
 {
     public class Climate
     {
-        public bool isHeatingEnabled { get; set; }
+        public bool IsHeatingEnabled { get; set; }
 
-        public Modes mode { get; set; }
+        public bool IsCoolingEnabled { get; set; }
 
-        public int level { get; set; }
+        public Modes Mode { get; set; }
+
+        public int Level { get; set; }
     }
 }

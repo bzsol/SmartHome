@@ -49,8 +49,7 @@ namespace Common.Model
             this.roomno3Shading = roomno3Shading;
             this.livingroomPanorama = livingroomPanorama;
             this.bathleftWindow = bathleftWindow;
-            this.terraceShading = terraceShading;
-            
+            this.terraceShading = terraceShading;    
         }
 
         [Key]
@@ -84,9 +83,9 @@ namespace Common.Model
         public bool isVentilation { get; set; }
         // AC
 
-        public double Heating { get; set; }
+        public int Heating { get; set; }
 
-        public double Cooling { get; set; }
+        public int Cooling { get; set; }
 
         public enum Modes { swing, sleep, silent, turbo };
 

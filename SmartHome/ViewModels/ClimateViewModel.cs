@@ -23,6 +23,8 @@ namespace SmartHome.ViewModels
 
         public DelegateCommand<ComboBox> OnSelected { get; set; }
 
+        private ExternalFactors _actualExternalFactors;
+
         public List<string> CoolerOptions { get; private set; }
 
         public List<int> CoolerLevel { get; private set; }
@@ -380,21 +382,21 @@ namespace SmartHome.ViewModels
                 NotifyChange(nameof(FifthEntryVisibility));
             }
         }
-        private int _TempSlider;
+        private int _tempSlider;
         public int TempSlider {
-            get => _TempSlider;
+            get => _tempSlider;
             set {
-                _TempSlider = value;
+                _tempSlider = value;
                 NotifyChange(nameof(TempSlider));
             }
 
         }
 
-        private int _ClimateSlider;
+        private int _climateSlider;
         public int ClimateSlider {
-            get => _ClimateSlider;
+            get => _climateSlider;
             set {
-                _ClimateSlider = value;
+                _climateSlider = value;
                 NotifyChange(nameof(ClimateSlider));
             }
         }
@@ -406,11 +408,6 @@ namespace SmartHome.ViewModels
 
         public ClimateViewModel()
         {
-            var external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
-
-            ClimateSlider = (int)external.Cooling;
-            TempSlider = (int)external.Heating;
-
             SaveSettingsCommand = new DelegateCommand<Button>(OnSaveSettings);
             EntryStateChange = new DelegateCommand<ToggleButton>(OnEntryStateChange);
             CoolerOptions = new()
@@ -429,11 +426,13 @@ namespace SmartHome.ViewModels
                 3
             };
 
-            FirstEntryVisibility = FirstEntryCheckState ? Visibility.Visible : Visibility.Collapsed;
-            SecondEntryVisibility = SecondEntryCheckState ? Visibility.Visible : Visibility.Collapsed;
-            ThirdEntryVisibility = ThirdEntryCheckState ? Visibility.Visible : Visibility.Collapsed;
-            FourthEntryVisibility = FourthEntryCheckState ? Visibility.Visible : Visibility.Collapsed;
-            FifthEntryVisibility = FifthEntryCheckState ? Visibility.Visible : Visibility.Collapsed;
+            _actualExternalFactors = ExtFactDataProvider.Get().ToList()[0];
+            InitializeView();
+        }
+
+        public void InitializeView()
+        {
+            TempSlider = _actualExternalFactors.Heating;
         }
 
         public void OnSaveSettings(Button btn)
@@ -468,47 +467,46 @@ namespace SmartHome.ViewModels
             }
         }
 
-
         private void UploadData() {
 
             var external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
-            external.entryClimate.isHeatingEnabled = _isCheckedEntryRoomHeating;
-            external.livingroomClimate.isHeatingEnabled = _isCheckedLivingRoomHeating;
-            external.kitchenClimate.isHeatingEnabled = _isCheckedKitchenRoomHeating;
-            external.officeClimate.isHeatingEnabled = _isCheckedOfficeRoomHeating;
-            external.bathClimate.isHeatingEnabled = _isCheckedBathRoomHeating;
-            external.terraceClimate.isHeatingEnabled = _isCheckedTerraceRoomHeating;
-            external.roomno1Climate.isHeatingEnabled = _isCheckedRoom1Heating;
-            external.roomno2Climate.isHeatingEnabled = _isCheckedRoom2Heating;
-            external.roomno3Climate.isHeatingEnabled = _isCheckedRoom3Heating;
+            external.entryClimate.IsHeatingEnabled = _isCheckedEntryRoomHeating;
+            external.livingroomClimate.IsHeatingEnabled = _isCheckedLivingRoomHeating;
+            external.kitchenClimate.IsHeatingEnabled = _isCheckedKitchenRoomHeating;
+            external.officeClimate.IsHeatingEnabled = _isCheckedOfficeRoomHeating;
+            external.bathClimate.IsHeatingEnabled = _isCheckedBathRoomHeating;
+            external.terraceClimate.IsHeatingEnabled = _isCheckedTerraceRoomHeating;
+            external.roomno1Climate.IsHeatingEnabled = _isCheckedRoom1Heating;
+            external.roomno2Climate.IsHeatingEnabled = _isCheckedRoom2Heating;
+            external.roomno3Climate.IsHeatingEnabled = _isCheckedRoom3Heating;
 
             external.isCO2sample = _isCO2Enabled;
             external.isDehumidification = _isDehumuditification;
             external.isHumiditysample = _isHumidityCheckEnabled;
             external.isVentilation = _isVentilationChecked;
-            external.Cooling = _ClimateSlider;
-            external.Heating = _TempSlider;
+            external.Cooling = ClimateSlider;
+            external.Heating = TempSlider;
 
 
             if (FirstEntryVisibility.Equals(Visibility.Visible) && !_isCheckedLivingRoomHeating) {
-                external.livingroomClimate.level = int.Parse(_firstSelectedLevel);
-                external.livingroomClimate.mode = StringToMode(_firstSelectedOption);
+                external.livingroomClimate.Level = int.Parse(_firstSelectedLevel);
+                external.livingroomClimate.Mode = StringToMode(_firstSelectedOption);
             }
             if (SecondEntryVisibility.Equals(Visibility.Visible) && !_isCheckedOfficeRoomHeating) {
-                external.officeClimate.level = int.Parse(_secondSelectedLevel);
-                external.officeClimate.mode = StringToMode(_secondSelectedOption);
+                external.officeClimate.Level = int.Parse(_secondSelectedLevel);
+                external.officeClimate.Mode = StringToMode(_secondSelectedOption);
             }
             if (ThirdEntryVisibility.Equals(Visibility.Visible) && !_isCheckedRoom1Heating) {
-                external.roomno1Climate.level = int.Parse(_thirdSelectedLevel);
-                external.roomno1Climate.mode = StringToMode(_thirdSelectedOption);
+                external.roomno1Climate.Level = int.Parse(_thirdSelectedLevel);
+                external.roomno1Climate.Mode = StringToMode(_thirdSelectedOption);
             }
             if (FourthEntryVisibility.Equals(Visibility.Visible) && !_isCheckedRoom2Heating) {
-                external.roomno2Climate.level = int.Parse(_fourthSelectedLevel);
-                external.roomno2Climate.mode = StringToMode(_fourthSelectedOption);
+                external.roomno2Climate.Level = int.Parse(_fourthSelectedLevel);
+                external.roomno2Climate.Mode = StringToMode(_fourthSelectedOption);
             }
             if (FifthEntryVisibility.Equals(Visibility.Visible) && !_isCheckedRoom3Heating) {
-                external.roomno3Climate.level = int.Parse(_fifthSelectedLevel);
-                external.roomno3Climate.mode = StringToMode(_fifthSelectedOption);
+                external.roomno3Climate.Level = int.Parse(_fifthSelectedLevel);
+                external.roomno3Climate.Mode = StringToMode(_fifthSelectedOption);
             }
             
             ExtFactDataProvider.Update(external);
