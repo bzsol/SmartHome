@@ -13,7 +13,7 @@ namespace Common.Model
 
     public class ExternalFactors
     {
-        public ExternalFactors(List<Electronics> electronicEvents, Climate entryClimate, Climate livingroomClimate, Climate kitchenClimate, Climate officeClimate, Climate bathClimate, Climate terraceClimate, Climate roomno1Climate, Climate roomno2Climate, Climate roomno3Climate, Lights entryLights, Lights livingroomLights, Lights kitchenLights, Lights officeLights, Lights bathLights, Lights diningLights, Lights roomno1Lights, Lights roomno2Lights, Lights roomno3Lights, Lights gardenLights, Lights garageLights, Lights gateEntranceLights, Irrigative garden, Irrigative frontGarden, Shading entryShading, Shading livingroomShading, Shading kitchenShading, Shading officeShading, Shading bathShading, Shading roomno1Shading, Shading roomno2Shading, Shading roomno3Shading,Shading livingroomPanorama,Shading bathleftWindow,Shading terraceShading)
+        public ExternalFactors(List<Electronics> electronicEvents, Climate entryClimate, Climate livingroomClimate, Climate kitchenClimate, Climate officeClimate, Climate bathClimate, Climate diningClimate, Climate roomno1Climate, Climate roomno2Climate, Climate roomno3Climate, Lights entryLights, Lights livingroomLights, Lights kitchenLights, Lights officeLights, Lights bathLights, Lights diningLights, Lights roomno1Lights, Lights roomno2Lights, Lights roomno3Lights, Lights gardenLights, Lights garageLights, Lights gateEntranceLights, Irrigative garden, Irrigative frontGarden, Shading entryShading, Shading livingroomShading, Shading kitchenShading, Shading officeShading, Shading bathShading, Shading roomno1Shading, Shading roomno2Shading, Shading roomno3Shading,Shading livingroomPanorama,Shading bathleftWindow,Shading terraceShading)
         {
             ElectronicEvents = electronicEvents;
             this.entryClimate = entryClimate;
@@ -21,7 +21,7 @@ namespace Common.Model
             this.kitchenClimate = kitchenClimate;
             this.officeClimate = officeClimate;
             this.bathClimate = bathClimate;
-            this.terraceClimate = terraceClimate;
+            this.diningClimate = diningClimate;
             this.roomno1Climate = roomno1Climate;
             this.roomno2Climate = roomno2Climate;
             this.roomno3Climate = roomno3Climate;
@@ -95,7 +95,7 @@ namespace Common.Model
         public Climate kitchenClimate { get; set; }
         public Climate officeClimate { get; set; }
         public Climate bathClimate { get; set; }
-        public Climate terraceClimate { get; set; }
+        public Climate diningClimate { get; set; }
         public Climate roomno1Climate { get; set; }
         public Climate roomno2Climate { get; set; }
         public Climate roomno3Climate { get; set; }
