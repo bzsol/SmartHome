@@ -35,7 +35,8 @@ namespace Common.Tool
         }
         public static double GenerateTemp(int t) {
             // Kilengés * Sin(hossz*(t-eltolás X)) + y eltolás
-            return 9 * Math.Sin(0.3 * (t - 7)) + 13;
+            //return 9 * Math.Sin(0.3 * (t - 7)) + 13;
+            return (900 * Math.Sin(0.0045 * (t - 500)) + 1300)/100;
         }
         public static double CalculateInsideTemp(double inside,double outside,int heating,bool climate) {
             // Ház térfogata
@@ -65,8 +66,8 @@ namespace Common.Tool
                     }
                     else
                     {
-                        if (external.livingroomClimate.isHeatingEnabled) heating_value += 0.08;
-                        if (external.officeClimate.isHeatingEnabled) heating_value += 0.01;
+                        if (external.livingroomClimate.IsHeatingEnabled) heating_value += 0.08;
+                        if (external.officeClimate.IsHeatingEnabled) heating_value += 0.01;
                         return inside + (heating_value * 0.4);
                     }
                 }
