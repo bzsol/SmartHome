@@ -64,8 +64,9 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Button Grid.Column="0" Style="{StaticResource MainButtonStyle}" Height="Auto" Width="Auto">
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
                                 <TextBlock Text="{Binding TempChange}" VerticalAlignment="Center" FontSize="24"></TextBlock>
+                                <TextBlock Text="{Binding InsideTemp}" VerticalAlignment="Center" FontSize="24"></TextBlock>
                             </StackPanel>
                         </Button>
                         <Button Grid.Column="1" Style="{StaticResource MainButtonStyle}" Height="Auto" Width="Auto" Command="{Binding ResetTime}">
