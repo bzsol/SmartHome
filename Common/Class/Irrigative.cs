@@ -10,13 +10,19 @@ namespace Common.Class
     {
         public int timespan { get; set; }
 
-        public int strenght { get; set; }
+        public int strength { get; set; }
 
-        public DateTime dateTime { get; set; }
+        public string Time { get; set; }
 
         public int Temp { get; set; }
 
-        public int Repeat { get; set;}
+        public int Repeat { get; set; }
+
+        public bool IsRepeated { get; set; }
+
+        public bool IsTimeSetting { get; set; }
+
+        public bool IsTempSetting { get; set; }
 
         // Factors
         public bool isSunny { get; set; }
