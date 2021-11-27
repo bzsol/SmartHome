@@ -6,9 +6,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using static Common.Model.ExternalFactors;
 
 namespace SmartHome.ViewModels
 {
@@ -18,11 +20,33 @@ namespace SmartHome.ViewModels
 
         public DelegateCommand<RadioButton> PreferenceChangedCommand { get; set; }
 
-        public DelegateCommand<ComboBox> WindowSelectionChangeCommand { get; set; }
+        private ExternalFactors _actualExternalFactors;
 
         public List<string> Places { get; set; }
 
         public Dictionary<string, string> AllWindowsToPlace { get; set; }
+
+        private GridLength _firstGridRowHeight;
+        public GridLength FirstGridRowHeight
+        {
+            get => _firstGridRowHeight;
+            set
+            {
+                _firstGridRowHeight = value;
+                NotifyChange(nameof(FirstGridRowHeight));
+            }
+        }
+
+        private GridLength _secondGridRowHeight;
+        public GridLength SecondGridRowHeight
+        {
+            get => _secondGridRowHeight;
+            set
+            {
+                _secondGridRowHeight = value;
+                NotifyChange(nameof(SecondGridRowHeight));
+            }
+        }
 
         private string _selectedPlace;
         public string SelectedPlace
@@ -32,6 +56,7 @@ namespace SmartHome.ViewModels
             {
                 _selectedPlace = value;
                 NotifyChange(nameof(SelectedPlace));
+                GetAvailableWindows();
             }
         }
 
@@ -43,6 +68,7 @@ namespace SmartHome.ViewModels
             {
                 _selectedWindow = value;
                 NotifyChange(nameof(SelectedWindow));
+                GetActualWindowData(SelectedWindow);
             }
         }
 
@@ -57,7 +83,6 @@ namespace SmartHome.ViewModels
             }
         }
 
-
         private bool _timePreferenceCheckState;
         public bool TimePreferenceCheckState
         {
@@ -68,6 +93,17 @@ namespace SmartHome.ViewModels
             {
                 _timePreferenceCheckState = value;
                 NotifyChange(nameof(TimePreferenceCheckState));
+            }
+        }
+
+        private bool _nonePreferenceCheckState;
+        public bool NonePreferenceCheckState
+        {
+            get => _nonePreferenceCheckState;
+            set
+            {
+                _nonePreferenceCheckState = value;
+                NotifyChange(nameof(NonePreferenceCheckState));
             }
         }
 
@@ -137,19 +173,19 @@ namespace SmartHome.ViewModels
             }
         }
 
-        private int _levelslinder;
-        public int LevelSlinder
+        private int _levelslider;
+        public int LevelSlider
         {
-            get => _levelslinder;
+            get => _levelslider;
             set
             {
-                _levelslinder = value;
-                NotifyChange(nameof(LevelSlinder));
+                _levelslider = value;
+                NotifyChange(nameof(LevelSlider));
             }
         }
 
-        private DateTime _selectedtime;
-        public DateTime SelectedTime
+        private string _selectedtime;
+        public string SelectedTime
         {
             get => _selectedtime;
             set
@@ -167,8 +203,7 @@ namespace SmartHome.ViewModels
         {
             SaveSettingsCommand = new DelegateCommand<Button>(OnSaveSettings);
             PreferenceChangedCommand = new DelegateCommand<RadioButton>(OnPreferenceChanged);
-            WindowSelectionChangeCommand = new DelegateCommand<ComboBox>(OnPlaceSelectionChanged);
-                
+
             Places = new()
             {
                 "Nappali",
@@ -187,110 +222,168 @@ namespace SmartHome.ViewModels
                 { "Nappali", "Panoráma ablak;Nagy ablak" },
             };
 
-            SelectedPlace = Places[0];
-            GetAvailableWindows();
-
-            LightPreferenceCheckState = true;
-            LightSettingVisibility = Visibility.Visible;
-            TimeSettingVisibility = Visibility.Hidden;
+            _actualExternalFactors = ExtFactDataProvider.Get().ToList()[0];
+            InitializeView();
         }
-        
+
+        public void InitializeView()
+        {
+            SelectedPlace = Places[0];
+        }
+
+        public void GetActualWindowData(string Selected)
+        {
+            Shading selectedShading;
+
+            switch (Selected)
+            {
+                case "Konyha":
+                    selectedShading = _actualExternalFactors.kitchenShading;
+                    break;
+                case "Iroda":
+                    selectedShading = _actualExternalFactors.officeShading;
+                    break;
+                case "Étkező":
+                    selectedShading = _actualExternalFactors.diningShading;
+                    break;
+                case "Szoba #1":
+                    selectedShading = _actualExternalFactors.roomno1Shading;
+                    break;
+                case "Szoba #2":
+                    selectedShading = _actualExternalFactors.roomno2Shading;
+                    break;
+                case "Szoba #3":
+                    selectedShading = _actualExternalFactors.roomno3Shading;
+                    break;
+                case "Baloldali ablak":
+                    selectedShading = _actualExternalFactors.bathLeftWindowShading;
+                    break;
+                case "Jobboldali ablak":
+                    selectedShading = _actualExternalFactors.bathRightWindowShading;
+                    break;
+                case "Panoráma ablak":
+                    selectedShading = _actualExternalFactors.livingroomPanoramaShading;
+                    break;
+                default:
+                    selectedShading = _actualExternalFactors.livingroomShading;
+                    break;
+            }
+
+            TimePreferenceCheckState = selectedShading.ShadePreference == ShadePreference.TIME;
+            LightPreferenceCheckState = selectedShading.ShadePreference == ShadePreference.PHOTOSENSITIVTY;
+            NonePreferenceCheckState = selectedShading.ShadePreference == ShadePreference.NONE;
+            LevelSlider = selectedShading.Level;
+            SelectedTime = selectedShading.Date == null ? string.Empty : selectedShading.Date;
+            LightStrength = selectedShading.Photosensitivity;
+            SetViewBasedOnPreference();
+        }
+
         private void DataUpload()
         {
-            ExternalFactors external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
-            Shading shading = new Shading();
-            shading.level = _levelslinder;
-            if(_lightPreferenceCheckState)
+            if (TimePreferenceCheckState && !IsValidTime())
             {
-                shading.photosensitivity = _lightstrength;
+                MessageBox.Show("Az időpontnak 0:00-23:59 közé kell esnie!");
             }
-            else if (_timePreferenceCheckState)
+            else
             {
-                shading.date = _selectedtime;
-            }
-            switch(SelectedPlace)
-            {
-                case "Nappali":
-                    {
-                        if(SelectedWindow.Equals("Panoráma ablak"))
+                Shading shading = new Shading();
+
+                shading.Level = LevelSlider;
+                shading.ShadePreference = TimePreferenceCheckState ? ShadePreference.TIME : LightPreferenceCheckState ? ShadePreference.PHOTOSENSITIVTY : ShadePreference.NONE;
+                if (_lightPreferenceCheckState)
+                {
+                    shading.Photosensitivity = _lightstrength;
+                }
+                else if (_timePreferenceCheckState)
+                {
+                    shading.Date = _selectedtime;
+                }
+
+                switch (SelectedPlace)
+                {
+                    case "Nappali":
+                        if (SelectedWindow.Equals("Panoráma ablak"))
                         {
-                            external.livingroomPanorama = shading;
+                            _actualExternalFactors.livingroomPanoramaShading = shading;
                         }
                         else if (SelectedWindow.Equals("Nagy ablak"))
                         {
-                            external.livingroomShading = shading;
+                            _actualExternalFactors.livingroomShading = shading;
                         }
                         break;
-                    }
-                case "Fürdőszoba":
-                    {
-                        if(SelectedWindow.Equals("Baloldali ablak"))
+                    case "Fürdőszoba":
+                        if (SelectedWindow.Equals("Baloldali ablak"))
                         {
-                            external.bathleftWindow = shading;
+                            _actualExternalFactors.bathLeftWindowShading = shading;
                         }
-                        else if(SelectedWindow.Equals("Jobboldali ablak"))
+                        else if (SelectedWindow.Equals("Jobboldali ablak"))
                         {
-                            external.bathShading = shading;
+                            _actualExternalFactors.bathRightWindowShading = shading;
                         }
                         break;
 
-                    }
-                case "Konyha":
-                    {
-                        external.kitchenShading = shading;
+                    case "Konyha":
+                        _actualExternalFactors.kitchenShading = shading;
                         break;
-                    }
-                case "Iroda":
-                    {
-                        external.officeShading = shading;
+                    case "Iroda":
+                        _actualExternalFactors.officeShading = shading;
                         break;
-                    }
-                case "Szoba #1":
-                    {
-                        external.roomno1Shading = shading;
+                    case "Szoba #1":
+                        _actualExternalFactors.roomno1Shading = shading;
                         break;
-                    }
-                case "Szoba #2":
-                    {
-                        external.roomno2Shading = shading;
+                    case "Szoba #2":
+                        _actualExternalFactors.roomno2Shading = shading;
                         break;
-                    }
-                case "Szoba #3":
-                    {
-                        external.roomno3Shading = shading;
+                    case "Szoba #3":
+                        _actualExternalFactors.roomno3Shading = shading;
                         break;
-                    }
-                case "Étkező":
-                    {
-                        external.terraceShading = shading;
+                    case "Étkező":
+                        _actualExternalFactors.diningShading = shading;
                         break;
-                    }
+                }
+
+                ExtFactDataProvider.Update(_actualExternalFactors);
             }
-            ExtFactDataProvider.Update(external);
         }
+
+        private bool IsValidTime()
+        {
+            return Regex.IsMatch(SelectedTime == null ? string.Empty : SelectedTime, "([0-9]|[1][0-9]|[2][0-3]):[0-5][0-9]");
+        }
+
         private void OnSaveSettings(Button btn)
         {
-            MessageBox.Show($"{_lightstrength} / {_selectedtime} / {_selectedPlace} / {_selectedWindow}");
             DataUpload();
         }
 
         private void OnPreferenceChanged(RadioButton rbtn)
         {
+            SetViewBasedOnPreference();
+        }
+
+        private void SetViewBasedOnPreference()
+        {
             if (TimePreferenceCheckState)
             {
                 TimeSettingVisibility = Visibility.Visible;
                 LightSettingVisibility = Visibility.Hidden;
-            } 
-            else
+                FirstGridRowHeight = new GridLength(1, GridUnitType.Star);
+                SecondGridRowHeight = new GridLength(1, GridUnitType.Star);
+            }
+            else if (LightPreferenceCheckState)
             {
                 TimeSettingVisibility = Visibility.Hidden;
                 LightSettingVisibility = Visibility.Visible;
+                FirstGridRowHeight = new GridLength(1, GridUnitType.Star);
+                SecondGridRowHeight = new GridLength(1, GridUnitType.Star);
             }
-        }
-
-        private void OnPlaceSelectionChanged(ComboBox cbox)
-        {
-            GetAvailableWindows();
+            else
+            {
+                TimeSettingVisibility = Visibility.Hidden;
+                LightSettingVisibility = Visibility.Hidden;
+                FirstGridRowHeight = new GridLength(0, GridUnitType.Star);
+                SecondGridRowHeight = new GridLength(0, GridUnitType.Star);
+            }
         }
 
         private void GetAvailableWindows()
@@ -307,6 +400,7 @@ namespace SmartHome.ViewModels
             {
                 MultipleWindowsVisibility = Visibility.Hidden;
                 NoMultipleWindowsVisibility = Visibility.Visible;
+                GetActualWindowData(SelectedPlace);
             }
         }
     }
