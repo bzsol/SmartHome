@@ -42,7 +42,7 @@ namespace Common.Tool
 
             if (heating == false && climate == false)
             {
-                return inside - outside * 0.07;
+                return (inside - (outside * 0.07))/60;
             }
 
             return 0;

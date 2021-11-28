@@ -60,6 +60,17 @@ namespace SmartHome.ViewModels
             
         }
 
+        private string _insidetemp;
+        public string InsideTemp
+        {
+            get => _insidetemp;
+            set
+            {
+                _insidetemp = value;
+                NotifyChange(nameof(InsideTemp));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyChange(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -97,6 +108,7 @@ namespace SmartHome.ViewModels
             temp = TemperatureDataProvider.GenerateTemp(time / 60).ToString("N2");
             insideTemp = TemperatureDataProvider.CalculateInsideTemp(double.Parse(insideTemp), double.Parse(temp),ExtFactDataProvider.Get().ToList()[0]).ToString();
             TempChange = $"{temp}°C";
+            InsideTemp = $"{insideTemp}°C";
             TimeChange = ToolKit.SecToMilitaryTime(time);
         }
 
