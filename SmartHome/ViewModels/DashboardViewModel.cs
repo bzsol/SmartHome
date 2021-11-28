@@ -20,6 +20,7 @@ namespace SmartHome.ViewModels
 
     public class DashboardViewModel : INotifyPropertyChanged
     {
+        public string insideTemp = "20";
         public int time = 0;
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         string temp;
@@ -94,6 +95,7 @@ namespace SmartHome.ViewModels
                 time = 0;
             }
             temp = TemperatureDataProvider.GenerateTemp(time / 60).ToString("N2");
+            insideTemp = TemperatureDataProvider.CalculateInsideTemp(double.Parse(insideTemp), double.Parse(temp),ExtFactDataProvider.Get().ToList()[0]).ToString();
             TempChange = $"{temp}°C";
             TimeChange = ToolKit.SecToMilitaryTime(time);
         }
