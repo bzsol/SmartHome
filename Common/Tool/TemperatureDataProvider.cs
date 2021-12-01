@@ -73,15 +73,133 @@ namespace Common.Tool
 
             if (climate)
             {
-                if (external.roomno1Climate.IsCoolingEnabled) climatevalue += 0.001;
-                if (external.bathClimate.IsCoolingEnabled) climatevalue += 0.001;
-                if (external.roomno2Climate.IsCoolingEnabled) climatevalue += 0.001;
-                if (external.roomno3Climate.IsCoolingEnabled) climatevalue += 0.001;
-                if (external.diningClimate.IsCoolingEnabled) climatevalue += 0.002;
-                if (external.kitchenClimate.IsCoolingEnabled) climatevalue += 0.003;
-                if (external.livingroomClimate.IsCoolingEnabled) climatevalue += 0.003;
-                if (external.entryClimate.IsCoolingEnabled) climatevalue += 0.001;
-                if (external.officeClimate.IsCoolingEnabled) climatevalue += 0.001;
+                if (external.roomno1Climate.IsCoolingEnabled) {
+                    if (external.roomno1Climate.Level == 1)
+                    {
+                        climatevalue += 0.01;
+                    }
+                    else if (external.roomno1Climate.Level == 2)
+                    {
+                        climatevalue += 0.02;
+                    }
+                    else if (external.roomno1Climate.Level == 3) {
+                        climatevalue += 0.03;
+                    }
+                }
+                if (external.bathClimate.IsCoolingEnabled)
+                {
+                    if (external.bathClimate.Level == 1)
+                    {
+                        climatevalue += 0.01;
+                    }
+                    else if (external.bathClimate.Level == 2)
+                    {
+                        climatevalue += 0.02;
+                    }
+                    else if (external.bathClimate.Level == 3)
+                    {
+                        climatevalue += 0.03;
+                    }
+
+                }
+                if (external.roomno2Climate.IsCoolingEnabled) {
+                    if (external.roomno2Climate.Level == 1)
+                    {
+                        climatevalue += 0.01;
+                    }
+                    else if (external.roomno2Climate.Level == 2)
+                    {
+                        climatevalue += 0.02;
+                    }
+                    else if (external.roomno2Climate.Level == 3)
+                    {
+                        climatevalue += 0.03;
+                    }
+                }
+                if (external.roomno3Climate.IsCoolingEnabled) {
+                    if (external.roomno3Climate.Level == 1)
+                    {
+                        climatevalue += 0.01;
+                    }
+                    else if (external.roomno3Climate.Level == 2)
+                    {
+                        climatevalue += 0.02;
+                    }
+                    else if (external.roomno3Climate.Level == 3)
+                    {
+                        climatevalue += 0.03;
+                    }
+                }
+                if (external.diningClimate.IsCoolingEnabled) {
+                    if (external.roomno1Climate.Level == 1)
+                    {
+                        climatevalue += 0.01;
+                    }
+                    else if (external.roomno1Climate.Level == 2)
+                    {
+                        climatevalue += 0.02;
+                    }
+                    else if (external.roomno1Climate.Level == 3)
+                    {
+                        climatevalue += 0.03;
+                    }
+                }
+                if (external.kitchenClimate.IsCoolingEnabled) {
+                    if (external.kitchenClimate.Level == 1)
+                    {
+                        climatevalue += 0.01;
+                    }
+                    else if (external.kitchenClimate.Level == 2)
+                    {
+                        climatevalue += 0.02;
+                    }
+                    else if (external.kitchenClimate.Level == 3)
+                    {
+                        climatevalue += 0.03;
+                    }
+                }
+                if (external.livingroomClimate.IsCoolingEnabled) {
+                    if (external.livingroomClimate.Level == 1)
+                    {
+                        climatevalue += 0.01;
+                    }
+                    else if (external.livingroomClimate.Level == 2)
+                    {
+                        climatevalue += 0.02;
+                    }
+                    else if (external.livingroomClimate.Level == 3)
+                    {
+                        climatevalue += 0.03;
+                    }
+                }
+                if (external.entryClimate.IsCoolingEnabled) {
+                    if (external.livingroomClimate.Level == 1)
+                    {
+                        climatevalue += 0.01;
+                    }
+                    else if (external.livingroomClimate.Level == 2)
+                    {
+                        climatevalue += 0.02;
+                    }
+                    else if (external.livingroomClimate.Level == 3)
+                    {
+                        climatevalue += 0.03;
+                    }
+                }
+                if (external.officeClimate.IsCoolingEnabled) {
+                    if (external.entryClimate.Level == 1)
+                    {
+                        climatevalue += 0.01;
+                    }
+                    else if (external.entryClimate.Level == 2)
+                    {
+                        climatevalue += 0.02;
+                    }
+                    else if (external.entryClimate.Level == 3)
+                    {
+                        climatevalue += 0.03;
+                    }
+                } 
 
                 if (!(external.Cooling >= inside))
                 {
