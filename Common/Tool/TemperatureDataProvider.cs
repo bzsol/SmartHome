@@ -46,10 +46,10 @@ namespace Common.Tool
             {
                 if (inside > outside)
                 {
-                    return (inside - ((outside * 0.07) / 60));
+                    inside = inside - (outside * 0.10 / 60);
                 }
                 else {
-                    return (inside + ((outside * 0.03) / 60));
+                    inside =  inside + (outside * 0.003 / 60);
                 }
             }
 
@@ -65,39 +65,31 @@ namespace Common.Tool
                 if (external.entryClimate.IsHeatingEnabled) heatingvalue += 0.01;
                 if (external.officeClimate.IsHeatingEnabled) heatingvalue += 0.01;
 
-                if(external.Heating <= inside)
+                if(!(external.Heating <= inside))
                 {
-                    return inside;
-                }
-                else
-                {
-                    return inside + (heatingvalue*0.4);
+                    inside = inside + (heatingvalue * 0.2) - (outside * 0.07 / 60);
                 }
             }
 
             if (climate)
             {
-                if (external.roomno1Climate.IsCoolingEnabled) climatevalue += 0.01;
-                if (external.bathClimate.IsCoolingEnabled) climatevalue += 0.01;
-                if (external.roomno2Climate.IsCoolingEnabled) climatevalue += 0.01;
-                if (external.roomno3Climate.IsCoolingEnabled) climatevalue += 0.01;
-                if (external.diningClimate.IsCoolingEnabled) climatevalue += 0.02;
-                if (external.kitchenClimate.IsCoolingEnabled) climatevalue += 0.03;
-                if (external.livingroomClimate.IsCoolingEnabled) climatevalue += 0.03;
-                if (external.entryClimate.IsCoolingEnabled) climatevalue += 0.01;
-                if (external.officeClimate.IsCoolingEnabled) climatevalue += 0.01;
+                if (external.roomno1Climate.IsCoolingEnabled) climatevalue += 0.001;
+                if (external.bathClimate.IsCoolingEnabled) climatevalue += 0.001;
+                if (external.roomno2Climate.IsCoolingEnabled) climatevalue += 0.001;
+                if (external.roomno3Climate.IsCoolingEnabled) climatevalue += 0.001;
+                if (external.diningClimate.IsCoolingEnabled) climatevalue += 0.002;
+                if (external.kitchenClimate.IsCoolingEnabled) climatevalue += 0.003;
+                if (external.livingroomClimate.IsCoolingEnabled) climatevalue += 0.003;
+                if (external.entryClimate.IsCoolingEnabled) climatevalue += 0.001;
+                if (external.officeClimate.IsCoolingEnabled) climatevalue += 0.001;
 
-                if (external.Cooling >= inside)
+                if (!(external.Cooling >= inside))
                 {
-                    return inside;
-                }
-                else
-                {
-                    return inside - (climatevalue * 0.4);
+                    //
+                    inside = inside - (climatevalue * 0.2) - (outside * 0.10 / 60);
                 }
             }
-
-            return 0;
+            return inside;
         }
     }
 }
