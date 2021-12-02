@@ -16,6 +16,12 @@ namespace Common.Tool
             //return 9 * Math.Sin(0.3 * (t - 7)) + 13;
             return (900 * Math.Sin(0.0045 * (t - 500)) + 1300)/100;
         }
+
+        public static double GenerateLight(int t) {
+            var x = ((900 * Math.Sin(0.0045 * (t - 500)) + 700));
+            return (x <= 0) ? 0 : x;
+        }
+
         public static double CalculateInsideTemp(double inside, double outside, ExternalFactors external) {
             bool heating;
             bool climate;
