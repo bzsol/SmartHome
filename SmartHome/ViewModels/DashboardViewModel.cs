@@ -31,6 +31,8 @@ namespace SmartHome.ViewModels
 
         public DelegateCommand<Button> StopTime { get; set; }
 
+        public bool IsSimulation { get; set; }
+
         private object _userControlViewModel;
         public object UserControlViewModel
         {
@@ -93,6 +95,19 @@ namespace SmartHome.ViewModels
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             TimeChange = "Start/Stop";
+
+            if (IsSimulation)
+            {
+                var View = UserControlViewModel as SimulationCategoryPanelViewModel;
+                if (View.IsInside)
+                {
+                    (View.CategoryPanelViewModel as SimulationPanelViewModel).UpdateView();
+                }
+                else
+                {
+
+                }
+            }
         }
 
 
@@ -102,7 +117,8 @@ namespace SmartHome.ViewModels
             {
                 time = time + 60;
             }
-            else {
+            else
+            {
                 time = 0;
             }
             temp = TemperatureDataProvider.GenerateTemp(time / 60).ToString("N2");
@@ -112,7 +128,8 @@ namespace SmartHome.ViewModels
             TimeChange = ToolKit.SecToMilitaryTime(time);
         }
 
-        private void Reset(Button btn) {
+        private void Reset(Button btn) 
+        {
             time = 0;
             TimeChange = ToolKit.SecToMilitaryTime(time);
         }
@@ -122,7 +139,8 @@ namespace SmartHome.ViewModels
             {
                 dispatcherTimer.Stop();
             }
-            else {
+            else 
+            {
                 dispatcherTimer.Start();
             }
         }
@@ -130,11 +148,13 @@ namespace SmartHome.ViewModels
         public void OnChangeToSimulation(Button btn)
         {
             UserControlViewModel = new SimulationCategoryPanelViewModel();
+            IsSimulation = true;
         }
 
         public void OnChangeToConfiguration(Button btn)
         {
             UserControlViewModel = new ConfigurePanelViewModel();
+            IsSimulation = false;
         }
     }
 }

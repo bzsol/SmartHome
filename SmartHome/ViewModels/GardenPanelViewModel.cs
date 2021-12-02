@@ -12,5 +12,10 @@ namespace SmartHome.ViewModels
         {
 
         }
+
+        public void UpdateView ()
+        {
+
+        }
     }
 }
