@@ -13,8 +13,6 @@ namespace SmartHome.ViewModels
     {
         public DelegateCommand<Button> CategoryClicked { get; set; }
 
-        public bool IsInside { get; set; } = true;
-
         private object _categoryPanelViewModel;
         public object CategoryPanelViewModel
         {
@@ -42,11 +40,9 @@ namespace SmartHome.ViewModels
             {
                 case "btnCat1":
                     CategoryPanelViewModel = new SimulationPanelViewModel();
-                    IsInside = true;
                     break;
                 case "btnCat2":
                     CategoryPanelViewModel = new GardenPanelViewModel();
-                    IsInside = false;
                     break;
             }
         }

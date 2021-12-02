@@ -10,7 +10,7 @@ namespace Common.Tool
     {
         public static string SecToMilitaryTime(int seconds)
         {
-            return TimeSpan.FromSeconds(seconds).ToString(@"hh\:mm\:ss");
+            return TimeSpan.FromSeconds(seconds).ToString(@"h\:mm\:ss");
         }
     }
 }

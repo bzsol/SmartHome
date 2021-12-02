@@ -8,13 +8,14 @@
         mc:Ignorable="d"
         Height="850" Width="1600"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-     TextElement.FontWeight="Regular"
-     TextElement.FontSize="13"
-     TextOptions.TextFormattingMode="Ideal"
-     TextOptions.TextRenderingMode="Auto"
-     Background="{DynamicResource MaterialDesignPaper}"
-     FontFamily="{DynamicResource MaterialDesignFont}">
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
     <UserControl.DataContext>
         <viewModel:SimulationPanelViewModel/>
     </UserControl.DataContext>
@@ -72,7 +73,7 @@
                 </Rectangle.RenderTransform>
             </Rectangle>
             <Rectangle Fill="Aqua" Height="20" Margin="156,370,156,0" ></Rectangle>
-            <Rectangle Fill="Black" Height="20" Margin="363,173,-99,197" RenderTransformOrigin="0.5,0.5" >
+            <Rectangle Fill="{Binding TVColor}" Height="20" Margin="363,173,-99,197" RenderTransformOrigin="0.5,0.5" >
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
