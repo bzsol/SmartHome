@@ -24,7 +24,7 @@ namespace Common.Model
 
         public string EventTimeToStringConverter
         {
-            get => Continous == true ? $"{EventTime.Year}. {EventTime.Month}. {EventTime.Day}. {EventTime.ToShortTimeString()}" : $"Minden nap {EventTime.ToShortTimeString()}";
+            get => Continous == true ? $"Minden nap {EventTime.ToShortTimeString()}" : $"{EventTime.Year}. {EventTime.Month}. {EventTime.Day}. {EventTime.ToShortTimeString()}";
         }
     }
 }
