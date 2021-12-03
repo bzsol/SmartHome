@@ -219,14 +219,23 @@ namespace SmartHome.ViewModels
                 case "Szoba #3":
                     selectedLight = _actualExternalFactors.roomno3Lights;
                     break;
-                case "Kapubejáró":
+                case "Kapubejáró bal":
                     selectedLight = _actualExternalFactors.gateEntranceLights;
                     break;
-                case "Garázs":
+                case "Kapubejáró jobb":
+                    selectedLight = _actualExternalFactors.gateEntranceLights2;
+                    break;
+                case "Garázs alsó":
+                    selectedLight = _actualExternalFactors.garageLights;
+                    break;
+                case "Garázs felső":
+                    selectedLight = _actualExternalFactors.garageLights2;
+                    break;
+                case "Kert bal":
                     selectedLight = _actualExternalFactors.garageLights;
                     break;
                 default:
-                    selectedLight = _actualExternalFactors.gardenLights;
+                    selectedLight = _actualExternalFactors.gardenLights2;
                     break;
             }
 
@@ -306,14 +315,23 @@ namespace SmartHome.ViewModels
             {
                 switch (SelectedPlace)
                 {
-                    case "Kapubejáró":
+                    case "Kapubejáró bal":
                         _actualExternalFactors.gateEntranceLights = lights;
                         break;
-                    case "Garázs":
+                    case "Kapubejáró jobb":
+                        _actualExternalFactors.gateEntranceLights2 = lights;
+                        break;
+                    case "Garázs alsó":
                         _actualExternalFactors.garageLights = lights;
                         break;
-                    case "Kert":
+                    case "Garázs felső":
+                        _actualExternalFactors.garageLights2 = lights;
+                        break;
+                    case "Kert bal":
                         _actualExternalFactors.gardenLights = lights;
+                        break;
+                    case "Kert jobb":
+                        _actualExternalFactors.gardenLights2 = lights;
                         break;
                 }
             }
