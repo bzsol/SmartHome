@@ -109,7 +109,6 @@ namespace SmartHome.ViewModels
             {
                 time = 0;
             }
-            var external = ExtFactDataProvider.Get().ToList()[0];
             temp = TemperatureDataProvider.GenerateTemp(time / 60).ToString("N2");
             insideTemp = TemperatureDataProvider.CalculateInsideTemp(double.Parse(insideTemp), double.Parse(temp), _actualExternalFactors).ToString("N2");
             TempChange = $"{temp}°C";
