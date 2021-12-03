@@ -22,7 +22,7 @@ namespace SmartHome.ViewModels
     {
         public string insideTemp = "20";
         public static int time = 0;
-        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        public static DispatcherTimer dispatcherTimer = new DispatcherTimer();
         string temp;
         public DelegateCommand<Button> ChangeToSimulation { get; set; }
         public DelegateCommand<Button> ChangeToConfiguration { get; set; }
@@ -52,6 +52,7 @@ namespace SmartHome.ViewModels
                 NotifyChange(nameof(TimeChange));
             }
         }
+
         private string _tempchange;
         public string TempChange {
             get => _tempchange;
@@ -73,6 +74,17 @@ namespace SmartHome.ViewModels
             }
         }
 
+        private bool _viewIsOnSimulation;
+        public bool ViewIsOnSimulation
+        {
+            get => _viewIsOnSimulation;
+            set
+            {
+                _viewIsOnSimulation = value;
+                NotifyChange(nameof(ViewIsOnSimulation));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyChange(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -83,7 +95,7 @@ namespace SmartHome.ViewModels
             ChangeToSimulation = new DelegateCommand<Button>(OnChangeToSimulation);
             ChangeToConfiguration = new DelegateCommand<Button>(OnChangeToConfiguration);
             ResetTime = new DelegateCommand<Button>(Reset);
-            StopTime = new DelegateCommand<Button>(Stop); 
+            StopTime = new DelegateCommand<Button>(Stop);
             Thread.CurrentThread.CurrentCulture = new CultureInfo("hu-HU");
             if (((List<ExternalFactors>)ExtFactDataProvider.Get()).Count < 1)
             {
@@ -128,25 +140,43 @@ namespace SmartHome.ViewModels
             if (dispatcherTimer.IsEnabled)
             {
                 dispatcherTimer.Stop();
-                SimulationPanelViewModel.dispatcherTimer.Stop();
-                GardenPanelViewModel.dispatcherTimer.Stop();
+                if (SimulationCategoryPanelViewModel.IsSimulation)
+                {
+                    SimulationPanelViewModel.dispatcherTimer.Stop();
+                }
+                else
+                {
+                    GardenPanelViewModel.dispatcherTimer.Stop();
+                }
             }
             else 
             {
                 dispatcherTimer.Start();
-                SimulationPanelViewModel.dispatcherTimer.Start();
-                GardenPanelViewModel.dispatcherTimer.Start();
+                if (SimulationCategoryPanelViewModel.IsSimulation)
+                {
+                    SimulationPanelViewModel.dispatcherTimer.Start();
+                }
+                else
+                {
+                    GardenPanelViewModel.dispatcherTimer.Start();
+                }
             }
         }
 
         public void OnChangeToSimulation(Button btn)
         {
             UserControlViewModel = new SimulationCategoryPanelViewModel();
+            ViewIsOnSimulation = true;
         }
 
         public void OnChangeToConfiguration(Button btn)
         {
             UserControlViewModel = new ConfigurePanelViewModel();
+            if (dispatcherTimer.IsEnabled)
+            {
+                Stop(null);
+            }
+            ViewIsOnSimulation = false;
         }
     }
 }

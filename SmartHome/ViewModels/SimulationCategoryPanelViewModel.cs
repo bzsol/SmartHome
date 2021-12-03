@@ -13,6 +13,8 @@ namespace SmartHome.ViewModels
     {
         public DelegateCommand<Button> CategoryClicked { get; set; }
 
+        public static bool IsSimulation;
+
         private object _categoryPanelViewModel;
         public object CategoryPanelViewModel
         {
@@ -32,6 +34,7 @@ namespace SmartHome.ViewModels
         {
             CategoryClicked = new DelegateCommand<Button>(OnCategoryClicked);
             CategoryPanelViewModel = new SimulationPanelViewModel();
+            IsSimulation = true;
         }
 
         public void OnCategoryClicked(Button btn)
@@ -40,10 +43,28 @@ namespace SmartHome.ViewModels
             {
                 case "btnCat1":
                     CategoryPanelViewModel = new SimulationPanelViewModel();
+                    IsSimulation = true;
+                    LaunchTimer();
                     break;
                 case "btnCat2":
                     CategoryPanelViewModel = new GardenPanelViewModel();
+                    IsSimulation = false;
+                    LaunchTimer();
                     break;
+            }
+        }
+
+        public void LaunchTimer()
+        {
+            if (DashboardViewModel.dispatcherTimer.IsEnabled && IsSimulation)
+            {
+                GardenPanelViewModel.dispatcherTimer.Stop();
+                SimulationPanelViewModel.dispatcherTimer.Start();
+            }
+            else if (DashboardViewModel.dispatcherTimer.IsEnabled && !IsSimulation)
+            {
+                GardenPanelViewModel.dispatcherTimer.Start();
+                SimulationPanelViewModel.dispatcherTimer.Stop();
             }
         }
     }
