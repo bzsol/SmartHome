@@ -22,6 +22,22 @@ namespace Common.Tool
             return (x <= 0) ? 0 : x;
         }
 
+        public static double CO2(double co2,ExternalFactors external) {
+            var co2factor = co2;
+            if (external.roomno1Climate.IsHeatingEnabled) co2factor += 0.00000001;
+            if (external.roomno2Climate.IsHeatingEnabled) co2factor += 0.00000001;
+            if (external.roomno3Climate.IsHeatingEnabled) co2factor += 0.00000001;
+            if (external.kitchenClimate.IsHeatingEnabled) co2factor += 0.0000000015;
+            if (external.livingroomClimate.IsHeatingEnabled) co2factor += 0.000000015;
+            if (external.officeClimate.IsHeatingEnabled) co2factor += 0.0000000000001;
+            if (external.entryClimate.IsHeatingEnabled) co2factor += 0.00000000000001;
+            if (external.diningClimate.IsHeatingEnabled) co2factor += 0.0000000000001;
+            if (external.bathClimate.IsHeatingEnabled) co2factor += 0.000000000000001;
+            
+            return co2factor; 
+        }
+
+
         public static double CalculateInsideTemp(double inside, double outside, ExternalFactors external) {
             bool heating;
             bool climate;

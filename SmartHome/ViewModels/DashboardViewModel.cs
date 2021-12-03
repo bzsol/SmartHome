@@ -22,6 +22,7 @@ namespace SmartHome.ViewModels
     {
         public string insideTemp = "20";
         public static int time = 0;
+        public static double CO2 = 0.0;
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         string temp;
         public DelegateCommand<Button> ChangeToSimulation { get; set; }
@@ -105,15 +106,19 @@ namespace SmartHome.ViewModels
             else {
                 time = 0;
             }
+            var external = ExtFactDataProvider.Get().ToList()[0];
             temp = TemperatureDataProvider.GenerateTemp(time / 60).ToString("N2");
-            insideTemp = TemperatureDataProvider.CalculateInsideTemp(double.Parse(insideTemp), double.Parse(temp),ExtFactDataProvider.Get().ToList()[0]).ToString("N2");
+            CO2 = TemperatureDataProvider.CO2(CO2, external);
+            insideTemp = TemperatureDataProvider.CalculateInsideTemp(double.Parse(insideTemp), double.Parse(temp),external).ToString("N2");
             TempChange = $"{temp}°C";
             InsideTemp = $"{insideTemp}°C";
             TimeChange = ToolKit.SecToMilitaryTime(time);
+
         }
 
         private void Reset(Button btn) {
             time = 0;
+            insideTemp = "20";
             TimeChange = ToolKit.SecToMilitaryTime(time);
         }
 
