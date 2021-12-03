@@ -13,7 +13,7 @@ namespace Common.Model
 
     public class ExternalFactors
     {
-        public ExternalFactors(List<Electronics> electronicEvents, Climate entryClimate, Climate livingroomClimate, Climate kitchenClimate, Climate officeClimate, Climate bathClimate, Climate diningClimate, Climate roomno1Climate, Climate roomno2Climate, Climate roomno3Climate, Lights entryLights, Lights livingroomLights, Lights kitchenLights, Lights officeLights, Lights bathLights, Lights diningLights, Lights roomno1Lights, Lights roomno2Lights, Lights roomno3Lights, Lights gardenLights, Lights garageLights, Lights gateEntranceLights, Irrigative garden, Irrigative frontGarden, Shading entryShading, Shading livingroomShading, Shading kitchenShading, Shading officeShading, Shading bathRightWindowShading, Shading roomno1Shading, Shading roomno2Shading, Shading roomno3Shading,Shading livingroomPanoramaShading,Shading bathleftWindowShading,Shading diningShading)
+        public ExternalFactors(List<Electronics> electronicEvents, Climate entryClimate, Climate livingroomClimate, Climate kitchenClimate, Climate officeClimate, Climate bathClimate, Climate diningClimate, Climate roomno1Climate, Climate roomno2Climate, Climate roomno3Climate, Lights entryLights, Lights livingroomLights, Lights kitchenLights, Lights officeLights, Lights bathLights, Lights diningLights, Lights roomno1Lights, Lights roomno2Lights, Lights roomno3Lights, Lights gardenLights, Lights gardenLights2, Lights garageLights, Lights garageLights2, Lights gateEntranceLights, Lights gateEntranceLights2, Irrigative garden, Irrigative frontGarden, Shading entryShading, Shading livingroomShading, Shading kitchenShading, Shading officeShading, Shading bathRightWindowShading, Shading roomno1Shading, Shading roomno2Shading, Shading roomno3Shading,Shading livingroomPanoramaShading,Shading bathleftWindowShading,Shading diningShading)
         {
             ElectronicEvents = electronicEvents;
             this.entryClimate = entryClimate;
@@ -26,17 +26,35 @@ namespace Common.Model
             this.roomno2Climate = roomno2Climate;
             this.roomno3Climate = roomno3Climate;
             this.entryLights = entryLights;
+            this.entryLights.Place = "Entry";
             this.livingroomLights = livingroomLights;
+            this.livingroomLights.Place = "Livingroom";
             this.kitchenLights = kitchenLights;
+            this.kitchenLights.Place = "Kitchen";
             this.officeLights = officeLights;
+            this.officeLights.Place = "Office";
             this.bathLights = bathLights;
+            this.bathLights.Place = "Bath";
             this.diningLights = diningLights;
+            this.diningLights.Place = "Dining";
             this.roomno1Lights = roomno1Lights;
+            this.roomno1Lights.Place = "Room1";
             this.roomno2Lights = roomno2Lights;
+            this.roomno2Lights.Place = "Room2";
             this.roomno3Lights = roomno3Lights;
+            this.roomno3Lights.Place = "Room3";
             this.gardenLights = gardenLights;
+            this.gardenLights.Place = "Garden";
+            this.gardenLights2 = gardenLights2;
+            this.gardenLights2.Place = "Garden2";
             this.garageLights = garageLights;
+            this.garageLights.Place = "Garage";
+            this.garageLights2 = garageLights2;
+            this.garageLights2.Place = "Garage2";
             this.gateEntranceLights = gateEntranceLights;
+            this.gateEntranceLights.Place = "Gate";
+            this.gateEntranceLights2 = gateEntranceLights2;
+            this.gateEntranceLights2.Place = "Gate2";
             this.garden = garden;
             this.frontGarden = frontGarden;
             this.entryShading = entryShading;
@@ -115,8 +133,11 @@ namespace Common.Model
         public Lights roomno2Lights { get; set; }
         public Lights roomno3Lights { get; set; }
         public Lights gardenLights { get; set; }
+        public Lights gardenLights2 { get; set; }
         public Lights garageLights { get; set; }
+        public Lights garageLights2 { get; set; }
         public Lights gateEntranceLights { get; set; }
+        public Lights gateEntranceLights2 { get; set; }
 
         // Öntözés
 

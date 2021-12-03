@@ -8,13 +8,14 @@
         mc:Ignorable="d"
         Height="850" Width="1600"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-     TextElement.FontWeight="Regular"
-     TextElement.FontSize="13"
-     TextOptions.TextFormattingMode="Ideal"
-     TextOptions.TextRenderingMode="Auto"
-     Background="{DynamicResource MaterialDesignPaper}"
-     FontFamily="{DynamicResource MaterialDesignFont}">
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
     <UserControl.DataContext>
         <viewModel:SimulationPanelViewModel/>
     </UserControl.DataContext>
@@ -33,9 +34,21 @@
             <ColumnDefinition Width="412*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Grid.Row="0"  Margin="1,1,1,1" >
-            <Rectangle Fill="#593936"></Rectangle>
-            <Rectangle Fill="Black" Margin="219,160,219,172" />
-            <Rectangle Fill="Black" Margin="85,0,356,363" />
+            <Rectangle x:Name="Kitchen" Fill="#593936" Tag="Kitchen">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseMove">
+                        <behavior:InvokeCommandAction Command="{Binding CheckMotionCommand}" CommandParameter="{x:Reference Name=Kitchen}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Rectangle>
+            <Rectangle Fill="{Binding KitchenLightColor}" Margin="219,160,219,172" />
+            <Rectangle x:Name="Radio" Fill="{Binding RadioColor}" Margin="85,0,356,363">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseLeftButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding ElectronicClickedCommand}" CommandParameter="{x:Reference Name=Radio}"/>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Rectangle>
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="188,356,178,0" ></Rectangle>
             <Rectangle Fill="Aqua" Height="20" Margin="-103,173,367,183" RenderTransformOrigin="0.5,0.5" >
                 <Rectangle.RenderTransform>
@@ -49,8 +62,14 @@
             </Rectangle>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="0"  Margin="1,1,1,1"  Grid.ColumnSpan="1">
-            <Rectangle Fill="#6a3b87"></Rectangle>
-            <Rectangle Fill="Black" Margin="113,157,105,164" />
+            <Rectangle x:Name="Dining" Fill="#6a3b87" Tag="Dining">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseMove">
+                        <behavior:InvokeCommandAction Command="{Binding CheckMotionCommand}" CommandParameter="{x:Reference Name=Dining}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Rectangle>
+            <Rectangle Fill="{Binding DiningLightColor}" Margin="113,157,105,164" />
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="78,356,77,0" ></Rectangle>
             <Rectangle Fill="Aqua" Height="20" Margin="70,0,69,356" ></Rectangle>
         </Grid>
@@ -58,9 +77,15 @@
             <Rectangle Fill="#2c4d40"></Rectangle>
         </Grid>
         <Grid Grid.Column="0" Grid.Row="2" Margin="1,1,1,1">
-            <Rectangle Fill="#4d2c4d"></Rectangle>
+            <Rectangle x:Name="Livingroom" Fill="#4d2c4d" Tag="Livingroom">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseMove">
+                        <behavior:InvokeCommandAction Command="{Binding CheckMotionCommand}" CommandParameter="{x:Reference Name=Livingroom}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Rectangle>
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="82,0,73,370" ></Rectangle>
-            <Rectangle Fill="Black" Margin="196,172,178,172" />
+            <Rectangle Fill="{Binding LivingroomLightColor}" Margin="196,172,178,172" />
             <Rectangle Fill="Aqua" Height="20" Margin="-103,173,367,197" RenderTransformOrigin="0.5,0.5" >
                 <Rectangle.RenderTransform>
                     <TransformGroup>
@@ -72,7 +97,12 @@
                 </Rectangle.RenderTransform>
             </Rectangle>
             <Rectangle Fill="Aqua" Height="20" Margin="156,370,156,0" ></Rectangle>
-            <Rectangle Fill="Black" Height="20" Margin="363,173,-99,197" RenderTransformOrigin="0.5,0.5" >
+            <Rectangle x:Name="TV" Fill="{Binding TVColor}" Height="20" Margin="363,173,-99,197" RenderTransformOrigin="0.5,0.5" >
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseLeftButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding ElectronicClickedCommand}" CommandParameter="{x:Reference Name=TV}"/>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -84,20 +114,38 @@
             </Rectangle>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="1"  Margin="1,1,1,1" >
-            <Rectangle Fill="#3b7387"></Rectangle>
-            <Rectangle Fill="Black" Margin="106,161,97,161" />
+            <Rectangle Name="Entry" Fill="#3b7387" Tag="Entry">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseMove">
+                        <behavior:InvokeCommandAction Command="{Binding CheckMotionCommand}" CommandParameter="{x:Reference Name=Entry}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Rectangle>
+            <Rectangle Fill="{Binding EntryLightColor}" Margin="106,161,97,161" />
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="82,370,73,0" />
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="82,0,73,370" ></Rectangle>
         </Grid>
         <Grid Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Margin="1,1,1,1" >
-            <Rectangle Fill="#4a4d2c"></Rectangle>
-            <Rectangle Fill="Black" Margin="176,155,167,155" />
+            <Rectangle x:Name="Room2" Fill="#4a4d2c" Tag="Room2">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseMove">
+                        <behavior:InvokeCommandAction Command="{Binding CheckMotionCommand}" CommandParameter="{x:Reference Name=Room2}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Rectangle>
+            <Rectangle Fill="{Binding Room2LightColor}" Margin="176,155,167,155" />
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="82,0,73,370" ></Rectangle>
             <Rectangle Fill="Aqua" Height="20" Margin="109,370,109,0" ></Rectangle>
         </Grid>
         <Grid Grid.Column="4" Grid.Row="2" Margin="1,1,1,1">
-            <Rectangle Fill="#4a3929"></Rectangle>
-            <Rectangle Fill="Black" Margin="169,160,169,160" />
+            <Rectangle x:Name="Room3" Fill="#4a3929" Tag="Room3">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseMove">
+                        <behavior:InvokeCommandAction Command="{Binding CheckMotionCommand}" CommandParameter="{x:Reference Name=Room3}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Rectangle>
+            <Rectangle Fill="{Binding Room3LightColor}" Margin="169,160,169,160" />
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="145,0,145,370" ></Rectangle>
             <Rectangle Fill="Aqua" Height="20" Margin="304,211,-86,159" RenderTransformOrigin="0.5,0.5" >
                 <Rectangle.RenderTransform>
@@ -111,8 +159,14 @@
             </Rectangle>
         </Grid>
         <Grid Grid.Column="4" Grid.Row="0"  Margin="1,1,1,1">
-            <Rectangle Fill="#2a294a"></Rectangle>
-            <Rectangle Fill="Black" Margin="171,158,171,158" />
+            <Rectangle x:Name="Room1" Fill="#2a294a" Tag="Room1">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseMove">
+                        <behavior:InvokeCommandAction Command="{Binding CheckMotionCommand}" CommandParameter="{x:Reference Name=Room1}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Rectangle>
+            <Rectangle Fill="{Binding Room1LightColor}" Margin="171,158,171,158" />
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="145,356,145,0" ></Rectangle>
             <Rectangle Fill="Aqua" Height="20" Margin="304,180,-86,176" RenderTransformOrigin="0.5,0.5" >
                 <Rectangle.RenderTransform>
@@ -126,14 +180,26 @@
             </Rectangle>
         </Grid>
         <Grid Grid.Column="2" Grid.Row="0"  Margin="1,1,1,1" >
-            <Rectangle Fill="#424480"></Rectangle>
-            <Rectangle Fill="Black" Margin="64,162,52,162" />
+            <Rectangle x:Name="Office" Fill="#424480" Tag="Office">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseMove">
+                        <behavior:InvokeCommandAction Command="{Binding CheckMotionCommand}" CommandParameter="{x:Reference Name=Office}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Rectangle>
+            <Rectangle Fill="{Binding OfficeLightColor}" Margin="64,162,52,162" />
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="25,356,25,0" ></Rectangle>
             <Rectangle Fill="Aqua" Height="20" Margin="36,0,25,356" ></Rectangle>
         </Grid>
         <Grid Grid.Column="3" Grid.Row="0"  Margin="1,1,1,1" >
-            <Rectangle Fill="#3e379e"></Rectangle>
-            <Rectangle Fill="Black" Margin="95,164,95,164" />
+            <Rectangle x:Name="Bath" Fill="#3e379e" Tag="Bath">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseMove">
+                        <behavior:InvokeCommandAction Command="{Binding CheckMotionCommand}" CommandParameter="{x:Reference Name=Bath}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Rectangle>
+            <Rectangle Fill="{Binding BathLightColor}" Margin="95,164,95,164" />
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="64,356,65,0" ></Rectangle>
             <Rectangle Fill="Aqua" Height="20" Margin="10,0,179,356" ></Rectangle>
             <Rectangle Fill="Aqua" Height="20" Margin="186,0,10,356" ></Rectangle>
