@@ -164,9 +164,12 @@ namespace SmartHome.ViewModels
 
             OutsidePlaces = new()
             {
-                "Kapubejáró",
-                "Garázs",
-                "Kert"
+                "Kapubejáró bal",
+                "Kapubejáró jobb",
+                "Garázs alsó",
+                "Garázs felső",
+                "Kert bal",
+                "Kert jobb"
             };
 
             _actualExternalFactors = ExtFactDataProvider.Get().ToList()[0];
