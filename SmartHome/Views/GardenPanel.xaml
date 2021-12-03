@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHome.Views"
         xmlns:viewModel="clr-namespace:SmartHome.ViewModels"
+        xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Height="800" Width="1400"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -31,15 +32,49 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Rectangle Grid.Row="0" Fill="#194f27"></Rectangle>
+            <Ellipse Grid.Row="0" Height="300" Width="300" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35 0 0 0">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseMove">
+                        <behavior:InvokeCommandAction Command="{Binding CheckMotionCommand}" CommandParameter="{x:Reference Name=}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Ellipse>
             <Rectangle Grid.Row="1" Fill="#756356"></Rectangle>
+            <Ellipse Grid.Row="1" Width="202" Height="369" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="128,0,0,-1">
+                <Ellipse.RenderTransform>
+                    <RotateTransform  Angle="30"></RotateTransform>
+                </Ellipse.RenderTransform>
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseMove">
+                        <behavior:InvokeCommandAction Command="{Binding CheckMotionCommand}" CommandParameter="{x:Reference Name=}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Ellipse>
             <Rectangle Grid.Row="1" Fill="#362112" Margin="0,39,941,39" Width="20" Height="300"></Rectangle>
             <Rectangle Grid.Row="0" Fill="Black" Width="30" Height="30" Margin="169,74,764,296" RenderTransformOrigin="1.785,0.645"></Rectangle>
             <Rectangle Grid.Row="0" Fill="Black" Width="30" Height="30" Margin="758,74,175,296"></Rectangle>
+            <Ellipse Grid.Row="0" Width="300" Height="300" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 35 0">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseMove">
+                        <behavior:InvokeCommandAction Command="{Binding CheckMotionCommand}" CommandParameter="{x:Reference Name=}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Ellipse>
             <Ellipse Grid.Row="0" Fill="Black" Width="25" Height="25" Margin="906,43,32,332"></Ellipse>
             <Ellipse Grid.Row="0" Fill="Black" Width="25" Height="25" Margin="906,318,32,57"></Ellipse>
             <Ellipse Grid.Row="0" Fill="Black" Width="25" Height="25" Margin="41,43,897,332"></Ellipse>
             <Ellipse Grid.Row="0" Fill="Black" Width="25" Height="25" Margin="41,318,897,57" RenderTransformOrigin="0.415,1.316"></Ellipse>
             <Rectangle Grid.Row="1" Fill="Black" Width="30" Height="30" Margin="906,360,27,10"></Rectangle>
+            <Ellipse Grid.Row="1" Margin="681,139,86,-99">
+                <Ellipse.RenderTransform>
+                    <RotateTransform Angle="330"></RotateTransform>
+                </Ellipse.RenderTransform>
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseMove">
+                        <behavior:InvokeCommandAction Command="{Binding CheckMotionCommand}" CommandParameter="{x:Reference Name=}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Ellipse>
             <Rectangle Grid.Row="1" Fill="Black" Width="30" Height="30" Margin="38,360,895,10"></Rectangle>
 
         </Grid>
@@ -56,7 +91,21 @@
                 </Rectangle.RenderTransform>
             </Rectangle>
             <Rectangle Fill="Black" Width="30" Height="30" Margin="194,182,213,588"/>
+            <Ellipse Height="300" Width="300" VerticalAlignment="Top" Margin="0 50 0 0">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseMove">
+                        <behavior:InvokeCommandAction Command="{Binding CheckMotionCommand}" CommandParameter="{x:Reference Name=}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Ellipse>
             <Rectangle Fill="Black" Width="30" Height="30" Margin="204,586,203,182"></Rectangle>
+            <Ellipse Width="300" Height="300" VerticalAlignment="Bottom" Margin="0 0 0 50">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseMove">
+                        <behavior:InvokeCommandAction Command="{Binding CheckMotionCommand}" CommandParameter="{x:Reference Name=}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Ellipse>
         </Grid>
         <Label FontSize="30" FontWeight="Black" Margin="416,171,417,587" >Kert</Label>
         <Label FontSize="30" FontWeight="Black" Margin="31,588,760,170" >Kapubejáró</Label>

@@ -275,71 +275,74 @@ namespace SmartHome.ViewModels
 
         public void OnCheckMotion(Rectangle r)
         {
-            switch (r.Tag.ToString())
+            if (dispatcherTimer.IsEnabled)
             {
-                case "Entry":
-                    if (_actualExternalFactors.entryLights.motionDetection)
-                    {
-                        EntryLightColor = _actualExternalFactors.entryLights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
-                        _actualExternalFactors.entryLights.TimeLeft = _actualExternalFactors.entryLights.activeSpan;
-                    }
-                    break;
-                case "Livingroom":
-                    if (_actualExternalFactors.livingroomLights.motionDetection)
-                    {
-                        LivingroomLightColor = _actualExternalFactors.livingroomLights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
-                        _actualExternalFactors.livingroomLights.TimeLeft = _actualExternalFactors.livingroomLights.activeSpan;
-                    }
-                    break;
-                case "Kitchen":
-                    if (_actualExternalFactors.kitchenLights.motionDetection)
-                    {
-                        KitchenLightColor = _actualExternalFactors.kitchenLights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
-                        _actualExternalFactors.kitchenLights.TimeLeft = _actualExternalFactors.kitchenLights.activeSpan;
-                    }
-                    break;
-                case "Office":
-                    if (_actualExternalFactors.officeLights.motionDetection)
-                    {
-                        OfficeLightColor = _actualExternalFactors.officeLights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
-                        _actualExternalFactors.officeLights.TimeLeft = _actualExternalFactors.officeLights.activeSpan;
-                    }
-                    break;
-                case "Bath":
-                    if (_actualExternalFactors.bathLights.motionDetection)
-                    {
-                        BathLightColor = _actualExternalFactors.bathLights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
-                        _actualExternalFactors.bathLights.TimeLeft = _actualExternalFactors.bathLights.activeSpan;
-                    }
-                    break;
-                case "Dining":
-                    if (_actualExternalFactors.diningLights.motionDetection)
-                    {
-                        DiningLightColor = _actualExternalFactors.diningLights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
-                        _actualExternalFactors.diningLights.TimeLeft = _actualExternalFactors.diningLights.activeSpan;
-                    }
-                    break;
-                case "Room1":
-                    if (_actualExternalFactors.roomno1Lights.motionDetection)
-                    {
-                        Room1LightColor = _actualExternalFactors.roomno1Lights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
-                        _actualExternalFactors.roomno1Lights.TimeLeft = _actualExternalFactors.roomno1Lights.activeSpan;
-                    }
-                    break;
-                case "Room2":
-                    if (_actualExternalFactors.roomno2Lights.motionDetection)
-                    {
-                        Room2LightColor = _actualExternalFactors.roomno2Lights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
-                        _actualExternalFactors.roomno2Lights.TimeLeft = _actualExternalFactors.roomno2Lights.activeSpan;
-                    }
-                    break;
-                default:
-                    if (_actualExternalFactors.roomno3Lights.motionDetection)
-                    {
-                        Room3LightColor = _actualExternalFactors.roomno3Lights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
-                        _actualExternalFactors.roomno3Lights.TimeLeft = _actualExternalFactors.roomno3Lights.activeSpan;
-                    }
-                    break;
+                switch (r.Tag.ToString())
+                {
+                    case "Entry":
+                        if (_actualExternalFactors.entryLights.motionDetection)
+                        {
+                            EntryLightColor = _actualExternalFactors.entryLights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
+                            _actualExternalFactors.entryLights.TimeLeft = _actualExternalFactors.entryLights.activeSpan;
+                        }
+                        break;
+                    case "Livingroom":
+                        if (_actualExternalFactors.livingroomLights.motionDetection)
+                        {
+                            LivingroomLightColor = _actualExternalFactors.livingroomLights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
+                            _actualExternalFactors.livingroomLights.TimeLeft = _actualExternalFactors.livingroomLights.activeSpan;
+                        }
+                        break;
+                    case "Kitchen":
+                        if (_actualExternalFactors.kitchenLights.motionDetection)
+                        {
+                            KitchenLightColor = _actualExternalFactors.kitchenLights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
+                            _actualExternalFactors.kitchenLights.TimeLeft = _actualExternalFactors.kitchenLights.activeSpan;
+                        }
+                        break;
+                    case "Office":
+                        if (_actualExternalFactors.officeLights.motionDetection)
+                        {
+                            OfficeLightColor = _actualExternalFactors.officeLights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
+                            _actualExternalFactors.officeLights.TimeLeft = _actualExternalFactors.officeLights.activeSpan;
+                        }
+                        break;
+                    case "Bath":
+                        if (_actualExternalFactors.bathLights.motionDetection)
+                        {
+                            BathLightColor = _actualExternalFactors.bathLights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
+                            _actualExternalFactors.bathLights.TimeLeft = _actualExternalFactors.bathLights.activeSpan;
+                        }
+                        break;
+                    case "Dining":
+                        if (_actualExternalFactors.diningLights.motionDetection)
+                        {
+                            DiningLightColor = _actualExternalFactors.diningLights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
+                            _actualExternalFactors.diningLights.TimeLeft = _actualExternalFactors.diningLights.activeSpan;
+                        }
+                        break;
+                    case "Room1":
+                        if (_actualExternalFactors.roomno1Lights.motionDetection)
+                        {
+                            Room1LightColor = _actualExternalFactors.roomno1Lights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
+                            _actualExternalFactors.roomno1Lights.TimeLeft = _actualExternalFactors.roomno1Lights.activeSpan;
+                        }
+                        break;
+                    case "Room2":
+                        if (_actualExternalFactors.roomno2Lights.motionDetection)
+                        {
+                            Room2LightColor = _actualExternalFactors.roomno2Lights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
+                            _actualExternalFactors.roomno2Lights.TimeLeft = _actualExternalFactors.roomno2Lights.activeSpan;
+                        }
+                        break;
+                    default:
+                        if (_actualExternalFactors.roomno3Lights.motionDetection)
+                        {
+                            Room3LightColor = _actualExternalFactors.roomno3Lights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
+                            _actualExternalFactors.roomno3Lights.TimeLeft = _actualExternalFactors.roomno3Lights.activeSpan;
+                        }
+                        break;
+                }
             }
         }
     }
