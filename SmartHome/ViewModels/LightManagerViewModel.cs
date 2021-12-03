@@ -232,7 +232,7 @@ namespace SmartHome.ViewModels
                     selectedLight = _actualExternalFactors.garageLights2;
                     break;
                 case "Kert bal":
-                    selectedLight = _actualExternalFactors.garageLights;
+                    selectedLight = _actualExternalFactors.gardenLights;
                     break;
                 default:
                     selectedLight = _actualExternalFactors.gardenLights2;

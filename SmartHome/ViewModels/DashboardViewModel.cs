@@ -127,11 +127,13 @@ namespace SmartHome.ViewModels
             {
                 dispatcherTimer.Stop();
                 SimulationPanelViewModel.dispatcherTimer.Stop();
+                GardenPanelViewModel.dispatcherTimer.Stop();
             }
             else 
             {
                 dispatcherTimer.Start();
                 SimulationPanelViewModel.dispatcherTimer.Start();
+                GardenPanelViewModel.dispatcherTimer.Start();
             }
         }
 
