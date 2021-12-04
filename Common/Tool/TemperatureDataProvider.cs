@@ -10,19 +10,22 @@ using System.Threading.Tasks;
 namespace Common.Tool
 {
     public static class TemperatureDataProvider
-    {   
-        public static double GenerateTemp(int t) {
+    {
+        public static double GenerateTemp(int t)
+        {
             // Kilengés * Sin(hossz*(t-eltolás X)) + y eltolás
             //return 9 * Math.Sin(0.3 * (t - 7)) + 13;
-            return (900 * Math.Sin(0.0045 * (t - 500)) + 1300)/100;
+            return (900 * Math.Sin(0.0045 * (t - 500)) + 1300) / 100;
         }
 
-        public static int GenerateLight(int t) {
+        public static int GenerateLight(int t)
+        {
             var x = ((900 * Math.Sin(0.0045 * (t - 500)) + 700));
             return (x <= 0) ? 0 : (int)x;
         }
 
-        public static double CO2(double co2,ExternalFactors external) {
+        public static double CO2(double co2, ExternalFactors external)
+        {
             var co2factor = co2;
             if (external.roomno1Climate.IsHeatingEnabled) co2factor += 0.00000001;
             if (external.roomno2Climate.IsHeatingEnabled) co2factor += 0.00000001;
@@ -33,203 +36,176 @@ namespace Common.Tool
             if (external.entryClimate.IsHeatingEnabled) co2factor += 0.00000000000001;
             if (external.diningClimate.IsHeatingEnabled) co2factor += 0.0000000000001;
             if (external.bathClimate.IsHeatingEnabled) co2factor += 0.000000000000001;
-            
-            return co2factor; 
+
+            return co2factor;
         }
 
 
-        public static double CalculateInsideTemp(double inside, double outside, ExternalFactors external) {
-            bool heating;
-            bool climate;
-            double heatingvalue = 0;
-            double climatevalue = 0;
-            if (external.roomno1Climate.IsHeatingEnabled || external.roomno2Climate.IsHeatingEnabled || external.roomno3Climate.IsHeatingEnabled || external.kitchenClimate.IsHeatingEnabled ||
-                external.livingroomClimate.IsHeatingEnabled || external.officeClimate.IsHeatingEnabled || external.entryClimate.IsHeatingEnabled || external.diningClimate.IsHeatingEnabled ||
-                external.bathClimate.IsHeatingEnabled)
-            {
-                heating = true;
-                climate = false;
-            }
-            else if (external.roomno1Climate.IsCoolingEnabled || external.roomno2Climate.IsCoolingEnabled || external.roomno3Climate.IsCoolingEnabled || external.kitchenClimate.IsCoolingEnabled ||
-                external.livingroomClimate.IsCoolingEnabled || external.officeClimate.IsCoolingEnabled || external.entryClimate.IsCoolingEnabled || external.diningClimate.IsCoolingEnabled ||
-                external.bathClimate.IsCoolingEnabled)
-            {
-                climate = true;
-                heating = false;
+        public static double CalculateInsideTemp(double inside, double outside, ExternalFactors external)
+        {
+            double cooling_factor = 0.0;
+            double heating_factor = 0.0;
 
+            if (external.entryClimate.IsCoolingEnabled) { cooling_factor += 0.1; }
+            if (external.kitchenClimate.IsCoolingEnabled) { cooling_factor += 0.15; }
+            if (external.livingroomClimate.IsCoolingEnabled) { cooling_factor += 0.15; }
+            if (external.officeClimate.IsCoolingEnabled)
+            {
+                cooling_factor += 0.1;
+            }
+            if (external.roomno1Climate.IsCoolingEnabled)
+            {
+                cooling_factor += 0.1;
+            }
+            if (external.roomno2Climate.IsCoolingEnabled)
+            {
+                cooling_factor += 0.1;
+            }
+            if (external.roomno3Climate.IsCoolingEnabled) { cooling_factor += 0.1; }
+            if (external.diningClimate.IsCoolingEnabled) { cooling_factor += 0.1; }
+            if (external.bathClimate.IsCoolingEnabled) { cooling_factor += 0.1; }
+            if (external.entryClimate.IsHeatingEnabled)
+            {
+                heating_factor += 0.1;
+            }
+            if (external.kitchenClimate.IsHeatingEnabled) { heating_factor += 0.15; }
+            if (external.livingroomClimate.IsHeatingEnabled) { heating_factor += 0.15; }
+            if (external.officeClimate.IsHeatingEnabled) { heating_factor += 0.1; }
+            if (external.roomno1Climate.IsHeatingEnabled)
+            {
+                heating_factor += 0.1;
+            }
+            if (external.roomno2Climate.IsHeatingEnabled) { heating_factor += 0.1; }
+            if (external.roomno3Climate.IsHeatingEnabled) { heating_factor += 0.1; }
+            if (external.diningClimate.IsHeatingEnabled) { heating_factor += 0.1; }
+            if (external.bathClimate.IsHeatingEnabled)
+            {
+                heating_factor += 0.1;
+            }
+            // Hűtés bekapcsolt állapota
+            if (external.entryClimate.IsCoolingEnabled || external.kitchenClimate.IsCoolingEnabled || external.livingroomClimate.IsCoolingEnabled || external.officeClimate.IsCoolingEnabled || external.roomno1Climate.IsCoolingEnabled || external.roomno2Climate.IsCoolingEnabled || external.roomno3Climate.IsCoolingEnabled || external.diningClimate.IsCoolingEnabled || external.bathClimate.IsCoolingEnabled)
+            {
+                if (external.Cooling * 1.10 < inside)
+                {
+                    switch (external.entryClimate.Level)
+                    {
+                        case 1: break;
+                        case 2:
+                            heating_factor += 0.0001;
+                            break;
+                        case 3:
+                            heating_factor += 0.0002;
+                            break;
+                    }
+                    switch (external.kitchenClimate.Level)
+                    {
+                        case 1: break;
+                        case 2:
+                            heating_factor += 0.0001;
+                            break;
+                        case 3:
+                            heating_factor += 0.0002;
+                            break;
+                    }
+                    switch (external.livingroomClimate.Level)
+                    {
+                        case 1: break;
+                        case 2:
+                            heating_factor += 0.0001;
+                            break;
+                        case 3:
+                            heating_factor += 0.0002;
+                            break;
+                    }
+                    switch (external.officeClimate.Level)
+                    {
+                        case 1: break;
+                        case 2:
+                            heating_factor += 0.0001;
+                            break;
+                        case 3:
+                            heating_factor += 0.0002;
+                            break;
+                    }
+                    switch (external.roomno1Climate.Level)
+                    {
+                        case 1: break;
+                        case 2:
+                            heating_factor += 0.0001;
+                            break;
+                        case 3:
+                            heating_factor += 0.0002;
+                            break;
+                    }
+                    switch (external.roomno2Climate.Level)
+                    {
+                        case 1: break;
+                        case 2:
+                            heating_factor += 0.0001;
+                            break;
+                        case 3:
+                            heating_factor += 0.0002;
+                            break;
+                    }
+                    switch (external.roomno3Climate.Level)
+                    {
+                        case 1: break;
+                        case 2:
+                            heating_factor += 0.0001;
+                            break;
+                        case 3:
+                            heating_factor += 0.0002;
+                            break;
+                    }
+                    switch (external.diningClimate.Level)
+                    {
+                        case 1: break;
+                        case 2:
+                            heating_factor += 0.0001;
+                            break;
+                        case 3:
+                            heating_factor += 0.0002;
+                            break;
+                    }
+                    switch (external.bathClimate.Level)
+                    {
+                        case 1: break;
+                        case 2:
+                            heating_factor += 0.0001;
+                            break;
+                        case 3:
+                            heating_factor += 0.0002;
+                            break;
+                    }
+                    if (!(external.Cooling >= inside))
+                    {
+                        inside = inside - (cooling_factor * 0.05);
+                    }
+                }
+            }
+
+
+            if (external.entryClimate.IsHeatingEnabled || external.kitchenClimate.IsHeatingEnabled || external.livingroomClimate.IsHeatingEnabled || external.officeClimate.IsHeatingEnabled || external.roomno1Climate.IsHeatingEnabled || external.roomno2Climate.IsHeatingEnabled || external.roomno3Climate.IsHeatingEnabled || external.diningClimate.IsHeatingEnabled || external.bathClimate.IsHeatingEnabled)
+            {
+                if (external.Heating > inside && heating_factor >= 0.3)
+                {
+                    inside = inside + (heating_factor * 0.05);
+                }
+                else if (heating_factor < 0.3)
+                {
+                    inside = inside + (heating_factor * 0.02);
+                }
+
+            }
+
+            if (outside < inside)
+            {
+                return inside - (outside * 0.002);
             }
             else
             {
-                heating = false;
-                climate = false;
+                return inside + (outside * 0.001);
             }
-
-            if (heating == false && climate == false)
-            {
-                if (inside > outside)
-                {
-                    inside = inside - (outside * 0.10 / 60);
-                }
-                else {
-                    inside =  inside + (outside * 0.003 / 60);
-                }
-            }
-
-            if(heating)
-            {
-                if (external.roomno1Climate.IsHeatingEnabled) heatingvalue += 0.01;
-                if (external.bathClimate.IsHeatingEnabled) heatingvalue += 0.01;
-                if (external.roomno2Climate.IsHeatingEnabled) heatingvalue += 0.01;
-                if (external.roomno3Climate.IsHeatingEnabled) heatingvalue += 0.01;
-                if (external.diningClimate.IsHeatingEnabled) heatingvalue += 0.02;
-                if (external.kitchenClimate.IsHeatingEnabled) heatingvalue += 0.03;
-                if (external.livingroomClimate.IsHeatingEnabled) heatingvalue += 0.03;
-                if (external.entryClimate.IsHeatingEnabled) heatingvalue += 0.01;
-                if (external.officeClimate.IsHeatingEnabled) heatingvalue += 0.01;
-
-                if(!(external.Heating <= inside))
-                {
-                    inside = inside + (heatingvalue * 0.2) - (outside * 0.07 / 60);
-                }
-            }
-
-            if (climate)
-            {
-                if (external.roomno1Climate.IsCoolingEnabled) {
-                    if (external.roomno1Climate.Level == 1)
-                    {
-                        climatevalue += 0.01;
-                    }
-                    else if (external.roomno1Climate.Level == 2)
-                    {
-                        climatevalue += 0.02;
-                    }
-                    else if (external.roomno1Climate.Level == 3) {
-                        climatevalue += 0.03;
-                    }
-                }
-                if (external.bathClimate.IsCoolingEnabled)
-                {
-                    if (external.bathClimate.Level == 1)
-                    {
-                        climatevalue += 0.01;
-                    }
-                    else if (external.bathClimate.Level == 2)
-                    {
-                        climatevalue += 0.02;
-                    }
-                    else if (external.bathClimate.Level == 3)
-                    {
-                        climatevalue += 0.03;
-                    }
-
-                }
-                if (external.roomno2Climate.IsCoolingEnabled) {
-                    if (external.roomno2Climate.Level == 1)
-                    {
-                        climatevalue += 0.01;
-                    }
-                    else if (external.roomno2Climate.Level == 2)
-                    {
-                        climatevalue += 0.02;
-                    }
-                    else if (external.roomno2Climate.Level == 3)
-                    {
-                        climatevalue += 0.03;
-                    }
-                }
-                if (external.roomno3Climate.IsCoolingEnabled) {
-                    if (external.roomno3Climate.Level == 1)
-                    {
-                        climatevalue += 0.01;
-                    }
-                    else if (external.roomno3Climate.Level == 2)
-                    {
-                        climatevalue += 0.02;
-                    }
-                    else if (external.roomno3Climate.Level == 3)
-                    {
-                        climatevalue += 0.03;
-                    }
-                }
-                if (external.diningClimate.IsCoolingEnabled) {
-                    if (external.roomno1Climate.Level == 1)
-                    {
-                        climatevalue += 0.01;
-                    }
-                    else if (external.roomno1Climate.Level == 2)
-                    {
-                        climatevalue += 0.02;
-                    }
-                    else if (external.roomno1Climate.Level == 3)
-                    {
-                        climatevalue += 0.03;
-                    }
-                }
-                if (external.kitchenClimate.IsCoolingEnabled) {
-                    if (external.kitchenClimate.Level == 1)
-                    {
-                        climatevalue += 0.01;
-                    }
-                    else if (external.kitchenClimate.Level == 2)
-                    {
-                        climatevalue += 0.02;
-                    }
-                    else if (external.kitchenClimate.Level == 3)
-                    {
-                        climatevalue += 0.03;
-                    }
-                }
-                if (external.livingroomClimate.IsCoolingEnabled) {
-                    if (external.livingroomClimate.Level == 1)
-                    {
-                        climatevalue += 0.01;
-                    }
-                    else if (external.livingroomClimate.Level == 2)
-                    {
-                        climatevalue += 0.02;
-                    }
-                    else if (external.livingroomClimate.Level == 3)
-                    {
-                        climatevalue += 0.03;
-                    }
-                }
-                if (external.entryClimate.IsCoolingEnabled) {
-                    if (external.livingroomClimate.Level == 1)
-                    {
-                        climatevalue += 0.01;
-                    }
-                    else if (external.livingroomClimate.Level == 2)
-                    {
-                        climatevalue += 0.02;
-                    }
-                    else if (external.livingroomClimate.Level == 3)
-                    {
-                        climatevalue += 0.03;
-                    }
-                }
-                if (external.officeClimate.IsCoolingEnabled) {
-                    if (external.entryClimate.Level == 1)
-                    {
-                        climatevalue += 0.01;
-                    }
-                    else if (external.entryClimate.Level == 2)
-                    {
-                        climatevalue += 0.02;
-                    }
-                    else if (external.entryClimate.Level == 3)
-                    {
-                        climatevalue += 0.03;
-                    }
-                } 
-
-                if (!(external.Cooling >= inside))
-                {
-                    //
-                    inside = inside - (climatevalue * 0.2) - (outside * 0.10 / 60);
-                }
-            }
-            return inside;
         }
     }
 }
