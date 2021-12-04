@@ -11,12 +11,101 @@ namespace Common.Tool
 {
     public static class TemperatureDataProvider
     {
+
         public static double GenerateTemp(int t)
         {
             // Kilengés * Sin(hossz*(t-eltolás X)) + y eltolás
             //return 9 * Math.Sin(0.3 * (t - 7)) + 13;
             return (900 * Math.Sin(0.0045 * (t - 500)) + 1300) / 100;
         }
+
+        public static string GenerateForecast(string forecast) {
+            List<KeyValuePair<string, double>> probs = new List<KeyValuePair<string, double>>()
+            {
+                   new KeyValuePair<string,double>("Sunny",25),
+                   new KeyValuePair<string,double>("Cloudy",25),
+                   new KeyValuePair<string,double>("Storm",25),
+                   new KeyValuePair<string,double>("Rain",25),
+                   new KeyValuePair<string,double>("Thunderstorm",25)
+            };
+            var changeWeather = new Dictionary<string, double>(probs);
+
+            switch (forecast) {
+
+                case "Sunny": {
+                        changeWeather["Sunny"] = 32.2689011097057;
+                        changeWeather["Cloudy"] = 35.6067750271923;
+                        changeWeather["Thunderstorm"] = 3.62318137795412;
+                        changeWeather["Rain"] = 23.8828193232803;
+                        changeWeather["Storm"] = 5.36672179833806;
+                        break;
+                    }
+                case "Cloudy":
+                    {
+                        changeWeather["Sunny"] = 26.2649273165632;
+                        changeWeather["Cloudy"] = 35.1475234892176;
+                        changeWeather["Thunderstorm"] = 9.63572049283275;
+                        changeWeather["Rain"] = 16.1077075290676;
+                        changeWeather["Storm"] = 13.3616951049127;
+                        break;
+                    }
+                case "Rain":
+                    {
+                        changeWeather["Sunny"] = 24.3428237823409;
+                        changeWeather["Cloudy"] = 33.402990672997;
+                        changeWeather["Thunderstorm"] = 5.04112632534668;
+                        changeWeather["Rain"] = 27.339336479267;
+                        changeWeather["Storm"] = 10.2632878898938;
+                        break;
+                    }
+                case "Storm":
+                    {
+                        changeWeather["Sunny"] = 8.03927530629527;
+                        changeWeather["Cloudy"] = 13.7489354722255;
+                        changeWeather["Thunderstorm"] = 16.5529497854222;
+                        changeWeather["Rain"] = 35.8883976019561;
+                        changeWeather["Storm"] = 26.6692349277299;
+                        break;
+                    }
+                case "Thunderstorm":
+                    {
+                        changeWeather["Sunny"] = 7.98652567108466;
+                        changeWeather["Cloudy"] = 26.124501006871;
+                        changeWeather["Thunderstorm"] = 7.98652567108466;
+                        changeWeather["Rain"] = 30.8721384397728;
+                        changeWeather["Storm"] = 16.2225589975816;
+                        break;
+                    }
+                default:  {
+                        changeWeather["Sunny"] = 25;
+                        changeWeather["Cloudy"] = 25;
+                        changeWeather["Thunderstorm"] = 25;
+                        changeWeather["Rain"] = 25;
+                        changeWeather["Storm"] = 25;
+                        break;
+                    }
+                   
+            }
+
+
+
+            probs = changeWeather.ToList();
+            Random random = new Random();
+            double cumulative = 0.0;
+            string ans = string.Empty;
+            var calc = random.NextDouble();
+            for (int i = 0; i < probs.Count; i++)
+            {
+                cumulative += probs[i].Value;
+                if (calc < cumulative)
+                {
+                    ans = probs[i].Key;
+                    break;
+                }
+            }
+            return ans;
+        }
+
 
         public static int GenerateLight(int t)
         {
