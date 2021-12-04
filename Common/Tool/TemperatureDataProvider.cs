@@ -20,15 +20,7 @@ namespace Common.Tool
         }
 
         public static string GenerateForecast(string forecast) {
-            List<KeyValuePair<string, double>> probs = new List<KeyValuePair<string, double>>()
-            {
-                   new KeyValuePair<string,double>("Sunny",25),
-                   new KeyValuePair<string,double>("Cloudy",25),
-                   new KeyValuePair<string,double>("Storm",25),
-                   new KeyValuePair<string,double>("Rain",25),
-                   new KeyValuePair<string,double>("Thunderstorm",25)
-            };
-            var changeWeather = new Dictionary<string, double>(probs);
+            var changeWeather = new Dictionary<string, double>();
 
             switch (forecast) {
 
@@ -86,10 +78,7 @@ namespace Common.Tool
                     }
                    
             }
-
-
-
-            probs = changeWeather.ToList();
+            List<KeyValuePair<string, double>> probs = changeWeather.ToList();
             Random random = new Random();
             double cumulative = 0.0;
             string ans = string.Empty;
