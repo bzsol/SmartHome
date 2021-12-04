@@ -8,15 +8,21 @@ namespace Common.Class
 {
     public class Irrigative
     {
+        public string Place { get; set; }
+
         public int timespan { get; set; }
+        
+        public int TimeLeft { get; set; }
 
         public int strength { get; set; }
 
-        public string Time { get; set; }
+        public DateTime Time { get; set; }
 
         public int Temp { get; set; }
 
         public int Repeat { get; set; }
+
+        public int RepeatTimeLeft { get; set; }
 
         public bool IsRepeated { get; set; }
 

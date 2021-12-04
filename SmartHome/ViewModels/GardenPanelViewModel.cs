@@ -1,4 +1,6 @@
-﻿using Common.Model;
+﻿using Common.Class;
+using Common.Model;
+using Common.Tool;
 using Prism.Commands;
 using SmartHome.DataProvider;
 using System;
@@ -24,6 +26,8 @@ namespace SmartHome.ViewModels
         public static DispatcherTimer dispatcherTimer = new DispatcherTimer();
 
         private List<Lights> _lightsOutside;
+
+        private List<Irrigative> _irrigatives;
 
         private Brush _leftGardenLightColor;
         public Brush LeftGardenLightColor
@@ -130,6 +134,12 @@ namespace SmartHome.ViewModels
                 _actualExternalFactors.gateEntranceLights2
             };
 
+            _irrigatives = new()
+            {
+                _actualExternalFactors.frontGarden,
+                _actualExternalFactors.garden
+            };
+
             LeftGardenLightColor = Brushes.Black;
             RightGardenLightColor = Brushes.Black;
             UpperGarageLightColor = Brushes.Black;
@@ -168,7 +178,35 @@ namespace SmartHome.ViewModels
 
         public void CheckIrrigation()
         {
+            foreach (var irrigative in _irrigatives)
+            {
+                if (irrigative.IsTimeSetting && irrigative.Time.ToLongTimeString().Equals(ToolKit.SecToMilitaryTime(DashboardViewModel.time)))
+                {
+                    SetIrrigationColor(irrigative, Brushes.Blue);
+                    irrigative.TimeLeft = irrigative.timespan;
+                }
 
+                if (irrigative.TimeLeft > 0)
+                {
+                    irrigative.TimeLeft -= 1;
+                    if (irrigative.TimeLeft == 0)
+                    {
+                        SetIrrigationColor(irrigative, Brushes.Black);
+                    }
+                }
+            }
+        }
+
+        public void SetIrrigationColor(Irrigative irrigative, Brush brush)
+        {
+            if (irrigative.Place.Equals("Garden"))
+            {
+                BackIrrigationColor = brush;
+            }
+            else
+            {
+                FrontIrrigationColor = brush;
+            }
         }
 
         public void TurnOffLamp(Lights light)

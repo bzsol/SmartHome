@@ -56,7 +56,9 @@ namespace Common.Model
             this.gateEntranceLights2 = gateEntranceLights2;
             this.gateEntranceLights2.Place = "Gate2";
             this.garden = garden;
+            this.garden.Place = "Garden";
             this.frontGarden = frontGarden;
+            this.frontGarden.Place = "FrontGarden";
             this.entryShading = entryShading;
             this.livingroomShading = livingroomShading;
             this.kitchenShading = kitchenShading;

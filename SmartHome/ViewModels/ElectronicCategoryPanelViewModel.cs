@@ -1,4 +1,5 @@
 ﻿using Common.Model;
+using Common.Tool;
 using Prism.Commands;
 using SmartHome.DataProvider;
 using SmartHome.Views;
@@ -109,25 +110,23 @@ namespace SmartHome.ViewModels
             _actualExternalFactors = ExtFactDataProvider.Get().ToList()[0];
         }
 
-        private void DataUpload(string eventName, DateTime dateTime, bool cont, bool isTV) {
+        private void DataUpload(string eventName, DateTime dateTime, bool cont, bool isTV)
+        {
+                var Event = new Electronics
+                {
+                    EventName = eventName,
+                    EventTime = dateTime,
+                    Continous = cont,
+                    Type = isTV == true ? "TV" : "Rádió"
+                };
+                _actualExternalFactors.ElectronicEvents.Add(Event);
 
-            var external = ((List<ExternalFactors>)ExtFactDataProvider.Get()).FirstOrDefault(x => x.ID == 1);
-            var Event = new Electronics
-            {
-                EventName = eventName,
-                EventTime = dateTime,
-                Continous = cont,
-                Type = isTV == true ? "TV" : "Rádió"
-            };
-            external.ElectronicEvents.Add(Event);
-
-            ExtFactDataProvider.Update(external);
+                ExtFactDataProvider.Update(_actualExternalFactors);
         }
-
 
         public void OnAddEventClicked(Button btn)
         {
-            if (_nameTextBoxText.Length > 2)
+            if (_nameTextBoxText?.Length > 2)
             {
                 if (_actualExternalFactors.ElectronicEvents.FirstOrDefault(x => x.EventName == _nameTextBoxText) == null)
                 {

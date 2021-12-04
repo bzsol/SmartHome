@@ -88,7 +88,7 @@
                 </Grid.ColumnDefinitions>
 
                 <material:TimePicker Grid.Column="0" FontFamily="{StaticResource Roboto}" FontSize="24"
-                        Margin="15 0 15 0" Padding="0 20 0 0" BorderBrush="Black" Is24Hours="True" SelectedTime="{Binding SelectedTime}">
+                        Margin="15 0 15 0" Padding="0 20 0 0" BorderBrush="Black" Is24Hours="True" SelectedTime="{Binding SelectedTime}" material:ValidationAssist.Suppress="True">
                     <material:TimePicker.ClockStyle>
                         <Style TargetType="material:Clock">
                             <Style.Resources>
