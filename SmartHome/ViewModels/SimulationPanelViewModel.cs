@@ -191,6 +191,7 @@ namespace SmartHome.ViewModels
         {
             CheckElectronics();
             CheckLights();
+            CheckWindows();
             ExtFactDataProvider.Update(_actualExternalFactors);
         }
 
@@ -225,6 +226,12 @@ namespace SmartHome.ViewModels
                     }
                 }
             }
+        }
+
+        public void CheckWindows()
+        {
+            double shadow = TemperatureDataProvider.GenerateLight(DashboardViewModel.time / 60);
+            
         }
 
         public void TurnOffLamp(Lights light)

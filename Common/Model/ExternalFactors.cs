@@ -13,7 +13,7 @@ namespace Common.Model
 
     public class ExternalFactors
     {
-        public ExternalFactors(List<Electronics> electronicEvents, Climate entryClimate, Climate livingroomClimate, Climate kitchenClimate, Climate officeClimate, Climate bathClimate, Climate diningClimate, Climate roomno1Climate, Climate roomno2Climate, Climate roomno3Climate, Lights entryLights, Lights livingroomLights, Lights kitchenLights, Lights officeLights, Lights bathLights, Lights diningLights, Lights roomno1Lights, Lights roomno2Lights, Lights roomno3Lights, Lights gardenLights, Lights gardenLights2, Lights garageLights, Lights garageLights2, Lights gateEntranceLights, Lights gateEntranceLights2, Irrigative garden, Irrigative frontGarden, Shading entryShading, Shading livingroomShading, Shading kitchenShading, Shading officeShading, Shading bathRightWindowShading, Shading roomno1Shading, Shading roomno2Shading, Shading roomno3Shading,Shading livingroomPanoramaShading,Shading bathleftWindowShading,Shading diningShading)
+        public ExternalFactors(List<Electronics> electronicEvents, Climate entryClimate, Climate livingroomClimate, Climate kitchenClimate, Climate officeClimate, Climate bathClimate, Climate diningClimate, Climate roomno1Climate, Climate roomno2Climate, Climate roomno3Climate, Lights entryLights, Lights livingroomLights, Lights kitchenLights, Lights officeLights, Lights bathLights, Lights diningLights, Lights roomno1Lights, Lights roomno2Lights, Lights roomno3Lights, Lights gardenLights, Lights gardenLights2, Lights garageLights, Lights garageLights2, Lights gateEntranceLights, Lights gateEntranceLights2, Irrigative garden, Irrigative frontGarden, Shading livingroomShading, Shading kitchenShading, Shading officeShading, Shading bathRightWindowShading, Shading roomno1Shading, Shading roomno2Shading, Shading roomno3Shading,Shading livingroomPanoramaShading,Shading bathleftWindowShading,Shading diningShading)
         {
             ElectronicEvents = electronicEvents;
             this.entryClimate = entryClimate;
@@ -59,17 +59,26 @@ namespace Common.Model
             this.garden.Place = "Garden";
             this.frontGarden = frontGarden;
             this.frontGarden.Place = "FrontGarden";
-            this.entryShading = entryShading;
             this.livingroomShading = livingroomShading;
+            this.livingroomShading.Place = "LivingBig";
             this.kitchenShading = kitchenShading;
+            this.kitchenShading.Place = "Kitchen";
             this.officeShading = officeShading;
+            this.officeShading.Place = "Office";
             this.bathRightWindowShading = bathRightWindowShading;
+            this.bathRightWindowShading.Place = "BathRight";
             this.roomno1Shading = roomno1Shading;
+            this.roomno1Shading.Place = "Room1";
             this.roomno2Shading = roomno2Shading;
+            this.roomno2Shading.Place = "Room2";
             this.roomno3Shading = roomno3Shading;
+            this.roomno3Shading.Place = "Room3";
             this.livingroomPanoramaShading = livingroomPanoramaShading;
+            this.livingroomPanoramaShading.Place = "LivingPanorama";
             this.bathLeftWindowShading = bathleftWindowShading;
-            this.diningShading = diningShading;    
+            this.bathLeftWindowShading.Place = "BathLeft";
+            this.diningShading = diningShading;
+            this.diningShading.Place = "Dining";
         }
 
         [Key]
@@ -150,7 +159,6 @@ namespace Common.Model
 
         public enum ShadePreference { NONE, TIME, PHOTOSENSITIVTY }
 
-        public Shading entryShading { get; set; }
         public Shading livingroomShading { get; set; }
         public Shading livingroomPanoramaShading { get; set; }
         public Shading bathLeftWindowShading { get; set; }
