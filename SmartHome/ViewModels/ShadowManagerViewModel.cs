@@ -184,8 +184,8 @@ namespace SmartHome.ViewModels
             }
         }
 
-        private string _selectedtime;
-        public string SelectedTime
+        private DateTime _selectedtime;
+        public DateTime SelectedTime
         {
             get => _selectedtime;
             set
@@ -272,83 +272,72 @@ namespace SmartHome.ViewModels
             TimePreferenceCheckState = selectedShading.ShadePreference == ShadePreference.TIME;
             LightPreferenceCheckState = selectedShading.ShadePreference == ShadePreference.PHOTOSENSITIVTY;
             NonePreferenceCheckState = selectedShading.ShadePreference == ShadePreference.NONE;
-            LevelSlider = selectedShading.Level;
-            SelectedTime = selectedShading.Date == null ? string.Empty : selectedShading.Date;
-            LightStrength = selectedShading.Photosensitivity;
+            LevelSlider = selectedShading.Level == 0 ? 1 : selectedShading.Level;
+            SelectedTime = selectedShading.Date;
+            LightStrength = selectedShading.Photosensitivity == 0 ? 450 : selectedShading.Photosensitivity;
             SetViewBasedOnPreference();
         }
 
         private void DataUpload()
         {
-            if (TimePreferenceCheckState && !IsValidTime())
+
+            Shading shading = new Shading();
+
+            shading.Level = LevelSlider;
+            shading.ShadePreference = TimePreferenceCheckState ? ShadePreference.TIME : LightPreferenceCheckState ? ShadePreference.PHOTOSENSITIVTY : ShadePreference.NONE;
+            if (_lightPreferenceCheckState)
             {
-                MessageBox.Show("Az időpontnak 0:00-23:59 közé kell esnie!");
+                shading.Photosensitivity = _lightstrength;
             }
-            else
+            else if (_timePreferenceCheckState)
             {
-                Shading shading = new Shading();
-
-                shading.Level = LevelSlider;
-                shading.ShadePreference = TimePreferenceCheckState ? ShadePreference.TIME : LightPreferenceCheckState ? ShadePreference.PHOTOSENSITIVTY : ShadePreference.NONE;
-                if (_lightPreferenceCheckState)
-                {
-                    shading.Photosensitivity = _lightstrength;
-                }
-                else if (_timePreferenceCheckState)
-                {
-                    shading.Date = _selectedtime;
-                }
-
-                switch (SelectedPlace)
-                {
-                    case "Nappali":
-                        if (SelectedWindow.Equals("Panoráma ablak"))
-                        {
-                            _actualExternalFactors.livingroomPanoramaShading = shading;
-                        }
-                        else if (SelectedWindow.Equals("Nagy ablak"))
-                        {
-                            _actualExternalFactors.livingroomShading = shading;
-                        }
-                        break;
-                    case "Fürdőszoba":
-                        if (SelectedWindow.Equals("Baloldali ablak"))
-                        {
-                            _actualExternalFactors.bathLeftWindowShading = shading;
-                        }
-                        else if (SelectedWindow.Equals("Jobboldali ablak"))
-                        {
-                            _actualExternalFactors.bathRightWindowShading = shading;
-                        }
-                        break;
-
-                    case "Konyha":
-                        _actualExternalFactors.kitchenShading = shading;
-                        break;
-                    case "Iroda":
-                        _actualExternalFactors.officeShading = shading;
-                        break;
-                    case "Szoba #1":
-                        _actualExternalFactors.roomno1Shading = shading;
-                        break;
-                    case "Szoba #2":
-                        _actualExternalFactors.roomno2Shading = shading;
-                        break;
-                    case "Szoba #3":
-                        _actualExternalFactors.roomno3Shading = shading;
-                        break;
-                    case "Étkező":
-                        _actualExternalFactors.diningShading = shading;
-                        break;
-                }
-
-                ExtFactDataProvider.Update(_actualExternalFactors);
+                shading.Date = _selectedtime;
             }
-        }
 
-        private bool IsValidTime()
-        {
-            return Regex.IsMatch(SelectedTime == null ? string.Empty : SelectedTime, "([0-9]|[1][0-9]|[2][0-3]):[0-5][0-9]");
+            switch (SelectedPlace)
+            {
+                case "Nappali":
+                    if (SelectedWindow.Equals("Panoráma ablak"))
+                    {
+                        _actualExternalFactors.livingroomPanoramaShading = shading;
+                    }
+                    else if (SelectedWindow.Equals("Nagy ablak"))
+                    {
+                        _actualExternalFactors.livingroomShading = shading;
+                    }
+                    break;
+                case "Fürdőszoba":
+                    if (SelectedWindow.Equals("Baloldali ablak"))
+                    {
+                        _actualExternalFactors.bathLeftWindowShading = shading;
+                    }
+                    else if (SelectedWindow.Equals("Jobboldali ablak"))
+                    {
+                        _actualExternalFactors.bathRightWindowShading = shading;
+                    }
+                    break;
+
+                case "Konyha":
+                    _actualExternalFactors.kitchenShading = shading;
+                    break;
+                case "Iroda":
+                    _actualExternalFactors.officeShading = shading;
+                    break;
+                case "Szoba #1":
+                    _actualExternalFactors.roomno1Shading = shading;
+                    break;
+                case "Szoba #2":
+                    _actualExternalFactors.roomno2Shading = shading;
+                    break;
+                case "Szoba #3":
+                    _actualExternalFactors.roomno3Shading = shading;
+                    break;
+                case "Étkező":
+                    _actualExternalFactors.diningShading = shading;
+                    break;
+            }
+
+            ExtFactDataProvider.Update(_actualExternalFactors);
         }
 
         private void OnSaveSettings(Button btn)

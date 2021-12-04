@@ -20,12 +20,18 @@ namespace SmartHome.ViewModels
     {
         public DelegateCommand<Rectangle> ElectronicClickedCommand { get; set; }
         public DelegateCommand<Rectangle> CheckMotionCommand { get; set; }
+        public DelegateCommand<Rectangle> WindowLeftClickedCommand { get; set; }
+        public DelegateCommand<Rectangle> WindowRightClickedCommand { get; set; }
 
         private ExternalFactors _actualExternalFactors;
 
         public static DispatcherTimer dispatcherTimer = new DispatcherTimer();
 
-        private List<Lights> _lightsInside; 
+        private List<Lights> _lightsInside;
+
+        private List<Shading> _shadings;
+
+        public int LightValue { get; set; }
 
         private Brush _TVColor;
         public Brush TVColor
@@ -148,6 +154,116 @@ namespace SmartHome.ViewModels
             }
         }
 
+        private Brush _panoramaWindowColor;
+        public Brush PanoramaWindowColor
+        {
+            get => _panoramaWindowColor;
+            set
+            {
+                _panoramaWindowColor = value;
+                NotifyChange(nameof(PanoramaWindowColor));
+            }
+        }
+
+        private Brush _bigWindowColor;
+        public Brush BigWindowColor
+        {
+            get => _bigWindowColor;
+            set
+            {
+                _bigWindowColor = value;
+                NotifyChange(nameof(BigWindowColor));
+            }
+        }
+
+        private Brush _kitchenWindowColor;
+        public Brush KitchenWindowColor
+        {
+            get => _kitchenWindowColor;
+            set
+            {
+                _kitchenWindowColor = value;
+                NotifyChange(nameof(KitchenWindowColor));
+            }
+        }
+
+        private Brush _diningWindowColor;
+        public Brush DiningWindowColor
+        {
+            get => _diningWindowColor;
+            set
+            {
+                _diningWindowColor = value;
+                NotifyChange(nameof(DiningWindowColor));
+            }
+        }
+
+        private Brush _officeWindowColor;
+        public Brush OfficeWindowColor
+        {
+            get => _officeWindowColor;
+            set
+            {
+                _officeWindowColor = value;
+                NotifyChange(nameof(OfficeWindowColor));
+            }
+        }
+
+        private Brush _room1WindowColor;
+        public Brush Room1WindowColor
+        {
+            get => _room1WindowColor;
+            set
+            {
+                _room1WindowColor = value;
+                NotifyChange(nameof(Room1WindowColor));
+            }
+        }
+
+        private Brush _room2WindowColor;
+        public Brush Room2WindowColor
+        {
+            get => _room2WindowColor;
+            set
+            {
+                _room2WindowColor = value;
+                NotifyChange(nameof(Room2WindowColor));
+            }
+        }
+
+        private Brush _room3WindowColor;
+        public Brush Room3WindowColor
+        {
+            get => _room3WindowColor;
+            set
+            {
+                _room3WindowColor = value;
+                NotifyChange(nameof(Room3WindowColor));
+            }
+        }
+
+        private Brush _bathLeftWindowColor;
+        public Brush BathLeftWindowColor
+        {
+            get => _bathLeftWindowColor;
+            set
+            {
+                _bathLeftWindowColor = value;
+                NotifyChange(nameof(BathLeftWindowColor));
+            }
+        }
+
+        private Brush _bathRightWindowColor;
+        public Brush BathRightWindowColor
+        {
+            get => _bathRightWindowColor;
+            set
+            {
+                _bathRightWindowColor = value;
+                NotifyChange(nameof(BathRightWindowColor));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyChange(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -156,6 +272,8 @@ namespace SmartHome.ViewModels
         {
             ElectronicClickedCommand = new DelegateCommand<Rectangle>(OnElectronicClicked);
             CheckMotionCommand = new DelegateCommand<Rectangle>(OnCheckMotion);
+            WindowLeftClickedCommand = new DelegateCommand<Rectangle>(OnWindowLeftClicked);
+            WindowRightClickedCommand = new DelegateCommand<Rectangle>(OnWindowRightClicked);
 
             _actualExternalFactors = ExtFactDataProvider.Get().ToList()[0];
             _lightsInside = new()
@@ -170,6 +288,25 @@ namespace SmartHome.ViewModels
                 _actualExternalFactors.roomno2Lights,
                 _actualExternalFactors.roomno3Lights
             };
+
+            _shadings = new()
+            {
+                _actualExternalFactors.bathLeftWindowShading,
+                _actualExternalFactors.bathRightWindowShading,
+                _actualExternalFactors.livingroomPanoramaShading,
+                _actualExternalFactors.livingroomShading,
+                _actualExternalFactors.officeShading,
+                _actualExternalFactors.kitchenShading,
+                _actualExternalFactors.diningShading,
+                _actualExternalFactors.roomno1Shading,
+                _actualExternalFactors.roomno2Shading,
+                _actualExternalFactors.roomno3Shading
+            };
+
+            foreach (var shading in _shadings)
+            {
+                ShadeWindow(shading, true);
+            }
 
             TVColor = Brushes.Black;
             RadioColor = Brushes.Black;
@@ -191,6 +328,7 @@ namespace SmartHome.ViewModels
         {
             CheckElectronics();
             CheckLights();
+            CheckWindows();
             ExtFactDataProvider.Update(_actualExternalFactors);
         }
 
@@ -223,6 +361,25 @@ namespace SmartHome.ViewModels
                     {
                         TurnOffLamp(light);
                     }
+                }
+            }
+        }
+
+        public void CheckWindows()
+        {
+            LightValue = TemperatureDataProvider.GenerateLight(DashboardViewModel.time / 60);
+            foreach (var shading in _shadings)
+            {
+                if (shading.ShadePreference == ShadePreference.PHOTOSENSITIVTY)
+                {
+                    if (shading.State != 5 && shading.Photosensitivity < LightValue + (shading.Level - 1) * 50)
+                    {
+                        ShadeWindow(shading, false);
+                    }
+                }
+                else if (shading.ShadePreference == ShadePreference.TIME)
+                {
+
                 }
             }
         }
@@ -344,6 +501,177 @@ namespace SmartHome.ViewModels
                         break;
                 }
             }
+        }
+
+        public void OnWindowLeftClicked(Rectangle r)
+        {
+            ManuallyChangeWindowState(false, r.Name);
+        }
+
+        public void OnWindowRightClicked(Rectangle r)
+        {
+            ManuallyChangeWindowState(true, r.Name);
+        }
+
+        public void ManuallyChangeWindowState(bool up, string windowName)
+        {
+            int value = up ? -1 : 1;
+            switch (windowName)
+            {
+                case "LivingPanoramaW":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.livingroomPanoramaShading.State))
+                    {
+                        _actualExternalFactors.livingroomPanoramaShading.State += value;
+                        PanoramaWindowColor = GetColorBasedOnShadingState(_actualExternalFactors.livingroomPanoramaShading.State);
+                    }
+                    break;
+                case "LivingBigW":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.livingroomShading.State))
+                    {
+                        _actualExternalFactors.livingroomShading.State += value;
+                        BigWindowColor = GetColorBasedOnShadingState(_actualExternalFactors.livingroomShading.State);
+                    }
+                    break;
+                case "BathLeftW":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.bathLeftWindowShading.State))
+                    {
+                        _actualExternalFactors.bathLeftWindowShading.State += value;
+                        BathLeftWindowColor = GetColorBasedOnShadingState(_actualExternalFactors.bathLeftWindowShading.State);
+                    }
+                    break;
+                case "BathRightW":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.bathRightWindowShading.State))
+                    {
+                        _actualExternalFactors.bathRightWindowShading.State += value;
+                        BathRightWindowColor = GetColorBasedOnShadingState(_actualExternalFactors.bathRightWindowShading.State);
+                    }
+                    break;
+                case "OfficeW":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.officeShading.State))
+                    {
+                        _actualExternalFactors.officeShading.State += value;
+                        OfficeWindowColor = GetColorBasedOnShadingState(_actualExternalFactors.officeShading.State);
+                    }
+                    break;
+                case "DiningW":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.diningShading.State))
+                    {
+                        _actualExternalFactors.diningShading.State += value;
+                        DiningWindowColor = GetColorBasedOnShadingState(_actualExternalFactors.diningShading.State);
+                    }
+                    break;
+                case "KitchenW":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.kitchenShading.State))
+                    {
+                        _actualExternalFactors.kitchenShading.State += value;
+                        KitchenWindowColor = GetColorBasedOnShadingState(_actualExternalFactors.kitchenShading.State);
+                    }
+                    break;
+                case "Room1W":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.roomno1Shading.State))
+                    {
+                        _actualExternalFactors.roomno1Shading.State += value;
+                        Room1WindowColor = GetColorBasedOnShadingState(_actualExternalFactors.roomno1Shading.State);
+                    }
+                    break;
+                case "Room2W":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.roomno2Shading.State))
+                    {
+                        _actualExternalFactors.roomno2Shading.State += value;
+                        Room2WindowColor = GetColorBasedOnShadingState(_actualExternalFactors.roomno2Shading.State);
+                    }
+                    break;
+                default:
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.roomno3Shading.State))
+                    {
+                        _actualExternalFactors.roomno3Shading.State += value;
+                        Room3WindowColor = GetColorBasedOnShadingState(_actualExternalFactors.roomno3Shading.State);
+                    }
+                    break;
+            }
+        }
+
+        public bool CanExecuteWindowStateChange(int value, int actualState)
+        {
+            return actualState + value < 6 && actualState + value > -1;
+        }
+
+        public void ShadeWindow(Shading shading, bool init)
+        {
+            if (!init)
+            {
+                shading.State = CalculateState(shading);
+            }
+
+            Brush color = GetColorBasedOnShadingState(shading.State);
+            switch (shading.Place)
+            {
+                case "LivingBig":
+                    BigWindowColor = color;
+                    break;
+                case "Kitchen":
+                    KitchenWindowColor = color;
+                    break;
+                case "Office":
+                    OfficeWindowColor = color;
+                    break;
+                case "BathRight":
+                    BathRightWindowColor = color;
+                    break;
+                case "BathLeft":
+                    BathLeftWindowColor = color;
+                    break;
+                case "Dining":
+                    DiningWindowColor = color;
+                    break;
+                case "LivingPanorama":
+                    PanoramaWindowColor = color;
+                    break;
+                case "Room1":
+                    Room1WindowColor = color;
+                    break;
+                case "Room2":
+                    Room2WindowColor = color;
+                    break;
+                default:
+                    Room3WindowColor = color;
+                    break;
+            }
+        }
+
+        public Brush GetColorBasedOnShadingState(int shadingState)
+        {
+            switch (shadingState)
+            {
+                case 5:
+                    return Brushes.DarkBlue;
+                case 4:
+                    return Brushes.DimGray;
+                case 3:
+                    return Brushes.Gray;
+                case 2:
+                    return Brushes.DarkGray;
+                case 1:
+                    return Brushes.LightGray;
+                default:
+                    return Brushes.SkyBlue;
+            }
+        }
+
+        public int CalculateState(Shading shading)
+        {
+            int state = 5;
+
+            for (int i = 1; i < shading.Level; i++)
+            {
+                if (shading.Photosensitivity + i * 50 > LightValue)
+                {
+                    state = i;
+                    break;
+                }
+            }
+
+            return state < shading.State ? shading.State : state;
         }
     }
 }

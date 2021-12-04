@@ -81,14 +81,14 @@
 
             <Label Grid.Row="4" Grid.Column="1" Content="Beállítás Kikapcsolva" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
                    VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding TimeSettingOffVisibility}"></Label>
-            <Grid Grid.Row="4" Grid.Column="1" Visibility="{Binding TimeSettingOnVisibility}">
+            <Grid Grid.Row="4" Grid.Column="1" Visibility="{Binding TimeSettingOnVisibility}" Width="500">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <material:TimePicker Grid.Column="0" FontFamily="{StaticResource Roboto}" FontSize="24"
-                        Margin="15 0 15 0" Padding="0 20 0 0" BorderBrush="Black" Is24Hours="True" SelectedTime="{Binding SelectedTime}">
+                <material:TimePicker Grid.Column="0" FontFamily="{StaticResource Roboto}" FontSize="24" Width="Auto"
+                        Margin="15 0 15 0" Padding="0 20 0 0" BorderBrush="Black" Is24Hours="True" SelectedTime="{Binding SelectedTime}" material:ValidationAssist.Suppress="True">
                     <material:TimePicker.ClockStyle>
                         <Style TargetType="material:Clock">
                             <Style.Resources>
@@ -104,17 +104,17 @@
                     </material:TimePicker.Resources>
                 </material:TimePicker>
 
-                <Grid Grid.Column="1">
+                <Grid Grid.Column="1" Width="Auto">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.75*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Content="Ismétlés" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
+                    <Label Grid.Column="0" Content="Ismétlés (óra)" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
                            VerticalAlignment="Bottom" Margin="0 0 0 5"></Label>
                     <ToggleButton Grid.Column="1" VerticalAlignment="Bottom" Margin="0 0 0 15" Command="{Binding RepeatSettingChangeCommand}" IsChecked="{Binding RepeatSettingCheckState}"></ToggleButton>
-                    <ComboBox Grid.Column="2" VerticalAlignment="Center" FontSize="24" Padding="0 20 0 0" SelectedItem="{Binding SelectedRepeatTime}" ItemsSource="{Binding Minutes}"
+                    <ComboBox Grid.Column="2" VerticalAlignment="Center" FontSize="24" Padding="0 20 0 0" SelectedItem="{Binding SelectedRepeatTime}" ItemsSource="{Binding Hours}"
                               Style="{StaticResource MainComboBoxStyle}" Width="Auto" Margin="15 0 15 0" Visibility="{Binding RepeatTimeSettingVisiblity}"></ComboBox>
                 </Grid>
             </Grid>

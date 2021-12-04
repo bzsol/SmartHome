@@ -60,10 +60,10 @@
                     </behavior:EventTrigger>
                 </behavior:Interaction.Triggers>
             </Ellipse>
-            <Ellipse Grid.Row="0" Fill="Black" Width="25" Height="25" Margin="906,43,32,332"></Ellipse>
-            <Ellipse Grid.Row="0" Fill="Black" Width="25" Height="25" Margin="906,318,32,57"></Ellipse>
-            <Ellipse Grid.Row="0" Fill="Black" Width="25" Height="25" Margin="41,43,897,332"></Ellipse>
-            <Ellipse Grid.Row="0" Fill="Black" Width="25" Height="25" Margin="41,318,897,57" RenderTransformOrigin="0.415,1.316"></Ellipse>
+            <Ellipse Grid.Row="0" Fill="{Binding BackIrrigationColor}" Width="25" Height="25" Margin="906,43,32,332"></Ellipse>
+            <Ellipse Grid.Row="0" Fill="{Binding FrontIrrigationColor}" Width="25" Height="25" Margin="906,318,32,57"></Ellipse>
+            <Ellipse Grid.Row="0" Fill="{Binding BackIrrigationColor}" Width="25" Height="25" Margin="41,43,897,332"></Ellipse>
+            <Ellipse Grid.Row="0" Fill="{Binding FrontIrrigationColor}" Width="25" Height="25" Margin="41,318,897,57" RenderTransformOrigin="0.415,1.316"></Ellipse>
             <Rectangle Grid.Row="1" Fill="{Binding RightEntranceLightColor}" Width="30" Height="30" Margin="906,360,27,10"></Rectangle>
             <Ellipse Fill="Transparent" x:Name="Gate2" Grid.Row="1" Margin="681,139,86,-99" Tag="Gate2">
                 <Ellipse.RenderTransform>

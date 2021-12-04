@@ -1,4 +1,6 @@
-﻿using Common.Model;
+﻿using Common.Class;
+using Common.Model;
+using Common.Tool;
 using Prism.Commands;
 using SmartHome.DataProvider;
 using System;
@@ -24,6 +26,8 @@ namespace SmartHome.ViewModels
         public static DispatcherTimer dispatcherTimer = new DispatcherTimer();
 
         private List<Lights> _lightsOutside;
+
+        private List<Irrigative> _irrigatives;
 
         private Brush _leftGardenLightColor;
         public Brush LeftGardenLightColor
@@ -91,6 +95,28 @@ namespace SmartHome.ViewModels
             }
         }
 
+        private Brush _frontIrrigationColor;
+        public Brush FrontIrrigationColor
+        {
+            get => _frontIrrigationColor;
+            set
+            {
+                _frontIrrigationColor = value;
+                NotifyChange(nameof(FrontIrrigationColor));
+            }
+        }
+
+        private Brush _backIrrigationColor;
+        public Brush BackIrrigationColor
+        {
+            get => _backIrrigationColor;
+            set
+            {
+                _backIrrigationColor = value;
+                NotifyChange(nameof(BackIrrigationColor));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyChange(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
@@ -108,12 +134,21 @@ namespace SmartHome.ViewModels
                 _actualExternalFactors.gateEntranceLights2
             };
 
+            _irrigatives = new()
+            {
+                _actualExternalFactors.frontGarden,
+                _actualExternalFactors.garden
+            };
+
             LeftGardenLightColor = Brushes.Black;
             RightGardenLightColor = Brushes.Black;
             UpperGarageLightColor = Brushes.Black;
             LowerGarageLightColor = Brushes.Black;
             LeftEntranceLightColor = Brushes.Black;
             RightEntranceLightColor = Brushes.Black;
+
+            FrontIrrigationColor = Brushes.Black;
+            BackIrrigationColor = Brushes.Black;
 
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
@@ -122,6 +157,7 @@ namespace SmartHome.ViewModels
         void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             CheckLights();
+            CheckIrrigation();
             ExtFactDataProvider.Update(_actualExternalFactors);
         }
 
@@ -137,6 +173,67 @@ namespace SmartHome.ViewModels
                         TurnOffLamp(light);
                     }
                 }
+            }
+        }
+
+        public void CheckIrrigation()
+        {
+            foreach (var irrigative in _irrigatives)
+            {
+                if (irrigative.IsTimeSetting && irrigative.Time.ToLongTimeString().Equals(ToolKit.SecToMilitaryTime(DashboardViewModel.time)))
+                {
+                    ChangeIrrigationState(irrigative, true);
+                    irrigative.TimeLeft = irrigative.timespan;
+                }
+
+                if (irrigative.RepeatTimeLeft > 0)
+                {
+                    irrigative.RepeatTimeLeft -= 1;
+                    if (irrigative.RepeatTimeLeft == 0)
+                    {
+                        ChangeIrrigationState(irrigative, true);
+                        irrigative.TimeLeft = irrigative.timespan;
+                    }
+                }
+
+                if (irrigative.TimeLeft > 0)
+                {
+                    irrigative.TimeLeft -= 1;
+                    if (irrigative.TimeLeft == 0)
+                    {
+                        ChangeIrrigationState(irrigative, false);
+                        if (irrigative.IsRepeated)
+                        {
+                            irrigative.RepeatTimeLeft = irrigative.Repeat * 60;
+                        }
+                    }
+                }
+            }
+        }
+
+        public void ChangeIrrigationState(Irrigative irrigative, bool start)
+        {
+            Brush color = start ? GetColorBasedOnIrrigationLevel(irrigative.strength) : Brushes.Black;
+            if (irrigative.Place.Equals("Garden"))
+            {
+                BackIrrigationColor = color;
+            }
+            else
+            {
+                FrontIrrigationColor = color;
+            }
+        }
+
+        public Brush GetColorBasedOnIrrigationLevel(int level)
+        {
+            switch (level)
+            {
+                case 1:
+                    return Brushes.LightBlue;
+                case 2:
+                    return Brushes.DeepSkyBlue;
+                default:
+                    return Brushes.DarkBlue;
             }
         }
 

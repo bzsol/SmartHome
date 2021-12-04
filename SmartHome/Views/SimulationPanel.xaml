@@ -50,7 +50,15 @@
                 </behavior:Interaction.Triggers>
             </Rectangle>
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="188,356,178,0" ></Rectangle>
-            <Rectangle Fill="Aqua" Height="20" Margin="-103,173,367,183" RenderTransformOrigin="0.5,0.5" >
+            <Rectangle x:Name="KitchenW" Fill="{Binding KitchenWindowColor}" Height="20" Margin="-103,173,367,183" RenderTransformOrigin="0.5,0.5" >
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseLeftButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=KitchenW}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                    <behavior:EventTrigger EventName="MouseRightButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowRightClickedCommand}" CommandParameter="{x:Reference Name=KitchenW}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -71,7 +79,16 @@
             </Rectangle>
             <Rectangle Fill="{Binding DiningLightColor}" Margin="113,157,105,164" />
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="78,356,77,0" ></Rectangle>
-            <Rectangle Fill="Aqua" Height="20" Margin="70,0,69,356" ></Rectangle>
+            <Rectangle x:Name="DiningW" Fill="{Binding DiningWindowColor}" Height="20" Margin="70,0,69,356" >
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseLeftButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=DiningW}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                    <behavior:EventTrigger EventName="MouseRightButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowRightClickedCommand}" CommandParameter="{x:Reference Name=DiningW}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Rectangle>
         </Grid>
         <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Margin="1,1,1,1" >
             <Rectangle Fill="#2c4d40"></Rectangle>
@@ -86,7 +103,15 @@
             </Rectangle>
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="82,0,73,370" ></Rectangle>
             <Rectangle Fill="{Binding LivingroomLightColor}" Margin="196,172,178,172" />
-            <Rectangle Fill="Aqua" Height="20" Margin="-103,173,367,197" RenderTransformOrigin="0.5,0.5" >
+            <Rectangle x:Name="LivingPanoramaW" Fill="{Binding PanoramaWindowColor}" Height="20" Margin="-103,173,367,197" RenderTransformOrigin="0.5,0.5">
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseLeftButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=LivingPanoramaW}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                    <behavior:EventTrigger EventName="MouseRightButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowRightClickedCommand}" CommandParameter="{x:Reference Name=LivingPanoramaW}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -96,8 +121,17 @@
                     </TransformGroup>
                 </Rectangle.RenderTransform>
             </Rectangle>
-            <Rectangle Fill="Aqua" Height="20" Margin="156,370,156,0" ></Rectangle>
-            <Rectangle x:Name="TV" Fill="{Binding TVColor}" Height="20" Margin="363,173,-99,197" RenderTransformOrigin="0.5,0.5" >
+            <Rectangle x:Name="LivingBigW" Fill="{Binding BigWindowColor}" Height="20" Margin="156,370,156,0" >
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseLeftButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=LivingBigW}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                    <behavior:EventTrigger EventName="MouseRightButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowRightClickedCommand}" CommandParameter="{x:Reference Name=LivingBigW}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Rectangle>
+            <Rectangle x:Name="TV" Fill="{Binding TVColor}" Height="20" Margin="363,173,-99,197" RenderTransformOrigin="0.5,0.5">
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding ElectronicClickedCommand}" CommandParameter="{x:Reference Name=TV}"/>
@@ -135,7 +169,16 @@
             </Rectangle>
             <Rectangle Fill="{Binding Room2LightColor}" Margin="176,155,167,155" />
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="82,0,73,370" ></Rectangle>
-            <Rectangle Fill="Aqua" Height="20" Margin="109,370,109,0" ></Rectangle>
+            <Rectangle x:Name="Room2W" Fill="{Binding Room2WindowColor}" Height="20" Margin="109,370,109,0" >
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseLeftButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=Room2W}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                    <behavior:EventTrigger EventName="MouseRightButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowRightClickedCommand}" CommandParameter="{x:Reference Name=Room2W}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Rectangle>
         </Grid>
         <Grid Grid.Column="4" Grid.Row="2" Margin="1,1,1,1">
             <Rectangle x:Name="Room3" Fill="#4a3929" Tag="Room3">
@@ -147,7 +190,15 @@
             </Rectangle>
             <Rectangle Fill="{Binding Room3LightColor}" Margin="169,160,169,160" />
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="145,0,145,370" ></Rectangle>
-            <Rectangle Fill="Aqua" Height="20" Margin="304,211,-86,159" RenderTransformOrigin="0.5,0.5" >
+            <Rectangle x:Name="Room3W" Fill="{Binding Room3WindowColor}" Height="20" Margin="304,211,-86,159" RenderTransformOrigin="0.5,0.5" >
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseLeftButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=Room3W}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                    <behavior:EventTrigger EventName="MouseRightButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowRightClickedCommand}" CommandParameter="{x:Reference Name=Room3W}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -168,7 +219,15 @@
             </Rectangle>
             <Rectangle Fill="{Binding Room1LightColor}" Margin="171,158,171,158" />
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="145,356,145,0" ></Rectangle>
-            <Rectangle Fill="Aqua" Height="20" Margin="304,180,-86,176" RenderTransformOrigin="0.5,0.5" >
+            <Rectangle x:Name="Room1W" Fill="{Binding Room1WindowColor}" Height="20" Margin="304,180,-86,176" RenderTransformOrigin="0.5,0.5" >
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseLeftButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=Room1W}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                    <behavior:EventTrigger EventName="MouseRightButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowRightClickedCommand}" CommandParameter="{x:Reference Name=Room1W}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -189,7 +248,16 @@
             </Rectangle>
             <Rectangle Fill="{Binding OfficeLightColor}" Margin="64,162,52,162" />
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="25,356,25,0" ></Rectangle>
-            <Rectangle Fill="Aqua" Height="20" Margin="36,0,25,356" ></Rectangle>
+            <Rectangle x:Name="OfficeW" Fill="{Binding OfficeWindowColor}" Height="20" Margin="36,0,25,356" >
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseLeftButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=OfficeW}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                    <behavior:EventTrigger EventName="MouseRightButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowRightClickedCommand}" CommandParameter="{x:Reference Name=OfficeW}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Rectangle>
         </Grid>
         <Grid Grid.Column="3" Grid.Row="0"  Margin="1,1,1,1" >
             <Rectangle x:Name="Bath" Fill="#3e379e" Tag="Bath">
@@ -201,8 +269,26 @@
             </Rectangle>
             <Rectangle Fill="{Binding BathLightColor}" Margin="95,164,95,164" />
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="64,356,65,0" ></Rectangle>
-            <Rectangle Fill="Aqua" Height="20" Margin="10,0,179,356" ></Rectangle>
-            <Rectangle Fill="Aqua" Height="20" Margin="186,0,10,356" ></Rectangle>
+            <Rectangle x:Name="BathLeftW" Fill="{Binding BathLeftWindowColor}" Height="20" Margin="10,0,179,356" >
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseLeftButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=BathLeftW}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                    <behavior:EventTrigger EventName="MouseRightButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowRightClickedCommand}" CommandParameter="{x:Reference Name=BathLeftW}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Rectangle>
+            <Rectangle x:Name="BathRightW" Fill="{Binding BathRightWindowColor}" Height="20" Margin="186,0,10,356" >
+                <behavior:Interaction.Triggers>
+                    <behavior:EventTrigger EventName="MouseLeftButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=BathRightW}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                    <behavior:EventTrigger EventName="MouseRightButtonDown">
+                        <behavior:InvokeCommandAction Command="{Binding WindowRightClickedCommand}" CommandParameter="{x:Reference Name=BathRightW}"></behavior:InvokeCommandAction>
+                    </behavior:EventTrigger>
+                </behavior:Interaction.Triggers>
+            </Rectangle>
         </Grid>
         <Label FontSize="30" FontWeight="Black" Margin="118,234,258,102" >Konyha</Label>
         <Label FontSize="30" FontWeight="Black" Margin="150,71,124,279" Grid.Column="4" Grid.Row="2" >Szoba#3</Label>

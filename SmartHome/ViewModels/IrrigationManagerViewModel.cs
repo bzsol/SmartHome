@@ -17,7 +17,7 @@ namespace SmartHome.ViewModels
 {
     public class IrrigationManagerViewModel : INotifyPropertyChanged
     {
-        
+
 
         public DelegateCommand<Button> SaveSettingsCommand { get; set; }
         public DelegateCommand<ToggleButton> IrrigationSettingChangeCommand { get; set; }
@@ -27,7 +27,7 @@ namespace SmartHome.ViewModels
 
         public List<string> Places { get; set; }
 
-        public List<int> Minutes { get; set; } = new List<int>();
+        public List<int> Hours { get; set; } = new List<int>();
 
         private string _selectedPlace;
         public string SelectedPlace
@@ -140,34 +140,42 @@ namespace SmartHome.ViewModels
             }
         }
         private int _IrrigationMinute;
-        public int IrrigationMinute {
+        public int IrrigationMinute
+        {
             get => _IrrigationMinute;
-            set {
+            set
+            {
                 _IrrigationMinute = value;
                 NotifyChange(nameof(IrrigationMinute));
             }
 
         }
         private int _IrrigationLevel;
-        public int IrrigationLevel {
+        public int IrrigationLevel
+        {
             get => _IrrigationLevel;
-            set {
+            set
+            {
                 _IrrigationLevel = value;
                 NotifyChange(nameof(IrrigationLevel));
             }
         }
         private int _TempSlider;
-        public int TempSlider {
+        public int TempSlider
+        {
             get => _TempSlider;
-            set {
+            set
+            {
                 _TempSlider = value;
                 NotifyChange(nameof(TempSlider));
             }
         }
         private bool _isSunny;
-        public bool isSunny {
+        public bool isSunny
+        {
             get => _isSunny;
-            set {
+            set
+            {
                 _isSunny = value;
                 NotifyChange(nameof(isSunny));
             }
@@ -222,11 +230,12 @@ namespace SmartHome.ViewModels
                 NotifyChange(nameof(isthunderstorm));
             }
         }
-        private string _SelectedTime;
-        public string SelectedTime 
+        private DateTime _SelectedTime;
+        public DateTime SelectedTime
         {
             get => _SelectedTime;
-            set {
+            set
+            {
                 _SelectedTime = value;
                 NotifyChange(nameof(SelectedTime));
             }
@@ -248,9 +257,9 @@ namespace SmartHome.ViewModels
                 "Kert"
             };
 
-            for (int i = 1; i <= 60; i++)
+            for (int i = 1; i <= 24; i++)
             {
-                Minutes.Add(i);
+                Hours.Add(i);
             }
 
             _actualExternalFactors = ExtFactDataProvider.Get().ToList()[0];
@@ -276,8 +285,8 @@ namespace SmartHome.ViewModels
                     break;
             }
 
-            IrrigationMinute = selectedIrrigative.timespan;
-            IrrigationLevel = selectedIrrigative.strength;
+            IrrigationMinute = selectedIrrigative.timespan == 0 ? 1 : selectedIrrigative.timespan;
+            IrrigationLevel = selectedIrrigative.strength == 0 ? 1 : selectedIrrigative.strength;
             TimeSettingCheckState = selectedIrrigative.IsTimeSetting;
             TemperatureSettingCheckState = selectedIrrigative.IsTempSetting;
             SelectedTime = selectedIrrigative.Time;
@@ -298,55 +307,46 @@ namespace SmartHome.ViewModels
             RepeatTimeSettingVisiblity = RepeatSettingCheckState ? Visibility.Visible : Visibility.Hidden;
         }
 
-        private void UploadData() {
-            if (TimeSettingCheckState && !IsValidTime())
-            {
-                MessageBox.Show("Az időpontnak 0:00-23:59 közé kell esnie!");
-            }
-            else
-            {
-                Irrigative irrigative = new Irrigative();
-
-                irrigative.IsTimeSetting = TimeSettingCheckState;
-                irrigative.IsTempSetting = TemperatureSettingCheckState;
-                irrigative.IsRepeated = RepeatSettingCheckState;
-
-                irrigative.isCloudy = _isCloudy;
-                irrigative.isRain = _isRain;
-                irrigative.isSnow = _isSnow;
-                irrigative.isSunny = _isSunny;
-                irrigative.isthunderstorm = _isthunderstorm;
-                irrigative.isStorm = _isStorm;
-
-                irrigative.strength = _IrrigationLevel;
-                irrigative.timespan = _IrrigationMinute;
-
-                if (_timeSettingCheckState)
-                {
-                    irrigative.Time = SelectedTime;
-                    irrigative.Repeat = _selectedRepeatTime;
-                }
-                if (_temperatureSettingCheckState)
-                {
-                    irrigative.Temp = _TempSlider;
-                }
-
-                if (SelectedPlace.Equals("Elülső udvar"))
-                {
-                    _actualExternalFactors.frontGarden = irrigative;
-                }
-                else if (SelectedPlace.Equals("Kert"))
-                {
-                    _actualExternalFactors.garden = irrigative;
-                }
-
-                ExtFactDataProvider.Update(_actualExternalFactors);
-            }
-        }
-
-        private bool IsValidTime()
+        private void UploadData()
         {
-            return Regex.IsMatch(SelectedTime == null ? string.Empty : SelectedTime, "([0-9]|[1][0-9]|[2][0-3]):[0-5][0-9]");
+
+            Irrigative irrigative = new Irrigative();
+
+            irrigative.IsTimeSetting = TimeSettingCheckState;
+            irrigative.IsTempSetting = TemperatureSettingCheckState;
+            irrigative.IsRepeated = RepeatSettingCheckState;
+
+            irrigative.isCloudy = _isCloudy;
+            irrigative.isRain = _isRain;
+            irrigative.isSnow = _isSnow;
+            irrigative.isSunny = _isSunny;
+            irrigative.isthunderstorm = _isthunderstorm;
+            irrigative.isStorm = _isStorm;
+
+            irrigative.strength = _IrrigationLevel;
+            irrigative.timespan = _IrrigationMinute;
+
+            if (_timeSettingCheckState)
+            {
+                irrigative.Time = SelectedTime;
+                irrigative.Repeat = _selectedRepeatTime;
+            }
+            if (_temperatureSettingCheckState)
+            {
+                irrigative.Temp = _TempSlider;
+            }
+
+            if (SelectedPlace.Equals("Elülső udvar"))
+            {
+                _actualExternalFactors.frontGarden = irrigative;
+            }
+            else if (SelectedPlace.Equals("Kert"))
+            {
+                _actualExternalFactors.garden = irrigative;
+            }
+
+            ExtFactDataProvider.Update(_actualExternalFactors);
+
         }
 
         private void OnSaveSettings(Button btn)
