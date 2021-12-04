@@ -25,7 +25,9 @@ namespace SmartHome.ViewModels
 
         public static DispatcherTimer dispatcherTimer = new DispatcherTimer();
 
-        private List<Lights> _lightsInside; 
+        private List<Lights> _lightsInside;
+
+        private List<Shading> _shadings;
 
         private Brush _TVColor;
         public Brush TVColor
@@ -148,6 +150,116 @@ namespace SmartHome.ViewModels
             }
         }
 
+        private Brush _panoramaWindowColor;
+        public Brush PanoramaWindowColor
+        {
+            get => _panoramaWindowColor;
+            set
+            {
+                _panoramaWindowColor = value;
+                NotifyChange(nameof(PanoramaWindowColor));
+            }
+        }
+
+        private Brush _bigWindowColor;
+        public Brush BigWindowColor
+        {
+            get => _bigWindowColor;
+            set
+            {
+                _bigWindowColor = value;
+                NotifyChange(nameof(BigWindowColor));
+            }
+        }
+
+        private Brush _kitchenWindowColor;
+        public Brush KitchenWindowColor
+        {
+            get => _kitchenWindowColor;
+            set
+            {
+                _kitchenWindowColor = value;
+                NotifyChange(nameof(KitchenWindowColor));
+            }
+        }
+
+        private Brush _diningWindowColor;
+        public Brush DiningWindowColor
+        {
+            get => _diningWindowColor;
+            set
+            {
+                _diningWindowColor = value;
+                NotifyChange(nameof(DiningWindowColor));
+            }
+        }
+
+        private Brush _officeWindowColor;
+        public Brush OfficeWindowColor
+        {
+            get => _officeWindowColor;
+            set
+            {
+                _officeWindowColor = value;
+                NotifyChange(nameof(OfficeWindowColor));
+            }
+        }
+
+        private Brush _room1WindowColor;
+        public Brush Room1WindowColor
+        {
+            get => _room1WindowColor;
+            set
+            {
+                _room1WindowColor = value;
+                NotifyChange(nameof(Room1WindowColor));
+            }
+        }
+
+        private Brush _room2WindowColor;
+        public Brush Room2WindowColor
+        {
+            get => _room2WindowColor;
+            set
+            {
+                _room2WindowColor = value;
+                NotifyChange(nameof(Room2WindowColor));
+            }
+        }
+
+        private Brush _room3WindowColor;
+        public Brush Room3WindowColor
+        {
+            get => _room3WindowColor;
+            set
+            {
+                _room3WindowColor = value;
+                NotifyChange(nameof(Room3WindowColor));
+            }
+        }
+
+        private Brush _bathLeftWindowColor;
+        public Brush BathLeftWindowColor
+        {
+            get => _bathLeftWindowColor;
+            set
+            {
+                _bathLeftWindowColor = value;
+                NotifyChange(nameof(BathLeftWindowColor));
+            }
+        }
+
+        private Brush _bathRightWindowColor;
+        public Brush BathRightWindowColor
+        {
+            get => _bathRightWindowColor;
+            set
+            {
+                _bathRightWindowColor = value;
+                NotifyChange(nameof(BathRightWindowColor));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyChange(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -169,6 +281,20 @@ namespace SmartHome.ViewModels
                 _actualExternalFactors.roomno1Lights,
                 _actualExternalFactors.roomno2Lights,
                 _actualExternalFactors.roomno3Lights
+            };
+
+            _shadings = new()
+            {
+                _actualExternalFactors.bathLeftWindowShading,
+                _actualExternalFactors.bathRightWindowShading,
+                _actualExternalFactors.livingroomPanoramaShading,
+                _actualExternalFactors.livingroomShading,
+                _actualExternalFactors.officeShading,
+                _actualExternalFactors.kitchenShading,
+                _actualExternalFactors.diningShading,
+                _actualExternalFactors.roomno1Shading,
+                _actualExternalFactors.roomno2Shading,
+                _actualExternalFactors.roomno3Shading
             };
 
             TVColor = Brushes.Black;
@@ -231,7 +357,13 @@ namespace SmartHome.ViewModels
         public void CheckWindows()
         {
             double shadow = TemperatureDataProvider.GenerateLight(DashboardViewModel.time / 60);
-            
+            foreach (var shading in _shadings)
+            {
+                if (shading.ShadePreference == ShadePreference.PHOTOSENSITIVTY)
+                {
+
+                }
+            }
         }
 
         public void TurnOffLamp(Lights light)

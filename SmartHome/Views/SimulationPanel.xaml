@@ -201,8 +201,8 @@
             </Rectangle>
             <Rectangle Fill="{Binding BathLightColor}" Margin="95,164,95,164" />
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="64,356,65,0" ></Rectangle>
-            <Rectangle Fill="{Binding LeftBathWindowColor}" Height="20" Margin="10,0,179,356" ></Rectangle>
-            <Rectangle Fill="{Binding RightBathWindowColor}" Height="20" Margin="186,0,10,356" ></Rectangle>
+            <Rectangle Fill="{Binding BathLeftWindowColor}" Height="20" Margin="10,0,179,356" ></Rectangle>
+            <Rectangle Fill="{Binding BathRightWindowColor}" Height="20" Margin="186,0,10,356" ></Rectangle>
         </Grid>
         <Label FontSize="30" FontWeight="Black" Margin="118,234,258,102" >Konyha</Label>
         <Label FontSize="30" FontWeight="Black" Margin="150,71,124,279" Grid.Column="4" Grid.Row="2" >Szoba#3</Label>
