@@ -542,8 +542,8 @@ namespace SmartHome.ViewModels
                 _actualExternalFactors.isDehumidification = _isDehumuditification;
                 _actualExternalFactors.isHumiditysample = _isHumidityCheckEnabled;
                 _actualExternalFactors.isVentilation = _isVentilationChecked;
-                _actualExternalFactors.Cooling = ClimateSlider;
-                _actualExternalFactors.Heating = TempSlider;
+                _actualExternalFactors.Cooling = ClimateSlider == 0 ? 18 : ClimateSlider;
+                _actualExternalFactors.Heating = TempSlider == 0 ? 16 : TempSlider;
 
                 _actualExternalFactors.livingroomClimate.IsCoolingEnabled = FirstEntryCheckState;
                 _actualExternalFactors.livingroomClimate.Level = FirstSelectedLevel;
