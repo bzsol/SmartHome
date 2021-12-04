@@ -20,6 +20,8 @@ namespace SmartHome.ViewModels
     {
         public DelegateCommand<Rectangle> ElectronicClickedCommand { get; set; }
         public DelegateCommand<Rectangle> CheckMotionCommand { get; set; }
+        public DelegateCommand<Rectangle> WindowLeftClickedCommand { get; set; }
+        public DelegateCommand<Rectangle> WindowRightClickedCommand { get; set; }
 
         private ExternalFactors _actualExternalFactors;
 
@@ -270,6 +272,8 @@ namespace SmartHome.ViewModels
         {
             ElectronicClickedCommand = new DelegateCommand<Rectangle>(OnElectronicClicked);
             CheckMotionCommand = new DelegateCommand<Rectangle>(OnCheckMotion);
+            WindowLeftClickedCommand = new DelegateCommand<Rectangle>(OnWindowLeftClicked);
+            WindowRightClickedCommand = new DelegateCommand<Rectangle>(OnWindowRightClicked);
 
             _actualExternalFactors = ExtFactDataProvider.Get().ToList()[0];
             _lightsInside = new()
@@ -372,6 +376,10 @@ namespace SmartHome.ViewModels
                     {
                         ShadeWindow(shading, false);
                     }
+                }
+                else if (shading.ShadePreference == ShadePreference.TIME)
+                {
+
                 }
             }
         }
@@ -495,13 +503,106 @@ namespace SmartHome.ViewModels
             }
         }
 
+        public void OnWindowLeftClicked(Rectangle r)
+        {
+            ManuallyChangeWindowState(false, r.Name);
+        }
+
+        public void OnWindowRightClicked(Rectangle r)
+        {
+            ManuallyChangeWindowState(true, r.Name);
+        }
+
+        public void ManuallyChangeWindowState(bool up, string windowName)
+        {
+            int value = up ? -1 : 1;
+            switch (windowName)
+            {
+                case "LivingPanoramaW":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.livingroomPanoramaShading.State))
+                    {
+                        _actualExternalFactors.livingroomPanoramaShading.State += value;
+                        PanoramaWindowColor = GetColorBasedOnShadingState(_actualExternalFactors.livingroomPanoramaShading.State);
+                    }
+                    break;
+                case "LivingBigW":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.livingroomShading.State))
+                    {
+                        _actualExternalFactors.livingroomShading.State += value;
+                        BigWindowColor = GetColorBasedOnShadingState(_actualExternalFactors.livingroomShading.State);
+                    }
+                    break;
+                case "BathLeftW":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.bathLeftWindowShading.State))
+                    {
+                        _actualExternalFactors.bathLeftWindowShading.State += value;
+                        BathLeftWindowColor = GetColorBasedOnShadingState(_actualExternalFactors.bathLeftWindowShading.State);
+                    }
+                    break;
+                case "BathRightW":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.bathRightWindowShading.State))
+                    {
+                        _actualExternalFactors.bathRightWindowShading.State += value;
+                        BathRightWindowColor = GetColorBasedOnShadingState(_actualExternalFactors.bathRightWindowShading.State);
+                    }
+                    break;
+                case "OfficeW":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.officeShading.State))
+                    {
+                        _actualExternalFactors.officeShading.State += value;
+                        OfficeWindowColor = GetColorBasedOnShadingState(_actualExternalFactors.officeShading.State);
+                    }
+                    break;
+                case "DiningW":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.diningShading.State))
+                    {
+                        _actualExternalFactors.diningShading.State += value;
+                        DiningWindowColor = GetColorBasedOnShadingState(_actualExternalFactors.diningShading.State);
+                    }
+                    break;
+                case "KitchenW":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.kitchenShading.State))
+                    {
+                        _actualExternalFactors.kitchenShading.State += value;
+                        KitchenWindowColor = GetColorBasedOnShadingState(_actualExternalFactors.kitchenShading.State);
+                    }
+                    break;
+                case "Room1W":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.roomno1Shading.State))
+                    {
+                        _actualExternalFactors.roomno1Shading.State += value;
+                        Room1WindowColor = GetColorBasedOnShadingState(_actualExternalFactors.roomno1Shading.State);
+                    }
+                    break;
+                case "Room2W":
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.roomno2Shading.State))
+                    {
+                        _actualExternalFactors.roomno2Shading.State += value;
+                        Room2WindowColor = GetColorBasedOnShadingState(_actualExternalFactors.roomno2Shading.State);
+                    }
+                    break;
+                default:
+                    if (CanExecuteWindowStateChange(value, _actualExternalFactors.roomno3Shading.State))
+                    {
+                        _actualExternalFactors.roomno3Shading.State += value;
+                        Room3WindowColor = GetColorBasedOnShadingState(_actualExternalFactors.roomno3Shading.State);
+                    }
+                    break;
+            }
+        }
+
+        public bool CanExecuteWindowStateChange(int value, int actualState)
+        {
+            return actualState + value < 6 && actualState + value > -1;
+        }
+
         public void ShadeWindow(Shading shading, bool init)
         {
             if (!init)
             {
                 shading.State = CalculateState(shading);
             }
-            
+
             Brush color = GetColorBasedOnShadingState(shading.State);
             switch (shading.Place)
             {
