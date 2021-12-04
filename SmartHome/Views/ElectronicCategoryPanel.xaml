@@ -39,14 +39,14 @@
                    VerticalAlignment="Center" Padding="15 0 0 0"></Label>
             <Label Grid.Row="3" Grid.Column="0" Content="Adjon nevet az eseménynek" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
                    VerticalAlignment="Center" Padding="15 0 0 0"></Label>
-            <Grid Grid.Row="0" Grid.Column="1">
+            <Grid Grid.Row="0" Grid.Column="1" Width="500">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <DatePicker Grid.Column="0" FontFamily="{StaticResource Roboto}" FontSize="24"
-                        Margin="15 0 15 0" Padding="0 20 0 0" BorderBrush="Black" SelectedDate="{Binding EventDatePickerDate}">
+                <DatePicker Grid.Column="0" FontFamily="{StaticResource Roboto}" FontSize="24" Width="250"
+                        Margin="0 0 15 0" Padding="0 20 0 0" BorderBrush="Black" SelectedDate="{Binding EventDatePickerDate}">
                     <DatePicker.CalendarStyle>
                         <Style TargetType="Calendar" BasedOn="{StaticResource MaterialDesignCalendarPortrait}">
                             <Style.Resources>
@@ -61,8 +61,8 @@
                         </Style>
                     </DatePicker.Resources>
                 </DatePicker>
-                <material:TimePicker Grid.Column="2" FontFamily="{StaticResource Roboto}" FontSize="24"
-                        Margin="15 0 15 0" Padding="0 20 0 0" BorderBrush="Black" Is24Hours="True" SelectedTime="{Binding EventDatePickerDate}" material:ValidationAssist.Suppress="True">
+                <material:TimePicker Grid.Column="2" FontFamily="{StaticResource Roboto}" FontSize="24" Width="250"
+                        Margin="15 0 0 0" Padding="0 20 0 0" BorderBrush="Black" Is24Hours="True" SelectedTime="{Binding EventDatePickerDate}" material:ValidationAssist.Suppress="True">
                     <material:TimePicker.ClockStyle>
                         <Style TargetType="material:Clock">
                             <Style.Resources>
@@ -86,7 +86,7 @@
                 <RadioButton Content="TV" Margin="0 0 15 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF" IsChecked="{Binding TV}"></RadioButton>
                 <RadioButton Content="Rádió" Margin="15 0 0 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF" IsChecked="{Binding Radio}"></RadioButton>
             </StackPanel>
-            <TextBox Grid.Row="3" Grid.Column="1" Margin="15 0 15 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
+            <TextBox Grid.Row="3" Grid.Column="1" Margin="15 0 15 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF" Width="500"
                      Height="50" BorderThickness="0 0 0 2" BorderBrush="Black" MaxLength="16" Padding="0 20 0 0" Text="{Binding EventNameTextBoxText}" material:TextFieldAssist.CharacterCounterVisibility="Hidden"/>
         </Grid>
 

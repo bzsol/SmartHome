@@ -27,7 +27,7 @@ namespace SmartHome.ViewModels
 
         public List<string> Places { get; set; }
 
-        public List<int> Minutes { get; set; } = new List<int>();
+        public List<int> Hours { get; set; } = new List<int>();
 
         private string _selectedPlace;
         public string SelectedPlace
@@ -257,9 +257,9 @@ namespace SmartHome.ViewModels
                 "Kert"
             };
 
-            for (int i = 1; i <= 60; i++)
+            for (int i = 1; i <= 24; i++)
             {
-                Minutes.Add(i);
+                Hours.Add(i);
             }
 
             _actualExternalFactors = ExtFactDataProvider.Get().ToList()[0];
