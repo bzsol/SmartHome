@@ -18,7 +18,7 @@ namespace Common.Tool
         }
 
         public static int GenerateLight(int t) {
-            double x = 900 * Math.Sin(0.0045 * (t - 500)) + 700;
+            var x = ((900 * Math.Sin(0.0045 * (t - 500)) + 700));
             return (x <= 0) ? 0 : (int)x;
         }
 
