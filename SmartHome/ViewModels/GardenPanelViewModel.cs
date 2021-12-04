@@ -91,6 +91,28 @@ namespace SmartHome.ViewModels
             }
         }
 
+        private Brush _frontIrrigationColor;
+        public Brush FrontIrrigationColor
+        {
+            get => _frontIrrigationColor;
+            set
+            {
+                _frontIrrigationColor = value;
+                NotifyChange(nameof(FrontIrrigationColor));
+            }
+        }
+
+        private Brush _backIrrigationColor;
+        public Brush BackIrrigationColor
+        {
+            get => _backIrrigationColor;
+            set
+            {
+                _backIrrigationColor = value;
+                NotifyChange(nameof(BackIrrigationColor));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyChange(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
@@ -115,6 +137,9 @@ namespace SmartHome.ViewModels
             LeftEntranceLightColor = Brushes.Black;
             RightEntranceLightColor = Brushes.Black;
 
+            FrontIrrigationColor = Brushes.Black;
+            BackIrrigationColor = Brushes.Black;
+
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
         }
@@ -122,6 +147,7 @@ namespace SmartHome.ViewModels
         void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             CheckLights();
+            CheckIrrigation();
             ExtFactDataProvider.Update(_actualExternalFactors);
         }
 
@@ -138,6 +164,11 @@ namespace SmartHome.ViewModels
                     }
                 }
             }
+        }
+
+        public void CheckIrrigation()
+        {
+
         }
 
         public void TurnOffLamp(Lights light)
