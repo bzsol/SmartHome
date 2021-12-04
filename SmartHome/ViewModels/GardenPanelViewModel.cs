@@ -182,8 +182,18 @@ namespace SmartHome.ViewModels
             {
                 if (irrigative.IsTimeSetting && irrigative.Time.ToLongTimeString().Equals(ToolKit.SecToMilitaryTime(DashboardViewModel.time)))
                 {
-                    SetIrrigationColor(irrigative, Brushes.Blue);
+                    ChangeIrrigationState(irrigative, true);
                     irrigative.TimeLeft = irrigative.timespan;
+                }
+
+                if (irrigative.RepeatTimeLeft > 0)
+                {
+                    irrigative.RepeatTimeLeft -= 1;
+                    if (irrigative.RepeatTimeLeft == 0)
+                    {
+                        ChangeIrrigationState(irrigative, true);
+                        irrigative.TimeLeft = irrigative.timespan;
+                    }
                 }
 
                 if (irrigative.TimeLeft > 0)
@@ -191,21 +201,39 @@ namespace SmartHome.ViewModels
                     irrigative.TimeLeft -= 1;
                     if (irrigative.TimeLeft == 0)
                     {
-                        SetIrrigationColor(irrigative, Brushes.Black);
+                        ChangeIrrigationState(irrigative, false);
+                        if (irrigative.IsRepeated)
+                        {
+                            irrigative.RepeatTimeLeft = irrigative.Repeat * 60;
+                        }
                     }
                 }
             }
         }
 
-        public void SetIrrigationColor(Irrigative irrigative, Brush brush)
+        public void ChangeIrrigationState(Irrigative irrigative, bool start)
         {
+            Brush color = start ? GetColorBasedOnIrrigationLevel(irrigative.strength) : Brushes.Black;
             if (irrigative.Place.Equals("Garden"))
             {
-                BackIrrigationColor = brush;
+                BackIrrigationColor = color;
             }
             else
             {
-                FrontIrrigationColor = brush;
+                FrontIrrigationColor = color;
+            }
+        }
+
+        public Brush GetColorBasedOnIrrigationLevel(int level)
+        {
+            switch (level)
+            {
+                case 1:
+                    return Brushes.LightBlue;
+                case 2:
+                    return Brushes.DeepSkyBlue;
+                default:
+                    return Brushes.DarkBlue;
             }
         }
 

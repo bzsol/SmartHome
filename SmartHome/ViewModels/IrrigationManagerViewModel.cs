@@ -286,7 +286,7 @@ namespace SmartHome.ViewModels
             }
 
             IrrigationMinute = selectedIrrigative.timespan == 0 ? 1 : selectedIrrigative.timespan;
-            IrrigationLevel = selectedIrrigative.strength;
+            IrrigationLevel = selectedIrrigative.strength == 0 ? 1 : selectedIrrigative.strength;
             TimeSettingCheckState = selectedIrrigative.IsTimeSetting;
             TemperatureSettingCheckState = selectedIrrigative.IsTempSetting;
             SelectedTime = selectedIrrigative.Time;
