@@ -11,6 +11,7 @@ namespace Common.Model
     {
         public string Place { get; set; }
         public int Level { get; set; }
+        public int State { get; set; }
         public DateTime Date { get; set; }
         public ShadePreference ShadePreference { get; set; }
         public int Photosensitivity { get; set; }

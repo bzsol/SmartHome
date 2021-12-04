@@ -272,9 +272,9 @@ namespace SmartHome.ViewModels
             TimePreferenceCheckState = selectedShading.ShadePreference == ShadePreference.TIME;
             LightPreferenceCheckState = selectedShading.ShadePreference == ShadePreference.PHOTOSENSITIVTY;
             NonePreferenceCheckState = selectedShading.ShadePreference == ShadePreference.NONE;
-            LevelSlider = selectedShading.Level;
+            LevelSlider = selectedShading.Level == 0 ? 1 : selectedShading.Level;
             SelectedTime = selectedShading.Date;
-            LightStrength = selectedShading.Photosensitivity;
+            LightStrength = selectedShading.Photosensitivity == 0 ? 450 : selectedShading.Photosensitivity;
             SetViewBasedOnPreference();
         }
 

@@ -29,6 +29,8 @@ namespace SmartHome.ViewModels
 
         private List<Shading> _shadings;
 
+        public int LightValue { get; set; }
+
         private Brush _TVColor;
         public Brush TVColor
         {
@@ -297,6 +299,11 @@ namespace SmartHome.ViewModels
                 _actualExternalFactors.roomno3Shading
             };
 
+            foreach (var shading in _shadings)
+            {
+                ShadeWindow(shading, true);
+            }
+
             TVColor = Brushes.Black;
             RadioColor = Brushes.Black;
             EntryLightColor = Brushes.Black;
@@ -356,12 +363,15 @@ namespace SmartHome.ViewModels
 
         public void CheckWindows()
         {
-            double shadow = TemperatureDataProvider.GenerateLight(DashboardViewModel.time / 60);
+            LightValue = TemperatureDataProvider.GenerateLight(DashboardViewModel.time / 60);
             foreach (var shading in _shadings)
             {
                 if (shading.ShadePreference == ShadePreference.PHOTOSENSITIVTY)
                 {
-
+                    if (shading.State != 5 && shading.Photosensitivity < LightValue + (shading.Level - 1) * 50)
+                    {
+                        ShadeWindow(shading, false);
+                    }
                 }
             }
         }
@@ -483,6 +493,84 @@ namespace SmartHome.ViewModels
                         break;
                 }
             }
+        }
+
+        public void ShadeWindow(Shading shading, bool init)
+        {
+            if (!init)
+            {
+                shading.State = CalculateState(shading);
+            }
+            
+            Brush color = GetColorBasedOnShadingState(shading.State);
+            switch (shading.Place)
+            {
+                case "LivingBig":
+                    BigWindowColor = color;
+                    break;
+                case "Kitchen":
+                    KitchenWindowColor = color;
+                    break;
+                case "Office":
+                    OfficeWindowColor = color;
+                    break;
+                case "BathRight":
+                    BathRightWindowColor = color;
+                    break;
+                case "BathLeft":
+                    BathLeftWindowColor = color;
+                    break;
+                case "Dining":
+                    DiningWindowColor = color;
+                    break;
+                case "LivingPanorama":
+                    PanoramaWindowColor = color;
+                    break;
+                case "Room1":
+                    Room1WindowColor = color;
+                    break;
+                case "Room2":
+                    Room2WindowColor = color;
+                    break;
+                default:
+                    Room3WindowColor = color;
+                    break;
+            }
+        }
+
+        public Brush GetColorBasedOnShadingState(int shadingState)
+        {
+            switch (shadingState)
+            {
+                case 5:
+                    return Brushes.DarkBlue;
+                case 4:
+                    return Brushes.DimGray;
+                case 3:
+                    return Brushes.Gray;
+                case 2:
+                    return Brushes.DarkGray;
+                case 1:
+                    return Brushes.LightGray;
+                default:
+                    return Brushes.SkyBlue;
+            }
+        }
+
+        public int CalculateState(Shading shading)
+        {
+            int state = 5;
+
+            for (int i = 1; i < shading.Level; i++)
+            {
+                if (shading.Photosensitivity + i * 50 > LightValue)
+                {
+                    state = i;
+                    break;
+                }
+            }
+
+            return state < shading.State ? shading.State : state;
         }
     }
 }
