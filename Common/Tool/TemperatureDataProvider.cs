@@ -82,7 +82,7 @@ namespace Common.Tool
             Random random = new Random();
             double cumulative = 0.0;
             string ans = string.Empty;
-            var calc = random.NextDouble();
+            var calc = random.NextDouble()*100;
             for (int i = 0; i < probs.Count; i++)
             {
                 cumulative += probs[i].Value;
