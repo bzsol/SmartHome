@@ -20,6 +20,7 @@ namespace SmartHome.ViewModels
     public class GardenPanelViewModel : INotifyPropertyChanged
     {
         public DelegateCommand<Ellipse> CheckMotionCommand { get; set; }
+        public DelegateCommand<Rectangle> LightClickedCommand { get; set; }
 
         private ExternalFactors _actualExternalFactors;
 
@@ -123,6 +124,7 @@ namespace SmartHome.ViewModels
         public GardenPanelViewModel()
         {
             CheckMotionCommand = new DelegateCommand<Ellipse>(OnCheckMotion);
+            LightClickedCommand = new DelegateCommand<Rectangle>(OnLightClicked);
             _actualExternalFactors = ExtFactDataProvider.Get().ToList()[0];
             _lightsOutside = new()
             {
@@ -140,15 +142,10 @@ namespace SmartHome.ViewModels
                 _actualExternalFactors.garden
             };
 
-            LeftGardenLightColor = Brushes.Black;
-            RightGardenLightColor = Brushes.Black;
-            UpperGarageLightColor = Brushes.Black;
-            LowerGarageLightColor = Brushes.Black;
-            LeftEntranceLightColor = Brushes.Black;
-            RightEntranceLightColor = Brushes.Black;
+            InitializeLights();
 
-            FrontIrrigationColor = Brushes.Black;
-            BackIrrigationColor = Brushes.Black;
+            FrontIrrigationColor = _actualExternalFactors.frontGarden.State == 1 ? GetColorBasedOnIrrigationLevel(_actualExternalFactors.frontGarden.strength) : Brushes.Black;
+            BackIrrigationColor = _actualExternalFactors.garden.State == 1 ? GetColorBasedOnIrrigationLevel(_actualExternalFactors.garden.strength) : Brushes.Black;
 
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
@@ -161,8 +158,94 @@ namespace SmartHome.ViewModels
             ExtFactDataProvider.Update(_actualExternalFactors);
         }
 
-        public void CheckLights()
+        public async void InitializeLights()
         {
+            await Task.Delay(0);
+            foreach (var light in _lightsOutside)
+            {
+                bool l;
+                switch (light.Place)
+                {
+                    case "Garden":
+                        if (_actualExternalFactors.gardenLights.State == 1)
+                        {
+                            l = _actualExternalFactors.gardenLights.strenght <= 50;
+                            LeftGardenLightColor = _actualExternalFactors.gardenLights.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            LeftGardenLightColor = Brushes.Black;
+                        }
+                        break;
+                    case "Garden2":
+                        if (_actualExternalFactors.gardenLights2.State == 1)
+                        {
+                            l = _actualExternalFactors.gardenLights2.strenght <= 50;
+                            RightGardenLightColor = _actualExternalFactors.gardenLights2.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+
+                            RightGardenLightColor = Brushes.Black;
+                        }
+                        break;
+                    case "Garage":
+                        if (_actualExternalFactors.garageLights.State == 1)
+                        {
+                            l = _actualExternalFactors.garageLights.strenght <= 50;
+                            LowerGarageLightColor = _actualExternalFactors.garageLights.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            LowerGarageLightColor = Brushes.Black;
+                        }
+                        break;
+                    case "Garage2":
+                        if (_actualExternalFactors.garageLights2.State == 1)
+                        {
+                            l = _actualExternalFactors.garageLights2.strenght <= 50;
+                            UpperGarageLightColor = _actualExternalFactors.garageLights2.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            UpperGarageLightColor = Brushes.Black;
+                        }
+                        break;
+                    case "Gate":
+                        if (_actualExternalFactors.gateEntranceLights.State == 1)
+                        {
+                            l = _actualExternalFactors.gateEntranceLights.strenght <= 50;
+                            LeftEntranceLightColor = _actualExternalFactors.gateEntranceLights.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            LeftEntranceLightColor = Brushes.Black;
+                        }
+                        break;
+                    default:
+                        if (_actualExternalFactors.gateEntranceLights2.State == 1)
+                        {
+                            l = _actualExternalFactors.gateEntranceLights2.strenght <= 50;
+                            RightEntranceLightColor = _actualExternalFactors.gateEntranceLights2.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            RightEntranceLightColor = Brushes.Black;
+                        }
+                        break;
+                }
+            }
+        }
+
+        public async void CheckLights()
+        {
+            await Task.Delay(0);
             foreach (var light in _lightsOutside)
             {
                 if (light.motionDetection && light.TimeLeft > 0)
@@ -184,6 +267,15 @@ namespace SmartHome.ViewModels
                 {
                     ChangeIrrigationState(irrigative, true);
                     irrigative.TimeLeft = irrigative.timespan;
+                    irrigative.State = 1;
+                }
+
+                if (irrigative.IsTempSetting && irrigative.RepeatTimeLeft == 0 && irrigative.Temp <= DashboardViewModel.tempValue)
+                {
+                    ChangeIrrigationState(irrigative, true);
+                    irrigative.TimeLeft = irrigative.timespan;
+                    irrigative.RepeatTimeLeft = 240;
+                    irrigative.State = 1;
                 }
 
                 if (irrigative.RepeatTimeLeft > 0)
@@ -191,8 +283,13 @@ namespace SmartHome.ViewModels
                     irrigative.RepeatTimeLeft -= 1;
                     if (irrigative.RepeatTimeLeft == 0)
                     {
-                        ChangeIrrigationState(irrigative, true);
-                        irrigative.TimeLeft = irrigative.timespan;
+                        if (irrigative.IsTimeSetting || irrigative.IsTempSetting && irrigative.Temp <= DashboardViewModel.tempValue)
+                        {
+                            ChangeIrrigationState(irrigative, true);
+                            irrigative.TimeLeft = irrigative.timespan;
+                            irrigative.State = 1;
+                        }
+
                     }
                 }
 
@@ -202,6 +299,7 @@ namespace SmartHome.ViewModels
                     if (irrigative.TimeLeft == 0)
                     {
                         ChangeIrrigationState(irrigative, false);
+                        irrigative.State = 0;
                         if (irrigative.IsRepeated)
                         {
                             irrigative.RepeatTimeLeft = irrigative.Repeat * 60;
@@ -243,21 +341,27 @@ namespace SmartHome.ViewModels
             {
                 case "Garden":
                     LeftGardenLightColor = Brushes.Black;
+                    _actualExternalFactors.gardenLights.State = 0;
                     break;
                 case "Garden2":
                     RightGardenLightColor = Brushes.Black;
+                    _actualExternalFactors.gardenLights2.State = 0;
                     break;
                 case "Garage":
                     LowerGarageLightColor = Brushes.Black;
+                    _actualExternalFactors.garageLights.State = 0;
                     break;
                 case "Garage2":
                     UpperGarageLightColor = Brushes.Black;
+                    _actualExternalFactors.garageLights2.State = 0;
                     break;
                 case "Gate":
                     LeftEntranceLightColor = Brushes.Black;
+                    _actualExternalFactors.gateEntranceLights.State = 0;
                     break;
                 default:
                     RightEntranceLightColor = Brushes.Black;
+                    _actualExternalFactors.gateEntranceLights2.State = 0;
                     break;
             }
         }
@@ -266,49 +370,169 @@ namespace SmartHome.ViewModels
         {
             if (dispatcherTimer.IsEnabled)
             {
+                bool light;
                 switch (e.Tag.ToString())
                 {
                     case "Garden":
                         if (_actualExternalFactors.gardenLights.motionDetection)
                         {
-                            LeftGardenLightColor = _actualExternalFactors.gardenLights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
+                            light = _actualExternalFactors.gardenLights.strenght <= 50;
+                            LeftGardenLightColor = _actualExternalFactors.gardenLights.color == LightColor.warm ? light ? Brushes.LightYellow : Brushes.Yellow :
+                                light ? Brushes.LightSteelBlue : Brushes.SteelBlue;
                             _actualExternalFactors.gardenLights.TimeLeft = _actualExternalFactors.gardenLights.activeSpan;
+                            _actualExternalFactors.gardenLights.State = 1;
                         }
                         break;
                     case "Garden2":
                         if (_actualExternalFactors.gardenLights2.motionDetection)
                         {
-                            RightGardenLightColor = _actualExternalFactors.gardenLights2.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
+                            light = _actualExternalFactors.garageLights2.strenght <= 50;
+                            RightGardenLightColor = _actualExternalFactors.gardenLights2.color == LightColor.warm ? light ? Brushes.LightYellow : Brushes.Yellow :
+                                light ? Brushes.LightSteelBlue : Brushes.SteelBlue;
                             _actualExternalFactors.gardenLights2.TimeLeft = _actualExternalFactors.gardenLights2.activeSpan;
+                            _actualExternalFactors.gardenLights2.State = 1;
                         }
                         break;
                     case "Garage":
                         if (_actualExternalFactors.garageLights.motionDetection)
                         {
-                            LowerGarageLightColor = _actualExternalFactors.garageLights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
+                            light = _actualExternalFactors.garageLights.strenght <= 50;
+                            LowerGarageLightColor = _actualExternalFactors.garageLights.color == LightColor.warm ? light ? Brushes.LightYellow : Brushes.Yellow :
+                                light ? Brushes.LightSteelBlue : Brushes.SteelBlue;
                             _actualExternalFactors.garageLights.TimeLeft = _actualExternalFactors.garageLights.activeSpan;
+                            _actualExternalFactors.garageLights.State = 1;
                         }
                         break;
                     case "Garage2":
                         if (_actualExternalFactors.garageLights2.motionDetection)
                         {
-                            UpperGarageLightColor = _actualExternalFactors.garageLights2.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
+                            light = _actualExternalFactors.garageLights2.strenght <= 50;
+                            UpperGarageLightColor = _actualExternalFactors.garageLights2.color == LightColor.warm ? light ? Brushes.LightYellow : Brushes.Yellow :
+                                light ? Brushes.LightSteelBlue : Brushes.SteelBlue;
                             _actualExternalFactors.garageLights2.TimeLeft = _actualExternalFactors.garageLights2.activeSpan;
+                            _actualExternalFactors.garageLights2.State = 1;
                         }
                         break;
                     case "Gate":
                         if (_actualExternalFactors.gateEntranceLights.motionDetection)
                         {
-                            LeftEntranceLightColor = _actualExternalFactors.gateEntranceLights.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
+                            light = _actualExternalFactors.gateEntranceLights.strenght <= 50;
+                            LeftEntranceLightColor = _actualExternalFactors.gateEntranceLights.color == LightColor.warm ? light ? Brushes.LightYellow : Brushes.Yellow :
+                                light ? Brushes.LightSteelBlue : Brushes.SteelBlue;
                             _actualExternalFactors.gateEntranceLights.TimeLeft = _actualExternalFactors.gateEntranceLights.activeSpan;
+                            _actualExternalFactors.gateEntranceLights.State = 1;
                         }
                         break;
                     default:
                         if (_actualExternalFactors.gateEntranceLights2.motionDetection)
                         {
-                            RightEntranceLightColor = _actualExternalFactors.gateEntranceLights2.color == LightColor.warm ? Brushes.LightYellow : Brushes.LightSteelBlue;
+                            light = _actualExternalFactors.gateEntranceLights2.strenght <= 50;
+                            RightEntranceLightColor = _actualExternalFactors.gateEntranceLights2.color == LightColor.warm ? light ? Brushes.LightYellow : Brushes.Yellow :
+                                light ? Brushes.LightSteelBlue : Brushes.SteelBlue;
                             _actualExternalFactors.gateEntranceLights2.TimeLeft = _actualExternalFactors.gateEntranceLights2.activeSpan;
+                            _actualExternalFactors.gateEntranceLights2.State = 1;
                         }
+                        break;
+                }
+            }
+        }
+
+        public void OnLightClicked(Rectangle r)
+        {
+            if (dispatcherTimer.IsEnabled)
+            {
+                bool light;
+                switch (r.Name)
+                {
+                    case "GardenL":
+                        if (_actualExternalFactors.gardenLights.State == 1)
+                        {
+                            _actualExternalFactors.gardenLights.State = 0;
+                            LeftGardenLightColor = Brushes.Black;
+                        }
+                        else
+                        {
+                            _actualExternalFactors.gardenLights.State = 1;
+                            light = _actualExternalFactors.gardenLights.strenght <= 50;
+                            LeftGardenLightColor = _actualExternalFactors.gardenLights.color == LightColor.warm ? light ? Brushes.LightYellow : Brushes.Yellow :
+                                light ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        _actualExternalFactors.gardenLights.motionDetection = false;
+                        break;
+                    case "Garden2L":
+                        if (_actualExternalFactors.gardenLights2.State == 1)
+                        {
+                            _actualExternalFactors.gardenLights2.State = 0;
+                            RightGardenLightColor = Brushes.Black;
+                        }
+                        else
+                        {
+                            _actualExternalFactors.gardenLights2.State = 1;
+                            light = _actualExternalFactors.gardenLights2.strenght <= 50;
+                            RightGardenLightColor = _actualExternalFactors.gardenLights2.color == LightColor.warm ? light ? Brushes.LightYellow : Brushes.Yellow :
+                                light ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        _actualExternalFactors.gardenLights2.motionDetection = false;
+                        break;
+                    case "GateL":
+                        if (_actualExternalFactors.gateEntranceLights.State == 1)
+                        {
+                            _actualExternalFactors.gateEntranceLights.State = 0;
+                            LeftEntranceLightColor = Brushes.Black;
+                        }
+                        else
+                        {
+                            _actualExternalFactors.gateEntranceLights.State = 1;
+                            light = _actualExternalFactors.gateEntranceLights.strenght <= 50;
+                            LeftEntranceLightColor = _actualExternalFactors.gateEntranceLights.color == LightColor.warm ? light ? Brushes.LightYellow : Brushes.Yellow :
+                                light ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        _actualExternalFactors.gateEntranceLights.motionDetection = false;
+                        break;
+                    case "Gate2L":
+                        if (_actualExternalFactors.gateEntranceLights2.State == 1)
+                        {
+                            _actualExternalFactors.gateEntranceLights2.State = 0;
+                            RightEntranceLightColor = Brushes.Black;
+                        }
+                        else
+                        {
+                            _actualExternalFactors.gateEntranceLights2.State = 1;
+                            light = _actualExternalFactors.gateEntranceLights2.strenght <= 50;
+                            RightEntranceLightColor = _actualExternalFactors.gateEntranceLights2.color == LightColor.warm ? light ? Brushes.LightYellow : Brushes.Yellow :
+                                light ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        _actualExternalFactors.gateEntranceLights2.motionDetection = false;
+                        break;
+                    case "GarageL":
+                        if (_actualExternalFactors.garageLights.State == 1)
+                        {
+                            _actualExternalFactors.garageLights.State = 0;
+                            LowerGarageLightColor = Brushes.Black;
+                        }
+                        else
+                        {
+                            _actualExternalFactors.garageLights.State = 1;
+                            light = _actualExternalFactors.garageLights.strenght <= 50;
+                            LowerGarageLightColor = _actualExternalFactors.garageLights.color == LightColor.warm ? light ? Brushes.LightYellow : Brushes.Yellow :
+                                light ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        _actualExternalFactors.garageLights.motionDetection = false;
+                        break;
+                    default:
+                        if (_actualExternalFactors.garageLights2.State == 1)
+                        {
+                            _actualExternalFactors.garageLights2.State = 0;
+                            UpperGarageLightColor = Brushes.Black;
+                        }
+                        else
+                        {
+                            _actualExternalFactors.garageLights2.State = 1;
+                            light = _actualExternalFactors.garageLights2.strenght <= 50;
+                            UpperGarageLightColor = _actualExternalFactors.garageLights2.color == LightColor.warm ? light ? Brushes.LightYellow : Brushes.Yellow :
+                                light ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        _actualExternalFactors.garageLights2.motionDetection = false;
                         break;
                 }
             }

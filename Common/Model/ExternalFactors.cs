@@ -94,6 +94,10 @@ namespace Common.Model
 
         // Szórakoztató eszközök
 
+        public int TVState { get; set; }
+
+        public int RadioState { get; set; }
+
         public List<Electronics> ElectronicEvents { get; set; }
 
         // Levegő
