@@ -305,7 +305,7 @@ namespace SmartHome.ViewModels
 
             foreach (var shading in _shadings)
             {
-                ShadeWindow(shading, true);
+                ShadeWindow(shading, ShadePreference.NONE);
             }
 
             TVColor = Brushes.Black;
@@ -365,8 +365,9 @@ namespace SmartHome.ViewModels
             }
         }
 
-        public void CheckWindows()
+        public async void CheckWindows()
         {
+            await Task.Delay(0);
             LightValue = TemperatureDataProvider.GenerateLight(DashboardViewModel.time / 60);
             foreach (var shading in _shadings)
             {
@@ -374,12 +375,21 @@ namespace SmartHome.ViewModels
                 {
                     if (shading.State != 5 && shading.Photosensitivity < LightValue + (shading.Level - 1) * 50)
                     {
-                        ShadeWindow(shading, false);
+                        ShadeWindow(shading, ShadePreference.PHOTOSENSITIVTY);
                     }
                 }
                 else if (shading.ShadePreference == ShadePreference.TIME)
                 {
-
+                    var actualTime = ToolKit.SecToMilitaryTime(DashboardViewModel.time);
+                    if (shading.State != 5 && shading.Date.ToLongTimeString().Equals(actualTime))
+                    {
+                        shading.State = 5;
+                        ShadeWindow(shading, ShadePreference.NONE);
+                    }
+                    else if (shading.State != 5 && shading.Date.AddHours((shading.Level - shading.State - 1) * -0.5).ToLongTimeString().Equals(actualTime))
+                    {
+                        ShadeWindow(shading, ShadePreference.TIME);
+                    }
                 }
             }
         }
@@ -505,12 +515,18 @@ namespace SmartHome.ViewModels
 
         public void OnWindowLeftClicked(Rectangle r)
         {
-            ManuallyChangeWindowState(false, r.Name);
+            if (dispatcherTimer.IsEnabled)
+            {
+                ManuallyChangeWindowState(false, r.Name);
+            }
         }
 
         public void OnWindowRightClicked(Rectangle r)
         {
-            ManuallyChangeWindowState(true, r.Name);
+            if (dispatcherTimer.IsEnabled)
+            {
+                ManuallyChangeWindowState(true, r.Name);
+            }
         }
 
         public void ManuallyChangeWindowState(bool up, string windowName)
@@ -596,11 +612,15 @@ namespace SmartHome.ViewModels
             return actualState + value < 6 && actualState + value > -1;
         }
 
-        public void ShadeWindow(Shading shading, bool init)
+        public void ShadeWindow(Shading shading, ShadePreference shadePreference)
         {
-            if (!init)
+            if (shadePreference == ShadePreference.PHOTOSENSITIVTY)
             {
-                shading.State = CalculateState(shading);
+                shading.State = CalculateStateBasedOnLight(shading);
+            }
+            else if (shadePreference == ShadePreference.TIME)
+            {
+                shading.State = CalculateStateBasedOnTime(shading);
             }
 
             Brush color = GetColorBasedOnShadingState(shading.State);
@@ -658,7 +678,7 @@ namespace SmartHome.ViewModels
             }
         }
 
-        public int CalculateState(Shading shading)
+        public int CalculateStateBasedOnLight(Shading shading)
         {
             int state = 5;
 
@@ -672,6 +692,11 @@ namespace SmartHome.ViewModels
             }
 
             return state < shading.State ? shading.State : state;
+        }
+
+        public int CalculateStateBasedOnTime(Shading shading)
+        {
+            return ++shading.State;
         }
     }
 }

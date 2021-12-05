@@ -195,6 +195,8 @@ namespace SmartHome.ViewModels
             }
         }
 
+        private int _state;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyChange(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -273,6 +275,7 @@ namespace SmartHome.ViewModels
             LightPreferenceCheckState = selectedShading.ShadePreference == ShadePreference.PHOTOSENSITIVTY;
             NonePreferenceCheckState = selectedShading.ShadePreference == ShadePreference.NONE;
             LevelSlider = selectedShading.Level == 0 ? 1 : selectedShading.Level;
+            _state = selectedShading.State;
             SelectedTime = selectedShading.Date;
             LightStrength = selectedShading.Photosensitivity == 0 ? 450 : selectedShading.Photosensitivity;
             SetViewBasedOnPreference();
@@ -284,6 +287,7 @@ namespace SmartHome.ViewModels
             Shading shading = new Shading();
 
             shading.Level = LevelSlider;
+            shading.State = _state;
             shading.ShadePreference = TimePreferenceCheckState ? ShadePreference.TIME : LightPreferenceCheckState ? ShadePreference.PHOTOSENSITIVTY : ShadePreference.NONE;
             if (_lightPreferenceCheckState)
             {

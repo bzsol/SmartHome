@@ -65,7 +65,7 @@
                          Minimum="1" Maximum="5" AutoToolTipPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Value="{Binding LevelSlider}"></Slider>
             <Slider Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500" Visibility="{Binding LightSettingVisibility}"
                          Minimum="450" Maximum="1600"  AutoToolTipPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" Value="{Binding LightStrength}"></Slider>
-            <material:TimePicker Grid.Row="4" Grid.Column="1" FontFamily="{StaticResource Roboto}" FontSize="24" Width="500"
+            <material:TimePicker Grid.Row="4" Grid.Column="1" FontFamily="{StaticResource Roboto}" FontSize="24" Width="500" material:ValidationAssist.Suppress="True"
                         Margin="15 0 15 0" Padding="0 20 0 0" BorderBrush="Black" Is24Hours="True" Visibility="{Binding TimeSettingVisibility}" SelectedTime="{Binding SelectedTime}">
                 <material:TimePicker.ClockStyle>
                     <Style TargetType="material:Clock">
