@@ -13,15 +13,5 @@ namespace Common.Tool
         {
             return TimeSpan.FromSeconds(seconds).ToString(@"h\:mm\:ss");
         }
-
-        public static bool IsValidTime(string SelectedTime)
-        {
-            if (SelectedTime == null)
-            {
-                return false;
-            }
-
-            return Regex.IsMatch(SelectedTime, "([0-9]|[1][0-9]|[2][0-3]):[0-5][0-9]");
-        }
     }
 }
