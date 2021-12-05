@@ -81,7 +81,7 @@
         </Grid>
 
         <ContentControl Grid.Row="1" Content="{Binding UserControlViewModel}"></ContentControl>
-        <TextBlock Text="{Binding Forecast}" VerticalAlignment="Top" FontSize="24" Grid.Row="1"></TextBlock>
+        <Label Content="{Binding Forecast}" VerticalAlignment="Top" FontSize="24" Grid.Row="1" Height="89" Margin="0,0,1424,0"></Label>
     </Grid>
 
 </Window>
