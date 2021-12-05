@@ -137,6 +137,8 @@ namespace SmartHome.ViewModels
             }
         }
 
+        private int _state;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyChange(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -243,8 +245,9 @@ namespace SmartHome.ViewModels
             IsMotionDetectionEnabled = selectedLight.motionDetection ? true : false;
             MotionTimeTextBox = selectedLight.motionDetection ? selectedLight.activeSpan.ToString() : string.Empty;
             SliderValue = selectedLight.strenght;
-            isColorWarm = selectedLight.color == 0 ? true : false;
+            isColorWarm = selectedLight.color == 0;
             isColorCold = !isColorWarm;
+            _state = selectedLight.State;
         }
 
 
@@ -277,6 +280,7 @@ namespace SmartHome.ViewModels
             lights.strenght = _lightStrenght;
             lights.color = isColorCold ? ExternalFactors.LightColor.cold : ExternalFactors.LightColor.warm;
             lights.activeSpan = motionTimeSpan;
+            lights.State = _state;
 
             if (InsideCheckState)
             {

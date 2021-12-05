@@ -241,6 +241,8 @@ namespace SmartHome.ViewModels
             }
         }
 
+        private int _state;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyChange(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -299,6 +301,7 @@ namespace SmartHome.ViewModels
             isStorm = selectedIrrigative.isStorm;
             isSunny = selectedIrrigative.isSunny;
             isthunderstorm = selectedIrrigative.isthunderstorm;
+            _state = selectedIrrigative.State;
 
             TimeSettingOnVisibility = TimeSettingCheckState ? Visibility.Visible : Visibility.Hidden;
             TimeSettingOffVisibility = TimeSettingCheckState ? Visibility.Hidden : Visibility.Visible;
@@ -315,6 +318,7 @@ namespace SmartHome.ViewModels
             irrigative.IsTimeSetting = TimeSettingCheckState;
             irrigative.IsTempSetting = TemperatureSettingCheckState;
             irrigative.IsRepeated = RepeatSettingCheckState;
+            irrigative.State = _state;
 
             irrigative.isCloudy = _isCloudy;
             irrigative.isRain = _isRain;
