@@ -310,8 +310,8 @@ namespace SmartHome.ViewModels
                 ShadeWindow(shading, ShadePreference.NONE);
             }
 
-            TVColor = Brushes.Black;
-            RadioColor = Brushes.Black;
+            TVColor = _actualExternalFactors.TVState == 1 ? Brushes.LightGreen : Brushes.Black;
+            RadioColor = _actualExternalFactors.RadioState == 1 ? Brushes.LightGreen : Brushes.Black;
             EntryLightColor = Brushes.Black;
             LivingroomLightColor = Brushes.Black;
             KitchenLightColor = Brushes.Black;
@@ -343,10 +343,12 @@ namespace SmartHome.ViewModels
                     if (ev.Type.Equals("TV"))
                     {
                         TVColor = Brushes.LightGreen;
+                        _actualExternalFactors.TVState = 1;
                     }
                     else
                     {
                         RadioColor = Brushes.LightGreen;
+                        _actualExternalFactors.RadioState = 1;
                     }
                 }
             }
@@ -591,10 +593,12 @@ namespace SmartHome.ViewModels
             if (r.Name.Equals("TV"))
             {
                 TVColor = Brushes.Black;
+                _actualExternalFactors.TVState = 0;
             }
             else
             {
                 RadioColor = Brushes.Black;
+                _actualExternalFactors.RadioState = 0;
             }
         }
 

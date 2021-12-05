@@ -9,8 +9,6 @@ namespace Common.Model
 {
     public class Electronics
     {
-        public int State { get; set; }
-
         public string EventName { get; set; }
 
         public DateTime EventTime { set; get; }

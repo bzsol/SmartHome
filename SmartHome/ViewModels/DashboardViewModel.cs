@@ -21,7 +21,7 @@ namespace SmartHome.ViewModels
     public class DashboardViewModel : INotifyPropertyChanged
     {
         public string insideTemp = "20";
-        public static int time = 0;
+        public static int time = -60;
         public static string forecast = string.Empty;
         public static DispatcherTimer dispatcherTimer = new DispatcherTimer();
         public string temp;
