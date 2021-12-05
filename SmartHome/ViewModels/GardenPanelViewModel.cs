@@ -142,12 +142,7 @@ namespace SmartHome.ViewModels
                 _actualExternalFactors.garden
             };
 
-            LeftGardenLightColor = Brushes.Black;
-            RightGardenLightColor = Brushes.Black;
-            UpperGarageLightColor = Brushes.Black;
-            LowerGarageLightColor = Brushes.Black;
-            LeftEntranceLightColor = Brushes.Black;
-            RightEntranceLightColor = Brushes.Black;
+            InitializeLights();
 
             FrontIrrigationColor = Brushes.Black;
             BackIrrigationColor = Brushes.Black;
@@ -161,6 +156,91 @@ namespace SmartHome.ViewModels
             CheckLights();
             CheckIrrigation();
             ExtFactDataProvider.Update(_actualExternalFactors);
+        }
+
+        public async void InitializeLights()
+        {
+            await Task.Delay(0);
+            foreach (var light in _lightsOutside)
+            {
+                bool l;
+                switch (light.Place)
+                {
+                    case "Garden":
+                        if (_actualExternalFactors.gardenLights.State == 1)
+                        {
+                            l = _actualExternalFactors.gardenLights.strenght <= 50;
+                            LeftGardenLightColor = _actualExternalFactors.gardenLights.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            LeftGardenLightColor = Brushes.Black;
+                        }
+                        break;
+                    case "Garden2":
+                        if (_actualExternalFactors.gardenLights2.State == 1)
+                        {
+                            l = _actualExternalFactors.gardenLights2.strenght <= 50;
+                            RightGardenLightColor = _actualExternalFactors.gardenLights2.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+
+                            RightGardenLightColor = Brushes.Black;
+                        }
+                        break;
+                    case "Garage":
+                        if (_actualExternalFactors.garageLights.State == 1)
+                        {
+                            l = _actualExternalFactors.garageLights.strenght <= 50;
+                            LowerGarageLightColor = _actualExternalFactors.garageLights.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            LowerGarageLightColor = Brushes.Black;
+                        }
+                        break;
+                    case "Garage2":
+                        if (_actualExternalFactors.garageLights2.State == 1)
+                        {
+                            l = _actualExternalFactors.garageLights2.strenght <= 50;
+                            UpperGarageLightColor = _actualExternalFactors.garageLights2.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            UpperGarageLightColor = Brushes.Black;
+                        }
+                        break;
+                    case "Gate":
+                        if (_actualExternalFactors.gateEntranceLights.State == 1)
+                        {
+                            l = _actualExternalFactors.gateEntranceLights.strenght <= 50;
+                            LeftEntranceLightColor = _actualExternalFactors.gateEntranceLights.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            LeftEntranceLightColor = Brushes.Black;
+                        }
+                        break;
+                    default:
+                        if (_actualExternalFactors.gateEntranceLights2.State == 1)
+                        {
+                            l = _actualExternalFactors.gateEntranceLights2.strenght <= 50;
+                            RightEntranceLightColor = _actualExternalFactors.gateEntranceLights2.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            RightEntranceLightColor = Brushes.Black;
+                        }
+                        break;
+                }
+            }
         }
 
         public async void CheckLights()

@@ -312,15 +312,7 @@ namespace SmartHome.ViewModels
 
             TVColor = _actualExternalFactors.TVState == 1 ? Brushes.LightGreen : Brushes.Black;
             RadioColor = _actualExternalFactors.RadioState == 1 ? Brushes.LightGreen : Brushes.Black;
-            EntryLightColor = Brushes.Black;
-            LivingroomLightColor = Brushes.Black;
-            KitchenLightColor = Brushes.Black;
-            DiningLightColor = Brushes.Black;
-            OfficeLightColor = Brushes.Black;
-            BathLightColor = Brushes.Black;
-            Room1LightColor = Brushes.Black;
-            Room2LightColor = Brushes.Black;
-            Room3LightColor = Brushes.Black;
+            InitializeLights();
 
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
@@ -332,6 +324,126 @@ namespace SmartHome.ViewModels
             CheckLights();
             CheckWindows();
             ExtFactDataProvider.Update(_actualExternalFactors);
+        }
+
+        public async void InitializeLights()
+        {
+            await Task.Delay(0);
+            foreach (var light in _lightsInside)
+            {
+                bool l;
+                switch (light.Place)
+                {
+                    case "Entry":
+                        if (_actualExternalFactors.entryLights.State == 1)
+                        {
+                            l = _actualExternalFactors.entryLights.strenght <= 50;
+                            EntryLightColor = _actualExternalFactors.entryLights.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            EntryLightColor = Brushes.Black;
+                        }
+                        break;
+                    case "Livingroom":
+                        if (_actualExternalFactors.livingroomLights.State == 1)
+                        {
+                            l = _actualExternalFactors.livingroomLights.strenght <= 50;
+                            LivingroomLightColor = _actualExternalFactors.livingroomLights.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            LivingroomLightColor = Brushes.Black;
+                        }
+                        break;
+                    case "Kitchen":
+                        if (_actualExternalFactors.kitchenLights.State == 1)
+                        {
+                            l = _actualExternalFactors.kitchenLights.strenght <= 50;
+                            KitchenLightColor = _actualExternalFactors.kitchenLights.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            KitchenLightColor = Brushes.Black;
+                        }
+                        break;
+                    case "Office":
+                        if (_actualExternalFactors.officeLights.State == 1)
+                        {
+                            l = _actualExternalFactors.officeLights.strenght <= 50;
+                            OfficeLightColor = _actualExternalFactors.officeLights.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            OfficeLightColor = Brushes.Black;
+                        }
+                        break;
+                    case "Bath":
+                        if (_actualExternalFactors.bathLights.State == 1)
+                        {
+                            l = _actualExternalFactors.bathLights.strenght <= 50;
+                            BathLightColor = _actualExternalFactors.bathLights.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            BathLightColor = Brushes.Black;
+                        }
+                        break;
+                    case "Dining":
+                        if (_actualExternalFactors.diningLights.State == 1)
+                        {
+                            l = _actualExternalFactors.diningLights.strenght <= 50;
+                            DiningLightColor = _actualExternalFactors.diningLights.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            DiningLightColor = Brushes.Black;
+                        }
+                        break;
+                    case "Room1":
+                        if (_actualExternalFactors.roomno1Lights.State == 1)
+                        {
+                            l = _actualExternalFactors.roomno1Lights.strenght <= 50;
+                            Room1LightColor = _actualExternalFactors.roomno1Lights.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            Room1LightColor = Brushes.Black;
+                        }
+                        break;
+                    case "Room2":
+                        if (_actualExternalFactors.roomno2Lights.State == 1)
+                        {
+                            l = _actualExternalFactors.roomno2Lights.strenght <= 50;
+                            Room2LightColor = _actualExternalFactors.roomno2Lights.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            Room2LightColor = Brushes.Black;
+                        }
+                        break;
+                    default:
+                        if (_actualExternalFactors.roomno3Lights.State == 1)
+                        {
+                            l = _actualExternalFactors.roomno3Lights.strenght <= 50;
+                            Room3LightColor = _actualExternalFactors.roomno3Lights.color == LightColor.warm ? l ? Brushes.LightYellow : Brushes.Yellow :
+                                l ? Brushes.LightSteelBlue : Brushes.SteelBlue;
+                        }
+                        else
+                        {
+                            Room3LightColor = Brushes.Black;
+                        }
+                        break;
+                }
+            }
         }
 
         public void CheckElectronics()

@@ -148,7 +148,7 @@ namespace SmartHome.ViewModels
 
         private void Reset(Button btn) 
         {
-            time = 0;
+            time = -60;
             insideTemp = "20";
             TimeChange = ToolKit.SecToMilitaryTime(time);
         }
