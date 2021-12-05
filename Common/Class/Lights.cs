@@ -11,6 +11,8 @@ namespace Common.Model
     {
         public string Place { get; set; }
 
+        public int State { get; set; }
+
         public bool isLightsEnabled { get; set; }
 
         public int strenght { get; set; }

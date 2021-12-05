@@ -292,7 +292,7 @@ namespace SmartHome.ViewModels
             SelectedTime = selectedIrrigative.Time;
             RepeatSettingCheckState = selectedIrrigative.IsRepeated;
             SelectedRepeatTime = selectedIrrigative.Repeat == 0 ? 1 : selectedIrrigative.Repeat;
-            TempSlider = selectedIrrigative.Temp;
+            TempSlider = selectedIrrigative.Temp == 0 ? 8 : selectedIrrigative.Temp;
             isCloudy = selectedIrrigative.isCloudy;
             isRain = selectedIrrigative.isRain;
             isSnow = selectedIrrigative.isSnow;

@@ -24,7 +24,8 @@ namespace SmartHome.ViewModels
         public static int time = 0;
         public static string forecast = string.Empty;
         public static DispatcherTimer dispatcherTimer = new DispatcherTimer();
-        string temp;
+        public string temp;
+        public static double tempValue;
         public DelegateCommand<Button> ChangeToSimulation { get; set; }
         public DelegateCommand<Button> ChangeToConfiguration { get; set; }
 
@@ -136,7 +137,8 @@ namespace SmartHome.ViewModels
             if (time % (3600 * 3) == 0 || time == 60) {
                 forecast = TemperatureDataProvider.GenerateForecast(forecast);
             }
-            temp = TemperatureDataProvider.GenerateTemp(time / 60).ToString("N2");
+            tempValue = TemperatureDataProvider.GenerateTemp(time / 60);
+            temp = tempValue.ToString("N2");
             insideTemp = TemperatureDataProvider.CalculateInsideTemp(double.Parse(insideTemp), double.Parse(temp), ExtFactDataProvider.Get().ToList()[0]).ToString("N2");
             TempChange = $"{temp}°C";
             InsideTemp = $"{insideTemp}°C";

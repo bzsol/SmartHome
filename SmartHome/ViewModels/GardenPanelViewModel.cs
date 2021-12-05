@@ -185,6 +185,12 @@ namespace SmartHome.ViewModels
                     ChangeIrrigationState(irrigative, true);
                     irrigative.TimeLeft = irrigative.timespan;
                 }
+                else if (irrigative.IsTempSetting && irrigative.RepeatTimeLeft == 0 && irrigative.Temp <= DashboardViewModel.tempValue)
+                {
+                    ChangeIrrigationState(irrigative, true);
+                    irrigative.TimeLeft = irrigative.timespan;
+                    irrigative.RepeatTimeLeft = 240;
+                }
 
                 if (irrigative.RepeatTimeLeft > 0)
                 {

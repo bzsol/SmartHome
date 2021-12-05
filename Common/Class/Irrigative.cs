@@ -10,6 +10,8 @@ namespace Common.Class
     {
         public string Place { get; set; }
 
+        public int State { get; set; }
+
         public int timespan { get; set; }
         
         public int TimeLeft { get; set; }
