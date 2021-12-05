@@ -144,8 +144,8 @@ namespace SmartHome.ViewModels
 
             InitializeLights();
 
-            FrontIrrigationColor = Brushes.Black;
-            BackIrrigationColor = Brushes.Black;
+            FrontIrrigationColor = _actualExternalFactors.frontGarden.State == 1 ? GetColorBasedOnIrrigationLevel(_actualExternalFactors.frontGarden.strength) : Brushes.Black;
+            BackIrrigationColor = _actualExternalFactors.garden.State == 1 ? GetColorBasedOnIrrigationLevel(_actualExternalFactors.garden.strength) : Brushes.Black;
 
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
@@ -267,12 +267,14 @@ namespace SmartHome.ViewModels
                 {
                     ChangeIrrigationState(irrigative, true);
                     irrigative.TimeLeft = irrigative.timespan;
+                    irrigative.State = 1;
                 }
                 else if (irrigative.IsTempSetting && irrigative.RepeatTimeLeft == 0 && irrigative.Temp <= DashboardViewModel.tempValue)
                 {
                     ChangeIrrigationState(irrigative, true);
                     irrigative.TimeLeft = irrigative.timespan;
                     irrigative.RepeatTimeLeft = 240;
+                    irrigative.State = 1;
                 }
 
                 if (irrigative.RepeatTimeLeft > 0)
@@ -280,8 +282,13 @@ namespace SmartHome.ViewModels
                     irrigative.RepeatTimeLeft -= 1;
                     if (irrigative.RepeatTimeLeft == 0)
                     {
-                        ChangeIrrigationState(irrigative, true);
-                        irrigative.TimeLeft = irrigative.timespan;
+                        if (irrigative.IsTimeSetting || irrigative.IsTempSetting && irrigative.Temp <= DashboardViewModel.tempValue)
+                        {
+                            ChangeIrrigationState(irrigative, true);
+                            irrigative.TimeLeft = irrigative.timespan;
+                            irrigative.State = 1;
+                        }
+
                     }
                 }
 
@@ -291,6 +298,7 @@ namespace SmartHome.ViewModels
                     if (irrigative.TimeLeft == 0)
                     {
                         ChangeIrrigationState(irrigative, false);
+                        irrigative.State = 0;
                         if (irrigative.IsRepeated)
                         {
                             irrigative.RepeatTimeLeft = irrigative.Repeat * 60;
