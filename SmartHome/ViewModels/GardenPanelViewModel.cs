@@ -259,10 +259,22 @@ namespace SmartHome.ViewModels
             }
         }
 
-        public void CheckIrrigation()
+        public async void CheckIrrigation()
         {
+            await Task.Delay(0);
             foreach (var irrigative in _irrigatives)
             {
+                if (!IsIrrigationShouldWork(irrigative))
+                {
+                    if (irrigative.State == 1)
+                    {
+                        ChangeIrrigationState(irrigative, false);
+                        irrigative.State = 0;
+                    }
+
+                    continue;
+                }
+
                 if (irrigative.IsTimeSetting && irrigative.Time.ToLongTimeString().Equals(ToolKit.SecToMilitaryTime(DashboardViewModel.time)))
                 {
                     ChangeIrrigationState(irrigative, true);
@@ -283,7 +295,7 @@ namespace SmartHome.ViewModels
                     irrigative.RepeatTimeLeft -= 1;
                     if (irrigative.RepeatTimeLeft == 0)
                     {
-                        if (irrigative.IsTimeSetting || irrigative.IsTempSetting && irrigative.Temp <= DashboardViewModel.tempValue)
+                        if (irrigative.IsTimeSetting || (irrigative.IsTempSetting && irrigative.Temp <= DashboardViewModel.tempValue))
                         {
                             ChangeIrrigationState(irrigative, true);
                             irrigative.TimeLeft = irrigative.timespan;
@@ -333,6 +345,32 @@ namespace SmartHome.ViewModels
                 default:
                     return Brushes.DarkBlue;
             }
+        }
+
+        public bool IsIrrigationShouldWork(Irrigative irrigative)
+        {
+            if (DashboardViewModel.forecast.Equals("Sunny") && !irrigative.isSunny)
+            {
+                return false;
+            }
+            else if (DashboardViewModel.forecast.Equals("Cloudy") && !irrigative.isCloudy)
+            {
+                return false;
+            }
+            else if (DashboardViewModel.forecast.Equals("Rain") && !irrigative.isRain)
+            {
+                return false;
+            }
+            else if (DashboardViewModel.forecast.Equals("Storm") && !irrigative.isStorm)
+            {
+                return false;
+            }
+            else if (DashboardViewModel.forecast.Equals("Thunderstorm") && !irrigative.isthunderstorm)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public void TurnOffLamp(Lights light)

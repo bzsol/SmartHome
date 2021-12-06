@@ -150,7 +150,7 @@ namespace SmartHome.ViewModels
         {
             time = -60;
             insideTemp = "20";
-            TimeChange = ToolKit.SecToMilitaryTime(time);
+            TimeChange = "0:00:00";
         }
 
         private void Stop(Button btn) {

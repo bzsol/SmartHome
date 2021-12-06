@@ -341,6 +341,7 @@ namespace SmartHome.ViewModels
             }
 
             ExtFactDataProvider.Update(_actualExternalFactors);
+            MessageBox.Show("Beállítások mentve");
         }
 
         private void OnDownMinuteClicked(Button btn)
@@ -366,10 +367,9 @@ namespace SmartHome.ViewModels
                 else
                 {
                     motionTimeSpan = value;
+                    DataUpload(motionTimeSpan);
                 }
             }
-
-            DataUpload(motionTimeSpan);
         }
 
         private void OnLocationChanged(RadioButton rbtn)
