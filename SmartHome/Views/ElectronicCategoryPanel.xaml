@@ -30,7 +30,7 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            
+
             <Label Grid.Row="0" Grid.Column="0" Content="Válasszon időpontot az eseményhez" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
                    VerticalAlignment="Center" Padding="15 0 0 0"></Label>
             <Label Grid.Row="1" Grid.Column="0" Content="Válasszon esemény módot" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
@@ -39,45 +39,24 @@
                    VerticalAlignment="Center" Padding="15 0 0 0"></Label>
             <Label Grid.Row="3" Grid.Column="0" Content="Adjon nevet az eseménynek" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF"
                    VerticalAlignment="Center" Padding="15 0 0 0"></Label>
-            <Grid Grid.Row="0" Grid.Column="1" Width="500">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
 
-                <DatePicker Grid.Column="0" FontFamily="{StaticResource Roboto}" FontSize="24" Width="250"
-                        Margin="0 0 15 0" Padding="0 20 0 0" BorderBrush="Black" SelectedDate="{Binding EventDatePickerDate}">
-                    <DatePicker.CalendarStyle>
-                        <Style TargetType="Calendar" BasedOn="{StaticResource MaterialDesignCalendarPortrait}">
-                            <Style.Resources>
-                                <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#34B46C" />
-                            </Style.Resources>
-                        </Style>
-                    </DatePicker.CalendarStyle>
-                    <DatePicker.Resources>
-                        <Style x:Key="MaterialDesignDatePickerTextBox" TargetType="DatePickerTextBox" BasedOn="{StaticResource MaterialDesignDatePickerTextBox}">
-                            <Setter Property="Foreground" Value="#FFFFFF"></Setter>
-                            <Setter Property="BorderThickness" Value="0 0 0 2"></Setter>
-                        </Style>
-                    </DatePicker.Resources>
-                </DatePicker>
-                <material:TimePicker Grid.Column="2" FontFamily="{StaticResource Roboto}" FontSize="24" Width="250"
+            <material:TimePicker Grid.Row="0" Grid.Column="1" FontFamily="{StaticResource Roboto}" FontSize="24" Width="500"
                         Margin="15 0 0 0" Padding="0 20 0 0" BorderBrush="Black" Is24Hours="True" SelectedTime="{Binding EventDatePickerDate}" material:ValidationAssist.Suppress="True">
-                    <material:TimePicker.ClockStyle>
-                        <Style TargetType="material:Clock">
-                            <Style.Resources>
-                                <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#34B46C" />
-                            </Style.Resources>
-                        </Style>
-                    </material:TimePicker.ClockStyle>
-                    <material:TimePicker.Resources>
-                        <Style x:Key="MaterialDesignTimePickerTextBox" TargetType="material:TimePickerTextBox" BasedOn="{StaticResource MaterialDesignTimePickerTextBox}">
-                            <Setter Property="Foreground" Value="#FFFFFF"></Setter>
-                            <Setter Property="BorderThickness" Value="0 0 0 2"></Setter>
-                        </Style>
-                    </material:TimePicker.Resources>
-                </material:TimePicker>
-            </Grid>
+                <material:TimePicker.ClockStyle>
+                    <Style TargetType="material:Clock">
+                        <Style.Resources>
+                            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#34B46C" />
+                        </Style.Resources>
+                    </Style>
+                </material:TimePicker.ClockStyle>
+                <material:TimePicker.Resources>
+                    <Style x:Key="MaterialDesignTimePickerTextBox" TargetType="material:TimePickerTextBox" BasedOn="{StaticResource MaterialDesignTimePickerTextBox}">
+                        <Setter Property="Foreground" Value="#FFFFFF"></Setter>
+                        <Setter Property="BorderThickness" Value="0 0 0 2"></Setter>
+                    </Style>
+                </material:TimePicker.Resources>
+            </material:TimePicker>
+
             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <RadioButton Content="Egyszeri esemény" Margin="0 0 15 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF" IsChecked="{Binding EventOnce}"></RadioButton>
                 <RadioButton Content="Végteleneített esemény" Margin="15 0 0 0" FontFamily="{StaticResource Roboto}" FontSize="24" Foreground="#FFFFFF" IsChecked="{Binding EventCont}"></RadioButton>
@@ -106,7 +85,7 @@
                     <TextBlock Text="Események kezelése" VerticalAlignment="Center" FontSize="24"></TextBlock>
                 </StackPanel>
             </Button>
-            
+
             <Button Grid.Column="2" Width="Auto" Height="Auto" Style="{StaticResource MainButtonStyle}" Command="{Binding AddEventCommand}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="../Images/add.png" Height="28" Margin="0 0 5 0"></Image>

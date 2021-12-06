@@ -112,16 +112,16 @@ namespace SmartHome.ViewModels
 
         private void DataUpload(string eventName, DateTime dateTime, bool cont, bool isTV)
         {
-                var Event = new Electronics
-                {
-                    EventName = eventName,
-                    EventTime = dateTime,
-                    Continous = cont,
-                    Type = isTV == true ? "TV" : "Rádió"
-                };
-                _actualExternalFactors.ElectronicEvents.Add(Event);
+            var Event = new Electronics
+            {
+                EventName = eventName,
+                EventTime = dateTime,
+                Continous = cont,
+                Type = isTV == true ? "TV" : "Rádió"
+            };
+            _actualExternalFactors.ElectronicEvents.Add(Event);
 
-                ExtFactDataProvider.Update(_actualExternalFactors);
+            ExtFactDataProvider.Update(_actualExternalFactors);
         }
 
         public void OnAddEventClicked(Button btn)
@@ -134,44 +134,44 @@ namespace SmartHome.ViewModels
                     {
                         if (_Radio)
                         {
-                            MessageBox.Show("Radio" + " " + _dateTimePicker.ToString() + " EE");
+                            MessageBox.Show($"Egyszeri rádió esemény sikeresen hozzáadva {_dateTimePicker.ToLongTimeString()} időpontra.");
                             DataUpload(_nameTextBoxText, _dateTimePicker, false, false);
                         }
                         else if (_TV)
                         {
-                            MessageBox.Show("TV" + " " + _dateTimePicker.ToString() + " EE");
+                            MessageBox.Show($"Egyszeri rádió esemény sikeresen hozzáadva {_dateTimePicker.ToLongTimeString()} időpontra.");
                             DataUpload(_nameTextBoxText, _dateTimePicker, false, true);
                         }
                         else
                         {
-                            MessageBox.Show("Nincs eszköz!");
+                            MessageBox.Show("Nincs eszköz kiválasztva!");
                         }
                     }
                     else if (_VE)
                     {
                         if (_Radio)
                         {
-                            MessageBox.Show("Radio" + " " + _dateTimePicker.ToString() + " VE");
+                            MessageBox.Show($"Végtelenített rádió esemény sikeresen hozzáadva {_dateTimePicker.ToLongTimeString()} időpontra.");
                             DataUpload(_nameTextBoxText, _dateTimePicker, true, false);
                         }
                         else if (_TV)
                         {
-                            MessageBox.Show("TV" + " " + _dateTimePicker.ToString() + " VE");
+                            MessageBox.Show($"Végtelenített TV esemény sikeresen hozzáadva {_dateTimePicker.ToLongTimeString()} időpontra.");
                             DataUpload(_nameTextBoxText, _dateTimePicker, true, true);
                         }
                         else
                         {
-                            MessageBox.Show("Nincs eszköz");
+                            MessageBox.Show("Nincs eszköz kiválasztva");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Nincs kiválasztott esemény");
+                        MessageBox.Show("Nincs kiválasztott esemény!");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Már létezik esemény ezen a néven");
+                    MessageBox.Show("Már létezik esemény ezen a néven!");
                 }
             }
             else

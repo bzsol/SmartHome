@@ -350,7 +350,7 @@ namespace SmartHome.ViewModels
             }
 
             ExtFactDataProvider.Update(_actualExternalFactors);
-
+            MessageBox.Show("Beállítások mentve");
         }
 
         private void OnSaveSettings(Button btn)

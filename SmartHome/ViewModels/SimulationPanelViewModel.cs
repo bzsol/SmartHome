@@ -446,8 +446,10 @@ namespace SmartHome.ViewModels
             }
         }
 
-        public void CheckElectronics()
+        public async void CheckElectronics()
         {
+            await Task.Delay(0);
+            List<Electronics> removal = new List<Electronics>();
             foreach (var ev in _actualExternalFactors.ElectronicEvents)
             {
                 if (ev.EventTime.ToLongTimeString().Equals(ToolKit.SecToMilitaryTime(DashboardViewModel.time)))
@@ -462,7 +464,17 @@ namespace SmartHome.ViewModels
                         RadioColor = Brushes.LightGreen;
                         _actualExternalFactors.RadioState = 1;
                     }
+
+                    if (!ev.Continous)
+                    {
+                        removal.Add(ev);
+                    }
                 }
+            }
+
+            foreach (var ev in removal)
+            {
+                _actualExternalFactors.ElectronicEvents.Remove(ev);
             }
         }
 
@@ -702,15 +714,18 @@ namespace SmartHome.ViewModels
 
         public void OnElectronicClicked(Rectangle r)
         {
-            if (r.Name.Equals("TV"))
+            if (dispatcherTimer.IsEnabled)
             {
-                TVColor = Brushes.Black;
-                _actualExternalFactors.TVState = 0;
-            }
-            else
-            {
-                RadioColor = Brushes.Black;
-                _actualExternalFactors.RadioState = 0;
+                if (r.Name.Equals("TV"))
+                {
+                    TVColor = Brushes.Black;
+                    _actualExternalFactors.TVState = 0;
+                }
+                else
+                {
+                    RadioColor = Brushes.Black;
+                    _actualExternalFactors.RadioState = 0;
+                }
             }
         }
 

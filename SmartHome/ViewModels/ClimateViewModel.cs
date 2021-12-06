@@ -566,6 +566,7 @@ namespace SmartHome.ViewModels
                 _actualExternalFactors.roomno3Climate.Mode = StringToMode(_fifthSelectedOption);
 
                 ExtFactDataProvider.Update(_actualExternalFactors);
+                MessageBox.Show("Beállítások mentve");
             }
         }
 
