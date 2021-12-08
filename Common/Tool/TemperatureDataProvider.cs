@@ -92,33 +92,7 @@ namespace Common.Tool
                     break;
                 }
             }
-            switch (ans)
-            {
-                case "Sunny":
-                    {
-                        return "Tiszta";
-                    }
-                case "Cloudy":
-                    {
-                        return "Felhős";
-                    }
-                case "Thunderstorm":
-                    {
-                        return "Vihar";
-                    }
-                case "Rain":
-                    {
-                        return "Eső";
-                    }
-                case "Storm":
-                    {
-                        return "Zápor";
-                    }
-                default:
-                    {
-                        return "nem meghatározható";
-                    }
-            }
+            return ans;
         }
 
 
