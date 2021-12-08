@@ -42,6 +42,9 @@
                 </behavior:Interaction.Triggers>
             </Rectangle>
             <Rectangle x:Name="KitchenL" Fill="{Binding KitchenLightColor}" Margin="219,160,219,172" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Lámpa (le- és felkapcsolás - bal klikk)" Background="#008D3D" Placement="Center" Margin="0 0 0 90"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding LightClickedCommand}" CommandParameter="{x:Reference Name=KitchenL}"/>
@@ -49,6 +52,9 @@
                 </behavior:Interaction.Triggers>
             </Rectangle>
             <Rectangle x:Name="Radio" Fill="{Binding RadioColor}" Margin="85,0,356,363">
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Rádió (kikapcsolás - bal klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding ElectronicClickedCommand}" CommandParameter="{x:Reference Name=Radio}"/>
@@ -57,6 +63,9 @@
             </Rectangle>
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="188,356,178,0" ></Rectangle>
             <Rectangle x:Name="KitchenW" Fill="{Binding KitchenWindowColor}" Height="20" Margin="-103,173,367,183" RenderTransformOrigin="0.5,0.5" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Ablak (redőny kezelése le - bal klikk, fel - jobb klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=KitchenW}"></behavior:InvokeCommandAction>
@@ -84,6 +93,9 @@
                 </behavior:Interaction.Triggers>
             </Rectangle>
             <Rectangle x:Name="DiningL" Fill="{Binding DiningLightColor}" Margin="113,157,105,164" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Lámpa (le- és felkapcsolás - bal klikk)" Background="#008D3D" Placement="Center" Margin="0 0 0 90"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding LightClickedCommand}" CommandParameter="{x:Reference Name=DiningL}"/>
@@ -92,6 +104,9 @@
             </Rectangle>
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="78,356,77,0" ></Rectangle>
             <Rectangle x:Name="DiningW" Fill="{Binding DiningWindowColor}" Height="20" Margin="70,0,69,356" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Ablak (redőny kezelése le - bal klikk, fel - jobb klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=DiningW}"></behavior:InvokeCommandAction>
@@ -115,6 +130,9 @@
             </Rectangle>
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="82,0,73,370" ></Rectangle>
             <Rectangle x:Name="LivingL" Fill="{Binding LivingroomLightColor}" Margin="196,172,178,172" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Lámpa (le- és felkapcsolás - bal klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding LightClickedCommand}" CommandParameter="{x:Reference Name=LivingL}"/>
@@ -122,6 +140,9 @@
                 </behavior:Interaction.Triggers>
             </Rectangle>
             <Rectangle x:Name="LivingPanoramaW" Fill="{Binding PanoramaWindowColor}" Height="20" Margin="-103,173,367,197" RenderTransformOrigin="0.5,0.5">
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Ablak (redőny kezelése le - bal klikk, fel - jobb klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=LivingPanoramaW}"></behavior:InvokeCommandAction>
@@ -140,6 +161,9 @@
                 </Rectangle.RenderTransform>
             </Rectangle>
             <Rectangle x:Name="LivingBigW" Fill="{Binding BigWindowColor}" Height="20" Margin="156,370,156,0" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Ablak (redőny kezelése le - bal klikk, fel - jobb klikk)" Background="#008D3D" Placement="Center" Margin="0 0 0 25"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=LivingBigW}"></behavior:InvokeCommandAction>
@@ -150,6 +174,9 @@
                 </behavior:Interaction.Triggers>
             </Rectangle>
             <Rectangle x:Name="TV" Fill="{Binding TVColor}" Height="20" Margin="363,173,-99,197" RenderTransformOrigin="0.5,0.5">
+                <Rectangle.ToolTip>
+                    <ToolTip Content="TV (kikapcsolás - bal klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding ElectronicClickedCommand}" CommandParameter="{x:Reference Name=TV}"/>
@@ -174,6 +201,9 @@
                 </behavior:Interaction.Triggers>
             </Rectangle>
             <Rectangle x:Name="EntryL" Fill="{Binding EntryLightColor}" Margin="106,161,97,161" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Lámpa (le- és felkapcsolás - bal klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding LightClickedCommand}" CommandParameter="{x:Reference Name=EntryL}"/>
@@ -192,6 +222,9 @@
                 </behavior:Interaction.Triggers>
             </Rectangle>
             <Rectangle x:Name="Room2L" Fill="{Binding Room2LightColor}" Margin="176,155,167,155" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Lámpa (le- és felkapcsolás - bal klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding LightClickedCommand}" CommandParameter="{x:Reference Name=Room2L}"/>
@@ -200,6 +233,9 @@
             </Rectangle>
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="82,0,73,370" ></Rectangle>
             <Rectangle x:Name="Room2W" Fill="{Binding Room2WindowColor}" Height="20" Margin="109,370,109,0" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Ablak (redőny kezelése le - bal klikk, fel - jobb klikk)" Background="#008D3D" Placement="Center" Margin="0 0 0 25"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=Room2W}"></behavior:InvokeCommandAction>
@@ -219,6 +255,9 @@
                 </behavior:Interaction.Triggers>
             </Rectangle>
             <Rectangle x:Name="Room3L" Fill="{Binding Room3LightColor}" Margin="169,160,169,160" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Lámpa (le- és felkapcsolás - bal klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding LightClickedCommand}" CommandParameter="{x:Reference Name=Room3L}"/>
@@ -227,6 +266,9 @@
             </Rectangle>
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="145,0,145,370" ></Rectangle>
             <Rectangle x:Name="Room3W" Fill="{Binding Room3WindowColor}" Height="20" Margin="304,211,-86,159" RenderTransformOrigin="0.5,0.5" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Ablak (redőny kezelése le - bal klikk, fel - jobb klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=Room3W}"></behavior:InvokeCommandAction>
@@ -254,6 +296,9 @@
                 </behavior:Interaction.Triggers>
             </Rectangle>
             <Rectangle x:Name="Room1L" Fill="{Binding Room1LightColor}" Margin="171,158,171,158" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Lámpa (le- és felkapcsolás - bal klikk)" Background="#008D3D" Placement="Center" Margin="0 0 0 90"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding LightClickedCommand}" CommandParameter="{x:Reference Name=Room1L}"/>
@@ -262,6 +307,9 @@
             </Rectangle>
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="145,356,145,0" ></Rectangle>
             <Rectangle x:Name="Room1W" Fill="{Binding Room1WindowColor}" Height="20" Margin="304,180,-86,176" RenderTransformOrigin="0.5,0.5" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Ablak (redőny kezelése le - bal klikk, fel - jobb klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=Room1W}"></behavior:InvokeCommandAction>
@@ -289,6 +337,9 @@
                 </behavior:Interaction.Triggers>
             </Rectangle>
             <Rectangle x:Name="OfficeL" Fill="{Binding OfficeLightColor}" Margin="64,162,52,162" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Lámpa (le- és felkapcsolás - bal klikk)" Background="#008D3D" Placement="Center" Margin="0 0 0 90"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding LightClickedCommand}" CommandParameter="{x:Reference Name=OfficeL}"/>
@@ -297,6 +348,9 @@
             </Rectangle>
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="25,356,25,0" ></Rectangle>
             <Rectangle x:Name="OfficeW" Fill="{Binding OfficeWindowColor}" Height="20" Margin="36,0,25,356" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Ablak (redőny kezelése le - bal klikk, fel - jobb klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=OfficeW}"></behavior:InvokeCommandAction>
@@ -316,6 +370,9 @@
                 </behavior:Interaction.Triggers>
             </Rectangle>
             <Rectangle x:Name="BathL" Fill="{Binding BathLightColor}" Margin="95,164,95,164" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Lámpa (le- és felkapcsolás - bal klikk)" Background="#008D3D" Placement="Center" Margin="0 0 0 90"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding LightClickedCommand}" CommandParameter="{x:Reference Name=BathL}"/>
@@ -324,6 +381,9 @@
             </Rectangle>
             <Rectangle Fill="Brown" Height="20" Width="120" Margin="64,356,65,0" ></Rectangle>
             <Rectangle x:Name="BathLeftW" Fill="{Binding BathLeftWindowColor}" Height="20" Margin="10,0,179,356" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Ablak (redőny kezelése le - bal klikk, fel - jobb klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=BathLeftW}"></behavior:InvokeCommandAction>
@@ -334,6 +394,9 @@
                 </behavior:Interaction.Triggers>
             </Rectangle>
             <Rectangle x:Name="BathRightW" Fill="{Binding BathRightWindowColor}" Height="20" Margin="186,0,10,356" >
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Ablak (redőny kezelése le - bal klikk, fel - jobb klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding WindowLeftClickedCommand}" CommandParameter="{x:Reference Name=BathRightW}"></behavior:InvokeCommandAction>
