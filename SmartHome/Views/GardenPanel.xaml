@@ -52,6 +52,9 @@
             </Ellipse>
             <Rectangle Grid.Row="1" Fill="#362112" Margin="0,39,941,39" Width="20" Height="300"></Rectangle>
             <Rectangle x:Name="GardenL" Grid.Row="0" Fill="{Binding LeftGardenLightColor}" Width="30" Height="30" Margin="169,74,764,296" RenderTransformOrigin="1.785,0.645" Panel.ZIndex="1">
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Lámpa (le- és felkapcsolás - bal klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding LightClickedCommand}" CommandParameter="{x:Reference Name=GardenL}"/>
@@ -59,6 +62,9 @@
                 </behavior:Interaction.Triggers>
             </Rectangle>
             <Rectangle x:Name="Garden2L" Grid.Row="0" Fill="{Binding RightGardenLightColor}" Width="30" Height="30" Margin="758,74,175,296" Panel.ZIndex="1">
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Lámpa (le- és felkapcsolás - bal klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding LightClickedCommand}" CommandParameter="{x:Reference Name=Garden2L}"/>
@@ -72,11 +78,30 @@
                     </behavior:EventTrigger>
                 </behavior:Interaction.Triggers>
             </Ellipse>
-            <Ellipse Grid.Row="0" Fill="{Binding BackIrrigationColor}" Width="25" Height="25" Margin="906,43,32,332"></Ellipse>
-            <Ellipse Grid.Row="0" Fill="{Binding FrontIrrigationColor}" Width="25" Height="25" Margin="906,318,32,57"></Ellipse>
-            <Ellipse Grid.Row="0" Fill="{Binding BackIrrigationColor}" Width="25" Height="25" Margin="41,43,897,332"></Ellipse>
-            <Ellipse Grid.Row="0" Fill="{Binding FrontIrrigationColor}" Width="25" Height="25" Margin="41,318,897,57" RenderTransformOrigin="0.415,1.316"></Ellipse>
+            <Ellipse Grid.Row="0" Fill="{Binding BackIrrigationColor}" Width="25" Height="25" Margin="906,43,32,332">
+                <Ellipse.ToolTip>
+                    <ToolTip Content="Öntözőberendezés" Background="#008D3D"></ToolTip>
+                </Ellipse.ToolTip>
+            </Ellipse>
+            <Ellipse Grid.Row="0" Fill="{Binding FrontIrrigationColor}" Width="25" Height="25" Margin="906,318,32,57">
+                <Ellipse.ToolTip>
+                    <ToolTip Content="Öntözőberendezés" Background="#008D3D"></ToolTip>
+                </Ellipse.ToolTip>
+            </Ellipse>
+            <Ellipse Grid.Row="0" Fill="{Binding BackIrrigationColor}" Width="25" Height="25" Margin="41,43,897,332">
+                <Ellipse.ToolTip>
+                    <ToolTip Content="Öntözőberendezés" Background="#008D3D"></ToolTip>
+                </Ellipse.ToolTip>
+            </Ellipse>
+            <Ellipse Grid.Row="0" Fill="{Binding FrontIrrigationColor}" Width="25" Height="25" Margin="41,318,897,57" RenderTransformOrigin="0.415,1.316">
+                <Ellipse.ToolTip>
+                    <ToolTip Content="Öntözőberendezés" Background="#008D3D"></ToolTip>
+                </Ellipse.ToolTip>
+            </Ellipse>
             <Rectangle x:Name="Gate2L" Grid.Row="1" Fill="{Binding RightEntranceLightColor}" Width="30" Height="30" Margin="906,360,27,10" Panel.ZIndex="1">
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Lámpa (le- és felkapcsolás - bal klikk)" Background="#008D3D" Placement="Center" Margin="0 0 0 45"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding LightClickedCommand}" CommandParameter="{x:Reference Name=Gate2L}"/>
@@ -94,6 +119,9 @@
                 </behavior:Interaction.Triggers>
             </Ellipse>
             <Rectangle x:Name="GateL" Grid.Row="1" Fill="{Binding LeftEntranceLightColor}" Width="30" Height="30" Margin="38,360,895,10">
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Lámpa (le- és felkapcsolás - bal klikk)" Background="#008D3D" Placement="Center" Margin="0 0 0 45"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding LightClickedCommand}" CommandParameter="{x:Reference Name=GateL}"/>
@@ -115,6 +143,9 @@
                 </Rectangle.RenderTransform>
             </Rectangle>
             <Rectangle x:Name="Garage2L" Fill="{Binding UpperGarageLightColor}" Width="30" Height="30" Margin="194,182,213,588" Panel.ZIndex="1">
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Lámpa (le- és felkapcsolás - bal klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding LightClickedCommand}" CommandParameter="{x:Reference Name=Garage2L}"/>
@@ -129,6 +160,9 @@
                 </behavior:Interaction.Triggers>
             </Ellipse>
             <Rectangle x:Name="GarageL" Fill="{Binding LowerGarageLightColor}" Width="30" Height="30" Margin="204,586,203,182" Panel.ZIndex="1">
+                <Rectangle.ToolTip>
+                    <ToolTip Content="Lámpa (le- és felkapcsolás - bal klikk)" Background="#008D3D"></ToolTip>
+                </Rectangle.ToolTip>
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="MouseLeftButtonDown">
                         <behavior:InvokeCommandAction Command="{Binding LightClickedCommand}" CommandParameter="{x:Reference Name=GarageL}"/>
